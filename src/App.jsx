@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Mail, Phone, MapPin, ChevronDown, ExternalLink, Code, Briefcase, GraduationCap, Settings, User, Send, Github, Linkedin, Facebook, Instagram, Twitter, MessageCircle, ArrowUpRight, Moon, Sun, Zap, Palette, Brain, Award, Trophy, BookOpen, Sparkles, Star, Crown, Medal, Globe, Cpu, Smartphone, Shield, Target, BarChart, HeartPulse, Lock, Video, Quote, CreditCard, Banknote, Key } from 'lucide-react';
 import emailjs from '@emailjs/browser';
-import perfil from './assets/Img ultttt_edited.jpg';
+import perfil from './assets/profile-image.jpg';
 
 const Portfolio = () => {
   const [activeSection, setActiveSection] = useState('inicio');
