@@ -20,24 +20,20 @@ const Portfolio = () => {
   const [displayedText, setDisplayedText] = useState("");
 
   useEffect(() => {
-    // Verificar preferencia guardada en localStorage
     const savedDarkMode = localStorage.getItem('darkMode');
     if (savedDarkMode !== null) {
       setDarkMode(JSON.parse(savedDarkMode));
     } else {
-      // Por defecto, usar modo oscuro
       setDarkMode(true);
     }
   }, []);
 
   useEffect(() => {
-    // Aplicar clase al body según el modo
     if (darkMode) {
       document.documentElement.classList.add('dark');
     } else {
       document.documentElement.classList.remove('dark');
     }
-    // Guardar preferencia en localStorage
     localStorage.setItem('darkMode', JSON.stringify(darkMode));
   }, [darkMode]);
 
@@ -56,11 +52,10 @@ const Portfolio = () => {
             i = 0;
             setDisplayedText("");
             startTyping();
-          }, 4000); // espera 4 segundos antes de repetir
+          }, 4000); // espera 4 segundos
         }
       }, 50);
     };
-
     startTyping();
 
     return () => {
@@ -110,8 +105,6 @@ const Portfolio = () => {
 
 const handleSubmit = (e) => {
   e.preventDefault();
-
-  // Check honeypot for bot detection
   const honeypotValue = e.target.honeypot.value;
   if (honeypotValue) {
     // Bot detected, do not send
@@ -127,12 +120,12 @@ const handleSubmit = (e) => {
   setErrors(newErrors);
 
   if (Object.keys(newErrors).length === 0) {
-    // 1️⃣ Enviar correo de confirmación al visitante
+    //Enviar correo de confirmación 
     emailjs.send('service_s5qyr4s', 'template_oyoptw3', {
       to_email: formData.email,
       from_name: 'Juan Pablo',
       name: formData.name,
-      message: formData.message // puedes personalizar este mensaje en la plantilla
+      message: formData.message
     }, 'gUsdYXpB3K94QxqYM')
       .then((result) => {
         console.log(`Correo de confirmación enviado a ${formData.email}:`, result.text);
@@ -141,7 +134,7 @@ const handleSubmit = (e) => {
         console.error('Error al enviar correo de confirmación:', error.text);
       });
 
-    // 2️⃣ Enviar notificación a ti con los datos del formulario
+    //Enviar notificación
     emailjs.send('service_s5qyr4s', 'template_1hbf3wn', {
       name: formData.name,
       email: formData.email,
@@ -153,15 +146,11 @@ const handleSubmit = (e) => {
       .catch((error) => {
         console.error('Error al enviar notificación al administrador:', error.text);
       });
-
-    // 3️⃣ Mostrar modal y limpiar formulario
     setShowModal(true);
     setFormData({ name: '', email: '', message: '' });
     setTimeout(() => setShowModal(false), 3000);
   }
 };
-
-
 
   const experiences = [
     {
@@ -283,11 +272,11 @@ const courses = [
     { name: "Pensamiento Crítico y Analítico", level: 95, category: "analytics" },
     { name: "Segmentación de Audiencias", level: 90, category: "marketing" },
     { name: "Análisis y Gestion de Datos", level: 85, category: "analytics" },
-    { name: "Pruebas A/B y Optimización", level: 98, category: "analytics" },
+    { name: "Pruebas A/B y Optimización", level: 95, category: "analytics" },
     { name: "CRM HubSpot & Masivian", level: 83, category: "tools" },
     { name: "Maquetado web con HTML/CSS", level: 97, category: "development" },
-    { name: "Desarrollo con React, Vite y Tailwind CSS", level: 82, category: "development" },
-    { name: "Programación en JavaScript & Python (AI)", level: 80, category: "development" },
+    { name: "Desarrollo con React, Vite y Tailwind CSS", level: 89, category: "development" },
+    { name: "Programación en JavaScript & Python (AI)", level: 85, category: "development" },
   ];
 
   const software = [
@@ -361,12 +350,6 @@ const courses = [
     "Envíame un mensaje 📨"
   ];
 
-
-
-
-
-
-
 return (
   <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
     {/* Navigation */}
@@ -378,7 +361,7 @@ return (
             @juannppgd
           </div>
           
-          {/* Navigation Items and Theme Toggle */}
+          {/* Navigation */}
           <div className="flex items-center space-x-4">
             {/* Desktop Navigation */}
             <div className="hidden mobile-nav:flex space-x-8">
@@ -397,7 +380,7 @@ return (
               ))}
             </div>
             
-            {/* Theme Toggle Button */}
+            {/* Theme*/}
             <button
               onClick={() => setDarkMode(!darkMode)}
               className="p-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 transition-all duration-300 transform hover:scale-110"
@@ -415,12 +398,12 @@ return (
     </nav>
 
 
-      {/* Hero Section */}
+      {/* Hero*/}
 <section
   id="inicio"
   className="min-h-screen flex items-center justify-center relative overflow-hidden pt-24 sm:pt-32 md:pt-36 lg:pt-28 xl:pt-24 animate-fadein dark:bg-dark-bg"
 >
-        {/* Animated Background */}
+        {/* Animated */}
         <div className="absolute inset-0">
           <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-purple-500/30 rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/30 rounded-full blur-3xl animate-pulse delay-1000"></div>
@@ -454,7 +437,6 @@ return (
   {displayedText}
   <span className="animate-blink">|</span>
 </p>
-
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
             <a href="https://www.google.com/maps/place/Tunja,+Boyacá,+Colombia" target="_blank" className="flex items-center gap-2 text-gray-300 hover:text-cyan-400 transition-colors dark:text-secondary">
@@ -482,7 +464,6 @@ return (
             >
               Contáctame
             </button>
-
             <a
               href="https://www.instagram.com/juannppgd"
               target="_blank"
@@ -493,14 +474,13 @@ return (
               Instagram
             </a>
           </div>
-          
           <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
             <ChevronDown className="w-8 h-8 text-white/50 dark:text-secondary" />
           </div>
         </div>
       </section>
 
-      {/* Education Section */}
+      {/* Education */}
       <section id="estudios" className="pt-16 pb-8 px-4 dark:bg-dark-bg">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-16 animate-float">
@@ -509,7 +489,7 @@ return (
             </span>
           </h2>
           
-          {/* Academic Education */}
+          {/* Academic */}
           <div className="mb-16">
             <h3 id="subtitle-0" className="text-2xl font-bold text-white mb-4 text-center dark:text-primary">
               {subtitleTexts[0]}
@@ -674,7 +654,7 @@ return (
   );
 })}
 
-          {/* Ver toda la experiencia profesional Button */}
+          {/*experiencia profesional Button */}
           <div className="text-center mt-12">
             <button
               onClick={() => setShowExperienceModal(true)}
@@ -1366,7 +1346,7 @@ return (
                   © 2025 Juan Pablo Gutiérrez Díaz. Todos los derechos reservados.
                 </p>
                 <p className="text-sm text-gray-500 dark:text-secondary">
-                  Construido con tecnologías de vanguardia para frontend, automatización y procesamiento inteligente.🌐 
+                  Construido con tecnologías de vanguardia para lograr sitios rápidos, funcionales y efectivos. ⚙️
                   <br></br>¿Quieres saber más o agendar una asesoría? Escríbeme a contact.juannppgd@gmail.com 🗒️
                 </p>
               </div>
