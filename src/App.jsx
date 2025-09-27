@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Mail, Phone, MapPin, ChevronDown, ExternalLink, Code, Briefcase, GraduationCap, Settings, User, Send, Github, Linkedin, Facebook, Instagram, Twitter, MessageCircle, ArrowUpRight, Moon, Sun, Zap, Palette, Brain, Award, Trophy, BookOpen, Sparkles, Star, Crown, Medal, Globe, Cpu, Smartphone, Shield, Target, BarChart, HeartPulse, Lock, Video, Quote, CreditCard, Banknote, Key } from 'lucide-react';
 import emailjs from '@emailjs/browser';
-import perfil from './assets/Img ultttt_edited.jpg';
+import perfil from './assets/profile-image.jpg';
 
 const Portfolio = () => {
   const [activeSection, setActiveSection] = useState('inicio');
@@ -20,24 +20,20 @@ const Portfolio = () => {
   const [displayedText, setDisplayedText] = useState("");
 
   useEffect(() => {
-    // Verificar preferencia guardada en localStorage
     const savedDarkMode = localStorage.getItem('darkMode');
     if (savedDarkMode !== null) {
       setDarkMode(JSON.parse(savedDarkMode));
     } else {
-      // Por defecto, usar modo oscuro
       setDarkMode(true);
     }
   }, []);
 
   useEffect(() => {
-    // Aplicar clase al body según el modo
     if (darkMode) {
       document.documentElement.classList.add('dark');
     } else {
       document.documentElement.classList.remove('dark');
     }
-    // Guardar preferencia en localStorage
     localStorage.setItem('darkMode', JSON.stringify(darkMode));
   }, [darkMode]);
 
@@ -56,11 +52,10 @@ const Portfolio = () => {
             i = 0;
             setDisplayedText("");
             startTyping();
-          }, 4000); // espera 4 segundos antes de repetir
+          }, 4000); // espera 4 segundos
         }
       }, 50);
     };
-
     startTyping();
 
     return () => {
@@ -71,7 +66,7 @@ const Portfolio = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['inicio', 'estudios', 'experiencia', 'habilidades', 'servicios', 'reseñas', 'contacto'];
+    const sections = ['inicio', 'estudios', 'experiencia', 'habilidades', 'servicios', 'impacto', 'reseñas', 'contacto'];
       const scrollPosition = window.scrollY + 100;
 
       sections.forEach(section => {
@@ -110,8 +105,6 @@ const Portfolio = () => {
 
 const handleSubmit = (e) => {
   e.preventDefault();
-
-  // Check honeypot for bot detection
   const honeypotValue = e.target.honeypot.value;
   if (honeypotValue) {
     // Bot detected, do not send
@@ -127,12 +120,12 @@ const handleSubmit = (e) => {
   setErrors(newErrors);
 
   if (Object.keys(newErrors).length === 0) {
-    // 1️⃣ Enviar correo de confirmación al visitante
+    //Enviar correo de confirmación 
     emailjs.send('service_s5qyr4s', 'template_oyoptw3', {
       to_email: formData.email,
       from_name: 'Juan Pablo',
       name: formData.name,
-      message: formData.message // puedes personalizar este mensaje en la plantilla
+      message: formData.message
     }, 'gUsdYXpB3K94QxqYM')
       .then((result) => {
         console.log(`Correo de confirmación enviado a ${formData.email}:`, result.text);
@@ -141,7 +134,7 @@ const handleSubmit = (e) => {
         console.error('Error al enviar correo de confirmación:', error.text);
       });
 
-    // 2️⃣ Enviar notificación a ti con los datos del formulario
+    //Enviar notificación
     emailjs.send('service_s5qyr4s', 'template_1hbf3wn', {
       name: formData.name,
       email: formData.email,
@@ -153,15 +146,11 @@ const handleSubmit = (e) => {
       .catch((error) => {
         console.error('Error al enviar notificación al administrador:', error.text);
       });
-
-    // 3️⃣ Mostrar modal y limpiar formulario
     setShowModal(true);
     setFormData({ name: '', email: '', message: '' });
     setTimeout(() => setShowModal(false), 3000);
   }
 };
-
-
 
   const experiences = [
     {
@@ -283,11 +272,11 @@ const courses = [
     { name: "Pensamiento Crítico y Analítico", level: 95, category: "analytics" },
     { name: "Segmentación de Audiencias", level: 90, category: "marketing" },
     { name: "Análisis y Gestion de Datos", level: 85, category: "analytics" },
-    { name: "Pruebas A/B y Optimización", level: 98, category: "analytics" },
+    { name: "Pruebas A/B y Optimización", level: 95, category: "analytics" },
     { name: "CRM HubSpot & Masivian", level: 83, category: "tools" },
     { name: "Maquetado web con HTML/CSS", level: 97, category: "development" },
-    { name: "Desarrollo con React, Vite y Tailwind CSS", level: 82, category: "development" },
-    { name: "Programación en JavaScript & Python (AI)", level: 80, category: "development" },
+    { name: "Desarrollo con React, Vite y Tailwind CSS", level: 89, category: "development" },
+    { name: "Programación en JavaScript & Python (AI)", level: 85, category: "development" },
   ];
 
   const software = [
@@ -361,12 +350,6 @@ const courses = [
     "Envíame un mensaje 📨"
   ];
 
-
-
-
-
-
-
 return (
   <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
     {/* Navigation */}
@@ -378,11 +361,11 @@ return (
             @juannppgd
           </div>
           
-          {/* Navigation Items and Theme Toggle */}
+          {/* Navigation */}
           <div className="flex items-center space-x-4">
             {/* Desktop Navigation */}
             <div className="hidden mobile-nav:flex space-x-8">
-              {['inicio', 'estudios', 'experiencia', 'habilidades', 'servicios', 'reseñas', 'contacto'].map((section) => (
+              {['inicio', 'estudios', 'experiencia', 'habilidades', 'servicios', 'impacto', 'reseñas', 'contacto'].map((section) => (
                 <button
                   key={section}
                   onClick={() => scrollToSection(section)}
@@ -397,7 +380,7 @@ return (
               ))}
             </div>
             
-            {/* Theme Toggle Button */}
+            {/* Theme*/}
             <button
               onClick={() => setDarkMode(!darkMode)}
               className="p-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 transition-all duration-300 transform hover:scale-110"
@@ -415,12 +398,12 @@ return (
     </nav>
 
 
-      {/* Hero Section */}
+      {/* Hero*/}
 <section
   id="inicio"
   className="min-h-screen flex items-center justify-center relative overflow-hidden pt-24 sm:pt-32 md:pt-36 lg:pt-28 xl:pt-24 animate-fadein dark:bg-dark-bg"
 >
-        {/* Animated Background */}
+        {/* Animated */}
         <div className="absolute inset-0">
           <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-purple-500/30 rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/30 rounded-full blur-3xl animate-pulse delay-1000"></div>
@@ -454,7 +437,6 @@ return (
   {displayedText}
   <span className="animate-blink">|</span>
 </p>
-
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
             <a href="https://www.google.com/maps/place/Tunja,+Boyacá,+Colombia" target="_blank" className="flex items-center gap-2 text-gray-300 hover:text-cyan-400 transition-colors dark:text-secondary">
@@ -482,7 +464,6 @@ return (
             >
               Contáctame
             </button>
-
             <a
               href="https://www.instagram.com/juannppgd"
               target="_blank"
@@ -493,14 +474,13 @@ return (
               Instagram
             </a>
           </div>
-          
           <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
             <ChevronDown className="w-8 h-8 text-white/50 dark:text-secondary" />
           </div>
         </div>
       </section>
 
-      {/* Education Section */}
+      {/* Education */}
       <section id="estudios" className="pt-16 pb-8 px-4 dark:bg-dark-bg">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-16 animate-float">
@@ -509,7 +489,7 @@ return (
             </span>
           </h2>
           
-          {/* Academic Education */}
+          {/* Academic */}
           <div className="mb-16">
             <h3 id="subtitle-0" className="text-2xl font-bold text-white mb-4 text-center dark:text-primary">
               {subtitleTexts[0]}
@@ -674,7 +654,7 @@ return (
   );
 })}
 
-          {/* Ver toda la experiencia profesional Button */}
+          {/*experiencia profesional Button */}
           <div className="text-center mt-12">
             <button
               onClick={() => setShowExperienceModal(true)}
@@ -863,87 +843,161 @@ return (
           <div className="text-center">
             <h3 className="text-3xl font-bold text-white mb-8 animate-zoom-down dark:text-primary">
               <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-                Conoce mis proyectos
+                Mi stack de desarrollo
               </span>
             </h3>
             
             <div className="flex flex-wrap justify-center gap-8 mb-8">
               {/* HTML/CSS/JavaScript */}
-              <a 
-                href="https://github.com/juannppgd" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="group flex flex-col items-center bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-cyan-400/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/20 dark:bg-card dark:border-card"
-              >
+              <div className="group flex flex-col items-center bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-cyan-400/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/20 dark:bg-card dark:border-card">
                 <div className="bg-gradient-to-r from-orange-500 to-red-500 p-3 rounded-full mb-4 group-hover:animate-bounce">
                   <Code className="w-8 h-8 text-white" />
                 </div>
                 <h4 className="text-white font-semibold text-lg mb-2 dark:text-primary">HTML/CSS/JS</h4>
                 <p className="text-gray-400 text-sm dark:text-secondary">Desarrollo Web</p>
-              </a>
+              </div>
 
               {/* React */}
-              <a 
-                href="https://github.com/juannppgd" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="group flex flex-col items-center bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-cyan-400/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/20 dark:bg-card dark:border-card"
-              >
+              <div className="group flex flex-col items-center bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-cyan-400/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/20 dark:bg-card dark:border-card">
                 <div className="bg-gradient-to-r from-cyan-500 to-blue-500 p-3 rounded-full mb-4 group-hover:animate-bounce">
                   <Code className="w-8 h-8 text-white" />
                 </div>
                 <h4 className="text-white font-semibold text-lg mb-2 dark:text-primary">React</h4>
                 <p className="text-gray-400 text-sm dark:text-secondary">Frontend</p>
-              </a>
+              </div>
 
               {/* Vite */}
-              <a 
-                href="https://github.com/juannppgd" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="group flex flex-col items-center bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-cyan-400/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/20 dark:bg-card dark:border-card"
-              >
+              <div className="group flex flex-col items-center bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-cyan-400/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/20 dark:bg-card dark:border-card">
                 <div className="bg-gradient-to-r from-purple-500 to-pink-500 p-3 rounded-full mb-4 group-hover:animate-bounce">
                   <Zap className="w-8 h-8 text-white" />
                 </div>
                 <h4 className="text-white font-semibold text-lg mb-2 dark:text-primary">Vite</h4>
                 <p className="text-gray-400 text-sm dark:text-secondary">Build Tool</p>
-              </a>
+              </div>
 
               {/* Tailwind CSS */}
-              <a 
-                href="https://github.com/juannppgd" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="group flex flex-col items-center bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-cyan-400/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/20 dark:bg-card dark:border-card"
-              >
+              <div className="group flex flex-col items-center bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-cyan-400/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/20 dark:bg-card dark:border-card">
                 <div className="bg-gradient-to-r from-teal-500 to-cyan-500 p-3 rounded-full mb-4 group-hover:animate-bounce">
                   <Palette className="w-8 h-8 text-white" />
                 </div>
                 <h4 className="text-white font-semibold text-lg mb-2 dark:text-primary">Tailwind CSS</h4>
                 <p className="text-gray-400 text-sm dark:text-secondary">Styling</p>
-              </a>
+              </div>
 
               {/* Python (AI) */}
-              <a 
-                href="https://github.com/juannppgd" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="group flex flex-col items-center bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-cyan-400/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/20 dark:bg-card dark:border-card"
-              >
+              <div className="group flex flex-col items-center bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-cyan-400/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/20 dark:bg-card dark:border-card">
                 <div className="bg-gradient-to-r from-yellow-500 to-orange-500 p-3 rounded-full mb-4 group-hover:animate-bounce">
                   <Brain className="w-8 h-8 text-white" />
                 </div>
                 <h4 className="text-white font-semibold text-lg mb-2 dark:text-primary">Python (AI)</h4>
                 <p className="text-gray-400 text-sm dark:text-secondary">Inteligencia Artificial</p>
-              </a>
+              </div>
             </div>
-            
+
             <div className="flex flex-col items-center">
-              <p className="text-gray-300 mb-4 dark:text-secondary">Explora mis proyectos en GitHub</p>
+              <button
+                onClick={() => scrollToSection('contacto')}
+                className="text-gray-300 mb-4 dark:text-secondary hover:text-cyan-400 transition-colors cursor-pointer text-lg font-semibold"
+              >Agenda una asesoría personalizada y descubre cómo desarrollo proyectos como este.
+              </button>
               <div className="animate-bounce">
                 <ChevronDown className="w-8 h-8 text-cyan-400" />
               </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* Impacto Section */}
+      <section id="impacto" className="py-8 px-4 bg-black/20 dark:bg-dark-bg">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-bold text-center mb-16 animate-float">
+            <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+              El Impacto de la Tecnología y el Marketing
+            </span>
+          </h2>
+
+          <div className="grid lg:grid-cols-3 gap-8">
+            {/* Diseño Responsivo */}
+            <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-8 border border-white/10 hover:border-cyan-400/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/20 dark:bg-card dark:border-card">
+              <div className="text-center mb-6">
+                <div className="bg-gradient-to-r from-cyan-500 to-blue-500 p-4 rounded-full w-16 h-16 mx-auto mb-4">
+                  <Smartphone className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-4 dark:text-primary">Diseño Responsivo</h3>
+              </div>
+              <p className="text-gray-300 mb-6 dark:text-secondary">
+                Cada pixel cuenta. Mi enfoque en el diseño responsivo asegura que tu sitio se vea perfecto en cualquier dispositivo, desde móviles hasta pantallas ultra-wide.
+              </p>
+              <ul className="space-y-3">
+                <li className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full mt-2 flex-shrink-0"></div>
+                  <span className="text-gray-300 dark:text-secondary">Adaptación perfecta a móviles, tablets y desktop</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full mt-2 flex-shrink-0"></div>
+                  <span className="text-gray-300 dark:text-secondary">Optimización de velocidad de carga</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full mt-2 flex-shrink-0"></div>
+                  <span className="text-gray-300 dark:text-secondary">Experiencia de usuario fluida</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Impacto Tecnológico */}
+            <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-8 border border-white/10 hover:border-purple-400/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/20 dark:bg-card dark:border-card">
+              <div className="text-center mb-6">
+                <div className="bg-gradient-to-r from-purple-500 to-pink-500 p-4 rounded-full w-16 h-16 mx-auto mb-4">
+                  <Cpu className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-4 dark:text-primary">Impacto Tecnológico</h3>
+              </div>
+              <p className="text-gray-300 mb-6 dark:text-secondary">
+                La tecnología transforma negocios. Utilizo las últimas herramientas para crear soluciones innovadoras que impulsan el crecimiento.
+              </p>
+              <ul className="space-y-3">
+                <li className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full mt-2 flex-shrink-0"></div>
+                  <span className="text-gray-300 dark:text-secondary">React + Vite para rendimiento óptimo</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full mt-2 flex-shrink-0"></div>
+                  <span className="text-gray-300 dark:text-secondary">Tailwind CSS para diseños modernos</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full mt-2 flex-shrink-0"></div>
+                  <span className="text-gray-300 dark:text-secondary">Integración con IA y automatización</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Impacto del Marketing */}
+            <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-8 border border-white/10 hover:border-green-400/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-green-500/20 dark:bg-card dark:border-card">
+              <div className="text-center mb-6">
+                <div className="bg-gradient-to-r from-green-500 to-teal-500 p-4 rounded-full w-16 h-16 mx-auto mb-4">
+                  <BarChart className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-4 dark:text-primary">Impacto del Marketing</h3>
+              </div>
+              <p className="text-gray-300 mb-6 dark:text-secondary">
+                El marketing digital impulsa resultados. Mis estrategias generan leads cualificados y aumentan conversiones.
+              </p>
+              <ul className="space-y-3">
+                <li className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full mt-2 flex-shrink-0"></div>
+                  <span className="text-gray-300 dark:text-secondary">Campañas que aumentan engagement +60%</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full mt-2 flex-shrink-0"></div>
+                  <span className="text-gray-300 dark:text-secondary">Optimización A/B para mejores resultados</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full mt-2 flex-shrink-0"></div>
+                  <span className="text-gray-300 dark:text-secondary">Análisis de datos para decisiones estratégicas</span>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
@@ -1267,20 +1321,7 @@ return (
                 <div className="text-white font-semibold text-sm mb-1 dark:text-primary">Telegram</div>
                 <div className="text-sky-300 text-xs opacity-80 dark:text-secondary">Secure Chat</div>
                 <ArrowUpRight className="w-4 h-4 text-sky-300 mx-auto mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />
-              </a>
-
-              {/* GitHub */}
-              <a 
-                href="https://github.com/juannppgd" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="group bg-gradient-to-br from-gray-900/20 to-black/20 hover:from-gray-800/30 hover:to-gray-900/30 backdrop-blur-sm rounded-2xl p-6 border border-gray-800/20 hover:border-gray-700/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-gray-800/20 animate-socialfade dark:bg-card dark:border-card"
-              >
-                <Github className="w-8 h-8 text-gray-300 mx-auto mb-3 group-hover:animate-bounce" />
-                <div className="text-white font-semibold text-sm mb-1 dark:text-primary">GitHub</div>
-                <div className="text-gray-300 text-xs opacity-80 dark:text-secondary">Code Projects</div>
-                <ArrowUpRight className="w-4 h-4 text-gray-300 mx-auto mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />
-              </a>
+              </a>  
 
               {/* Pinterest */}
               <a 
@@ -1305,8 +1346,8 @@ return (
                   © 2025 Juan Pablo Gutiérrez Díaz. Todos los derechos reservados.
                 </p>
                 <p className="text-sm text-gray-500 dark:text-secondary">
-                  Diseñado y desarrolado desde React JS + Vite por @juannppgd en Tunja, Colombia 🗺️ 
-                  <br></br>Para más información, y correo de contacto oficial, contact.juannppgd@gmail.com 🗒️
+                  Construido con tecnologías de vanguardia para lograr sitios rápidos, funcionales y efectivos. ⚙️
+                  <br></br>¿Quieres saber más o agendar una asesoría? Escríbeme a contact.juannppgd@gmail.com 🗒️
                 </p>
               </div>
               
