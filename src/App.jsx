@@ -14,8 +14,8 @@ const Portfolio = () => {
   const [showExperienceModal, setShowExperienceModal] = useState(false);
   const [errors, setErrors] = useState({});
   const [darkMode, setDarkMode] = useState(false);
-
-
+  const [timeLeft, setTimeLeft] = useState('');
+  const [currentIndex, setCurrentIndex] = useState(0);
   const typingText = "Frontend Development | Automation | HTML/CSS/JavaScript | React, Vite y Tailwind CSS | Python (AI)";
   const [displayedText, setDisplayedText] = useState("");
 
@@ -62,6 +62,30 @@ const Portfolio = () => {
       clearInterval(interval);
       clearTimeout(timeout);
     };
+  }, []);
+
+  useEffect(() => {
+    const calculateTimeLeft = () => {
+      const now = new Date();
+      const colombiaOffset = -5; // UTC-5
+      const colombiaTime = new Date(now.getTime() + (colombiaOffset * 60 * 60 * 1000));
+      const endOfDay = new Date(colombiaTime);
+      endOfDay.setHours(23, 59, 59, 999);
+      const diff = endOfDay - colombiaTime;
+      if (diff <= 0) {
+        return '00:00:00';
+      }
+      const hours = Math.floor(diff / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    };
+
+    const timer = setInterval(() => {
+      setTimeLeft(calculateTimeLeft());
+    }, 1000);
+
+    return () => clearInterval(timer);
   }, []);
 
   useEffect(() => {
@@ -157,12 +181,24 @@ const handleSubmit = (e) => {
       title: "Performance Marketing 💼",
       company: "Siigo S.A.S",
       period: "2025",
-      description: "Ejecución de campañas de e-mail marketing y SMS a nivel LATAM.",
+      description: "Experto en marketing digital LATAM. Diseño y ejecuto campañas estratégicas de email y SMS que impulsan conversiones, engagement y crecimiento empresarial. Transformo datos en resultados tangibles para expandir tu presencia online.",
       achievements: [
         "Aumento del engagement mediante optimización de segmentos y pruebas A/B",
         "Implementación de reportes de desempeño para toma de decisiones estratégicas",
         "Gestión de campañas que impactaron directamente en leads de diferentes países LATAM",
         "Optimización de la tasa de apertura y clics en campañas de SMS & e-mail marketing",
+      ]
+    },
+    {
+      title: "Desarrollador Web Independiente 💻",
+      company: "Freelance",
+      period: "Desde 2022",
+      description: "Desarrollador web independiente especializado en experiencias digitales cautivadoras. Utilizo React, Vite y Tailwind CSS para crear sitios web responsivos, rápidos y optimizados para SEO que convierten visitantes en clientes e impulsan tus ventas.",
+      achievements: [
+        "Desarrollo de páginas web responsivas con alto rendimiento y UX excepcional",
+        "Implementación de estrategias de SEO y optimización de conversiones",
+        "Integración de herramientas de marketing digital y automatización",
+        "Atención personalizada y soporte continuo para el crecimiento de tu negocio",
       ]
     }
   ];
@@ -341,6 +377,57 @@ const courses = [
     }
   ];
 
+  const impactCards = React.useMemo(() => [
+    {
+      title: "Diseño Responsivo",
+      icon: <Smartphone className="w-8 h-8 text-white" />,
+      color: "from-cyan-500 to-blue-500",
+      hoverBorder: "hover:border-cyan-400/50",
+      hoverShadow: "hover:shadow-cyan-500/20",
+      description: "Cada pixel cuenta. Mi enfoque en el diseño responsivo asegura que tu sitio se vea perfecto en cualquier dispositivo, desde móviles hasta pantallas ultra-wide.",
+      items: [
+        "Adaptación perfecta a móviles, tablets y desktop",
+        "Optimización de velocidad de carga",
+        "Experiencia de usuario fluida"
+      ]
+    },
+    {
+      title: "Impacto Tecnológico",
+      icon: <Cpu className="w-8 h-8 text-white" />,
+      color: "from-purple-500 to-pink-500",
+      hoverBorder: "hover:border-purple-400/50",
+      hoverShadow: "hover:shadow-purple-500/20",
+      description: "La tecnología transforma negocios. Utilizo las últimas herramientas para crear soluciones innovadoras que impulsan el crecimiento.",
+      items: [
+        "React + Vite para rendimiento óptimo",
+        "Tailwind CSS para diseños modernos",
+        "Integración con IA y automatización"
+      ]
+    },
+    {
+      title: "Impacto del Marketing",
+      icon: <BarChart className="w-8 h-8 text-white" />,
+      color: "from-green-500 to-teal-500",
+      hoverBorder: "hover:border-green-400/50",
+      hoverShadow: "hover:shadow-green-500/20",
+      description: "El marketing digital impulsa resultados. Mis estrategias generan leads cualificados y aumentan conversiones.",
+      items: [
+        "Campañas que aumentan engagement +60%",
+        "Optimización A/B para mejores resultados",
+        "Análisis de datos para decisiones estratégicas"
+      ]
+    }
+  ], []);
+
+  const orderedCards = React.useMemo(() => {
+    const rotated = [...impactCards.slice(currentIndex), ...impactCards.slice(0, currentIndex)];
+    return rotated;
+  }, [currentIndex, impactCards]);
+
+  const handleCardClick = () => {
+    setCurrentIndex((prev) => (prev + 1) % 3);
+  };
+
   const subtitleTexts = [
     "Educación Formal 📚",
     "Cursos y Certificaciones 🏆",
@@ -473,6 +560,13 @@ return (
               <Video className="w-5 h-5" />
               Instagram
             </a>
+            <button
+              onClick={() => scrollToSection('servicios')}
+              className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-purple-500/25 hover:animate-glow flex items-center gap-2"
+            >
+              <Briefcase className="w-5 h-5" />
+              Servicios
+            </button>
           </div>
           <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
             <ChevronDown className="w-8 h-8 text-white/50 dark:text-secondary" />
@@ -494,13 +588,13 @@ return (
             <h3 id="subtitle-0" className="text-2xl font-bold text-white mb-4 text-center dark:text-primary">
               {subtitleTexts[0]}
             </h3>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="flex gap-6 overflow-x-auto pb-4 snap-x styled-scroll">
 {education.map((edu, index) => {
   const iconColor = edu.type === 'university' ? 'from-purple-500 to-purple-400' : 'from-cyan-500 to-cyan-400';
   return (
     <div
       key={index}
-      className="group bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-cyan-400/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/20 hover:animate-cardpop dark:bg-card dark:border-card"
+      className="flex-shrink-0 w-80 group bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-cyan-400/50 transition-all duration-300 hover:shadow-2xl hover:shadow-cyan-500/20 hover:animate-cardpop dark:bg-card dark:border-card snap-center"
     >
       <div className="flex items-center mb-4">
         <div className={`p-3 rounded-full bg-gradient-to-r ${iconColor} mr-3 group-hover:animate-bounce`}>
@@ -521,7 +615,7 @@ return (
           href={edu.certificateLink}
           target="_blank"
           rel="noopener noreferrer"
-          className="w-full bg-white/10 hover:bg-white/20 text-white text-xs font-semibold py-2 px-3 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-white/25 flex items-center justify-center gap-2 backdrop-blur-sm border border-white/20"
+          className="w-full bg-white/10 hover:bg-white/20 text-white text-xs font-semibold py-2 px-3 rounded-lg transition-all duration-300 shadow-lg hover:shadow-white/25 flex items-center justify-center gap-2 backdrop-blur-sm border border-white/20"
         >
           <Award className="w-3 h-3" />
           Ver Certificado
@@ -531,6 +625,13 @@ return (
   );
 })}
             </div>
+            <div className="text-center mt-4">
+              <div className="inline-flex items-center gap-2 text-gray-400 dark:text-secondary">
+                <span className="text-sm md:hidden">Desliza para conocer más</span>
+                <span className="hidden md:block text-sm">Haz scroll lateral para ver más</span>
+                <ArrowUpRight className="w-5 h-5 animate-pulse" />
+              </div>
+            </div>
           </div>
 
           {/* Courses and Certifications */}
@@ -538,7 +639,7 @@ return (
             <h3 id="subtitle-1" className="text-2xl font-bold text-white mb-4 text-center animate-float dark:text-primary">
               {subtitleTexts[1]}
             </h3>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="flex gap-6 overflow-x-auto pb-4 snap-x styled-scroll">
 {courses.map((course, index) => {
   const categoryColors = {
     'Marketing': 'from-pink-500 to-pink-400',
@@ -553,7 +654,7 @@ return (
   return (
     <div
       key={index}
-      className="bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-xl p-5 border border-white/10 hover:border-purple-400/50 transition-all duration-300 transform hover:scale-105 hover:animate-cardpop group dark:bg-card dark:border-card"
+      className="flex-shrink-0 w-80 bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-xl p-5 border border-white/10 hover:border-purple-400/50 transition-all duration-300 hover:animate-cardpop group dark:bg-card dark:border-card snap-center"
     >
       <div className="flex items-start gap-3 mb-3">
         <div className={`p-3 rounded-full bg-gradient-to-r ${iconBg} text-white text-2xl group-hover:animate-bounce`}>
@@ -590,6 +691,13 @@ return (
   );
 })}
             </div>
+            <div className="text-center mt-4">
+              <div className="inline-flex items-center gap-2 text-gray-400 dark:text-secondary">
+                <span className="text-sm md:hidden">Desliza para conocer más</span>
+                <span className="hidden md:block text-sm">Haz scroll lateral para ver más</span>
+                <ArrowUpRight className="w-5 h-5 animate-pulse" />
+              </div>
+            </div>
 
             {/* Ver Todo Button */}
             <div className="text-center mt-12">
@@ -619,11 +727,12 @@ return (
             </span>
           </h2>
 
+        <div className="grid md:grid-cols-2 gap-8">
 {experiences.map((exp, index) => {
   return (
     <div
       key={index}
-      className="bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/10 hover:border-purple-400/50 transition-all duration-500 transform hover:scale-[1.02] mb-8 dark:bg-card dark:border-card"
+      className="bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/10 hover:border-purple-400/50 transition-all duration-500 transform hover:scale-[1.02] dark:bg-card dark:border-card"
     >
       <div className="flex items-start gap-4 mb-6">
         <div className="bg-gradient-to-r from-cyan-500 to-purple-500 p-3 rounded-xl">
@@ -653,6 +762,7 @@ return (
     </div>
   );
 })}
+        </div>
 
           {/*experiencia profesional Button */}
           <div className="text-center mt-12">
@@ -739,7 +849,10 @@ return (
 
           <div className="grid lg:grid-cols-2 gap-8 mb-8">
             {/* Desarrollo Web */}
-            <div className="bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/10 dark:bg-card dark:border-card">
+            <div className="bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/10 dark:bg-card dark:border-card relative">
+              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-red-500 to-orange-500 text-white px-4 py-1 rounded-full text-sm font-bold shadow-lg animate-pulse text-center">
+                ¡25% OFF Solo por hoy! ⏰ {timeLeft}
+              </div>
             <div className="flex flex-col items-center gap-8">
               <div className="flex-1">
                 <h3 className="text-2xl font-bold text-white mb-4 dark:text-primary">Páginas Web para Empresarios y Emprendedores</h3>
@@ -789,7 +902,10 @@ return (
           </div>
 
           {/* Marketing Digital */}
-          <div className="bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/10 dark:bg-card dark:border-card">
+          <div className="bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/10 dark:bg-card dark:border-card relative">
+            <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-red-500 to-orange-500 text-white px-4 py-1 rounded-full text-sm font-bold shadow-lg animate-pulse text-center">
+              ¡35% OFF Solo por hoy! ⏰ {timeLeft}
+            </div>
             <div className="flex flex-col items-center gap-8">
               <div className="flex-1">
                 <h3 className="text-2xl font-bold text-white mb-4 dark:text-primary">Marketing Digital para Impulsar tu Negocio</h3>
@@ -919,86 +1035,34 @@ return (
           </h2>
 
           <div className="grid lg:grid-cols-3 gap-8">
-            {/* Diseño Responsivo */}
-            <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-8 border border-white/10 hover:border-cyan-400/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/20 dark:bg-card dark:border-card">
-              <div className="text-center mb-6">
-                <div className="bg-gradient-to-r from-cyan-500 to-blue-500 p-4 rounded-full w-16 h-16 mx-auto mb-4">
-                  <Smartphone className="w-8 h-8 text-white" />
+            {orderedCards.map((card) => (
+              <div
+                key={card.title}
+                className={`bg-white/5 backdrop-blur-sm rounded-3xl p-8 border border-white/10 ${card.hoverBorder} transition-all duration-1000 transform hover:scale-105 hover:rotate-1 ${card.hoverShadow} dark:bg-card dark:border-card cursor-pointer`}
+                onClick={handleCardClick}
+              >
+                <div className="text-center mb-6">
+                  <div className={`bg-gradient-to-r ${card.color} p-4 rounded-full w-16 h-16 mx-auto mb-4`}>
+                    {card.icon}
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-4 dark:text-primary">{card.title}</h3>
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-4 dark:text-primary">Diseño Responsivo</h3>
-              </div>
-              <p className="text-gray-300 mb-6 dark:text-secondary">
-                Cada pixel cuenta. Mi enfoque en el diseño responsivo asegura que tu sitio se vea perfecto en cualquier dispositivo, desde móviles hasta pantallas ultra-wide.
-              </p>
-              <ul className="space-y-3">
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                  <span className="text-gray-300 dark:text-secondary">Adaptación perfecta a móviles, tablets y desktop</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                  <span className="text-gray-300 dark:text-secondary">Optimización de velocidad de carga</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                  <span className="text-gray-300 dark:text-secondary">Experiencia de usuario fluida</span>
-                </li>
-              </ul>
-            </div>
-
-            {/* Impacto Tecnológico */}
-            <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-8 border border-white/10 hover:border-purple-400/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/20 dark:bg-card dark:border-card">
-              <div className="text-center mb-6">
-                <div className="bg-gradient-to-r from-purple-500 to-pink-500 p-4 rounded-full w-16 h-16 mx-auto mb-4">
-                  <Cpu className="w-8 h-8 text-white" />
+                <p className="text-gray-300 mb-6 dark:text-secondary">
+                  {card.description}
+                </p>
+                <ul className="space-y-3">
+                  {card.items.map((item, i) => (
+                    <li key={i} className="flex items-start gap-3">
+                      <div className="w-2 h-2 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full mt-2 flex-shrink-0"></div>
+                      <span className="text-gray-300 dark:text-secondary">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-6 text-center">
+                  <span className="text-xs text-gray-400 dark:text-secondary opacity-70">Haz clic para cambiar posición</span>
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-4 dark:text-primary">Impacto Tecnológico</h3>
               </div>
-              <p className="text-gray-300 mb-6 dark:text-secondary">
-                La tecnología transforma negocios. Utilizo las últimas herramientas para crear soluciones innovadoras que impulsan el crecimiento.
-              </p>
-              <ul className="space-y-3">
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                  <span className="text-gray-300 dark:text-secondary">React + Vite para rendimiento óptimo</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                  <span className="text-gray-300 dark:text-secondary">Tailwind CSS para diseños modernos</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                  <span className="text-gray-300 dark:text-secondary">Integración con IA y automatización</span>
-                </li>
-              </ul>
-            </div>
-
-            {/* Impacto del Marketing */}
-            <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-8 border border-white/10 hover:border-green-400/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-green-500/20 dark:bg-card dark:border-card">
-              <div className="text-center mb-6">
-                <div className="bg-gradient-to-r from-green-500 to-teal-500 p-4 rounded-full w-16 h-16 mx-auto mb-4">
-                  <BarChart className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-2xl font-bold text-white mb-4 dark:text-primary">Impacto del Marketing</h3>
-              </div>
-              <p className="text-gray-300 mb-6 dark:text-secondary">
-                El marketing digital impulsa resultados. Mis estrategias generan leads cualificados y aumentan conversiones.
-              </p>
-              <ul className="space-y-3">
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                  <span className="text-gray-300 dark:text-secondary">Campañas que aumentan engagement +60%</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                  <span className="text-gray-300 dark:text-secondary">Optimización A/B para mejores resultados</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                  <span className="text-gray-300 dark:text-secondary">Análisis de datos para decisiones estratégicas</span>
-                </li>
-              </ul>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -1040,6 +1104,13 @@ return (
                 </div>
               </div>
             ))}
+          </div>
+          <div className="text-center mt-4">
+            <div className="inline-flex items-center gap-2 text-gray-400 dark:text-secondary">
+              <span className="text-sm md:hidden">Desliza para conocer más</span>
+              <span className="hidden md:block text-sm">Haz scroll lateral para ver más</span>
+              <ArrowUpRight className="w-5 h-5 animate-pulse" />
+            </div>
           </div>
 
 
@@ -1213,6 +1284,13 @@ return (
               <h3 className="text-white font-semibold dark:text-primary">Tarjetas de Crédito</h3>
             </div>
           </div>
+          <div className="text-center mt-4">
+            <div className="inline-flex items-center gap-2 text-gray-400 dark:text-secondary">
+              <span className="text-sm md:hidden">Desliza para conocer más</span>
+              <span className="hidden md:block text-sm">Haz scroll lateral para ver más</span>
+              <ArrowUpRight className="w-5 h-5 animate-pulse" />
+            </div>
+          </div>
         </div>
       </section>
 
@@ -1345,15 +1423,24 @@ return (
                 <p className="text-gray-400 mb-2 dark:text-secondary">
                   © 2025 Juan Pablo Gutiérrez Díaz. Todos los derechos reservados.
                 </p>
-                <p className="text-sm text-gray-500 dark:text-secondary">
-                  Construido con tecnologías de vanguardia para lograr sitios rápidos, funcionales y efectivos. ⚙️
-                  <br></br>¿Quieres saber más o agendar una asesoría? Escríbeme a contact.juannppgd@gmail.com 🗒️
-                </p>
+<p className="text-sm text-gray-500 dark:text-secondary">
+  Diseñado y desarrollado por <strong>Juan Pablo Gutiérrez Díaz</strong> enfocado en crear experiencias digitales ágiles, funcionales y orientadas a resultados.⚙️
+  <br />
+  ¿Quieres saber más o agendar una asesoría? Escríbeme a{" "}
+  <a
+    href="mailto:contact.juannppgd@gmail.com"
+    className="text-blue-500 hover:underline"
+    title="Haz clic para escribirme"
+  >
+    contact.juannppgd@gmail.com
+  </a> 🗒️
+</p>
+
               </div>
               
-              <div className="flex items-center gap-4">
+              <div className="flex items-center justify-center gap-4">
                 <a href="https://wa.link/ukyqpg" target="_blank" rel="noopener noreferrer">
-                  <div className="bg-gradient-to-r from-cyan-500/20 to-purple-500/20 backdrop-blur-sm rounded-full px-4 py-2 border border-cyan-500/30 dark:border-card animate-glow-repeat hover:animate-glow">
+                  <div className="bg-gradient-to-r from-cyan-500/20 to-purple-500/20 backdrop-blur-sm rounded-full px-4 py-2 border border-cyan-500/30 dark:border-card animate-glow-repeat hover:animate-glow flex items-center justify-center">
                     <span className="text-cyan-300 text-sm font-semibold dark:text-cyan-300">🚀 Quiero pasar al siguiente nivel Ahora Mismo</span>
                   </div>
                 </a>
