@@ -18,6 +18,7 @@ const Portfolio = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const typingText = "Frontend Development | Automation | HTML/CSS/JavaScript | React, Vite y Tailwind CSS | Python (AI)";
   const [displayedText, setDisplayedText] = useState("");
+  const [expandedExperiences, setExpandedExperiences] = useState([false, false]);
 
   useEffect(() => {
     const savedDarkMode = localStorage.getItem('darkMode');
@@ -113,6 +114,12 @@ const Portfolio = () => {
   const scrollToSection = (sectionId) => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
   };
+
+  const toggleExpanded = (index) => {
+    setExpandedExperiences(prev => prev.map((val, i) => i === index ? !val : val));
+  };
+
+
 
   const handleInputChange = (e) => {
     setFormData({
@@ -742,15 +749,27 @@ return (
           <h3 className="text-2xl font-bold text-white mb-2 dark:text-primary">{exp.title}</h3>
           <p className="text-cyan-400 font-semibold mb-2 dark:text-cyan-300">{exp.company}</p>
           <p className="text-gray-400 mb-4 dark:text-secondary">{exp.period}</p>
-          <p className="text-gray-300 mb-6 dark:text-secondary" id={`detail-${education.length + courses.length + index}`}>
+          <p className="text-gray-300 mb-0 dark:text-secondary" id={`detail-${education.length + courses.length + index}`}>
             {exp.description}
           </p>
         </div>
       </div>
       
-      <div className="ml-16">
-        <h4 className="text-lg font-semibold text-white mb-4 dark:text-primary">Logros destacados:</h4>
-        <div className="grid md:grid-cols-2 gap-4">
+      <div className="ml-0 md:ml-16 mt-0">
+        <h4 className="text-lg font-semibold text-white mb-3 dark:text-primary">Logros destacados:</h4>
+        
+        {/* Mobile button */}
+        <div className="block md:hidden text-center mb-3">
+          <button
+            onClick={() => toggleExpanded(index)}
+            className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white px-6 py-2 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-cyan-500/25"
+          >
+            {expandedExperiences[index] ? 'Ocultar' : 'Ver'} logros {expandedExperiences[index] ? '▲' : '▼'}
+          </button>
+        </div>
+        
+        {/* Achievements - hidden on mobile unless expanded, always visible on desktop */}
+        <div className={`grid md:grid-cols-2 gap-4 ${expandedExperiences[index] ? 'block' : 'hidden'} md:block`}>
           {exp.achievements.map((achievement, i) => (
             <div key={i} className="flex items-start gap-3">
               <div className="w-2 h-2 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full mt-2 flex-shrink-0"></div>
