@@ -533,9 +533,9 @@ return (
 </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-            <a href="https://www.google.com/maps/place/Tunja,+Boyacá,+Colombia" target="_blank" className="flex items-center gap-2 text-gray-300 hover:text-cyan-400 transition-colors dark:text-secondary">
+            <a className="flex items-center gap-2 text-gray-300 hover:text-cyan-400 transition-colors dark:text-secondary">
               <MapPin className="w-5 h-5 text-cyan-400" />
-              <span>Tunja, Colombia 🔗</span>
+              <span>Remoto desde Colombia 🌍 </span>
             </a>
             <div className="flex items-center gap-2 text-gray-300 dark:text-secondary">
               <Phone className="w-5 h-5 text-cyan-400" />
@@ -1170,8 +1170,8 @@ return (
                 <MapPin className="w-8 h-8 text-cyan-400 mb-4" />
                 <h3 className="text-xl font-bold text-white mb-2 dark:text-primary">Ubicación</h3>
                 <p className="text-gray-300 dark:text-secondary">
-                  <a href="https://www.google.com/maps/place/Tunja,+Boyacá,+Colombia" target="_blank" className="text-gray-300 hover:text-cyan-400 transition-colors dark:text-secondary">
-                    Tunja, Colombia 🔗
+                  <a className="text-gray-300 hover:text-cyan-400 transition-colors dark:text-secondary">
+                    Desde Colombia, colaborando con clientes en todo el mundo 🌍
                   </a>
                 </p>
               </div>
@@ -1263,10 +1263,16 @@ return (
           </h2>
 
           <p className="text-center text-gray-300 mb-12 max-w-2xl mx-auto dark:text-secondary">
-            Aceptamos diversos métodos de pago para que puedas elegir el que más te convenga. ¡Paga de manera segura y sencilla!
+            Acepto diversos métodos de pago para que puedas elegir el que más te convenga. ¡Paga de manera segura y sencilla!
           </p>
 
           <div className="flex gap-6 overflow-x-auto pb-4 snap-x styled-scroll">
+            {/* PayPal */}
+            <div className="group flex-shrink-0 w-64 bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-purple-400/50 transition-all duration-300 transform hover:shadow-2xl hover:shadow-purple-500/20 text-center dark:bg-card dark:border-card snap-center">
+              <Globe className="w-12 h-12 text-purple-400 mx-auto mb-4 group-hover:animate-bounce" />
+              <h3 className="text-white font-semibold dark:text-primary">PayPal</h3>
+            </div>
+
             {/* Transferencias bancarias */}
             <div className="group flex-shrink-0 w-64 bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-cyan-400/50 transition-all duration-300 transform hover:shadow-2xl hover:shadow-cyan-500/20 text-center dark:bg-card dark:border-card snap-center">
               <Banknote className="w-12 h-12 text-cyan-400 mx-auto mb-4 group-hover:animate-bounce" />
@@ -1471,14 +1477,15 @@ return (
 
       {showModal && (
   <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/40 backdrop-blur-sm animate-fadein dark:bg-black/60">
-      <div className="bg-gradient-to-br from-cyan-500/90 to-purple-500/90 rounded-3xl p-8 shadow-2xl border border-white/20 text-center animate-cardpop dark:bg-card dark:border-card">
-      <Send className="w-12 h-12 mx-auto text-white mb-4 animate-bounce" />
-      <h4 className="text-2xl font-bold text-white mb-2 dark:text-primary">¡Mensaje enviado!</h4>
-      <p className="text-lg text-white/80 mb-2 dark:text-secondary">Te contactaremos pronto 🚀</p>
-      <div className="mt-4">
-        <span className="bg-white/10 text-cyan-200 px-4 py-2 rounded-full font-semibold dark:bg-white/10 dark:text-cyan-200">Gracias por escribir</span>
-      </div>
-    </div>
+    <div className="bg-gradient-to-br from-cyan-500/90 to-purple-500/90 rounded-3xl p-8 shadow-2xl border border-white/20 text-center animate-cardpop dark:bg-card dark:border-card">
+  <Send className="w-12 h-12 mx-auto text-white mb-4 animate-bounce" />
+  <h4 className="text-2xl font-bold text-white mb-2 dark:text-primary">¡Mensaje enviado!</h4>
+  <p className="text-lg text-white/80 mb-2 dark:text-secondary">Te contactaremos pronto 🚀</p>
+  <p className="text-md text-white/70 mb-2 dark:text-secondary">Mantente atento a tu correo electrónico para más información 📬</p>
+  <div className="mt-4">
+    <span className="bg-white/10 text-cyan-200 px-4 py-2 rounded-full font-semibold dark:bg-white/10 dark:text-cyan-200">Gracias por escribir</span>
+  </div>
+</div>
   </div>
 )}
 
