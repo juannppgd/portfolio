@@ -521,7 +521,7 @@ return (
           </h1>
           
 <p className="text-xl md:text-2xl text-white dark:text-primary mb-2 max-w-3xl mx-auto font-light italic">
-  Desarrollador De Software | Marketing Digital | Métricas | Performance
+  Desarrollador De Software | Marketing Digital | Performance
 </p>
 <p className="text-base md:text-lg bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-gradient mb-8 max-w-3xl mx-auto font-semibold tracking-wide">
   {displayedText}
@@ -597,12 +597,12 @@ return (
 
           <div className="grid lg:grid-cols-2 gap-8">
             {/* Servicio 1: Páginas Web */}
-            <div className="bg-gradient-to-br from-cyan-500/10 via-blue-500/10 to-purple-500/10 backdrop-blur-sm rounded-3xl p-8 border-2 border-cyan-400/30 hover:border-cyan-400/70 transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/30 dark:bg-card dark:border-card">
+            <div className="bg-gradient-to-br from-cyan-500/10 via-blue-500/10 to-purple-500/10 backdrop-blur-sm rounded-3xl p-8 border-2 border-cyan-400/30 hover:border-cyan-400/70 transition-all duration-500 transform hover:scale-102 hover:shadow-2xl hover:shadow-cyan-500/30 dark:bg-card dark:border-card">
               <div className="text-center mb-6">
                 <div className="bg-gradient-to-r from-cyan-500 to-blue-500 p-4 rounded-full w-16 h-16 mx-auto mb-4">
                   <Globe className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-4 dark:text-primary">Páginas Web para profesionales y Emprendedores</h3>
+                <h3 className="text-2xl font-bold text-white mb-4 dark:text-primary">Páginas Web para Profesionales y Emprendedores</h3>
               </div>
 
               {/* Opción 1: Gradiente rosa-púrpura (actual) */}
@@ -650,7 +650,7 @@ return (
             </div>
 
             {/* Servicio 2: Marketing Digital */}
-            <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-8 border border-white/10 hover:border-purple-400/50 transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/20 dark:bg-card dark:border-card">
+            <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-8 border border-white/10 hover:border-purple-400/50 transition-all duration-500 transform hover:scale-102 hover:shadow-2xl hover:shadow-purple-500/20 dark:bg-card dark:border-card">
               <div className="text-center mb-6">
                 <div className="bg-gradient-to-r from-purple-500 to-pink-500 p-4 rounded-full w-16 h-16 mx-auto mb-4">
                   <BarChart className="w-8 h-8 text-white" />
@@ -1270,7 +1270,7 @@ return (
                     value={formData.message}
                     onChange={handleInputChange}
                     rows={4}
-                    className="w-full bg-white/5 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:border-cyan-400 focus:outline-none transition-all duration-300 resize-none styled-scroll dark:bg-card dark:border-card dark:text-primary dark:placeholder-gray-500"
+                    className="w-full bg-white/5 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:border-cyan-400 focus:outline-none transition-all duration-300 resize-none styled-scroll dark:bg-card dark:border-card dark:text-primary"
                     required
                   ></textarea>
                 </div>
