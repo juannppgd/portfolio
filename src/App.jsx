@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Mail, Phone, MapPin, ChevronDown, ExternalLink, Code, Briefcase, GraduationCap, Settings, User, Send, Github, Linkedin, Facebook, Instagram, Twitter, MessageCircle, ArrowUpRight, Moon, Sun, Zap, Palette, Brain, Award, Trophy, BookOpen, Sparkles, Star, Crown, Medal, Globe, Cpu, Smartphone, Shield, Target, BarChart, HeartPulse, Lock, Video, Quote, CreditCard, Banknote, Key } from 'lucide-react';
+import { Mail, Phone, MapPin, ChevronDown, ExternalLink, Code, Briefcase, GraduationCap, Settings, User, Send, Github, Linkedin, Facebook, Instagram, Twitter, MessageCircle, ArrowUpRight, Moon, Sun, Zap, Palette, Brain, Award, Trophy, BookOpen, Sparkles, Star, Crown, Medal, Globe, Cpu, Smartphone, Shield, Target, BarChart, HeartPulse, Lock, Video, Quote, CreditCard, Banknote, Key, TrendingUp, Users } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import perfil from './assets/profile-image.jpg';
 
 const Portfolio = () => {
-  const [activeSection, setActiveSection] = useState('inicio');
+  const [activeSection, setActiveSection] = useState('@juannppgd');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -14,11 +14,11 @@ const Portfolio = () => {
   const [showExperienceModal, setShowExperienceModal] = useState(false);
   const [errors, setErrors] = useState({});
   const [darkMode, setDarkMode] = useState(false);
-  const [timeLeft, setTimeLeft] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
   const typingText = "Frontend Development | Automation | HTML/CSS/JavaScript | React, Vite y Tailwind CSS | Python (AI)";
   const [displayedText, setDisplayedText] = useState("");
   const [expandedExperiences, setExpandedExperiences] = useState([false, false]);
+  const [timeLeft, setTimeLeft] = useState('');
 
   useEffect(() => {
     const savedDarkMode = localStorage.getItem('darkMode');
@@ -66,32 +66,25 @@ const Portfolio = () => {
   }, []);
 
   useEffect(() => {
-    const calculateTimeLeft = () => {
+    const updateTimeLeft = () => {
       const now = new Date();
-      const colombiaOffset = -5; // UTC-5
-      const colombiaTime = new Date(now.getTime() + (colombiaOffset * 60 * 60 * 1000));
-      const endOfDay = new Date(colombiaTime);
-      endOfDay.setHours(23, 59, 59, 999);
-      const diff = endOfDay - colombiaTime;
-      if (diff <= 0) {
-        return '00:00:00';
-      }
+      const midnight = new Date(now);
+      midnight.setHours(24, 0, 0, 0);
+      const diff = midnight - now;
       const hours = Math.floor(diff / (1000 * 60 * 60));
       const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-      return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+      setTimeLeft(`${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`);
     };
 
-    const timer = setInterval(() => {
-      setTimeLeft(calculateTimeLeft());
-    }, 1000);
-
-    return () => clearInterval(timer);
+    updateTimeLeft();
+    const interval = setInterval(updateTimeLeft, 1000);
+    return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
     const handleScroll = () => {
-    const sections = ['inicio', 'estudios', 'experiencia', 'habilidades', 'servicios', 'impacto', 'reseñas', 'contacto'];
+    const sections = ['@juannppgd', 'servicios', 'estudios', 'experiencia', 'habilidades', 'stack', 'impacto', 'reseñas', 'contacto'];
       const scrollPosition = window.scrollY + 100;
 
       sections.forEach(section => {
@@ -118,8 +111,6 @@ const Portfolio = () => {
   const toggleExpanded = (index) => {
     setExpandedExperiences(prev => prev.map((val, i) => i === index ? !val : val));
   };
-
-
 
   const handleInputChange = (e) => {
     setFormData({
@@ -324,13 +315,15 @@ const courses = [
 
   const software = [
     { name: "HubSpot & Masivian", category: "CRM", icon: <Zap className="w-6 h-6 text-white" /> },
-    { name: "Automating EmailJS", category: "Email Marketing", icon: <Mail className="w-6 h-6 text-white" /> },
+    { name: "EmailJS Automation", category: "Email Marketing", icon: <Mail className="w-6 h-6 text-white" /> },
     { name: "Google Ads", category: "Advertising", icon: <Target className="w-6 h-6 text-white" /> },
     { name: "Meta Business Suite", category: "Social Media", icon: <Smartphone className="w-6 h-6 text-white" /> },
     { name: "Google Analytics", category: "Analytics", icon: <BarChart className="w-6 h-6 text-white" /> },
     { name: "Visual Studio Code", category: "Development", icon: <Code className="w-6 h-6 text-white" /> },
-    { name: "Producción Audiovisual", category: "Video", icon: <Video className="w-6 h-6 text-white" /> },
-    { name: "Diseño Gráfico", category: "Design", icon: <Palette className="w-6 h-6 text-white" /> },
+    { name: "MySQL", category: "Database", icon: <BookOpen className="w-6 h-6 text-white" /> },
+    { name: "Canva", category: "Design", icon: <Palette className="w-6 h-6 text-white" /> },
+    { name: "Docker", category: "Containerization", icon: <Cpu className="w-6 h-6 text-white" /> },
+    { name: "Figma", category: "Design Tools", icon: <Palette className="w-6 h-6 text-white" /> },
   ];
 
   const testimonials = [
@@ -451,15 +444,18 @@ return (
       <div className="container mx-auto px-4 py-3 sm:px-6">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+          <button
+            onClick={() => scrollToSection('@juannppgd')}
+            className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300"
+          >
             @juannppgd
-          </div>
+          </button>
           
           {/* Navigation */}
           <div className="flex items-center space-x-4">
             {/* Desktop Navigation */}
             <div className="hidden mobile-nav:flex space-x-8">
-              {['inicio', 'estudios', 'experiencia', 'habilidades', 'servicios', 'impacto', 'reseñas', 'contacto'].map((section) => (
+              {['servicios', 'estudios', 'experiencia', 'habilidades', 'stack', 'impacto', 'reseñas', 'contacto'].map((section) => (
                 <button
                   key={section}
                   onClick={() => scrollToSection(section)}
@@ -494,7 +490,7 @@ return (
 
       {/* Hero*/}
 <section
-  id="inicio"
+  id="@juannppgd"
   className="min-h-screen flex items-center justify-center relative overflow-hidden pt-24 sm:pt-32 md:pt-36 lg:pt-28 xl:pt-24 animate-fadein dark:bg-dark-bg"
 >
         {/* Animated */}
@@ -561,15 +557,15 @@ return (
             ¿Quieres una página web con un diseño único, exclusivo, que conecte con tu audiencia?
           </h2>
           <p className="text-lg text-white/90 max-w-3xl mx-auto mb-8 font-semibold">
-            Soy especialista en desarrollo frontend y marketing digital. Creo sitios web que no solo se ven increíbles, sino que también convierten visitantes en clientes. 
+            Soy especialista en desarrollo frontend y marketing digital. Creo sitios web que no solo se ven increíbles, sino que también convierten visitantes en clientes.
             Destaca con un diseño único, funcional y optimizado para tu negocio.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <button
-              onClick={() => scrollToSection('servicios')}
+              onClick={() => scrollToSection('stack')}
               className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-cyan-500/25 text-center"
             >
-              Ver Servicios
+              Ver Tecnologías
             </button>
             <button
               onClick={() => scrollToSection('contacto')}
@@ -586,6 +582,124 @@ return (
               <Video className="w-5 h-5" />
               Instagram
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Servicios Section */}
+      <section id="servicios" className="py-12 px-4 dark:bg-dark-bg">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-bold text-center mb-12 animate-float">
+            <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+              Servicios
+            </span>
+          </h2>
+
+          <div className="grid lg:grid-cols-2 gap-8">
+            {/* Servicio 1: Páginas Web */}
+            <div className="bg-gradient-to-br from-cyan-500/10 via-blue-500/10 to-purple-500/10 backdrop-blur-sm rounded-3xl p-8 border-2 border-cyan-400/30 hover:border-cyan-400/70 transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/30 dark:bg-card dark:border-card">
+              <div className="text-center mb-6">
+                <div className="bg-gradient-to-r from-cyan-500 to-blue-500 p-4 rounded-full w-16 h-16 mx-auto mb-4">
+                  <Globe className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-4 dark:text-primary">Páginas Web para profesionales y Emprendedores</h3>
+              </div>
+
+              {/* Opción 1: Gradiente rosa-púrpura (actual) */}
+              <div className="bg-gradient-to-r from-pink-500/20 to-purple-500/20 rounded-2xl p-4 mb-6 border border-pink-500/30">
+                <p className="text-white font-bold text-lg text-center dark:text-primary">
+                  ¡25% OFF Solo por hoy! ⏰ {timeLeft}
+                </p>
+              </div>
+
+              <p className="text-gray-300 mb-6 dark:text-secondary">
+                ¿Necesitas destacar en la web? Desarrollo páginas web profesionales y atractivas para que tu negocio tenga presencia en línea. Perfectas para:
+              </p>
+
+              <ul className="space-y-3 mb-8">
+                <li className="flex items-start gap-3">
+                  <div className="bg-gradient-to-r from-cyan-400 to-purple-400 p-1 rounded-full flex-shrink-0">
+                    <Sparkles className="w-4 h-4 text-white" />
+                  </div>
+                  <span className="text-gray-300 dark:text-secondary">Emprendedores que inician su negocio</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="bg-gradient-to-r from-cyan-400 to-purple-400 p-1 rounded-full flex-shrink-0">
+                    <Smartphone className="w-4 h-4 text-white" />
+                  </div>
+                  <span className="text-gray-300 dark:text-secondary">Pequeñas empresas que necesitan presencia digital</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="bg-gradient-to-r from-cyan-400 to-purple-400 p-1 rounded-full flex-shrink-0">
+                    <Target className="w-4 h-4 text-white" />
+                  </div>
+                  <span className="text-gray-300 dark:text-secondary">Profesionales independientes que quieren atraer más clientes</span>
+                </li>
+              </ul>
+
+              <p className="text-gray-300 mb-8 dark:text-secondary">
+                Mis páginas web incluyen diseño responsivo, optimización para buscadores, y son completamente personalizadas según las necesidades de tu negocio.
+              </p>
+
+              <button
+                onClick={() => scrollToSection('contacto')}
+                className="w-full bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2 shadow-2xl hover:shadow-cyan-500/25"
+              >
+                Solicita tu página web
+              </button>
+            </div>
+
+            {/* Servicio 2: Marketing Digital */}
+            <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-8 border border-white/10 hover:border-purple-400/50 transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/20 dark:bg-card dark:border-card">
+              <div className="text-center mb-6">
+                <div className="bg-gradient-to-r from-purple-500 to-pink-500 p-4 rounded-full w-16 h-16 mx-auto mb-4">
+                  <BarChart className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-4 dark:text-primary">Marketing Digital para Impulsar tu Negocio en Internet</h3>
+              </div>
+
+              <div className="bg-gradient-to-r from-orange-500/20 to-red-500/20 rounded-2xl p-4 mb-6 border border-orange-500/30">
+                <p className="text-white font-bold text-lg text-center dark:text-primary">
+                  ¡25% OFF Solo por hoy! ⏰ {timeLeft}
+                </p>
+              </div>
+
+              <p className="text-gray-300 mb-6 dark:text-secondary">
+                ¿Quieres aumentar tus ventas y presencia online? Ofrezco servicios de marketing digital completos para impulsar tu negocio y destacar en el mercado. Ideales para:
+              </p>
+
+              <ul className="space-y-3 mb-8">
+                <li className="flex items-start gap-3">
+                  <div className="bg-gradient-to-r from-purple-400 to-pink-400 p-1 rounded-full flex-shrink-0">
+                    <TrendingUp className="w-4 h-4 text-white" />
+                  </div>
+                  <span className="text-gray-300 dark:text-secondary">Empresas que buscan crecimiento digital</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="bg-gradient-to-r from-purple-400 to-pink-400 p-1 rounded-full flex-shrink-0">
+                    <Globe className="w-4 h-4 text-white" />
+                  </div>
+                  <span className="text-gray-300 dark:text-secondary">Negocios locales que quieren expandirse</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="bg-gradient-to-r from-purple-400 to-pink-400 p-1 rounded-full flex-shrink-0">
+                    <Users className="w-4 h-4 text-white" />
+                  </div>
+                  <span className="text-gray-300 dark:text-secondary">Profesionales que necesitan más leads</span>
+                </li>
+              </ul>
+
+              <p className="text-gray-300 mb-8 dark:text-secondary">
+                Mis servicios incluyen análisis de datos, estrategias personalizadas, campañas de SMS y email marketing, gestión de redes sociales, CRM y mucho más.
+              </p>
+
+              <button
+                onClick={() => scrollToSection('contacto')}
+                className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2 shadow-2xl hover:shadow-purple-500/25"
+              >
+                Solicita tu consulta de marketing
+              </button>
+            </div>
           </div>
         </div>
       </section>
@@ -705,7 +819,7 @@ return (
         Ver Certificado
       </a>
     </div>
-  );
+ );
 })}
             </div>
             <div className="text-center mt-4">
@@ -807,31 +921,31 @@ return (
       </section>
 
       {/* Skills & Software Section */}
-      <section id="habilidades" className="py-4 px-4 dark:bg-dark-bg">
+      <section id="habilidades" className="pt-12 pb-8 px-4 dark:bg-dark-bg">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-5 animate-float">
+          <h2 className="text-4xl font-bold text-center mb-12 animate-float">
             <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
               Habilidades & Software
             </span>
           </h2>
-          
+
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Skills */}
-            <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-8 border border-white/10 dark:bg-card dark:border-card">
-              <h3 className="text-2xl font-bold text-white mb-8 flex items-center gap-3 dark:text-primary">
+            <div className="bg-white/5 backdrop-blur-sm rounded-3xl pt-12 pb-8 px-8 border border-white/10 dark:bg-card dark:border-card">
+              <h3 className="text-2xl font-bold text-white mb-10 flex items-center gap-3 dark:text-primary">
                 <Settings className="w-6 h-6 text-cyan-400" />
                 Habilidades
               </h3>
-              <div className="space-y-6">
+              <div className="space-y-8">
                 {skills.map((skill, index) => (
                   <div key={index} className="group">
-                    <div className="flex justify-between items-center mb-2">
+                    <div className="flex justify-between items-center mb-4">
                       <span className="text-white font-medium dark:text-primary">{skill.name}</span>
                       <span className="text-cyan-400 font-bold dark:text-cyan-300">{skill.level}%</span>
                     </div>
-                    <div className="w-full bg-gray-700 rounded-full h-3 overflow-hidden dark:bg-gray-600">
+                    <div className="w-full bg-gray-700 rounded-full h-4 overflow-hidden shadow-inner dark:bg-gray-600">
                       <div
-                        className="h-full bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full transition-all duration-1000 ease-out animate-pulse"
+                        className="h-full bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full transition-all duration-1000 ease-out animate-pulse shadow-sm"
                         style={{ width: `${skill.level}%` }}
                       ></div>
                     </div>
@@ -839,14 +953,14 @@ return (
                 ))}
               </div>
             </div>
-            
+
             {/* Software */}
-            <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-8 border border-white/10 dark:bg-card dark:border-card">
-              <h3 className="text-2xl font-bold text-white mb-8 flex items-center gap-3 dark:text-primary">
+            <div className="bg-white/5 backdrop-blur-sm rounded-3xl pt-12 pb-8 px-8 border border-white/10 dark:bg-card dark:border-card">
+              <h3 className="text-2xl font-bold text-white mb-10 flex items-center gap-3 dark:text-primary">
                 <Code className="w-6 h-6 text-purple-400" />
                 Software y Herramientas
               </h3>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {software.map((tool, index) => {
                   return (
                     <div
@@ -854,7 +968,7 @@ return (
                       className="bg-white/5 rounded-xl p-4 border border-white/10 hover:border-purple-400/50 transition-all duration-300 transform hover:scale-105 group dark:bg-card dark:border-card"
                     >
                       <div className="text-2xl mb-2 group-hover:animate-bounce">{tool.icon}</div>
-<h4 className="font-semibold text-sm mb-1 bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent dark:text-primary">{tool.name}</h4>
+                      <h4 className="font-semibold text-sm mb-1 bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent dark:text-primary">{tool.name}</h4>
                       <p className="text-gray-400 text-xs dark:text-secondary" id={`detail-${education.length + courses.length + experiences.length + index}`}>
                         {tool.category}
                       </p>
@@ -867,186 +981,98 @@ return (
         </div>
       </section>
 
-      {/* Services Section */}
-      <section id="servicios" className="py-4 px-4 dark:bg-dark-bg">
+      {/* stack Section */}
+      <section id="stack" className="py-4 px-4 dark:bg-dark-bg">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-16 animate-float">
+          <h2 className="text-4xl font-bold text-center mb-5 animate-float">
             <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-              Servicios Digitales
+              Mi Stack de Desarrollo
             </span>
           </h2>
 
-          <div className="grid lg:grid-cols-2 gap-8 mb-8">
-            {/* Desarrollo Web */}
-            <div className="bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/10 dark:bg-card dark:border-card relative">
-              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-red-500 to-orange-500 text-white px-4 py-1 rounded-full text-sm font-bold shadow-lg animate-pulse text-center">
-                ¡25% OFF Solo por hoy! ⏰ {timeLeft}
-              </div>
-            <div className="flex flex-col items-center gap-8">
-              <div className="flex-1">
-                <h3 className="text-2xl font-bold text-white mb-4 dark:text-primary">Páginas Web para Empresarios y Emprendedores</h3>
-                <p className="text-gray-300 mb-6 dark:text-secondary">
-                  ¿Necesitas destacar en la web? Desarrollo páginas web profesionales y atractivas para que tu negocio 
-                  tenga presencia en línea. Perfectas para:
-                </p>
-                <ul className="space-y-3 mb-6">
-                  <li className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                    <span className="text-gray-300 dark:text-secondary">Emprendedores que inician su negocio</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                    <span className="text-gray-300 dark:text-secondary">Pequeñas empresas que necesitan presencia digital</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                    <span className="text-gray-300 dark:text-secondary">Profesionales independientes que quieren atraer más clientes</span>
-                  </li>
-                </ul>
-                <p className="text-gray-300 mb-6 dark:text-secondary">
-                  Mis páginas web incluyen diseño responsivo, optimización para buscadores, 
-                  y son completamente personalizadas según las necesidades de tu negocio.
-                </p>
-                <button
-                  onClick={() => scrollToSection('contacto')}
-                  className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-cyan-500/25"
-                >
-                  Solicita tu página web
-                </button>
-              </div>
-              <div className="flex-1 flex justify-center">
-                <div className="relative">
-                  <div className="w-64 h-64 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-2xl backdrop-blur-sm border border-white/10 flex items-center justify-center dark:border-card">
-                    <Code className="w-16 h-16 text-cyan-400" />
-                  </div>
-                  <div className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-full backdrop-blur-sm border border-white/10 flex items-center justify-center dark:border-card">
-                    <ExternalLink className="w-8 h-8 text-purple-400" />
-                  </div>
-                  <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-full backdrop-blur-sm border border-white/10 flex items-center justify-center dark:border-card">
-                    <User className="w-6 h-6 text-cyan-400" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Marketing Digital */}
-          <div className="bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/10 dark:bg-card dark:border-card relative">
-            <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-red-500 to-orange-500 text-white px-4 py-1 rounded-full text-sm font-bold shadow-lg animate-pulse text-center">
-              ¡35% OFF Solo por hoy! ⏰ {timeLeft}
-            </div>
-            <div className="flex flex-col items-center gap-8">
-              <div className="flex-1">
-                <h3 className="text-2xl font-bold text-white mb-4 dark:text-primary">Marketing Digital para Impulsar tu Negocio</h3>
-                <p className="text-gray-300 mb-6 dark:text-secondary">
-                  ¿Quieres aumentar tus ventas y presencia online? Ofrezco servicios de marketing digital completos para impulsar tu negocio. Ideales para:
-                </p>
-                <ul className="space-y-3 mb-6">
-                  <li className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                    <span className="text-gray-300 dark:text-secondary">Empresas que buscan crecimiento digital</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                    <span className="text-gray-300 dark:text-secondary">Negocios locales que quieren expandirse</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                    <span className="text-gray-300 dark:text-secondary">Profesionales que necesitan más leads</span>
-                  </li>
-                </ul>
-                <p className="text-gray-300 mb-6 dark:text-secondary">
-                  Mis servicios incluyen análisis de datos, estrategias personalizadas, campañas de SMS y email marketing, gestión de redes sociales, CRM y mucho más.
-                </p>
-                <button
-                  onClick={() => scrollToSection('contacto')}
-                  className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-cyan-500/25"
-                >
-                  Solicita tu consulta de marketing
-                </button>
-              </div>
-              <div className="flex-1 flex justify-center">
-                <div className="relative">
-                  <div className="w-64 h-64 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-2xl backdrop-blur-sm border border-white/10 flex items-center justify-center dark:border-card">
-                    <BarChart className="w-16 h-16 text-cyan-400" />
-                  </div>
-                  <div className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-full backdrop-blur-sm border border-white/10 flex items-center justify-center dark:border-card">
-                    <Target className="w-8 h-8 text-purple-400" />
-                  </div>
-                  <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-full backdrop-blur-sm border border-white/10 flex items-center justify-center dark:border-card">
-                    <Mail className="w-6 h-6 text-cyan-400" />
-                  </div>
-                  <div className="absolute top-1/2 -right-8 w-20 h-20 bg-gradient-to-r from-green-500/20 to-teal-500/20 rounded-full backdrop-blur-sm border border-white/10 flex items-center justify-center dark:border-card">
-                    <Smartphone className="w-7 h-7 text-green-400" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          </div>
-
           <div className="text-center">
-            <h3 className="text-3xl font-bold text-white mb-8 animate-zoom-down dark:text-primary">
-              <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-                Mi stack de desarrollo
-              </span>
-            </h3>
-            
             <div className="flex flex-wrap justify-center gap-8 mb-8">
-              {/* HTML/CSS/JavaScript */}
+              {/* HTML5, CSS y JavaScript */}
               <div className="group flex flex-col items-center bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-cyan-400/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/20 dark:bg-card dark:border-card">
-                <div className="bg-gradient-to-r from-orange-500 to-red-500 p-3 rounded-full mb-4 group-hover:animate-bounce">
-                  <Code className="w-8 h-8 text-white" />
-                </div>
-                <h4 className="text-white font-semibold text-lg mb-2 dark:text-primary">HTML/CSS/JS</h4>
-                <p className="text-gray-400 text-sm dark:text-secondary">Desarrollo Web</p>
+              <div className="bg-gradient-to-r from-orange-500 to-red-500 p-3 rounded-full mb-4 group-hover:animate-bounce">
+                <Code className="w-8 h-8 text-white" />
+              </div>
+              <h4 className="text-white font-semibold text-lg mb-2 dark:text-primary">HTML5, CSS y JavaScript</h4>
+              <p className="text-gray-400 text-sm dark:text-secondary">Fundamentos del desarrollo web moderno</p>
               </div>
 
-              {/* React */}
+              {/* Frontend con ReactJS */}
               <div className="group flex flex-col items-center bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-cyan-400/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/20 dark:bg-card dark:border-card">
-                <div className="bg-gradient-to-r from-cyan-500 to-blue-500 p-3 rounded-full mb-4 group-hover:animate-bounce">
-                  <Code className="w-8 h-8 text-white" />
-                </div>
-                <h4 className="text-white font-semibold text-lg mb-2 dark:text-primary">React</h4>
-                <p className="text-gray-400 text-sm dark:text-secondary">Frontend</p>
+              <div className="bg-gradient-to-r from-cyan-500 to-blue-500 p-3 rounded-full mb-4 group-hover:animate-bounce">
+                <Code className="w-8 h-8 text-white" />
+              </div>
+              <h4 className="text-white font-semibold text-lg mb-2 dark:text-primary">Frontend con ReactJS</h4>
+              <p className="text-gray-400 text-sm dark:text-secondary">Interfaces interactivas y escalables</p>
               </div>
 
-              {/* Vite */}
+              {/* Backend con NodeJS */}
               <div className="group flex flex-col items-center bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-cyan-400/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/20 dark:bg-card dark:border-card">
-                <div className="bg-gradient-to-r from-purple-500 to-pink-500 p-3 rounded-full mb-4 group-hover:animate-bounce">
-                  <Zap className="w-8 h-8 text-white" />
-                </div>
-                <h4 className="text-white font-semibold text-lg mb-2 dark:text-primary">Vite</h4>
-                <p className="text-gray-400 text-sm dark:text-secondary">Build Tool</p>
+              <div className="bg-gradient-to-r from-green-500 to-teal-500 p-3 rounded-full mb-4 group-hover:animate-bounce">
+                <Cpu className="w-8 h-8 text-white" />
+              </div>
+              <h4 className="text-white font-semibold text-lg mb-2 dark:text-primary">Backend con NodeJS</h4>
+              <p className="text-gray-400 text-sm dark:text-secondary">APIs rápidas y seguras</p>
               </div>
 
-              {/* Tailwind CSS */}
+              {/* Bases de datos SQL */}
               <div className="group flex flex-col items-center bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-cyan-400/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/20 dark:bg-card dark:border-card">
-                <div className="bg-gradient-to-r from-teal-500 to-cyan-500 p-3 rounded-full mb-4 group-hover:animate-bounce">
-                  <Palette className="w-8 h-8 text-white" />
-                </div>
-                <h4 className="text-white font-semibold text-lg mb-2 dark:text-primary">Tailwind CSS</h4>
-                <p className="text-gray-400 text-sm dark:text-secondary">Styling</p>
+              <div className="bg-gradient-to-r from-blue-500 to-indigo-500 p-3 rounded-full mb-4 group-hover:animate-bounce">
+                <BookOpen className="w-8 h-8 text-white" />
+              </div>
+              <h4 className="text-white font-semibold text-lg mb-2 dark:text-primary">Bases de datos SQL</h4>
+              <p className="text-gray-400 text-sm dark:text-secondary">Gestión eficiente de datos</p>
               </div>
 
-              {/* Python (AI) */}
+              {/* Git y GitHub */}
               <div className="group flex flex-col items-center bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-cyan-400/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/20 dark:bg-card dark:border-card">
-                <div className="bg-gradient-to-r from-yellow-500 to-orange-500 p-3 rounded-full mb-4 group-hover:animate-bounce">
-                  <Brain className="w-8 h-8 text-white" />
-                </div>
-                <h4 className="text-white font-semibold text-lg mb-2 dark:text-primary">Python (AI)</h4>
-                <p className="text-gray-400 text-sm dark:text-secondary">Inteligencia Artificial</p>
+              <div className="bg-gradient-to-r from-gray-700 to-black p-3 rounded-full mb-4 group-hover:animate-bounce">
+                <Github className="w-8 h-8 text-white" />
+              </div>
+              <h4 className="text-white font-semibold text-lg mb-2 dark:text-primary">Git & GitHub</h4>
+              <p className="text-gray-400 text-sm dark:text-secondary">Control de versiones y colaboración</p>
+              </div>
+
+              {/* React Native */}
+              <div className="group flex flex-col items-center bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-cyan-400/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/20 dark:bg-card dark:border-card">
+              <div className="bg-gradient-to-r from-teal-500 to-blue-500 p-3 rounded-full mb-4 group-hover:animate-bounce">
+                <Smartphone className="w-8 h-8 text-white" />
+              </div>
+              <h4 className="text-white font-semibold text-lg mb-2 dark:text-primary">React Native</h4>
+              <p className="text-gray-400 text-sm dark:text-secondary">Apps móviles multiplataforma</p>
+              </div>
+
+              {/* Python */}
+              <div className="group flex flex-col items-center bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-cyan-400/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/20 dark:bg-card dark:border-card">
+              <div className="bg-gradient-to-r from-yellow-500 to-orange-500 p-3 rounded-full mb-4 group-hover:animate-bounce">
+                <Brain className="w-8 h-8 text-white" />
+              </div>
+              <h4 className="text-white font-semibold text-lg mb-2 dark:text-primary">Python</h4>
+              <p className="text-gray-400 text-sm dark:text-secondary">Automatización e inteligencia artificial</p>
+              </div>
+
+              {/* Vite + Tailwind CSS */}
+              <div className="group flex flex-col items-center bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-cyan-400/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/20 dark:bg-card dark:border-card">
+              <div className="bg-gradient-to-r from-purple-500 to-cyan-500 p-3 rounded-full mb-4 group-hover:animate-bounce">
+                <Zap className="w-8 h-8 text-white" />
+              </div>
+              <h4 className="text-white font-semibold text-lg mb-2 dark:text-primary">Vite + Tailwind CSS</h4>
+              <p className="text-gray-400 text-sm dark:text-secondary">Desarrollo rápido y estilos modernos</p>
               </div>
             </div>
 
             <div className="flex flex-col items-center">
               <button
-                onClick={() => scrollToSection('contacto')}
-                className="text-gray-300 mb-4 dark:text-secondary hover:text-cyan-400 transition-colors cursor-pointer text-lg font-semibold"
+              onClick={() => scrollToSection('contacto')}
+              className="text-gray-300 mb-4 dark:text-secondary hover:text-cyan-400 transition-colors cursor-pointer text-lg font-semibold"
               >Agenda una asesoría personalizada y descubre cómo desarrollo proyectos como este.
               </button>
               <div className="animate-bounce">
-                <ChevronDown className="w-8 h-8 text-cyan-400" />
+              <ChevronDown className="w-8 h-8 text-cyan-400" />
               </div>
             </div>
 
@@ -1054,7 +1080,6 @@ return (
         </div>
       </section>
 
-      {/* Impacto Section */}
       <section id="impacto" className="py-4 px-4 dark:bg-dark-bg">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-5 animate-float">
@@ -1376,7 +1401,7 @@ return (
                 href="https://www.linkedin.com/in/juannppgd" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="group bg-gradient-to-br from-blue-700/20 to-blue-900/20 hover:from-blue-600/30 hover:to-blue-800/30 backdrop-blur-sm rounded-2xl p-6 border border-blue-600/20 hover:border-blue-500/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-blue-600/20 animate-socialfade dark:bg-card dark:border-card"
+                               className="group bg-gradient-to-br from-blue-700/20 to-blue-900/20 hover:from-blue-600/30 hover:to-blue-800/30 backdrop-blur-sm rounded-2xl p-6 border border-blue-600/20 hover:border-blue-500/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-blue-600/20 animate-socialfade dark:bg-card dark:border-card"
               >
                 <Linkedin className="w-8 h-8 text-blue-400 mx-auto mb-3 group-hover:animate-bounce" />
                 <div className="text-white font-semibold text-sm mb-1 dark:text-primary">LinkedIn</div>
