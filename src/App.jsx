@@ -447,8 +447,8 @@ const courses = [
 return (
   <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
     {/* Navigation */}
-    <nav className="fixed top-4 left-0 right-0 mx-4 w-auto z-50 bg-black/20 backdrop-blur-lg border border-white/10 rounded-2xl shadow-xl">
-      <div className="container mx-auto px-4 py-3">
+    <nav className="fixed top-4 left-0 right-0 mx-2 sm:mx-4 w-auto z-50 backdrop-blur-lg border border-white/10 rounded-2xl shadow-xl">
+      <div className="container mx-auto px-4 py-3 sm:px-6">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
@@ -550,60 +550,70 @@ return (
               </a>
             </div>
           </div>
-          
+              
+        </div>
+      </section>
+
+      {/* Promotional Section */}
+      <section id="promocion" className="py-6 px-6 dark:bg-dark-bg">
+        <div className="max-w-6xl mx-auto text-center">
+          <h2 className="text-4xl font-extrabold mb-6 bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-400 bg-clip-text text-transparent animate-gradient">
+            ¿Quieres una página web con un diseño único, exclusivo, que conecte con tu audiencia?
+          </h2>
+          <p className="text-lg text-white/90 max-w-3xl mx-auto mb-8 font-semibold">
+            Soy especialista en desarrollo frontend y marketing digital. Creo sitios web que no solo se ven increíbles, sino que también convierten visitantes en clientes. 
+            Destaca con un diseño único, funcional y optimizado para tu negocio.
+          </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <button
-              onClick={() => scrollToSection('contacto')}
-              className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-cyan-500/25 hover:animate-glow"
+              onClick={() => scrollToSection('servicios')}
+              className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-cyan-500/25 text-center"
             >
-              Contáctame
+              Ver Servicios
+            </button>
+            <button
+              onClick={() => scrollToSection('contacto')}
+              className="bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-pink-500/25 text-center"
+            >
+              Contáctame Ahora
             </button>
             <a
               href="https://www.instagram.com/juannppgd"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-600 hover:to-teal-600 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-green-500/25 hover:animate-glow flex items-center gap-2"
+              className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-cyan-500/25 flex items-center justify-center gap-2 text-center"
             >
               <Video className="w-5 h-5" />
               Instagram
             </a>
-            <button
-              onClick={() => scrollToSection('servicios')}
-              className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-purple-500/25 hover:animate-glow flex items-center gap-2"
-            >
-              <Briefcase className="w-5 h-5" />
-              Servicios
-            </button>
-          </div>
-          <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <ChevronDown className="w-8 h-8 text-white/50 dark:text-secondary" />
           </div>
         </div>
       </section>
 
       {/* Education */}
-      <section id="estudios" className="pt-16 pb-8 px-4 dark:bg-dark-bg">
+      <section id="estudios" className="pt-8 pb-4 px-4 dark:bg-dark-bg">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-16 animate-float">
+          <p className="text-2xl font-bold text-white mb-4 text-center dark:text-primary">Conóceme</p>
+          <h2 className="text-4xl font-bold text-center mb-5 animate-float">
             <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
               Formación Académica
             </span>
           </h2>
           
           {/* Academic */}
-          <div className="mb-16">
+          <div className="mb-5">
             <h3 id="subtitle-0" className="text-2xl font-bold text-white mb-4 text-center dark:text-primary">
               {subtitleTexts[0]}
             </h3>
-            <div className="flex gap-6 overflow-x-auto pb-4 snap-x styled-scroll">
+            <div className="flex gap-4 overflow-x-auto pb-4 snap-x styled-scroll">
 {education.map((edu, index) => {
   const iconColor = edu.type === 'university' ? 'from-purple-500 to-purple-400' : 'from-cyan-500 to-cyan-400';
   return (
     <div
       key={index}
-      className="flex-shrink-0 w-80 group bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-cyan-400/50 transition-all duration-300 hover:shadow-2xl hover:shadow-cyan-500/20 hover:animate-cardpop dark:bg-card dark:border-card snap-center"
+      className="flex-shrink-0 w-80 group bg-white/5 backdrop-blur-sm rounded-2xl p-4 border border-white/10 hover:border-cyan-400/50 transition-all duration-300 hover:shadow-2xl hover:shadow-cyan-500/20 hover:animate-cardpop dark:bg-card dark:border-card snap-center"
     >
-      <div className="flex items-center mb-4">
+      <div className="flex items-center mb-2">
         <div className={`p-3 rounded-full bg-gradient-to-r ${iconColor} mr-3 group-hover:animate-bounce`}>
           <Award className="w-8 h-8 text-white" />
         </div>
@@ -613,8 +623,8 @@ return (
           {edu.status}
         </span>
       </div>
-      <h3 className="text-xl font-bold text-white mb-2 dark:text-primary">{edu.title}</h3>
-      <p className="text-gray-300 mb-4 dark:text-secondary" id={`detail-${index}`}>
+      <h3 className="text-xl font-bold text-white mb-1 dark:text-primary">{edu.title}</h3>
+      <p className="text-gray-300 mb-2 dark:text-secondary" id={`detail-${index}`}>
         {edu.institution}
       </p>
       {edu.certificateLink && (
@@ -643,10 +653,10 @@ return (
 
           {/* Courses and Certifications */}
           <div>
-            <h3 id="subtitle-1" className="text-2xl font-bold text-white mb-4 text-center animate-float dark:text-primary">
+          <h3 id="subtitle-1" className="text-2xl font-bold text-white mb-5 text-center dark:text-primary">
               {subtitleTexts[1]}
             </h3>
-            <div className="flex gap-6 overflow-x-auto pb-4 snap-x styled-scroll">
+            <div className="flex gap-4 overflow-x-auto pb-4 snap-x styled-scroll">
 {courses.map((course, index) => {
   const categoryColors = {
     'Marketing': 'from-pink-500 to-pink-400',
@@ -661,14 +671,14 @@ return (
   return (
     <div
       key={index}
-      className="flex-shrink-0 w-80 bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-xl p-5 border border-white/10 hover:border-purple-400/50 transition-all duration-300 hover:animate-cardpop group dark:bg-card dark:border-card snap-center"
+      className="flex-shrink-0 w-80 bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/10 hover:border-purple-400/50 transition-all duration-300 hover:animate-cardpop group dark:bg-card dark:border-card snap-center"
     >
-      <div className="flex items-start gap-3 mb-3">
+      <div className="flex items-start gap-3 mb-2">
         <div className={`p-3 rounded-full bg-gradient-to-r ${iconBg} text-white text-2xl group-hover:animate-bounce`}>
           {course.icon}
         </div>
         <div className="flex-1">
-          <span className={`px-2 py-1 rounded-full text-xs font-semibold mb-2 inline-block ${
+          <span className={`px-2 py-1 rounded-full text-xs font-semibold mb-1 inline-block ${
             course.category === 'Marketing' || course.category === 'Publicidad' ? 'bg-pink-500/20 text-pink-300' :
             course.category === 'Tecnología' ? 'bg-blue-500/20 text-blue-300' :
             course.category === 'Seguridad' ? 'bg-red-500/20 text-red-300' :
@@ -681,8 +691,8 @@ return (
           </span>
         </div>
       </div>
-      <h4 className="text-white font-semibold text-sm mb-2 leading-tight dark:text-primary">{course.title}</h4>
-      <p className="text-gray-400 text-xs dark:text-secondary mb-3" id={`detail-${education.length + index}`}>
+      <h4 className="text-white font-semibold text-sm mb-1 leading-tight dark:text-primary">{course.title}</h4>
+      <p className="text-gray-400 text-xs dark:text-secondary mb-2" id={`detail-${education.length + index}`}>
         {course.institution}
       </p>
       <a
@@ -707,7 +717,7 @@ return (
             </div>
 
             {/* Ver Todo Button */}
-            <div className="text-center mt-12">
+            <div className="text-center mt-5">
               <a
                 href="https://1drv.ms/f/c/49ebc614e8d47685/EjX5_TBjKctHgBxEthZy_kEBBrhoeYLnzBxZclzGu5xMDQ?e=d5g93U"
                 target="_blank"
@@ -726,9 +736,9 @@ return (
       </section>
 
       {/* Experience Section */}
-      <section id="experiencia" className="py-8 px-4 bg-black/20 dark:bg-dark-bg">
+      <section id="experiencia" className="py-4 px-4 dark:bg-dark-bg">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-16 animate-float">
+          <h2 className="text-4xl font-bold text-center mb-5 animate-float">
             <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
               Experiencia Profesional
             </span>
@@ -797,9 +807,9 @@ return (
       </section>
 
       {/* Skills & Software Section */}
-      <section id="habilidades" className="py-8 px-4 dark:bg-dark-bg">
+      <section id="habilidades" className="py-4 px-4 dark:bg-dark-bg">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-16 animate-float">
+          <h2 className="text-4xl font-bold text-center mb-5 animate-float">
             <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
               Habilidades & Software
             </span>
@@ -858,7 +868,7 @@ return (
       </section>
 
       {/* Services Section */}
-      <section id="servicios" className="py-8 px-4 bg-black/20 dark:bg-dark-bg">
+      <section id="servicios" className="py-4 px-4 dark:bg-dark-bg">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-16 animate-float">
             <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
@@ -1045,9 +1055,9 @@ return (
       </section>
 
       {/* Impacto Section */}
-      <section id="impacto" className="py-8 px-4 bg-black/20 dark:bg-dark-bg">
+      <section id="impacto" className="py-4 px-4 dark:bg-dark-bg">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-16 animate-float">
+          <h2 className="text-4xl font-bold text-center mb-5 animate-float">
             <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
               El Impacto de la Tecnología y el Marketing
             </span>
@@ -1087,9 +1097,9 @@ return (
       </section>
 
       {/* Reviews Section */}
-      <section id="reseñas" className="py-8 px-4 dark:bg-dark-bg">
+      <section id="reseñas" className="py-4 px-4 dark:bg-dark-bg">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-16 animate-float">
+          <h2 className="text-4xl font-bold text-center mb-5 animate-float">
             <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
               Reseñas de Clientes Satisfechos
             </span>
@@ -1137,9 +1147,9 @@ return (
       </section>
 
       {/* Contact Section */}
-      <section id="contacto" className="pb-8 pt-8 px-4 bg-black/20 dark:bg-dark-bg">
+      <section id="contacto" className="pb-4 pt-4 px-4 dark:bg-dark-bg">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-16 animate-float">
+          <h2 className="text-4xl font-bold text-center mb-5 animate-float">
             <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
               Contáctame
             </span>
@@ -1254,9 +1264,9 @@ return (
       </section>
 
       {/* Payment Methods Section */}
-      <section id="pagos" className="py-8 px-4 dark:bg-dark-bg">
+      <section id="pagos" className="py-4 px-4 dark:bg-dark-bg">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-16 animate-float">
+          <h2 className="text-4xl font-bold text-center mb-5 animate-float">
             <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
               Métodos de Pago Aceptados
             </span>
@@ -1320,7 +1330,7 @@ return (
       </section>
 
       {/* Footer */}
-      <footer className="py-16 px-4 border-t border-white/10 bg-gradient-to-br from-slate-900/50 to-purple-900/30 backdrop-blur-sm dark:bg-dark-bg">
+      <footer className="py-12 px-4 border-t border-white/10 bg-gradient-to-br from-slate-900/50 to-purple-900/30 backdrop-blur-sm dark:bg-dark-bg">
         <div className="max-w-6xl mx-auto">
           {/* Social Media Section */}
           <div className="text-center mb-12">
