@@ -546,8 +546,20 @@ return (
                 contact.juannppgd@gmail.com
               </a>
             </div>
-          </div>
-              
+            </div>
+
+            <div className="flex flex-col items-center mt-8">
+              <button
+                onClick={() => scrollToSection('promocion')}
+                className="text-gray-300 mb-4 dark:text-secondary hover:text-cyan-400 transition-colors cursor-pointer text-lg font-semibold"
+              >
+                Descubre mis servicios y cómo puedo ayudarte
+              </button>
+              <div className="animate-bounce">
+                <ChevronDown className="w-8 h-8 text-cyan-400" />
+              </div>
+            </div>
+
         </div>
       </section>
 
