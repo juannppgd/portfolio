@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Mail, Phone, MapPin, ChevronDown, ExternalLink, Code, Briefcase, GraduationCap, Settings, User, Send, Github, Linkedin, Facebook, Instagram, Twitter, MessageCircle, ArrowUpRight, Moon, Sun, Zap, Palette, Brain, Award, Trophy, BookOpen, Sparkles, Star, Crown, Medal, Globe, Cpu, Smartphone, Shield, Target, BarChart, HeartPulse, Lock, Video, Quote, CreditCard, Banknote, Key, TrendingUp, Users } from 'lucide-react';
+import { Mail, Phone, MapPin, ChevronDown, ExternalLink, Code, Briefcase, GraduationCap, Settings, User, Send, Github, Linkedin, Facebook, Instagram, Twitter, MessageCircle, ArrowUpRight, Moon, Sun, Zap, Palette, Brain, Award, Trophy, BookOpen, Sparkles, Star, Crown, Medal, Globe, Cpu, Smartphone, Shield, Target, BarChart, HeartPulse, Lock, Video, Quote, CreditCard, Banknote, Key, TrendingUp, Users, Server } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import perfil from './assets/profile-image.jpg';
 
@@ -15,7 +15,7 @@ const Portfolio = () => {
   const [errors, setErrors] = useState({});
   const [darkMode, setDarkMode] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const typingText = "Frontend Development | Automation | HTML/CSS/JavaScript | React, Vite y Tailwind CSS | Python (AI)";
+  const typingText = "Frontend Dev | Automation | React | HTML/CSS/JavaScript | Python (AI)";
   const [displayedText, setDisplayedText] = useState("");
   const [expandedExperiences, setExpandedExperiences] = useState([false, false]);
   const [timeLeft, setTimeLeft] = useState('');
@@ -177,7 +177,7 @@ const handleSubmit = (e) => {
   const experiences = [
     {
       title: "Performance Marketing 💼",
-      company: "Siigo S.A.S",
+      company: "Empresa de desarrollo de Software (Certificada)",
       period: "2025",
       description: "Experto en marketing digital LATAM. Diseño y ejecuto campañas estratégicas de email y SMS que impulsan conversiones, engagement y crecimiento empresarial. Transformo datos en resultados tangibles para expandir tu presencia online.",
       achievements: [
@@ -188,8 +188,8 @@ const handleSubmit = (e) => {
       ]
     },
     {
-      title: "Desarrollador Web Independiente 💻",
-      company: "Freelance",
+      title: "Desarrollador Web 💻",
+      company: "Freelance Independiente",
       period: "Desde 2022",
       description: "Desarrollador web independiente especializado en experiencias digitales cautivadoras. Utilizo React, Vite y Tailwind CSS para crear sitios web responsivos, rápidos y optimizados para SEO que convierten visitantes en clientes e impulsan tus ventas.",
       achievements: [
@@ -222,7 +222,7 @@ const handleSubmit = (e) => {
       certificateLink: "https://1drv.ms/i/c/49ebc614e8d47685/EZ1WpiYf_UVMvb3AImaMrSIBNFA-TIQKyqbTT9lY-6aeww?e=SpHlH4"
     },
     {
-      title: "Técnico Laboral en Programación Web y Desarrollo de Aplicaciones Móviles",
+      title: "Técnico en Programación Web y Desarrollo de Apps Móviles",
       institution: "Instituto Iberoamericano",
       status: "Finalizado 2024",
       type: "technical",
@@ -521,28 +521,29 @@ return (
           </h1>
           
 <p className="text-xl md:text-2xl text-white dark:text-primary mb-2 max-w-3xl mx-auto font-light italic">
-  Desarrollador De Software | Marketing Digital | Performance
+  Desarrollador De Software & Performance Marketing
 </p>
 <p className="text-base md:text-lg bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-gradient mb-8 max-w-3xl mx-auto font-semibold tracking-wide">
   {displayedText}
+
   <span className="animate-blink">|</span>
 </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
             <a className="flex items-center gap-2 text-gray-300 hover:text-cyan-400 transition-colors dark:text-secondary">
               <MapPin className="w-5 h-5 text-cyan-400" />
-              <span>Remoto desde Colombia 🌍 </span>
-            </a>
+              Remoto desde Colombia
+              </a>
             <div className="flex items-center gap-2 text-gray-300 dark:text-secondary">
               <Phone className="w-5 h-5 text-cyan-400" />
               <a href="https://wa.link/ukyqpg" className="text-gray-300 hover:text-cyan-400 transition-colors dark:text-secondary">
-                +57 321 954 1241 🔗
+                +57 321 954 1241
               </a>
             </div>
             <div className="flex items-center gap-2 text-gray-300 dark:text-secondary">
               <Mail className="w-5 h-5 text-cyan-400" />
               <a href="mailto:contact.juannppgd@gmail.com" className="text-gray-300 hover:text-cyan-400 transition-colors dark:text-secondary">
-                contact.juannppgd@gmail.com 🔗
+                contact.juannppgd@gmail.com
               </a>
             </div>
           </div>
@@ -597,17 +598,17 @@ return (
 
           <div className="grid lg:grid-cols-2 gap-8">
             {/* Servicio 1: Páginas Web */}
-            <div className="bg-gradient-to-br from-cyan-500/10 via-blue-500/10 to-purple-500/10 backdrop-blur-sm rounded-3xl p-8 border-2 border-cyan-400/30 hover:border-cyan-400/70 transition-all duration-500 transform hover:scale-102 hover:shadow-2xl hover:shadow-cyan-500/30 dark:bg-card dark:border-card">
+            <div className="bg-gradient-to-br from-cyan-500/10 via-blue-500/10 to-purple-500/10 backdrop-blur-sm rounded-3xl p-8 border-2 border-cyan-400/30 hover:border-cyan-400/70 transition-all duration-500 transform hover:scale-102 hover:shadow-2xl hover:shadow-cyan-500/30 dark:bg-card dark:border-card animate-glow-repeat">
               <div className="text-center mb-6">
                 <div className="bg-gradient-to-r from-cyan-500 to-blue-500 p-4 rounded-full w-16 h-16 mx-auto mb-4">
                   <Globe className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-4 dark:text-primary">Páginas Web para Profesionales y Emprendedores</h3>
+                <h3 className="text-2xl font-bold text-white mb-4 dark:text-primary">Páginas Web para Profesionales, Emprendedores y Pymes</h3>
               </div>
 
               {/* Opción 1: Gradiente rosa-púrpura (actual) */}
-              <div className="bg-gradient-to-r from-pink-500/20 to-purple-500/20 rounded-2xl p-4 mb-6 border border-pink-500/30">
-                <p className="text-white font-bold text-lg text-center dark:text-primary">
+              <div className="bg-gradient-to-r from-purpleS-500/20 to-purple-500/20 rounded-2xl p-4 mb-6 border border-blue-500/30 cursor-pointer group" onClick={() => scrollToSection('contacto')}>
+                <p className="text-white font-bold text-lg text-center dark:text-primary animate-pulse">
                   ¡25% OFF Solo por hoy! ⏰ {timeLeft}
                 </p>
               </div>
@@ -621,13 +622,13 @@ return (
                   <div className="bg-gradient-to-r from-cyan-400 to-purple-400 p-1 rounded-full flex-shrink-0">
                     <Sparkles className="w-4 h-4 text-white" />
                   </div>
-                  <span className="text-gray-300 dark:text-secondary">Emprendedores que inician su negocio</span>
+                  <span className="text-gray-300 dark:text-secondary">Emprendedores que quieren destacar su negocio</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <div className="bg-gradient-to-r from-cyan-400 to-purple-400 p-1 rounded-full flex-shrink-0">
                     <Smartphone className="w-4 h-4 text-white" />
                   </div>
-                  <span className="text-gray-300 dark:text-secondary">Pequeñas empresas que necesitan presencia digital</span>
+                  <span className="text-gray-300 dark:text-secondary">Pymes que necesitan presencia digital</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <div className="bg-gradient-to-r from-cyan-400 to-purple-400 p-1 rounded-full flex-shrink-0">
@@ -638,12 +639,12 @@ return (
               </ul>
 
               <p className="text-gray-300 mb-8 dark:text-secondary">
-                Mis páginas web incluyen diseño responsivo, optimización para buscadores, y son completamente personalizadas según las necesidades de tu negocio.
+                Mis páginas web incluyen diseño responsivo, optimización y son completamente personalizadas según las necesidades de tu negocio y mucho más.
               </p>
 
               <button
                 onClick={() => scrollToSection('contacto')}
-                className="w-full bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2 shadow-2xl hover:shadow-cyan-500/25"
+                className="w-full bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2 shadow-2xl hover:shadow-cyan-500/25 animate-glow-repeat"
               >
                 Solicita tu página web
               </button>
@@ -658,9 +659,9 @@ return (
                 <h3 className="text-2xl font-bold text-white mb-4 dark:text-primary">Marketing Digital para Impulsar tu Negocio en Internet</h3>
               </div>
 
-              <div className="bg-gradient-to-r from-orange-500/20 to-red-500/20 rounded-2xl p-4 mb-6 border border-orange-500/30">
-                <p className="text-white font-bold text-lg text-center dark:text-primary">
-                  ¡25% OFF Solo por hoy! ⏰ {timeLeft}
+              <div className="bg-gradient-to-r from-orange-500/20 to-red-500/20 rounded-2xl p-4 mb-6 border border-orange-500/30 cursor-pointer group" onClick={() => scrollToSection('contacto')}>
+                <p className="text-white font-bold text-lg text-center dark:text-primary animate-pulse">
+                  ¡35% OFF Solo por hoy! ⏰ {timeLeft}
                 </p>
               </div>
 
@@ -673,13 +674,13 @@ return (
                   <div className="bg-gradient-to-r from-purple-400 to-pink-400 p-1 rounded-full flex-shrink-0">
                     <TrendingUp className="w-4 h-4 text-white" />
                   </div>
-                  <span className="text-gray-300 dark:text-secondary">Empresas que buscan crecimiento digital</span>
+                  <span className="text-gray-300 dark:text-secondary">Pymes que buscan crecimiento digital</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <div className="bg-gradient-to-r from-purple-400 to-pink-400 p-1 rounded-full flex-shrink-0">
                     <Globe className="w-4 h-4 text-white" />
                   </div>
-                  <span className="text-gray-300 dark:text-secondary">Negocios locales que quieren expandirse</span>
+                  <span className="text-gray-300 dark:text-secondary">Negocios que quieren expandirse en la Web</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <div className="bg-gradient-to-r from-purple-400 to-pink-400 p-1 rounded-full flex-shrink-0">
@@ -694,8 +695,7 @@ return (
               </p>
 
               <button
-                onClick={() => scrollToSection('contacto')}
-                className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2 shadow-2xl hover:shadow-purple-500/25"
+                onClick={() => scrollToSection('contacto')}className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2 shadow-2xl hover:shadow-purple-500/25 animate-glow-repeat"
               >
                 Solicita tu consulta de marketing
               </button>
@@ -704,10 +704,68 @@ return (
         </div>
       </section>
 
+      {/* Hosting Offer Section */}
+      <section id="hosting" className="py-6 px-4 dark:bg-dark-bg">
+        <div className="max-w-6xl mx-auto text-center mb-10">
+          <h2 className="text-3xl font-bold bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-400 bg-clip-text text-transparent animate-gradient">
+            Conoce estos beneficios exclusivos para ti
+          </h2>
+        </div>
+        <div className="max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* Hosting y Dominio Gratis */}
+            <div className="bg-gradient-to-r from-cyan-500/20 to-blue-500/20 backdrop-blur-sm rounded-2xl p-6 border border-cyan-500/30 hover:border-cyan-500/50 transition-all duration-300 text-center animate-glow-repeat cursor-pointer group" onClick={() => scrollToSection('contacto')}>
+              <div className="flex items-center justify-center gap-4 mb-4">
+                <div className="bg-gradient-to-r from-cyan-500 to-cyan-400 p-3 rounded-full group-hover:animate-bounce">
+                  <Globe className="w-8 h-8 text-white" />
+                </div>
+                <div className="bg-gradient-to-r from-blue-500 to-blue-400 p-3 rounded-full group-hover:animate-bounce">
+                  <Server className="w-8 h-8 text-white" />
+                </div>
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-2 dark:text-primary">¡Hosting y Dominio Gratis!</h3>
+              <p className="text-gray-300 dark:text-secondary mb-4">Aplica TyC</p>
+                            <ul className="text-left text-gray-300 dark:text-secondary space-y-1 mb-3">
+                <li>• Optimización de velocidad y experiencia UX</li>
+                <li>• Integración con redes sociales y CRM</li>
+                <li>• Configuración técnica de DNS</li>
+                <li>• Dominios y correos corporativos</li>
+                <li>• Integración con EmailJS y Google Analytics</li>
+                <li>• Interfaces responsivas con React y Tailwind CSS</li>
+              </ul>
+              <p className="text-gray-300 dark:text-secondary"><strong>Click Aquí Para Más</strong></p>
+            </div>
+
+            {/* Consultoría Gratis */}
+            <div className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 backdrop-blur-sm rounded-2xl p-6 border border-purple-500/30 hover:border-purple-500/50 transition-all duration-300 text-center animate-glow-repeat cursor-pointer group" onClick={() => scrollToSection('contacto')}>
+              <div className="flex items-center justify-center gap-4 mb-4">
+                <div className="bg-gradient-to-r from-purple-500 to-purple-400 p-3 rounded-full group-hover:animate-bounce">
+                  <BarChart className="w-8 h-8 text-white" />
+                </div>
+                <div className="bg-gradient-to-r from-pink-500 to-pink-400 p-3 rounded-full group-hover:animate-bounce">
+                  <TrendingUp className="w-8 h-8 text-white" />
+                </div>
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-2 dark:text-primary">¡Consultoría Gratis!</h3>
+              <p className="text-gray-300 dark:text-secondary mb-4">Aplica TyC</p>
+              <ul className="text-left text-gray-300 dark:text-secondary space-y-1 mb-3">
+                <li>• Análisis de datos y segmentación</li>
+                <li>• Campañas A/B testing</li>
+                <li>• Estrategia Digital</li>
+                <li>• Gestión de redes sociales</li>
+                <li>• Email y SMS Marketing</li>
+                <li>• SEO y SEM</li>
+              </ul>
+                            <p className="text-gray-300 dark:text-secondary"><strong>Click Aquí Para Más</strong></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Education */}
       <section id="estudios" className="pt-8 pb-4 px-4 dark:bg-dark-bg">
         <div className="max-w-6xl mx-auto">
-          <p className="text-2xl font-bold text-white mb-4 text-center dark:text-primary">Conóceme</p>
+          <p className="text-2xl font-bold text-white mb-6 text-center dark:text-primary">Conóceme</p>
           <h2 className="text-4xl font-bold text-center mb-5 animate-float">
             <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
               Formación Académica
@@ -716,7 +774,7 @@ return (
           
           {/* Academic */}
           <div className="mb-5">
-            <h3 id="subtitle-0" className="text-2xl font-bold text-white mb-4 text-center dark:text-primary">
+            <h3 id="subtitle-0" className="text-2xl font-bold text-white mb-6 text-center dark:text-primary">
               {subtitleTexts[0]}
             </h3>
             <div className="flex gap-4 overflow-x-auto pb-4 snap-x styled-scroll">
@@ -741,17 +799,6 @@ return (
       <p className="text-gray-300 mb-2 dark:text-secondary" id={`detail-${index}`}>
         {edu.institution}
       </p>
-      {edu.certificateLink && (
-        <a
-          href={edu.certificateLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-full bg-white/10 hover:bg-white/20 text-white text-xs font-semibold py-2 px-3 rounded-lg transition-all duration-300 shadow-lg hover:shadow-white/25 flex items-center justify-center gap-2 backdrop-blur-sm border border-white/20"
-        >
-          <Award className="w-3 h-3" />
-          Ver Certificado
-        </a>
-      )}
     </div>
   );
 })}
@@ -767,7 +814,7 @@ return (
 
           {/* Courses and Certifications */}
           <div>
-          <h3 id="subtitle-1" className="text-2xl font-bold text-white mb-5 text-center dark:text-primary">
+          <h3 id="subtitle-1" className="text-2xl font-bold text-white mb-6 text-center dark:text-primary">
               {subtitleTexts[1]}
             </h3>
             <div className="flex gap-4 overflow-x-auto pb-4 snap-x styled-scroll">
@@ -809,17 +856,8 @@ return (
       <p className="text-gray-400 text-xs dark:text-secondary mb-2" id={`detail-${education.length + index}`}>
         {course.institution}
       </p>
-      <a
-        href={course.certificateLink}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="w-full bg-white/10 hover:bg-white/20 text-white text-xs font-semibold py-2 px-3 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-white/25 flex items-center justify-center gap-2 backdrop-blur-sm border border-white/20"
-      >
-        <Award className="w-3 h-3" />
-        Ver Certificado
-      </a>
     </div>
- );
+);
 })}
             </div>
             <div className="text-center mt-4">
@@ -842,7 +880,7 @@ return (
                 Ver Todos los Certificados
               </a>
               <p className="text-gray-400 text-xs mt-2 dark:text-secondary">
-                Accede a mi carpeta completa de certificaciones
+                Accede a mi carpeta completa de certificaciones en PDF
               </p>
             </div>
           </div>
@@ -852,7 +890,7 @@ return (
       {/* Experience Section */}
       <section id="experiencia" className="py-4 px-4 dark:bg-dark-bg">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-5 animate-float">
+          <h2 className="text-4xl font-bold text-center mb-7 animate-float">
             <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
               Experiencia Profesional
             </span>
@@ -923,7 +961,7 @@ return (
       {/* Skills & Software Section */}
       <section id="habilidades" className="pt-12 pb-8 px-4 dark:bg-dark-bg">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-12 animate-float">
+          <h2 className="text-4xl font-bold text-center mb-7 animate-float">
             <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
               Habilidades & Software
             </span>
@@ -984,7 +1022,7 @@ return (
       {/* stack Section */}
       <section id="stack" className="py-4 px-4 dark:bg-dark-bg">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-5 animate-float">
+          <h2 className="text-4xl font-bold text-center mb-7 animate-float">
             <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
               Mi Stack de Desarrollo
             </span>
@@ -1082,7 +1120,7 @@ return (
 
       <section id="impacto" className="py-4 px-4 dark:bg-dark-bg">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-5 animate-float">
+          <h2 className="text-4xl font-bold text-center mb-7 animate-float">
             <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
               El Impacto de la Tecnología y el Marketing
             </span>
@@ -1124,7 +1162,7 @@ return (
       {/* Reviews Section */}
       <section id="reseñas" className="py-4 px-4 dark:bg-dark-bg">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-5 animate-float">
+          <h2 className="text-4xl font-bold text-center mb-7 animate-float">
             <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
               Reseñas de Clientes Satisfechos
             </span>
@@ -1166,17 +1204,15 @@ return (
               <ArrowUpRight className="w-5 h-5 animate-pulse" />
             </div>
           </div>
-
-
         </div>
       </section>
 
       {/* Contact Section */}
       <section id="contacto" className="pb-4 pt-4 px-4 dark:bg-dark-bg">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-5 animate-float">
+          <h2 className="text-4xl font-bold text-center mb-7 animate-float">
             <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-              Contáctame
+              Contáctame ¡Asesoría Gratis!
             </span>
           </h2>
           
@@ -1291,7 +1327,7 @@ return (
       {/* Payment Methods Section */}
       <section id="pagos" className="py-4 px-4 dark:bg-dark-bg">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-5 animate-float">
+          <h2 className="text-4xl font-bold text-center mb-6 animate-float">
             <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
               Métodos de Pago Aceptados
             </span>
@@ -1365,7 +1401,7 @@ return (
               </span>
             </h3>
             <p className="text-gray-300 mb-8 max-w-2xl mx-auto text-lg dark:text-secondary">
-              Sígueme en mis redes sociales para contenido sobre marketing digital, desarrollo web y mucho más 📈
+              Sígueme en mis redes sociales para contenido sobre desarrollo web, marketing digital y mucho más 📈
             </p>
             
             {/* Social Media Grid */}
@@ -1401,7 +1437,7 @@ return (
                 href="https://www.linkedin.com/in/juannppgd" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                               className="group bg-gradient-to-br from-blue-700/20 to-blue-900/20 hover:from-blue-600/30 hover:to-blue-800/30 backdrop-blur-sm rounded-2xl p-6 border border-blue-600/20 hover:border-blue-500/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-blue-600/20 animate-socialfade dark:bg-card dark:border-card"
+                className="group bg-gradient-to-br from-blue-700/20 to-blue-900/20 hover:from-blue-600/30 hover:to-blue-800/30 backdrop-blur-sm rounded-2xl p-6 border border-blue-600/20 hover:border-blue-500/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-blue-600/20 animate-socialfade dark:bg-card dark:border-card"
               >
                 <Linkedin className="w-8 h-8 text-blue-400 mx-auto mb-3 group-hover:animate-bounce" />
                 <div className="text-white font-semibold text-sm mb-1 dark:text-primary">LinkedIn</div>
@@ -1484,7 +1520,7 @@ return (
                   © 2025 Juan Pablo Gutiérrez Díaz. Todos los derechos reservados.
                 </p>
 <p className="text-sm text-gray-500 dark:text-secondary">
-  Diseñado y desarrollado por <strong>Juan Pablo Gutiérrez Díaz</strong> enfocado en crear experiencias digitales ágiles, funcionales y orientadas a resultados.⚙️
+  Diseñado y desarrollado por <strong>Juan Pablo Gutiérrez Díaz</strong> enfocado en crear experiencias digitales ágiles, funcionales orientadas a resultados.⚙️
   <br />
   ¿Quieres saber más o agendar una asesoría? Escríbeme a{" "}
   <a
@@ -1495,9 +1531,7 @@ return (
     contact.juannppgd@gmail.com
   </a> 🗒️
 </p>
-
               </div>
-              
               <div className="flex items-center justify-center gap-4">
                 <a href="https://wa.link/ukyqpg" target="_blank" rel="noopener noreferrer">
                   <div className="bg-gradient-to-r from-cyan-500/20 to-purple-500/20 backdrop-blur-sm rounded-full px-4 py-2 border border-cyan-500/30 dark:border-card animate-glow-repeat hover:animate-glow flex items-center justify-center">
@@ -1659,12 +1693,12 @@ return (
   }
 
   .animate-glow-repeat {
-    animation: glowBtn 1.2s ease-in-out infinite 4s;
+    animation: glowBtn 1.2s ease-in-out infinite;
   }
   @keyframes glowBtn {
-    0% { box-shadow: 0 0 0 0 rgba(34,211,238,0.4);}
-    70% { box-shadow: 0 0 40px 10px rgba(139,92,246,0.4);}
-    100% { box-shadow: 0 0 0 0 rgba(34,211,238,0.4);}
+    0% { box-shadow: 0 0 0 0 rgba(34,211,238,0.2);}
+    70% { box-shadow: 0 0 20px 5px rgba(139,92,246,0.2);}
+    100% { box-shadow: 0 0 0 0 rgba(34,211,238,0.2);}
   }
 
   .animate-socialfade {
