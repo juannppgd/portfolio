@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Mail, Phone, MapPin, ChevronDown, ExternalLink, Code, Briefcase, GraduationCap, Settings, User, Send, Github, Linkedin, Facebook, Instagram, Twitter, MessageCircle, ArrowUpRight, Moon, Sun, Zap, Palette, Brain, Award, Trophy, BookOpen, Sparkles, Star, Crown, Medal, Globe, Cpu, Smartphone, Shield, Target, BarChart, HeartPulse, Lock, Video, Quote, CreditCard, Banknote, Key, TrendingUp, Users, Server } from 'lucide-react';
+import { Mail, Phone, MapPin, ChevronDown, ExternalLink, Code, Briefcase, GraduationCap, Settings, User, Send, Github, MessageCircle, ArrowUpRight, Moon, Sun, Zap, Palette, Brain, Award, Trophy, BookOpen, Sparkles, Star, Crown, Medal, Globe, Cpu, Smartphone, Shield, Target, BarChart, HeartPulse, Lock, Video, Quote, CreditCard, Banknote, Key, TrendingUp, Users, Server } from 'lucide-react';
+import { FaTiktok, FaTelegram, FaPinterest, FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import emailjs from '@emailjs/browser';
 import perfil from './assets/profile-image.jpg';
 
@@ -19,6 +20,10 @@ const Portfolio = () => {
   const [displayedText, setDisplayedText] = useState("");
   const [expandedExperiences, setExpandedExperiences] = useState([false, false]);
   const [timeLeft, setTimeLeft] = useState('');
+  const [isVibrating, setIsVibrating] = useState(false);
+  // eslint-disable-next-line no-unused-vars
+  const [clickCount, setClickCount] = useState(0);
+  const [showDiscountModal, setShowDiscountModal] = useState(false);
 
   useEffect(() => {
     const savedDarkMode = localStorage.getItem('darkMode');
@@ -176,7 +181,7 @@ const handleSubmit = (e) => {
 
   const experiences = [
     {
-      title: "Performance Marketing 💼",
+      title: "Performance Marketing",
       company: "Empresa de desarrollo de Software (Certificada)",
       period: "2025",
       description: "Experto en marketing digital LATAM. Diseño y ejecuto campañas estratégicas de email y SMS que impulsan conversiones, engagement y crecimiento empresarial. Transformo datos en resultados tangibles para expandir tu presencia online.",
@@ -188,7 +193,7 @@ const handleSubmit = (e) => {
       ]
     },
     {
-      title: "Desarrollador Web 💻",
+      title: "Desarrollador Web",
       company: "Freelance Independiente",
       period: "Desde 2022",
       description: "Desarrollador web independiente especializado en experiencias digitales cautivadoras. Utilizo React, Vite y Tailwind CSS para crear sitios web responsivos, rápidos y optimizados para SEO que convierten visitantes en clientes e impulsan tus ventas.",
@@ -429,12 +434,12 @@ const courses = [
   };
 
   const subtitleTexts = [
-    "Educación Formal 📚",
-    "Cursos y Certificaciones 🏆",
+    "Educación Formal",
+    "Cursos y Certificaciones",
     "Habilidades",
     "Software y Herramientas",
     "Reseñas de Clientes",
-    "Envíame un mensaje 📨"
+    "Envíame un mensaje"
   ];
 
 return (
@@ -505,8 +510,20 @@ return (
               <div className="w-full h-full rounded-full bg-slate-900 flex items-center justify-center overflow-hidden">
                 <img
                   src={perfil}
-                  alt="Foto de perfil"
-                  className="w-full h-full rounded-full object-cover transition-all duration-300"
+                  alt="Foto de perfil de Juan Pablo Gutiérrez Díaz, desarrollador web y especialista en marketing digital"
+                  className={`w-full h-full rounded-full object-cover transition-all duration-300 cursor-pointer ${isVibrating ? 'animate-vibrate' : ''}`}
+                  loading="lazy"
+                  onClick={() => {
+                    setIsVibrating(true);
+                    setTimeout(() => setIsVibrating(false), 500);
+                    setClickCount(prev => {
+                      const newCount = prev + 1;
+                      if (newCount === 5) {
+                        setShowDiscountModal(true);
+                      }
+                      return newCount;
+                    });
+                  }}
                 />
               </div>
             </div>
@@ -530,8 +547,8 @@ return (
 </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-            <a className="flex items-center gap-2 text-gray-300 hover:text-cyan-400 transition-colors dark:text-secondary">
-              <MapPin className="w-5 h-5 text-cyan-400" />
+            <a className="flex items-center gap-2 text-gray-300 hover:text-cyan-400 transition-colors dark:text-secondary cursor-pointer group" onClick={() => scrollToSection('contacto')}>
+              <MapPin className="w-5 h-5 text-cyan-400" /> 
               Remoto desde Colombia
               </a>
             <div className="flex items-center gap-2 text-gray-300 dark:text-secondary">
@@ -549,12 +566,11 @@ return (
             </div>
 
             <div className="flex flex-col items-center mt-8">
-              <button
-                onClick={() => scrollToSection('promocion')}
-                className="text-gray-300 mb-4 dark:text-secondary hover:text-cyan-400 transition-colors cursor-pointer text-lg font-semibold"
+              <h2
+                className="text-gray-300 mb-4 dark:text-secondary text-lg font-semibold"
               >
                 Descubre mis servicios y cómo puedo ayudarte
-              </button>
+              </h2>
               <div className="animate-bounce">
                 <ChevronDown className="w-8 h-8 text-cyan-400" />
               </div>
@@ -737,7 +753,7 @@ return (
               </div>
               <h3 className="text-2xl font-bold text-white mb-2 dark:text-primary">¡Hosting y Dominio Gratis!</h3>
               <p className="text-gray-300 dark:text-secondary mb-4">Aplica TyC</p>
-                            <ul className="text-left text-gray-300 dark:text-secondary space-y-1 mb-3">
+                            <ul className="text-center text-gray-300 dark:text-secondary space-y-1 mb-3">
                 <li>• Optimización de velocidad y experiencia UX</li>
                 <li>• Integración con redes sociales y CRM</li>
                 <li>• Configuración técnica de DNS</li>
@@ -745,7 +761,7 @@ return (
                 <li>• Integración con EmailJS y Google Analytics</li>
                 <li>• Interfaces responsivas con React y Tailwind CSS</li>
               </ul>
-              <p className="text-gray-300 dark:text-secondary"><strong>Click Aquí Para Más</strong></p>
+              <p className="text-gray-300 dark:text-secondary"><strong>Contáctame haciendo clic aquí</strong></p>
             </div>
 
             {/* Consultoría Gratis */}
@@ -760,7 +776,7 @@ return (
               </div>
               <h3 className="text-2xl font-bold text-white mb-2 dark:text-primary">¡Consultoría Gratis!</h3>
               <p className="text-gray-300 dark:text-secondary mb-4">Aplica TyC</p>
-              <ul className="text-left text-gray-300 dark:text-secondary space-y-1 mb-3">
+              <ul className="text-center text-gray-300 dark:text-secondary space-y-1 mb-3">
                 <li>• Análisis de datos y segmentación</li>
                 <li>• Campañas A/B testing</li>
                 <li>• Estrategia Digital</li>
@@ -768,7 +784,7 @@ return (
                 <li>• Email y SMS Marketing</li>
                 <li>• SEO y SEM</li>
               </ul>
-                            <p className="text-gray-300 dark:text-secondary"><strong>Click Aquí Para Más</strong></p>
+                            <p className="text-gray-300 dark:text-secondary"><strong>Contáctame haciendo clic aquí</strong></p>
             </div>
           </div>
         </div>
@@ -1413,71 +1429,71 @@ return (
               </span>
             </h3>
             <p className="text-gray-300 mb-8 max-w-2xl mx-auto text-lg dark:text-secondary">
-              Sígueme en mis redes sociales para contenido sobre desarrollo web, marketing digital y mucho más 📈
+              Sígueme en mis redes sociales para contenido sobre desarrollo web, marketing digital y mucho más
             </p>
             
             {/* Social Media Grid */}
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-12">
               {/* Facebook */}
-              <a 
-                href="https://www.facebook.com/juannppgd" 
-                target="_blank" 
+              <a
+                href="https://www.facebook.com/juannppgd"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="group bg-gradient-to-br from-blue-600/20 to-blue-800/20 hover:from-blue-500/30 hover:to-blue-700/30 backdrop-blur-sm rounded-2xl p-6 border border-blue-500/20 hover:border-blue-400/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20 animate-socialfade dark:bg-card dark:border-card"
               >
-                <Facebook className="w-8 h-8 text-blue-400 mx-auto mb-3 group-hover:animate-bounce" />
+                <FaFacebook className="w-8 h-8 text-blue-400 mx-auto mb-3 group-hover:animate-bounce" />
                 <div className="text-white font-semibold text-sm mb-1 dark:text-primary">Facebook</div>
                 <div className="text-blue-300 text-xs opacity-80 dark:text-secondary">Social & Updates</div>
                 <ArrowUpRight className="w-4 h-4 text-blue-300 mx-auto mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />
               </a>
 
               {/* Instagram */}
-              <a 
-                href="https://www.instagram.com/juannppgd" 
-                target="_blank" 
+              <a
+                href="https://www.instagram.com/juannppgd"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="group bg-gradient-to-br from-pink-600/20 to-purple-800/20 hover:from-pink-500/30 hover:to-purple-700/30 backdrop-blur-sm rounded-2xl p-6 border border-pink-500/20 hover:border-pink-400/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-pink-500/20 animate-socialfade dark:bg-card dark:border-card"
               >
-                <Instagram className="w-8 h-8 text-pink-400 mx-auto mb-3 group-hover:animate-bounce" />
+                <FaInstagram className="w-8 h-8 text-pink-400 mx-auto mb-3 group-hover:animate-bounce" />
                 <div className="text-white font-semibold text-sm mb-1 dark:text-primary">Instagram</div>
                 <div className="text-pink-300 text-xs opacity-80 dark:text-secondary">Visual Content</div>
                 <ArrowUpRight className="w-4 h-4 text-pink-300 mx-auto mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />
               </a>
 
               {/* LinkedIn */}
-              <a 
-                href="https://www.linkedin.com/in/juannppgd" 
-                target="_blank" 
+              <a
+                href="https://www.linkedin.com/in/juannppgd"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="group bg-gradient-to-br from-blue-700/20 to-blue-900/20 hover:from-blue-600/30 hover:to-blue-800/30 backdrop-blur-sm rounded-2xl p-6 border border-blue-600/20 hover:border-blue-500/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-blue-600/20 animate-socialfade dark:bg-card dark:border-card"
               >
-                <Linkedin className="w-8 h-8 text-blue-400 mx-auto mb-3 group-hover:animate-bounce" />
+                <FaLinkedin className="w-8 h-8 text-blue-400 mx-auto mb-3 group-hover:animate-bounce" />
                 <div className="text-white font-semibold text-sm mb-1 dark:text-primary">LinkedIn</div>
                 <div className="text-blue-300 text-xs opacity-80 dark:text-secondary">Professional</div>
                 <ArrowUpRight className="w-4 h-4 text-blue-300 mx-auto mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />
               </a>
 
               {/* X (Twitter) */}
-              <a 
-                href="https://x.com/juannppgd" 
-                target="_blank" 
+              <a
+                href="https://x.com/juannppgd"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="group bg-gradient-to-br from-gray-800/20 to-black/20 hover:from-gray-700/30 hover:to-gray-900/30 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/20 hover:border-gray-600/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-gray-700/20 animate-socialfade dark:bg-card dark:border-card"
               >
-                <Twitter className="w-8 h-8 text-gray-300 mx-auto mb-3 group-hover:animate-bounce" />
+                <FaTwitter className="w-8 h-8 text-gray-300 mx-auto mb-3 group-hover:animate-bounce" />
                 <div className="text-white font-semibold text-sm mb-1 dark:text-primary">X</div>
                 <div className="text-gray-300 text-xs opacity-80 dark:text-secondary">Quick Updates</div>
                 <ArrowUpRight className="w-4 h-4 text-gray-300 mx-auto mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />
               </a>
 
               {/* TikTok */}
-              <a 
-                href="https://www.tiktok.com/@juannppgd" 
-                target="_blank" 
+              <a
+                href="https://www.tiktok.com/@juannppgd"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="group bg-gradient-to-br from-red-600/20 to-black/20 hover:from-red-500/30 hover:to-gray-900/30 backdrop-blur-sm rounded-2xl p-6 border border-red-500/20 hover:border-red-400/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-red-500/20 animate-socialfade dark:bg-card dark:border-card"
               >
-                <div className="w-8 h-8 mx-auto mb-3 text-red-400 group-hover:animate-bounce text-2xl">🎵</div>
+                <FaTiktok className="w-8 h-8 mx-auto mb-3 text-red-400 group-hover:animate-bounce" />
                 <div className="text-white font-semibold text-sm mb-1 dark:text-primary">TikTok</div>
                 <div className="text-red-300 text-xs opacity-80 dark:text-secondary">Short Videos</div>
                 <ArrowUpRight className="w-4 h-4 text-red-300 mx-auto mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -1497,26 +1513,26 @@ return (
               </a>
 
               {/* Telegram */}
-              <a 
-                href="https://t.me/juannppgd" 
-                target="_blank" 
+              <a
+                href="https://t.me/juannppgd"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="group bg-gradient-to-br from-sky-600/20 to-blue-800/20 hover:from-sky-500/30 hover:to-blue-700/30 backdrop-blur-sm rounded-2xl p-6 border border-sky-500/20 hover:border-sky-400/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-sky-500/20 animate-socialfade dark:bg-card dark:border-card"
               >
-                <div className="w-8 h-8 mx-auto mb-3 text-sky-400 group-hover:animate-bounce text-2xl">✈️</div>
+                <FaTelegram className="w-8 h-8 mx-auto mb-3 text-sky-400 group-hover:animate-bounce" />
                 <div className="text-white font-semibold text-sm mb-1 dark:text-primary">Telegram</div>
                 <div className="text-sky-300 text-xs opacity-80 dark:text-secondary">Secure Chat</div>
                 <ArrowUpRight className="w-4 h-4 text-sky-300 mx-auto mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />
-              </a>  
+              </a>
 
               {/* Pinterest */}
-              <a 
-                href="https://www.pinterest.com/juannppgd" 
-                target="_blank" 
+              <a
+                href="https://www.pinterest.com/juannppgd"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="group bg-gradient-to-br from-red-700/20 to-red-900/20 hover:from-red-600/30 hover:to-red-800/30 backdrop-blur-sm rounded-2xl p-6 border border-red-600/20 hover:border-red-500/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-red-600/20 animate-socialfade dark:bg-card dark:border-card"
               >
-                <div className="w-8 h-8 mx-auto mb-3 text-red-400 group-hover:animate-bounce text-2xl">📌</div>
+                <FaPinterest className="w-8 h-8 mx-auto mb-3 text-red-400 group-hover:animate-bounce" />
                 <div className="text-white font-semibold text-sm mb-1 dark:text-primary">Pinterest</div>
                 <div className="text-red-300 text-xs opacity-80 dark:text-secondary">Inspiration</div>
                 <ArrowUpRight className="w-4 h-4 text-red-300 mx-auto mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -1532,8 +1548,8 @@ return (
                   © 2025 Juan Pablo Gutiérrez Díaz. Todos los derechos reservados.
                 </p>
 <p className="text-sm text-gray-500 dark:text-secondary">
-  Diseñado y desarrollado por <strong>Juan Pablo Gutiérrez Díaz</strong> enfocado en crear experiencias digitales ágiles, funcionales orientadas a resultados.⚙️
-  <br />
+  Diseñado y desarrollado por <strong>Juan Pablo Gutiérrez Díaz</strong> enfocado en crear experiencias digitales ágiles, funcionales orientadas a resultados.
+    <br />
   ¿Quieres saber más o agendar una asesoría? Escríbeme a{" "}
   <a
     href="mailto:contact.juannppgd@gmail.com"
@@ -1541,13 +1557,13 @@ return (
     title="Haz clic para escribirme"
   >
     contact.juannppgd@gmail.com
-  </a> 🗒️
+  </a> 
 </p>
               </div>
               <div className="flex items-center justify-center gap-4">
                 <a href="https://wa.link/ukyqpg" target="_blank" rel="noopener noreferrer">
                   <div className="bg-gradient-to-r from-cyan-500/20 to-purple-500/20 backdrop-blur-sm rounded-full px-4 py-2 border border-cyan-500/30 dark:border-card animate-glow-repeat hover:animate-glow flex items-center justify-center">
-                    <span className="text-cyan-300 text-sm font-semibold dark:text-cyan-300">🚀 Quiero pasar al siguiente nivel Ahora Mismo</span>
+                    <span className="text-cyan-300 text-sm font-semibold dark:text-cyan-300">🚀¡Quiero pasar al siguiente nivel Ahora Mismo!</span>
                   </div>
                 </a>
               </div>
@@ -1557,8 +1573,8 @@ return (
       </footer>
 
       {showModal && (
-  <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/40 backdrop-blur-sm animate-fadein dark:bg-black/60">
-    <div className="bg-gradient-to-br from-cyan-500/90 to-purple-500/90 rounded-3xl p-8 shadow-2xl border border-white/20 text-center animate-cardpop dark:bg-card dark:border-card">
+  <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/40 backdrop-blur-sm animate-fadein dark:bg-black/60 p-4">
+    <div className="bg-gradient-to-br from-cyan-500/90 to-purple-500/90 rounded-3xl p-4 sm:p-6 md:p-8 shadow-2xl border border-white/20 text-center animate-cardpop dark:bg-card dark:border-card max-w-sm sm:max-w-md md:max-w-lg mx-4">
   <Send className="w-12 h-12 mx-auto text-white mb-4 animate-bounce" />
   <h4 className="text-2xl font-bold text-white mb-2 dark:text-primary">¡Mensaje enviado!</h4>
   <p className="text-lg text-white/80 mb-2 dark:text-secondary">Te contactaremos pronto 🚀</p>
@@ -1572,9 +1588,9 @@ return (
 
       {showExperienceModal && (
         <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/40 backdrop-blur-sm animate-fadein dark:bg-black/60 p-4">
-          <div className="bg-gradient-to-br from-green-500/90 to-teal-500/90 rounded-3xl p-4 sm:p-6 md:p-8 shadow-2xl border border-white/20 text-center animate-cardpop dark:bg-card dark:border-card max-w-sm sm:max-w-md md:max-w-lg mx-4">
+          <div className="bg-gradient-to-br from-cyan-500/90 to-purple-500/90 rounded-3xl p-4 sm:p-6 md:p-8 shadow-2xl border border-white/20 text-center animate-cardpop dark:bg-card dark:border-card max-w-sm sm:max-w-md md:max-w-lg mx-4">
             <Briefcase className="w-10 h-10 sm:w-12 sm:h-12 mx-auto text-white mb-4 animate-bounce" />
-            <h4 className="text-xl sm:text-2xl font-bold text-white mb-2 dark:text-primary">¡Contrátame para desbloquear todo mi potencial! 🚀</h4>
+            <h4 className="text-xl sm:text-2xl font-bold text-white mb-2 dark:text-primary">¡Contrátame para desbloquear todo mi potencial!</h4>
             <p className="text-base sm:text-lg text-white/80 mb-2 dark:text-secondary">Descubre todo lo que puedo ofrecerte</p>
             <div className="mt-4 flex flex-col sm:flex-row gap-3 justify-center">
               <button
@@ -1589,6 +1605,33 @@ return (
               </button>
               <button
                 onClick={() => setShowExperienceModal(false)}
+                className="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white px-4 sm:px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 flex items-center justify-center"
+              >
+                Cerrar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showDiscountModal && (
+        <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/40 backdrop-blur-sm animate-fadein dark:bg-black/60 p-4">
+          <div className="bg-gradient-to-br from-cyan-500/90 to-purple-500/90 rounded-3xl p-4 sm:p-6 md:p-8 shadow-2xl border border-white/20 text-center animate-cardpop dark:bg-card dark:border-card max-w-sm sm:max-w-md md:max-w-lg mx-4">
+            <Trophy className="w-10 h-10 sm:w-12 sm:h-12 mx-auto text-white mb-4 animate-bounce" />
+            <h4 className="text-xl sm:text-2xl font-bold text-white mb-2 dark:text-primary">¡Felicidades! 🎉</h4>
+            <p className="text-base sm:text-lg text-white mb-2 dark:text-secondary">Ganaste un 50% de Descuento En mis Servicios</p>
+            <p className="text-xl sm:text-md text-white/90 mb-4 dark:text-secondary">Código: DCTOFOTOJPGD</p>
+            <p className="text-sm sm:text-base text-white/80 mb-4 dark:text-secondary">Contáctame y escribe el código en el mensaje para redimir tu cupón</p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <button
+                onClick={() => { scrollToSection('contacto'); setShowDiscountModal(false); }}
+                className="w-full sm:w-auto bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white px-4 sm:px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2 shadow-2xl hover:shadow-cyan-500/25"
+              >
+                <Send className="w-4 h-4" />
+                Contactar Ahora
+              </button>
+              <button
+                onClick={() => setShowDiscountModal(false)}
                 className="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white px-4 sm:px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 flex items-center justify-center"
               >
                 Cerrar
@@ -1748,7 +1791,19 @@ return (
     scrollbar-color: rgba(34, 211, 238, 0.5) transparent;
   }
 
-  
+  .animate-vibrate {
+    animation: vibrate 0.5s ease-in-out;
+  }
+
+  @keyframes vibrate {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+  }
+
+
 `}
   </style></>
     </div>
