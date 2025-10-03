@@ -1613,8 +1613,8 @@ return (
     <div className="bg-gradient-to-br from-cyan-500/90 to-purple-500/90 rounded-3xl p-4 sm:p-6 md:p-8 shadow-2xl border border-white/20 text-center animate-cardpop dark:bg-card dark:border-card max-w-sm sm:max-w-md md:max-w-lg mx-4">
   <Send className="w-12 h-12 mx-auto text-white mb-4 animate-bounce" />
   <h4 className="text-2xl font-bold text-white mb-2 dark:text-primary">¡Mensaje enviado!</h4>
-  <p className="text-lg text-white/80 mb-2 dark:text-secondary">Te contactaremos pronto 🚀</p>
-  <p className="text-md text-white/70 mb-2 dark:text-secondary">Mantente atento a tu correo electrónico para más información 📬</p>
+  <p className="text-lg text-white/90 mb-2 dark:text-secondary">Te contactaremos pronto 🚀</p>
+  <p className="text-md text-white/80 mb-2 dark:text-secondary">Mantente atento a tu correo electrónico para más información</p>
   <div className="mt-4">
     <span className="bg-white/10 text-cyan-200 px-4 py-2 rounded-full font-semibold dark:bg-white/10 dark:text-cyan-200">Gracias por escribir</span>
   </div>
