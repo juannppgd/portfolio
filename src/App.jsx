@@ -17,7 +17,7 @@ const Portfolio = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const typingText = "Frontend Dev | Automation | React | HTML/CSS/JavaScript | Python (AI)";
+  const typingText = "Frontend Developer | Automation | React, Vite, Tailwind | HTML/CSS/JavaScript | Python (AI) | SEO & Performance Marketing";
   const [displayedText, setDisplayedText] = useState("");
   const [expandedExperiences, setExpandedExperiences] = useState([false, false]);
   const [timeLeft, setTimeLeft] = useState('');
@@ -29,6 +29,9 @@ const Portfolio = () => {
   const [reviewUsuario, setReviewUsuario] = useState('');
   const [reviewPassword, setReviewPassword] = useState('');
   const [loginError, setLoginError] = useState('');
+  const [restartTyping, setRestartTyping] = useState(0);
+  const [prevScrollY, setPrevScrollY] = useState(0);
+  const [hasRestartedOnScrollUp, setHasRestartedOnScrollUp] = useState(false);
 
   useEffect(() => {
     const savedDarkMode = localStorage.getItem('darkMode');
@@ -49,31 +52,18 @@ const Portfolio = () => {
   }, [darkMode]);
 
   useEffect(() => {
+    setDisplayedText("");
     let i = 0;
-    let interval;
-    let timeout;
+    const interval = setInterval(() => {
+      setDisplayedText(typingText.slice(0, i));
+      i++;
+      if (i > typingText.length) {
+        clearInterval(interval);
+      }
+    }, 50);
 
-    const startTyping = () => {
-      interval = setInterval(() => {
-        setDisplayedText(typingText.slice(0, i));
-        i++;
-        if (i > typingText.length) {
-          clearInterval(interval);
-          timeout = setTimeout(() => {
-            i = 0;
-            setDisplayedText("");
-            startTyping();
-          }, 4000); // espera 4 segundos
-        }
-      }, 50);
-    };
-    startTyping();
-
-    return () => {
-      clearInterval(interval);
-      clearTimeout(timeout);
-    };
-  }, []);
+    return () => clearInterval(interval);
+  }, [restartTyping]);
 
   useEffect(() => {
     const updateTimeLeft = () => {
@@ -94,25 +84,40 @@ const Portfolio = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-    const sections = ['@juannppgd', 'servicios', 'estudios', 'experiencia', 'habilidades', 'stack', 'impacto', 'reseñas', 'contacto'];
+      const sections = ['@juannppgd', 'servicios', 'estudios', 'experiencia', 'habilidades', 'stack', 'impacto', 'reseñas', 'contacto'];
       const scrollPosition = window.scrollY + 100;
+      const currentScrollY = window.scrollY;
 
       sections.forEach(section => {
         const element = document.getElementById(section);
         if (element) {
           const offsetTop = element.offsetTop;
           const offsetHeight = element.offsetHeight;
-          
+
           if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
             setActiveSection(section);
+            if (section === 'servicios') {
+              setHasRestartedOnScrollUp(false);
+            }
           }
         }
       });
+
+      // Detect scrolling up past servicios
+      if (currentScrollY < prevScrollY) { // scrolling up
+        const serviciosElement = document.getElementById('servicios');
+        if (serviciosElement && currentScrollY < serviciosElement.offsetTop && !hasRestartedOnScrollUp) {
+          setRestartTyping(prev => prev + 1);
+          setHasRestartedOnScrollUp(true);
+        }
+      }
+
+      setPrevScrollY(currentScrollY);
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [prevScrollY, hasRestartedOnScrollUp]);
 
   const scrollToSection = (sectionId) => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
@@ -179,7 +184,7 @@ const handleSubmit = (e) => {
         setShowModal(true);
         setFormData({ name: '', email: '', message: '' });
         setIsSubmitting(false);
-        setTimeout(() => setShowModal(false), 3000);
+        setTimeout(() => setShowModal(false), 6000);
       })
       .catch((error) => {
         console.error('Error al enviar notificación al administrador:', error.text);
@@ -460,7 +465,10 @@ return (
         <div className="flex items-center justify-between">
           {/* Logo */}
           <button
-            onClick={() => scrollToSection('@juannppgd')}
+            onClick={() => {
+              scrollToSection('@juannppgd');
+              setRestartTyping(prev => prev + 1);
+            }}
             className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300"
           >
             @juannppgd
@@ -1074,7 +1082,7 @@ return (
                 <Code className="w-8 h-8 text-white" />
               </div>
               <h4 className="text-white font-semibold text-lg mb-2 dark:text-primary">HTML5, CSS y JavaScript</h4>
-              <p className="text-gray-400 text-sm dark:text-secondary">Fundamentos del desarrollo web moderno</p>
+              <p className="text-gray-400 text-sm dark:text-secondary">Arquitectura y estándares del desarrollo web moderno</p>
               </div>
 
               {/* Frontend con ReactJS */}
@@ -1101,7 +1109,7 @@ return (
                 <BookOpen className="w-8 h-8 text-white" />
               </div>
               <h4 className="text-white font-semibold text-lg mb-2 dark:text-primary">Bases de datos SQL</h4>
-              <p className="text-gray-400 text-sm dark:text-secondary">Gestión eficiente de datos</p>
+              <p className="text-gray-400 text-sm dark:text-secondary">Procesamiento inteligente y gestión de datos</p>
               </div>
 
               {/* Git y GitHub */}
@@ -1119,7 +1127,7 @@ return (
                 <Smartphone className="w-8 h-8 text-white" />
               </div>
               <h4 className="text-white font-semibold text-lg mb-2 dark:text-primary">React Native</h4>
-              <p className="text-gray-400 text-sm dark:text-secondary">Apps móviles multiplataforma</p>
+              <p className="text-gray-400 text-sm dark:text-secondary">Desarrollo de apps móviles nativas para Android y iOS</p>
               </div>
 
               {/* Python */}
@@ -1137,7 +1145,7 @@ return (
                 <Zap className="w-8 h-8 text-white" />
               </div>
               <h4 className="text-white font-semibold text-lg mb-2 dark:text-primary">Vite + Tailwind CSS</h4>
-              <p className="text-gray-400 text-sm dark:text-secondary">Desarrollo rápido y estilos modernos</p>
+              <p className="text-gray-400 text-sm dark:text-secondary">Integración eficiente de diseño y optimización</p>
               </div>
             </div>
 
@@ -1612,11 +1620,19 @@ return (
   <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/40 backdrop-blur-sm animate-fadein dark:bg-black/60 p-4">
     <div className="bg-gradient-to-br from-cyan-500/90 to-purple-500/90 rounded-3xl p-4 sm:p-6 md:p-8 shadow-2xl border border-white/20 text-center animate-cardpop dark:bg-card dark:border-card max-w-sm sm:max-w-md md:max-w-lg mx-4">
   <Send className="w-12 h-12 mx-auto text-white mb-4 animate-bounce" />
-  <h4 className="text-2xl font-bold text-white mb-2 dark:text-primary">¡Mensaje enviado!</h4>
-  <p className="text-lg text-white/90 mb-2 dark:text-secondary">Te contactaremos pronto 🚀</p>
-  <p className="text-md text-white/80 mb-2 dark:text-secondary">Mantente atento a tu correo electrónico para más información</p>
+  <h4 className="text-3xl font-bold text-white mb-3 dark:text-primary">¡Mensaje enviado!</h4>
+  <p className="text-xl text-white mb-3 dark:text-secondary">Te contactaremos pronto 🚀</p>
+  <p className="text-lg text-white mb-3 dark:text-secondary">Mantente atento a tu correo electrónico para más información</p>
   <div className="mt-4">
-    <span className="bg-white/10 text-cyan-200 px-4 py-2 rounded-full font-semibold dark:bg-white/10 dark:text-cyan-200">Gracias por escribir</span>
+    <span className="bg-white/10 text-cyan-200 px-6 py-3 rounded-full font-bold text-lg dark:bg-white/10 dark:text-cyan-200">Gracias por escribir</span>
+  </div>
+  <div className="mt-4">
+    <button
+      onClick={() => setShowModal(false)}
+      className="bg-white/20 hover:bg-white/30 text-white px-6 py-2 rounded-full font-semibold transition-all duration-300 transform hover:scale-105"
+    >
+      Cerrar
+    </button>
   </div>
 </div>
   </div>
