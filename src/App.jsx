@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Mail, Phone, MapPin, ChevronDown, ExternalLink, Code, Briefcase, GraduationCap, Settings, User, Send, Github, MessageCircle, ArrowUpRight, Moon, Sun, Zap, Palette, Brain, Award, Trophy, BookOpen, Sparkles, Star, Crown, Medal, Globe, Cpu, Smartphone, Shield, Target, BarChart, HeartPulse, Lock, Video, Quote, CreditCard, Banknote, Key, TrendingUp, Users, Server } from 'lucide-react';
+  import React, { useState, useEffect } from 'react';
+import { Mail, Phone, MapPin, ChevronDown, ExternalLink, Code, Briefcase, GraduationCap, Settings, User, Send, Github, MessageCircle, ArrowUpRight, Moon, Sun, Zap, Palette, Brain, Award, Trophy, BookOpen, Sparkles, Star, Crown, Medal, Globe, Cpu, Smartphone, Shield, Target, BarChart, HeartPulse, Lock, Video, Quote, CreditCard, Banknote, Key, TrendingUp, Users, Server, Plus, Loader } from 'lucide-react';
 import { FaTiktok, FaTelegram, FaPinterest, FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import emailjs from '@emailjs/browser';
 import perfil from './assets/profile-image.jpg';
@@ -14,6 +14,7 @@ const Portfolio = () => {
   const [showModal, setShowModal] = useState(false);
   const [showExperienceModal, setShowExperienceModal] = useState(false);
   const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const typingText = "Frontend Dev | Automation | React | HTML/CSS/JavaScript | Python (AI)";
@@ -24,6 +25,10 @@ const Portfolio = () => {
   // eslint-disable-next-line no-unused-vars
   const [clickCount, setClickCount] = useState(0);
   const [showDiscountModal, setShowDiscountModal] = useState(false);
+  const [showReviewModal, setShowReviewModal] = useState(false);
+  const [reviewUsuario, setReviewUsuario] = useState('');
+  const [reviewPassword, setReviewPassword] = useState('');
+  const [loginError, setLoginError] = useState('');
 
   useEffect(() => {
     const savedDarkMode = localStorage.getItem('darkMode');
@@ -140,14 +145,15 @@ const handleSubmit = (e) => {
   }
 
   let newErrors = {};
-  if (!formData.name.trim()) newErrors.name = "El nombre es obligatorio";
-  if (!formData.email.trim()) newErrors.email = "El correo es obligatorio";
-  else if (!validateEmail(formData.email)) newErrors.email = "Por favor, ingresa un correo electrónico válido (ej: usuario@dominio.com)";
-  if (!formData.message.trim()) newErrors.message = "El mensaje es obligatorio";
+  if (!formData.name.trim()) newErrors.name = "Por favor, ingresa tu nombre para continuar.";
+  if (!formData.email.trim()) newErrors.email = "El correo electrónico es obligatorio para contactarte.";
+  else if (!validateEmail(formData.email)) newErrors.email = "Ingresa un correo válido (ej: usuario@dominio.com).";
+  if (!formData.message.trim()) newErrors.message = "Cuéntame más sobre tu proyecto o consulta.";
   setErrors(newErrors);
 
   if (Object.keys(newErrors).length === 0) {
-    //Enviar correo de confirmación 
+    setIsSubmitting(true);
+    //Enviar correo de confirmación
     emailjs.send('service_s5qyr4s', 'template_oyoptw3', {
       to_email: formData.email,
       from_name: 'Juan Pablo',
@@ -159,6 +165,7 @@ const handleSubmit = (e) => {
       })
       .catch((error) => {
         console.error('Error al enviar correo de confirmación:', error.text);
+        setIsSubmitting(false);
       });
 
     //Enviar notificación
@@ -169,13 +176,16 @@ const handleSubmit = (e) => {
     }, 'gUsdYXpB3K94QxqYM')
       .then((result) => {
         console.log('Notificación enviada al administrador:', result.text);
+        setShowModal(true);
+        setFormData({ name: '', email: '', message: '' });
+        setIsSubmitting(false);
+        setTimeout(() => setShowModal(false), 3000);
       })
       .catch((error) => {
         console.error('Error al enviar notificación al administrador:', error.text);
+        setIsSubmitting(false);
+        // Perhaps show error modal
       });
-    setShowModal(true);
-    setFormData({ name: '', email: '', message: '' });
-    setTimeout(() => setShowModal(false), 3000);
   }
 };
 
@@ -896,13 +906,13 @@ return (
               </div>
             </div>
 
-            {/* Ver Todo Button */}
+            {/* Ver Todo Button*/}
             <div className="text-center mt-5">
               <a
                 href="https://1drv.ms/f/c/49ebc614e8d47685/EjX5_TBjKctHgBxEthZy_kEBBrhoeYLnzBxZclzGu5xMDQ?e=d5g93U"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-600 hover:to-teal-600 text-white text-sm font-semibold py-3 px-6 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-green-500/25"
+                className="inline-flex items-center gap-2 bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-400 hover:text-cyan-300 py-3 px-6 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 border border-cyan-500/30 hover:border-cyan-500/50"
               >
                 <Award className="w-4 h-4" />
                 Ver Todos los Certificados
@@ -1232,6 +1242,15 @@ return (
               <ArrowUpRight className="w-5 h-5 animate-pulse" />
             </div>
           </div>
+          <div className="text-center mt-6">
+            <button
+              onClick={() => setShowReviewModal(true)}
+              className="bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-400 hover:text-cyan-300 px-3 py-1 sm:px-4 sm:py-2 rounded-full font-medium sm:font-semibold transition-all duration-300 flex items-center gap-1 sm:gap-2 border border-cyan-500/30 hover:border-cyan-500/50"
+            >
+              <Plus className="w-3 h-3 sm:w-4 sm:h-4" />
+              Agregar Reseña
+            </button>
+          </div>
         </div>
       </section>
 
@@ -1251,16 +1270,16 @@ return (
                 <Mail className="w-8 h-8 text-cyan-400 mb-4" />
                 <h3 className="text-xl font-bold text-white mb-2 dark:text-primary">Email</h3>
                 <a href="mailto:contact.juannppgd@gmail.com" className="text-gray-300 hover:text-cyan-400 transition-colors dark:text-secondary">
-                contact.juannppgd@gmail.com 🔗
+                contact.juannppgd@gmail.com
               </a>
-              </div>
+              </div>  
               
               <div className="bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-purple-400/50 transition-all duration-300 dark:bg-card dark:border-card">
                 <Phone className="w-8 h-8 text-purple-400 mb-4" />
                 <h3 className="text-xl font-bold text-white mb-2 dark:text-primary">Teléfono</h3>
                 <p className="text-gray-300 dark:text-secondary">
                   <a href="https://wa.link/ukyqpg" className="text-gray-300 hover:text-purple-400 transition-colors dark:text-secondary">
-                    +57 321 954 1241 🔗
+                    +57 321 954 1241
                   </a>
                 </p>
               </div>
@@ -1270,7 +1289,7 @@ return (
                 <h3 className="text-xl font-bold text-white mb-2 dark:text-primary">Ubicación</h3>
                 <p className="text-gray-300 dark:text-secondary">
                   <a className="text-gray-300 hover:text-cyan-400 transition-colors dark:text-secondary">
-                    Desde Colombia, colaborando con clientes en todo el mundo 🌍
+                    Desde Colombia, colaborando con clientes en todo el mundo.
                   </a>
                 </p>
               </div>
@@ -1302,12 +1321,17 @@ return (
                 />
 
                 <div>
+                  <label className="flex items-center gap-2 text-white font-medium mb-2 dark:text-primary">
+                    <User className="w-5 h-5 text-cyan-400" />
+                    Nombre
+                  </label>
                   <input
                     type="text"
                     name="name"
-                    placeholder="¿Cómo te llamas?"
+                    placeholder="Ingresa tu nombre"
                     value={formData.name}
                     onChange={handleInputChange}
+                    aria-label="Ingresa tu nombre"
                     className={`w-full bg-white/5 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:border-cyan-400 focus:outline-none transition-all duration-300 dark:bg-card dark:border-card dark:text-primary ${errors.name ? 'border-red-400' : ''}`}
                     required
                   />
@@ -1315,12 +1339,17 @@ return (
                 </div>
 
                 <div>
+                  <label className="flex items-center gap-2 text-white font-medium mb-2 dark:text-primary">
+                    <Mail className="w-5 h-5 text-cyan-400" />
+                    Correo Electrónico
+                  </label>
                   <input
                     type="email"
                     name="email"
-                    placeholder="Correo electrónico"
+                    placeholder="tuemail@ejemplo.com"
                     value={formData.email}
                     onChange={handleInputChange}
+                    aria-label="Ingresa tu correo electrónico"
                     className={`w-full bg-white/5 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:border-cyan-400 focus:outline-none transition-all duration-300 dark:bg-card dark:border-card dark:text-primary ${errors.email ? 'border-red-400' : ''}`}
                     required
                   />
@@ -1328,23 +1357,30 @@ return (
                 </div>
 
                 <div>
+                  <label className="flex items-center gap-2 text-white font-medium mb-2 dark:text-primary">
+                    <MessageCircle className="w-5 h-5 text-cyan-400" />
+                    Mensaje
+                  </label>
                   <textarea
                     name="message"
-                    placeholder="Cuéntame sobre tu proyecto, tus ideas o lo que necesitas. ¿Cómo prefieres que te contacte?"
+                    placeholder="Cuéntame sobre tu proyecto, ideas o necesidades. ¿Cómo prefieres que te contacte? (Email, WhatsApp, etc.)"
                     value={formData.message}
                     onChange={handleInputChange}
                     rows={4}
+                    aria-label="Describe tu proyecto o consulta"
                     className="w-full bg-white/5 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:border-cyan-400 focus:outline-none transition-all duration-300 resize-none styled-scroll dark:bg-card dark:border-card dark:text-primary"
                     required
                   ></textarea>
+                  {errors.message && <p className="text-red-400 text-xs mt-1">{errors.message}</p>}
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2 shadow-2xl hover:shadow-cyan-500/25"
+                  disabled={isSubmitting}
+                  className="w-full bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 disabled:from-gray-500 disabled:to-gray-500 disabled:cursor-not-allowed text-white py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 disabled:hover:scale-100 flex items-center justify-center gap-2 shadow-2xl hover:shadow-cyan-500/25 disabled:shadow-none"
                 >
-                  <Send className="w-5 h-5" />
-                  Enviar Mensaje
+                  {isSubmitting ? <Loader className="w-5 h-5 animate-spin" /> : <Send className="w-5 h-5" />}
+                  {isSubmitting ? 'Enviando...' : 'Enviar Mensaje'}
                 </button>
               </form>
             </div>
@@ -1618,7 +1654,7 @@ return (
         <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/40 backdrop-blur-sm animate-fadein dark:bg-black/60 p-4">
           <div className="bg-gradient-to-br from-cyan-500/90 to-purple-500/90 rounded-3xl p-4 sm:p-6 md:p-8 shadow-2xl border border-white/20 text-center animate-cardpop dark:bg-card dark:border-card max-w-sm sm:max-w-md md:max-w-lg mx-4">
             <Trophy className="w-10 h-10 sm:w-12 sm:h-12 mx-auto text-white mb-4 animate-bounce" />
-            <h4 className="text-xl sm:text-2xl font-bold text-white mb-2 dark:text-primary">¡Felicidades! 🎉</h4>
+            <h4 className="text-xl sm:text-2xl font-bold text-white mb-2 dark:text-primary">¡Felicidades!</h4>
             <p className="text-base sm:text-lg text-white mb-2 dark:text-secondary">Ganaste un 50% de Descuento En mis Servicios</p>
             <p className="text-xl sm:text-md text-white/90 mb-4 dark:text-secondary">Código: DCTOFOTOJPGD</p>
             <p className="text-sm sm:text-base text-white/80 mb-4 dark:text-secondary">Contáctame y escribe el código en el mensaje para redimir tu cupón</p>
@@ -1641,7 +1677,56 @@ return (
         </div>
       )}
 
-      <><style dangerouslySetInnerHTML={{
+      {showReviewModal && (
+        <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/40 backdrop-blur-sm animate-fadein dark:bg-black/60 p-4">
+          <div className="bg-gradient-to-br from-cyan-500/90 to-purple-500/90 rounded-3xl p-4 sm:p-6 md:p-8 shadow-2xl border border-white/20 text-center animate-cardpop dark:bg-card dark:border-card max-w-sm sm:max-w-md md:max-w-lg mx-4">
+            <h4 className="text-2xl font-bold text-white mb-4 dark:text-primary">Crear usuario para agregar reseña</h4>
+            <form autoComplete="off" className="space-y-4 mb-6">
+              <input
+                type="text"
+                placeholder="Usuario"
+                value={reviewUsuario}
+                onChange={(e) => setReviewUsuario(e.target.value)}
+                autoComplete="off"
+                className="w-full bg-white/5 border border-white/20 rounded-xl px-4 py-3 text-gray-50 placeholder-gray-300 focus:border-cyan-400 focus:outline-none transition-all duration-300 dark:bg-card dark:border-card dark:text-primary"
+              />
+              <input
+                type="password"
+                placeholder="Contraseña"
+                value={reviewPassword}
+                onChange={(e) => setReviewPassword(e.target.value)}
+                autoComplete="new-password"
+                className="w-full bg-white/5 border border-white/20 rounded-xl px-4 py-3 text-gray-50 placeholder-gray-300 focus:border-cyan-400 focus:outline-none transition-all duration-300 dark:bg-card dark:border-card dark:text-primary"
+              />
+              {loginError && (
+                <p className="text-red-400 text-sm text-center">{loginError}</p>
+              )}
+            </form>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <button
+                onClick={() => {
+                  if (reviewUsuario && reviewPassword) {
+                    setLoginError('Usuario o contraseña incorrectos, contáctame.');
+                    setReviewUsuario('');
+                    setReviewPassword('');
+                  }
+                }}
+                className="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white px-4 sm:px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105"
+              >
+                Iniciar Sesión
+              </button>
+              <button
+                onClick={() => setShowReviewModal(false)}
+                className="w-full sm:w-auto bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white px-4 sm:px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-cyan-500/25"
+              >
+                Cerrar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+<><style dangerouslySetInnerHTML={{
   __html: `
         @keyframes gradient {
           0%, 100% { background-position: 0% 50%; }
