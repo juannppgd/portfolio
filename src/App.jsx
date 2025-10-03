@@ -1599,7 +1599,7 @@ return (
               <div className="flex items-center justify-center gap-4">
                 <a href="https://wa.link/ukyqpg" target="_blank" rel="noopener noreferrer">
                   <div className="bg-gradient-to-r from-cyan-500/20 to-purple-500/20 backdrop-blur-sm rounded-full px-4 py-2 border border-cyan-500/30 dark:border-card animate-glow-repeat hover:animate-glow flex items-center justify-center">
-                    <span className="text-cyan-300 text-sm font-semibold dark:text-cyan-300">🚀¡Quiero pasar al siguiente nivel Ahora Mismo!</span>
+                    <span className="text-cyan-300 text-sm font-semibold dark:text-cyan-300">🚀 ¡Quiero pasar al siguiente nivel Ahora Mismo!</span>
                   </div>
                 </a>
               </div>
@@ -1680,7 +1680,7 @@ return (
       {showReviewModal && (
         <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/40 backdrop-blur-sm animate-fadein dark:bg-black/60 p-4">
           <div className="bg-gradient-to-br from-cyan-500/90 to-purple-500/90 rounded-3xl p-4 sm:p-6 md:p-8 shadow-2xl border border-white/20 text-center animate-cardpop dark:bg-card dark:border-card max-w-sm sm:max-w-md md:max-w-lg mx-4">
-            <h4 className="text-2xl font-bold text-white mb-4 dark:text-primary">Crear usuario para agregar reseña</h4>
+            <h4 className="text-2xl font-bold text-white mb-4 dark:text-primary">Inicia sesión para agregar reseña</h4>
             <form autoComplete="off" className="space-y-4 mb-6">
               <input
                 type="text"
@@ -1695,7 +1695,7 @@ return (
                 placeholder="Contraseña"
                 value={reviewPassword}
                 onChange={(e) => setReviewPassword(e.target.value)}
-                autoComplete="new-password"
+                autoComplete="off"
                 className="w-full bg-white/5 border border-white/20 rounded-xl px-4 py-3 text-gray-50 placeholder-gray-300 focus:border-cyan-400 focus:outline-none transition-all duration-300 dark:bg-card dark:border-card dark:text-primary"
               />
               {loginError && (
@@ -1706,7 +1706,7 @@ return (
               <button
                 onClick={() => {
                   if (reviewUsuario && reviewPassword) {
-                    setLoginError('Usuario o contraseña incorrectos, contáctame.');
+                    setLoginError('Usuario o contraseña incorrecto, contáctame.');
                     setReviewUsuario('');
                     setReviewPassword('');
                   }
