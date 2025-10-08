@@ -1,5 +1,5 @@
   import React, { useState, useEffect } from 'react';
-import { Mail, Phone, MapPin, ChevronDown, ExternalLink, Code, Briefcase, GraduationCap, Settings, User, Send, Github, MessageCircle, ArrowUpRight, Moon, Sun, Zap, Palette, Brain, Award, Trophy, BookOpen, Sparkles, Star, Crown, Medal, Globe, Cpu, Smartphone, Shield, Target, BarChart, HeartPulse, Lock, Video, Quote, CreditCard, Banknote, Key, TrendingUp, Users, Server, Plus, Loader } from 'lucide-react';
+import { Mail, Phone, MapPin, ChevronDown, ExternalLink, Code, Briefcase, GraduationCap, Settings, User, Send, Github, MessageCircle, ArrowUpRight, Moon, Sun, Zap, Palette, Brain, Award, Trophy, BookOpen, Sparkles, Star, Crown, Medal, Globe, Cpu, Smartphone, Shield, Target, BarChart, HeartPulse, Lock, Video, Quote, CreditCard, Banknote, Key, TrendingUp, Users, Server, Plus, Loader, Calendar, Menu, X } from 'lucide-react';
 import { FaTiktok, FaTelegram, FaPinterest, FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import emailjs from '@emailjs/browser';
 import perfil from './assets/profile-image.jpg';
@@ -32,6 +32,7 @@ const Portfolio = () => {
   const [restartTyping, setRestartTyping] = useState(0);
   const [prevScrollY, setPrevScrollY] = useState(0);
   const [hasRestartedOnScrollUp, setHasRestartedOnScrollUp] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const savedDarkMode = localStorage.getItem('darkMode');
@@ -84,7 +85,7 @@ const Portfolio = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['@juannppgd', 'servicios', 'estudios', 'experiencia', 'habilidades', 'stack', 'impacto', 'reseñas', 'contacto'];
+      const sections = ['@juannppgd', 'servicios', 'estudios', 'experiencia', 'habilidades', 'stack', 'reseñas', 'contacto'];
       const scrollPosition = window.scrollY + 100;
       const currentScrollY = window.scrollY;
 
@@ -286,7 +287,7 @@ const courses = [
       certificateLink: "https://1drv.ms/i/c/49ebc614e8d47685/EUiGeH3ULjhMkHgIYWoU4BsBjvhisfXen8N_8YWAOmF02Q?e=tcJWxF"
     },
     {
-      title: "Administración De Servicios Microsoft 365 Y Herramientas De Productividad Para Las Organizaciones 4.0",
+      title: "Administración De Servicios 365 Y Herramientas De Productividad 4.0",
       institution: "SENA",
       category: "Productividad",
       icon: <Zap className="w-6 h-6" />,
@@ -349,25 +350,25 @@ const courses = [
   const testimonials = [
     {
       name: "María González",
-      role: "Emprendedora",
+      role: "Emprendedora Digital",
       company: "Tienda Online",
-      testimonial: "Juan Pablo transformó mi idea en una página web increíblemente responsiva. Usando Tailwind CSS, se adapta perfectamente a móviles y desktop. ¡Mis ventas aumentaron un 40%!",
+      testimonial: "Juan Pablo hizo realidad mi sueño de tener una tienda en línea. Su trabajo es increíble, todo se ve perfecto y fácil de usar. Mis ventas subieron mucho gracias a él.",
       rating: 5,
       avatar: "👩‍💼"
     },
     {
       name: "Carlos Rodríguez",
       role: "Gerente de Marketing",
-      company: "Empresa Tech",
-      testimonial: "Sus servicios de marketing digital impulsaron nuestro engagement en un 60%. La integración con Lucide React hizo que los íconos fueran perfectos y profesionales.",
+      company: "Tech",
+      testimonial: "Trabajar con Juan fue una gran experiencia. Sus ideas para promocionar nuestro negocio nos dieron mucho más alcance y conexión con la gente.",
       rating: 5,
       avatar: "👨‍💼"
     },
     {
       name: "Ana López",
       role: "Freelancer",
-      company: "Diseño Gráfico",
-      testimonial: "El diseño responsivo con Tailwind CSS es impecable. Mi portafolio se ve genial en cualquier dispositivo. ¡Altamente recomendado!",
+      company: "Diseñador Gráfico Independiente",
+      testimonial: "Mi nuevo portafolio luce fantástico. Juan Pa lo hizo todo tan bonito y profesional que ahora recibo más trabajos. ¡Estoy encantada!",
       rating: 5,
       avatar: "👩‍🎨"
     },
@@ -375,23 +376,23 @@ const courses = [
       name: "Pedro Martínez",
       role: "Propietario",
       company: "Restaurante Local",
-      testimonial: "Gracias a su desarrollo frontend, mi sitio web atrajo más clientes. La atención al detalle y el uso de mejores prácticas UX/UI es excepcional.",
+      testimonial: "Desde que tengo mi sitio web, más personas vienen a mi restaurante. Todo está cuidado al detalle y es muy fácil de navegar tanto en móvil como en computadora.",
       rating: 5,
       avatar: "👨‍🍳"
     },
     {
       name: "Laura Sánchez",
-      role: "Directora",
+      role: "Directora de Marketing",
       company: "Startup Innovadora",
-      testimonial: "Juan Pablo no solo entrega código de calidad, sino que entiende el negocio. Sus campañas de marketing generaron leads de alta calidad.",
+      testimonial: "Juan Pablo entiende perfectamente lo que necesitamos. No solo hace un buen trabajo, sino que nos ayuda a crecer con sus estrategias inteligentes.",
       rating: 5,
       avatar: "👩‍💻"
     },
     {
       name: "Diego Torres",
-      role: "Consultor",
+      role: "Consultor Independiente",
       company: "Consultoría Digital",
-      testimonial: "La combinación de desarrollo web y marketing digital es perfecta. Mi sitio es rápido, responsivo y convierte visitantes en clientes.",
+      testimonial: "La mezcla de creatividad y resultados es perfecta. Mi sitio web es rápido, atractivo y realmente trae más clientes.",
       rating: 5,
       avatar: "👨‍💼"
     }
@@ -477,8 +478,8 @@ return (
           {/* Navigation */}
           <div className="flex items-center space-x-4">
             {/* Desktop Navigation */}
-            <div className="hidden mobile-nav:flex space-x-8">
-              {['servicios', 'estudios', 'experiencia', 'habilidades', 'stack', 'impacto', 'reseñas', 'contacto'].map((section) => (
+            <div className="hidden lg:flex space-x-8">
+              {['servicios', 'estudios', 'experiencia', 'habilidades', 'stack', 'reseñas', 'contacto'].map((section) => (
                 <button
                   key={section}
                   onClick={() => scrollToSection(section)}
@@ -493,6 +494,15 @@ return (
               ))}
             </div>
             
+            {/* Mobile Menu Toggle */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="lg:hidden p-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 transition-all duration-300 transform hover:scale-110"
+              aria-label="Toggle mobile menu"
+            >
+              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+
             {/* Theme*/}
             <button
               onClick={() => setDarkMode(!darkMode)}
@@ -509,6 +519,27 @@ return (
         </div>
       </div>
     </nav>
+
+    {/* Mobile Menu */}
+    {isMobileMenuOpen && (
+      <div className="fixed top-20 left-0 right-0 mx-2 sm:mx-4 z-40 bg-slate-900/95 backdrop-blur-lg border border-white/10 rounded-2xl shadow-xl lg:hidden">
+        <div className="flex flex-col space-y-4 p-4">
+          {['servicios', 'estudios', 'experiencia', 'habilidades', 'stack', 'reseñas', 'contacto'].map((section) => (
+            <button
+              key={section}
+              onClick={() => { scrollToSection(section); setIsMobileMenuOpen(false); }}
+              className={`capitalize transition-all duration-300 text-left ${
+                activeSection === section
+                  ? 'text-cyan-400'
+                  : 'text-white/70 hover:text-white'
+              }`}
+            >
+              {section}
+            </button>
+          ))}
+        </div>
+      </div>
+    )}
 
 
       {/* Hero*/}
@@ -581,6 +612,16 @@ return (
                 contact.juannppgd@gmail.com
               </a>
             </div>
+            </div>
+
+            {/* Availability Indicator */}
+            <div className="flex items-center justify-center mt-6">
+              <div className="bg-gradient-to-r from-cyan-500/20 to-purple-500/20 backdrop-blur-sm rounded-full px-4 py-2 border border-cyan-500/30 animate-pulse">
+                <div className="flex items-center gap-2 text-cyan-300 text-sm font-semibold dark:text-cyan-300">
+                  <Calendar className="w-4 h-4" />
+                  Agenda abierta para octubre - 2 cupos disponibles en los proximos días
+                </div>
+              </div>
             </div>
 
             <div className="flex flex-col items-center mt-8">
@@ -842,9 +883,6 @@ return (
         </span>
       </div>
       <h3 className="text-xl font-bold text-white mb-1 dark:text-primary">{edu.title}</h3>
-      <p className="text-gray-300 mb-2 dark:text-secondary" id={`detail-${index}`}>
-        {edu.institution}
-      </p>
     </div>
   );
 })}
@@ -899,9 +937,6 @@ return (
         </div>
       </div>
       <h4 className="text-white font-semibold text-sm mb-1 leading-tight dark:text-primary">{course.title}</h4>
-      <p className="text-gray-400 text-xs dark:text-secondary mb-2" id={`detail-${education.length + index}`}>
-        {course.institution}
-      </p>
     </div>
 );
 })}
@@ -1082,7 +1117,7 @@ return (
                 <Code className="w-8 h-8 text-white" />
               </div>
               <h4 className="text-white font-semibold text-lg mb-2 dark:text-primary">HTML5, CSS y JavaScript</h4>
-              <p className="text-gray-400 text-sm dark:text-secondary">Arquitectura y estándares del desarrollo web moderno</p>
+              <p className="text-gray-400 text-sm dark:text-secondary">Arquitectura digital para sitios web modernos</p>
               </div>
 
               {/* Frontend con ReactJS */}
@@ -1091,7 +1126,7 @@ return (
                 <Code className="w-8 h-8 text-white" />
               </div>
               <h4 className="text-white font-semibold text-lg mb-2 dark:text-primary">Frontend con ReactJS</h4>
-              <p className="text-gray-400 text-sm dark:text-secondary">Interfaces interactivas y escalables</p>
+              <p className="text-gray-400 text-sm dark:text-secondary">Interfaces dinámicas y adaptables</p>
               </div>
 
               {/* Backend con NodeJS */}
@@ -1100,7 +1135,7 @@ return (
                 <Cpu className="w-8 h-8 text-white" />
               </div>
               <h4 className="text-white font-semibold text-lg mb-2 dark:text-primary">Backend con NodeJS</h4>
-              <p className="text-gray-400 text-sm dark:text-secondary">APIs rápidas y seguras</p>
+              <p className="text-gray-400 text-sm dark:text-secondary">Servicios backend eficientes y confiables</p>
               </div>
 
               {/* Bases de datos SQL */}
@@ -1109,7 +1144,7 @@ return (
                 <BookOpen className="w-8 h-8 text-white" />
               </div>
               <h4 className="text-white font-semibold text-lg mb-2 dark:text-primary">Bases de datos SQL</h4>
-              <p className="text-gray-400 text-sm dark:text-secondary">Procesamiento inteligente y gestión de datos</p>
+              <p className="text-gray-400 text-sm dark:text-secondary">Gestión inteligente de información y datos</p>
               </div>
 
               {/* Git y GitHub */}
@@ -1118,7 +1153,7 @@ return (
                 <Github className="w-8 h-8 text-white" />
               </div>
               <h4 className="text-white font-semibold text-lg mb-2 dark:text-primary">Git & GitHub</h4>
-              <p className="text-gray-400 text-sm dark:text-secondary">Control de versiones y colaboración</p>
+              <p className="text-gray-400 text-sm dark:text-secondary">Control de versiones y trabajo en equipo</p>
               </div>
 
               {/* React Native */}
@@ -1127,7 +1162,7 @@ return (
                 <Smartphone className="w-8 h-8 text-white" />
               </div>
               <h4 className="text-white font-semibold text-lg mb-2 dark:text-primary">React Native</h4>
-              <p className="text-gray-400 text-sm dark:text-secondary">Desarrollo de apps móviles nativas para Android y iOS</p>
+              <p className="text-gray-400 text-sm dark:text-secondary">Apps móviles nativas para Android y IOS</p>
               </div>
 
               {/* Python */}
@@ -1145,7 +1180,7 @@ return (
                 <Zap className="w-8 h-8 text-white" />
               </div>
               <h4 className="text-white font-semibold text-lg mb-2 dark:text-primary">Vite + Tailwind CSS</h4>
-              <p className="text-gray-400 text-sm dark:text-secondary">Integración eficiente de diseño y optimización</p>
+              <p className="text-gray-400 text-sm dark:text-secondary">Desarrollo rápido y diseño elegante</p>
               </div>
             </div>
 
