@@ -1,4 +1,4 @@
-  import React, { useState, useEffect } from 'react';
+    import React, { useState, useEffect } from 'react';
 import { Mail, Phone, MapPin, ChevronDown, ExternalLink, Code, Briefcase, GraduationCap, Settings, User, Send, Github, MessageCircle, ArrowUpRight, Moon, Sun, Zap, Palette, Brain, Award, Trophy, BookOpen, Sparkles, Star, Crown, Medal, Globe, Cpu, Smartphone, Shield, Target, BarChart, HeartPulse, Lock, Video, Quote, CreditCard, Banknote, Key, TrendingUp, Users, Server, Plus, Loader, Calendar, Menu, X } from 'lucide-react';
 import { FaTiktok, FaTelegram, FaPinterest, FaFacebook, FaInstagram, FaLinkedin, FaTwitter, FaYoutube } from 'react-icons/fa';
 import emailjs from '@emailjs/browser';
@@ -238,39 +238,46 @@ const handleSubmit = (e) => {
     {
       title: "Tecnólogo en Desarrollo Publicitario",
       institution: "Servicio Nacional de Aprendizaje (SENA)",
-      status: "Finalizado 2025",
+      status: "Certificado 2025",
       type: "technical",
       certificateLink: "https://1drv.ms/i/c/49ebc614e8d47685/EZ1WpiYf_UVMvb3AImaMrSIBNFA-TIQKyqbTT9lY-6aeww?e=SpHlH4"
     },
     {
       title: "Técnico en Programación Web y Desarrollo de Apps Móviles",
       institution: "Instituto Iberoamericano",
-      status: "Finalizado 2024",
+      status: "Certificado 2024",
       type: "technical",
       certificateLink: "https://1drv.ms/i/c/49ebc614e8d47685/EWLkme08toBHjCHmCt2n-N4B3YdACK-FfwqXUzzDyf8vEw?e=wQwCfh"
     },
     {
       title: "Comunicación Social y Periodismo",
       institution: "Universidad Nacional Abierta y a Distancia (UNAD)",
-      status: "Estudios Parciales",
+      status: "Estudios Parciales 20%",
       type: "university"
     }
   ];
 
 const courses = [
     {
-      title: "Conocimientos En Idioma Extranjero (Inglés)",
-      institution: "SENA",
-      category: "Idiomas",
-      icon: <Globe className="w-6 h-6" />,
-      certificateLink: "https://1drv.ms/i/c/49ebc614e8d47685/EQoTUq-2gZlJhRZDZwbTa6wB7VriQL5Dbu85Se5ThnhQSw?e=6EnLDE"
-    },
-    {
-      title: "Inteligencia Artificial Nivel Explorador",
+      title: "Bootcamp En Inteligencia Artificial",
       institution: "El Ministerio de Tecnologías de la Información y las Comunicaciones y la Universidad Sergio Arboleda",
       category: "Tecnología",
       icon: <Cpu className="w-6 h-6" />,
       certificateLink: "https://1drv.ms/i/c/49ebc614e8d47685/EdIraN2NUSdFhQIwo1FIbFABEx2FxcidcpPEZHuEqoKYTQ?e=QRSiJk"
+    },
+    {
+      title: "Bootcamp En Programación",
+      institution: "Platzi",
+      category: "Tecnología",
+      icon: <Code className="w-6 h-6" />,
+      certificateLink: "#"
+    },
+    {
+      title: "Excel Avanzado",
+      institution: "Microsoft",
+      category: "Productividad",
+      icon: <BarChart className="w-6 h-6" />,
+      certificateLink: "#"
     },
     {
       title: "Marketing Digital",
@@ -278,20 +285,6 @@ const courses = [
       category: "Marketing",
       icon: <Smartphone className="w-6 h-6" />,
       certificateLink: "https://1drv.ms/i/c/49ebc614e8d47685/ERAImCpoYLtIqLxfVmusqyUBgY1MIQr8cGau-lZkip1MMw?e=Ls6BBg"
-    },
-    {
-      title: "Sistema De Gestión De La Seguridad Y Salud En El Trabajo SG-SST",
-      institution: "SENA",
-      category: "Seguridad",
-      icon: <Shield className="w-6 h-6" />,
-      certificateLink: "https://1drv.ms/i/c/49ebc614e8d47685/EUiGeH3ULjhMkHgIYWoU4BsBjvhisfXen8N_8YWAOmF02Q?e=tcJWxF"
-    },
-    {
-      title: "Administración De Servicios 365 Y Herramientas De Productividad 4.0",
-      institution: "SENA",
-      category: "Productividad",
-      icon: <Zap className="w-6 h-6" />,
-      certificateLink: "https://1drv.ms/i/c/49ebc614e8d47685/EdIOdRfuLohAkTf0C_v9igQBW_jENgs6DSHutxZMrMdRHg?e=LfnIEF"
     },
     {
       title: "Google Ads",
@@ -308,11 +301,18 @@ const courses = [
       certificateLink: "https://1drv.ms/b/c/49ebc614e8d47685/EUYFg6gABz1El6SQQ_bJe2MBnNA5mY5n3ymfgJsrlQHWCg?e=a2kbIb"
     },
     {
-      title: "Nutrición Y Alimentación En El Desarrollo Humano",
+      title: "Administración De Servicios 365 Y Herramientas De Productividad 4.0",
       institution: "SENA",
-      category: "Salud",
-      icon: <HeartPulse className="w-6 h-6" />,
-      certificateLink: "https://1drv.ms/i/c/49ebc614e8d47685/EeK4M0hzL4NDoGHnHLTDo7YBJ41YNbZb-q-sj3UAN-wZyg?e=Yu5LSf"
+      category: "Productividad",
+      icon: <Zap className="w-6 h-6" />,
+      certificateLink: "https://1drv.ms/i/c/49ebc614e8d47685/EdIOdRfuLohAkTf0C_v9igQBW_jENgs6DSHutxZMrMdRHg?e=LfnIEF"
+    },
+    {
+      title: "Conocimientos En Idioma Extranjero (Inglés)",
+      institution: "SENA",
+      category: "Idiomas",
+      icon: <Globe className="w-6 h-6" />,
+      certificateLink: "https://1drv.ms/i/c/49ebc614e8d47685/EQoTUq-2gZlJhRZDZwbTa6wB7VriQL5Dbu85Se5ThnhQSw?e=6EnLDE"
     },
     {
       title: "Apropiación de Conceptos En Ciberseguridad",
@@ -320,6 +320,20 @@ const courses = [
       category: "Seguridad",
       icon: <Lock className="w-6 h-6" />,
       certificateLink: "https://1drv.ms/i/c/49ebc614e8d47685/EVTntJbkzYBPp5zhPeEl-mYBLlrI6bcxiqzPdz5rYArRUA?e=or6nPW"
+    },
+    {
+      title: "Sistema De Gestión De La Seguridad Y Salud En El Trabajo SG-SST",
+      institution: "SENA",
+      category: "Seguridad",
+      icon: <Shield className="w-6 h-6" />,
+      certificateLink: "https://1drv.ms/i/c/49ebc614e8d47685/EUiGeH3ULjhMkHgIYWoU4BsBjvhisfXen8N_8YWAOmF02Q?e=tcJWxF"
+    },
+    {
+      title: "Nutrición Y Alimentación En El Desarrollo Humano",
+      institution: "SENA",
+      category: "Salud",
+      icon: <HeartPulse className="w-6 h-6" />,
+      certificateLink: "https://1drv.ms/i/c/49ebc614e8d47685/EeK4M0hzL4NDoGHnHLTDo7YBJ41YNbZb-q-sj3UAN-wZyg?e=Yu5LSf"
     }
 ];
 
@@ -450,12 +464,12 @@ const courses = [
   };
 
   const subtitleTexts = [
-    "Educación Formal",
-    "Cursos y Certificaciones",
-    "Habilidades",
+    "Formación Académica Formal",
+    "Capacitación Estratégica y Certificaciones Reconocidas",
+    "Habilidades Estratégicas y Técnicas",
     "Software y Herramientas",
-    "Reseñas de Clientes",
-    "Envíame un mensaje"
+    "Casos de Éxito y Reseñas Verificadas",
+    "Agenda tu asesoría"
   ];
 
 return (
@@ -852,8 +866,8 @@ return (
       {/* Education */}
       <section id="estudios" className="pt-8 pb-4 px-4 dark:bg-dark-bg">
         <div className="max-w-6xl mx-auto">
-          <p className="text-2xl font-bold text-white mb-6 text-center dark:text-primary">Conóceme</p>
-          <h2 className="text-4xl font-bold text-center mb-5 animate-float">
+          <p className="text-2xl font-bold text-white mb-8 text-center dark:text-primary">Conóceme</p>
+          <h2 className="text-4xl font-bold text-center mb-8 animate-float">
             <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
               Formación Académica
             </span>
@@ -898,7 +912,7 @@ return (
 
           {/* Courses and Certifications */}
           <div>
-          <h3 id="subtitle-1" className="text-2xl font-bold text-white mb-6 text-center dark:text-primary">
+          <h3 id="subtitle-1" className="text-2xl font-bold text-white mb-8 text-center dark:text-primary">
               {subtitleTexts[1]}
             </h3>
             <div className="flex gap-4 overflow-x-auto pb-4 snap-x styled-scroll">
