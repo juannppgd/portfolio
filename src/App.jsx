@@ -17,7 +17,7 @@ const Portfolio = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const typingText = "Frontend Developer | Automation | React, Vite, Tailwind | HTML/CSS/JavaScript | Python (AI) | SEO & Performance Marketing";
+  const typingText = "Frontend Developer | Marketing Digital | React | SEO & Performance | Automatización | Python (AI)";
   const [displayedText, setDisplayedText] = useState("");
   const [expandedExperiences, setExpandedExperiences] = useState([false, false]);
   const [timeLeft, setTimeLeft] = useState('');
@@ -601,7 +601,7 @@ return (
           </h1>
           
 <p className="text-xl md:text-2xl text-white dark:text-primary mb-2 max-w-3xl mx-auto font-light italic">
-  Desarrollador De Software & Performance Marketing
+  Desarrollador Web & Performance Marketing
 </p>
 <p className="text-base md:text-lg bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-gradient mb-8 max-w-3xl mx-auto font-semibold tracking-wide">
   {displayedText}
@@ -633,7 +633,7 @@ return (
               <div className="bg-gradient-to-r from-cyan-500/20 to-purple-500/20 backdrop-blur-sm rounded-full px-4 py-2 border border-cyan-500/30 animate-pulse">
                 <div className="flex items-center gap-2 text-cyan-300 text-sm font-semibold dark:text-cyan-300">
                   <Calendar className="w-4 h-4" />
-                  Agenda abierta para octubre - 2 cupos disponibles en los proximos días
+                  Este sitio Web aún está en Desarrollo 🚧
                 </div>
               </div>
             </div>
@@ -1119,7 +1119,7 @@ return (
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-7 animate-float">
             <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-              Mi Stack de Desarrollo
+              Mi Stack De Desarrollo
             </span>
           </h2>
 
@@ -1654,7 +1654,7 @@ return (
                   © 2025 Juan Pablo Gutiérrez Díaz. Todos los derechos reservados.
                 </p>
 <p className="text-sm text-gray-500 dark:text-secondary">
-  Diseñado y desarrollado por <strong>Juan Pablo Gutiérrez Díaz</strong> enfocado en crear experiencias digitales ágiles, funcionales orientadas a resultados.
+  Diseñado y desarrollado por <strong>Juan Pablo Gutiérrez Díaz</strong>, especialista en desarrollo web y marketing digital, creando experiencias digitales ágiles y orientadas a resultados.
     <br />
   ¿Quieres saber más o agendar una asesoría? Escríbeme a{" "}
   <a
@@ -1663,7 +1663,7 @@ return (
     title="Haz clic para escribirme"
   >
     contact.juannppgd@gmail.com
-  </a> 
+  </a>
 </p>
               </div>
               <div className="flex items-center justify-center gap-4">
