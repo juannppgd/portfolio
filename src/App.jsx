@@ -17,7 +17,7 @@ const Portfolio = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const typingText = "Frontend Developer | Marketing Digital | React | SEO & Performance | Automatización | Python (AI)";
+  const typingText = "Frontend Developer | React | Performance | Automation | Python (AI)";
   const [displayedText, setDisplayedText] = useState("");
   const [expandedExperiences, setExpandedExperiences] = useState([false, false]);
   const [timeLeft, setTimeLeft] = useState('');
@@ -279,12 +279,26 @@ const courses = [
       icon: <BarChart className="w-6 h-6" />,
       certificateLink: "#"
     },
-    {
-      title: "Marketing Digital",
-      institution: "Instituto Iberoamericano",
+      {
+      title: "Marketing Digital (2025)",
+      institution: "Telefónica",
       category: "Marketing",
       icon: <Smartphone className="w-6 h-6" />,
-      certificateLink: "https://1drv.ms/i/c/49ebc614e8d47685/ERAImCpoYLtIqLxfVmusqyUBgY1MIQr8cGau-lZkip1MMw?e=Ls6BBg"
+      certificateLink: "#"
+    },
+        {
+      title: "Power BI",
+      institution: "Telefónica",
+      category: "Productividad",
+      icon: <BarChart className="w-6 h-6" />,
+      certificateLink: "#"
+    },
+        {
+      title: "Analítica Web",
+      institution: "Telefónica",
+      category: "Marketing",
+      icon: <BarChart className="w-6 h-6" />,
+      certificateLink: "#"
     },
     {
       title: "Google Ads",
@@ -308,7 +322,7 @@ const courses = [
       certificateLink: "https://1drv.ms/i/c/49ebc614e8d47685/EdIOdRfuLohAkTf0C_v9igQBW_jENgs6DSHutxZMrMdRHg?e=LfnIEF"
     },
     {
-      title: "Conocimientos En Idioma Extranjero (Inglés)",
+      title: "Inglés",
       institution: "SENA",
       category: "Idiomas",
       icon: <Globe className="w-6 h-6" />,
@@ -334,7 +348,50 @@ const courses = [
       category: "Salud",
       icon: <HeartPulse className="w-6 h-6" />,
       certificateLink: "https://1drv.ms/i/c/49ebc614e8d47685/EeK4M0hzL4NDoGHnHLTDo7YBJ41YNbZb-q-sj3UAN-wZyg?e=Yu5LSf"
-    }
+    },
+    {
+      title: "Growth Hacking",
+      institution: "Telefónica",
+      category: "Marketing",
+      icon: <TrendingUp className="w-6 h-6" />,
+      certificateLink: "#"
+    },
+    {
+      title: "Networking y Marketing Personal",
+      institution: "Telefónica",
+      category: "Marketing",
+      icon: <Users className="w-6 h-6" />,
+      certificateLink: "#"
+    },
+    {
+      title: "Creacion de Contenidos Digitales",
+      institution: "Telefónica",
+      category: "Marketing",
+      icon: <Palette className="w-6 h-6" />,
+      certificateLink: "#"
+    },
+    {
+      title: "Fundamentos de UX",
+      institution: "Telefónica",
+      category: "Tecnología",
+      icon: <Brain className="w-6 h-6" />,
+      certificateLink: "#"
+    },
+    {
+      title: "Principios Basicos de Big Data",
+      institution: "Telefónica",
+      category: "Tecnología",
+      icon: <Cpu className="w-6 h-6" />,
+      certificateLink: "#"
+    },
+{
+      title: "Marketing Digital (2022)",
+      institution: "Instituto Iberoamericano",
+      category: "Marketing",
+      icon: <Smartphone className="w-6 h-6" />,
+      certificateLink: "https://1drv.ms/i/c/49ebc614e8d47685/ERAImCpoYLtIqLxfVmusqyUBgY1MIQr8cGau-lZkip1MMw?e=Ls6BBg"
+    },
+
 ];
 
   const skills = [
@@ -600,9 +657,11 @@ return (
             <span className="text-white dark:text-primary">Gutiérrez Díaz</span>
           </h1>
           
-<p className="text-xl md:text-2xl text-white dark:text-primary mb-2 max-w-3xl mx-auto font-light italic">
+<p className="text-xl md:text-2xl text-white dark:text-primary mb-2 max-w-3xl mx-auto font-light font-serif">
   Desarrollador Web & Performance Marketing
 </p>
+
+
 <p className="text-base md:text-lg bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-gradient mb-8 max-w-3xl mx-auto font-semibold tracking-wide">
   {displayedText}
 
@@ -633,7 +692,7 @@ return (
               <div className="bg-gradient-to-r from-cyan-500/20 to-purple-500/20 backdrop-blur-sm rounded-full px-4 py-2 border border-cyan-500/30 animate-pulse">
                 <div className="flex items-center gap-2 text-cyan-300 text-sm font-semibold dark:text-cyan-300">
                   <Calendar className="w-4 h-4" />
-                  Este sitio Web aún está en Desarrollo 🚧
+                  ¡Estoy afinando los últimos detalles para ayudarte a destacar en la web!
                 </div>
               </div>
             </div>
@@ -825,7 +884,7 @@ return (
                 </div>
               </div>
               <h3 className="text-2xl font-bold text-white mb-2 dark:text-primary">¡Hosting y Dominio Gratis!</h3>
-              <p className="text-gray-300 dark:text-secondary mb-4">Aplica TyC</p>
+              <p className="text-gray-300 dark:text-secondary mb-4 italic">Aplica TyC</p>
                             <ul className="text-center text-gray-300 dark:text-secondary space-y-1 mb-3">
                 <li>• Optimización de velocidad y experiencia UX</li>
                 <li>• Integración con redes sociales y CRM</li>
@@ -848,14 +907,14 @@ return (
                 </div>
               </div>
               <h3 className="text-2xl font-bold text-white mb-2 dark:text-primary">¡Consultoría Gratis!</h3>
-              <p className="text-gray-300 dark:text-secondary mb-4">Aplica TyC</p>
+              <p className="text-gray-300 dark:text-secondary mb-4 italic">Aplica TyC</p>
               <ul className="text-center text-gray-300 dark:text-secondary space-y-1 mb-3">
                 <li>• Análisis de datos y segmentación</li>
-                <li>• Campañas A/B testing</li>
-                <li>• Estrategia Digital</li>
+                <li>• Campañas A/B testing orientadas a resultados</li>
+                <li>• Estrategia Digital personalizada</li>
                 <li>• Gestión de redes sociales</li>
                 <li>• Email y SMS Marketing</li>
-                <li>• SEO y SEM</li>
+                <li>• Optimización SEO y campañas SEM efectivas</li>
               </ul>
                             <p className="text-gray-300 dark:text-secondary"><strong>Contáctame haciendo clic aquí</strong></p>
             </div>
@@ -904,7 +963,7 @@ return (
             <div className="text-center mt-4">
               <div className="inline-flex items-center gap-2 text-gray-400 dark:text-secondary">
                 <span className="text-sm md:hidden">Desliza para conocer más</span>
-                <span className="hidden md:block text-sm">Haz scroll lateral para ver más</span>
+                <span className="hidden md:block text-sm animate-pulse italic">Haz scroll lateral para ver más</span>
                 <ArrowUpRight className="w-5 h-5 animate-pulse" />
               </div>
             </div>
@@ -958,7 +1017,7 @@ return (
             <div className="text-center mt-4">
               <div className="inline-flex items-center gap-2 text-gray-400 dark:text-secondary">
                 <span className="text-sm md:hidden">Desliza para conocer más</span>
-                <span className="hidden md:block text-sm">Haz scroll lateral para ver más</span>
+                <span className="hidden md:block text-sm animate-pulse italic">Haz scroll lateral para ver más</span>
                 <ArrowUpRight className="w-5 h-5 animate-pulse" />
               </div>
             </div>
@@ -1004,8 +1063,8 @@ return (
         </div>
         <div className="flex-1">
           <h3 className="text-2xl font-bold text-white mb-2 dark:text-primary">{exp.title}</h3>
-          <p className="text-cyan-400 font-semibold mb-2 dark:text-cyan-300">{exp.company}</p>
-          <p className="text-gray-400 mb-4 dark:text-secondary">{exp.period}</p>
+          <p className="text-cyan-400 font-semibold mb-2 dark:text-cyan-300 italic">{exp.company}</p>
+          <p className="text-gray-400 mb-4 dark:text-secondary italic">{exp.period}</p>
           <p className="text-gray-300 mb-0 dark:text-secondary" id={`detail-${education.length + courses.length + index}`}>
             {exp.description}
           </p>
@@ -1246,7 +1305,7 @@ return (
                   ))}
                 </ul>
                 <div className="mt-6 text-center">
-                  <span className="text-xs text-gray-400 dark:text-secondary opacity-70">Haz clic para cambiar posición</span>
+                  <span className="text-xs text-gray-400 dark:text-secondary opacity-70 italic">Haz clic para cambiar posición</span>
                 </div>
               </div>
             ))}
@@ -1286,7 +1345,7 @@ return (
                 <p className="text-gray-300 dark:text-secondary italic">"{testimonial.testimonial}"</p>
 
                 <div className="mt-4 flex items-center text-sm text-gray-400 dark:text-secondary">
-                  <Shield className="w-4 h-4 mr-2 text-green-400" />
+                  <Shield className="w-4 h-4 mr-2 text-green-400"/>
                   Cliente Verificado
                 </div>
               </div>
@@ -1295,7 +1354,7 @@ return (
           <div className="text-center mt-4">
             <div className="inline-flex items-center gap-2 text-gray-400 dark:text-secondary">
               <span className="text-sm md:hidden">Desliza para conocer más</span>
-              <span className="hidden md:block text-sm">Haz scroll lateral para ver más</span>
+              <span className="hidden md:block text-sm animate-pulse italic">Haz scroll lateral para ver más</span>
               <ArrowUpRight className="w-5 h-5 animate-pulse" />
             </div>
           </div>
@@ -1504,7 +1563,7 @@ return (
           <div className="text-center mt-4">
             <div className="inline-flex items-center gap-2 text-gray-400 dark:text-secondary">
               <span className="text-sm md:hidden">Desliza para conocer más</span>
-              <span className="hidden md:block text-sm">Haz scroll lateral para ver más</span>
+              <span className="hidden md:block text-sm animate-pulse italic">Haz scroll lateral para ver más</span>
               <ArrowUpRight className="w-5 h-5 animate-pulse" />
             </div>
           </div>
