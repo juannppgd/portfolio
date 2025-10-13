@@ -67,6 +67,7 @@ const Portfolio = () => {
     // Simular carga inicial
     const timer = setTimeout(() => {
       setIsLoading(false);
+      setRestartTyping(1); // Iniciar la animación de typing después del loader
     }, 1500); // 1,5 segundos de carga
 
     return () => clearTimeout(timer);
