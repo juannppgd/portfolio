@@ -1,8 +1,28 @@
-    import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Mail, Phone, MapPin, ChevronDown, ExternalLink, Code, Briefcase, GraduationCap, Settings, User, Send, Github, MessageCircle, ArrowUpRight, Moon, Sun, Zap, Palette, Brain, Award, Trophy, BookOpen, Sparkles, Star, Crown, Medal, Globe, Cpu, Smartphone, Shield, Target, BarChart, HeartPulse, Lock, Video, Quote, CreditCard, Banknote, Key, TrendingUp, Users, Server, Plus, Loader, Calendar, Menu, X } from 'lucide-react';
 import { FaTiktok, FaTelegram, FaPinterest, FaFacebook, FaInstagram, FaLinkedin, FaTwitter, FaYoutube } from 'react-icons/fa';
 import emailjs from '@emailjs/browser';
 import perfil from './assets/profile-image.jpg';
+
+const PageLoader = () => {
+  return (
+    <div className="fixed inset-0 z-[1000] flex items-center justify-center bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+      <div className="text-center">
+        <div className="mb-8">
+          <Loader className="w-16 h-16 text-cyan-400 animate-spin mx-auto" />
+        </div>
+        <h2 className="text-2xl md:text-3xl font-bold mb-4">
+          <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-gradient">
+            Bienvenido al portafolio Web de Juan Pablo Gutiérrez Díaz
+          </span>
+        </h2>
+        <p className="text-gray-300 dark:text-secondary text-lg">
+          En un momento estarás a punto de llevar tu proyecto al siguiente nivel. 
+        </p>
+      </div>
+    </div>
+  );
+};
 
 const Portfolio = () => {
   const [activeSection, setActiveSection] = useState('@juannppgd');
@@ -33,6 +53,8 @@ const Portfolio = () => {
   const [prevScrollY, setPrevScrollY] = useState(0);
   const [hasRestartedOnScrollUp, setHasRestartedOnScrollUp] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
 
   useEffect(() => {
     const savedDarkMode = localStorage.getItem('darkMode');
@@ -41,6 +63,13 @@ const Portfolio = () => {
     } else {
       setDarkMode(true);
     }
+
+    // Simular carga inicial
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1500); // 1,5 segundos de carga
+
+    return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
@@ -343,13 +372,6 @@ const courses = [
       certificateLink: "https://1drv.ms/i/c/49ebc614e8d47685/EUiGeH3ULjhMkHgIYWoU4BsBjvhisfXen8N_8YWAOmF02Q?e=tcJWxF"
     },
     {
-      title: "Nutrición Y Alimentación En El Desarrollo Humano",
-      institution: "SENA",
-      category: "Salud",
-      icon: <HeartPulse className="w-6 h-6" />,
-      certificateLink: "https://1drv.ms/i/c/49ebc614e8d47685/EeK4M0hzL4NDoGHnHLTDo7YBJ41YNbZb-q-sj3UAN-wZyg?e=Yu5LSf"
-    },
-    {
       title: "Growth Hacking",
       institution: "Telefónica",
       category: "Marketing",
@@ -378,7 +400,7 @@ const courses = [
       certificateLink: "#"
     },
     {
-      title: "Principios Basicos de Big Data",
+      title: "Big Data",
       institution: "Telefónica",
       category: "Tecnología",
       icon: <Cpu className="w-6 h-6" />,
@@ -390,6 +412,13 @@ const courses = [
       category: "Marketing",
       icon: <Smartphone className="w-6 h-6" />,
       certificateLink: "https://1drv.ms/i/c/49ebc614e8d47685/ERAImCpoYLtIqLxfVmusqyUBgY1MIQr8cGau-lZkip1MMw?e=Ls6BBg"
+    },
+        {
+      title: "Nutrición Y Alimentación En El Desarrollo Humano",
+      institution: "SENA",
+      category: "Salud",
+      icon: <HeartPulse className="w-6 h-6" />,
+      certificateLink: "https://1drv.ms/i/c/49ebc614e8d47685/EeK4M0hzL4NDoGHnHLTDo7YBJ41YNbZb-q-sj3UAN-wZyg?e=Yu5LSf"
     },
 
 ];
@@ -530,7 +559,9 @@ const courses = [
   ];
 
 return (
-  <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+  <>
+    {isLoading && <PageLoader />}
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
     {/* Navigation */}
     <nav className="fixed top-4 left-0 right-0 mx-2 sm:mx-4 w-auto z-50 backdrop-blur-lg border border-white/10 rounded-2xl shadow-xl">
       <div className="container mx-auto px-4 py-3 sm:px-6">
@@ -692,7 +723,7 @@ return (
               <div className="bg-gradient-to-r from-cyan-500/20 to-purple-500/20 backdrop-blur-sm rounded-full px-4 py-2 border border-cyan-500/30 animate-pulse">
                 <div className="flex items-center gap-2 text-cyan-300 text-sm font-semibold dark:text-cyan-300">
                   <Calendar className="w-4 h-4" />
-                  ¡Estoy afinando los últimos detalles para ayudarte a destacar en la web!
+                  ¿Listo para destacar en internet? Agenda tu asesoría gratis hoy.
                 </div>
               </div>
             </div>
@@ -969,7 +1000,7 @@ return (
             </div>
           </div>
 
-          {/* Courses and Certifications */}
+            {/* Courses and Certifications */}
           <div>
           <h3 id="subtitle-1" className="text-2xl font-bold text-white mb-8 text-center dark:text-primary">
               {subtitleTexts[1]}
@@ -1309,6 +1340,57 @@ return (
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section id="faq" className="py-4 px-4 dark:bg-dark-bg">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-bold text-center mb-7 animate-float">
+            <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+              Preguntas Frecuentes
+            </span>
+          </h2>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {[
+              {
+                question: "¿Con qué tecnologías se desarrollan las páginas web y cuánto tiempo toma?",
+                answer: "<strong>Desarrollo 100% personalizado directamente desde el código, sin plantillas</strong>. El tiempo de entrega varía según el alcance del proyecto. <strong>Desde 72 horas</strong> hasta 4 semanas."
+              },
+              {
+                question: "¿Tu sitio necesita ajustes, optimizacion, soporte o en dado caso garantía?",
+                answer: "<strong>Sí. Incluyo mantenimiento continuo y soporte técnico</strong> Además, los primeros 3 meses incluyen <strong>asistencia gratuita</strong>, de texto sin costo y descuentos en mejoras."
+              },
+              {
+                question: "¿Trabajas con clientes internacionales?",
+                answer: "¡Absolutamente! <strong>Colaboro con clientes de todo el mundo</strong> por medio de reuniones virtuales y métodos de pago como PayPal, transferencias bancarias y MercadoPago."
+              },
+              {
+                question: "¿Qué incluye el marketing digital?",
+                answer: "Análisis de datos y <strong>estrategias personalizadas</strong>, Campañas de email/SMS, Gestión de redes sociales sociales, SEO, SEM y optimización de conversiones."
+              }
+            ].map((faq, index) => (
+              <div
+                key={index}
+                className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:border-cyan-400/50 transition-all duration-300 dark:bg-card dark:border-card p-6"
+              >
+                <h3 className="text-lg font-semibold text-white dark:text-primary mb-3">
+                  {faq.question}
+                </h3>
+                <p className="text-gray-300 dark:text-secondary leading-relaxed" dangerouslySetInnerHTML={{ __html: faq.answer }}></p>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center mt-8">
+            <button
+              onClick={() => scrollToSection('contacto')}
+              className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-cyan-500/25"
+            >
+              ¿Tienes más preguntas? Contáctame
+            </button>
           </div>
         </div>
       </section>
@@ -1863,22 +1945,22 @@ return (
         </div>
       )}
 
-<><style dangerouslySetInnerHTML={{
-  __html: `
+      <style dangerouslySetInnerHTML={{
+        __html: `
         @keyframes gradient {
           0%, 100% { background-position: 0% 50%; }
           50% { background-position: 100% 50%; }
         }
-        
+
         .animate-gradient {
           background-size: 200% 200%;
           animation: gradient 3s ease infinite;
         }
-        
+
         .animate-spin-slow {
           animation: spin 3s linear infinite;
         }
-        
+
         @keyframes spin {
           from { transform: rotate(0deg); }
           to { transform: rotate(360deg); }
@@ -2027,8 +2109,9 @@ return (
 
 
 `}
-  </style></>
+  </style>
     </div>
+  </>
   );
 };
 
