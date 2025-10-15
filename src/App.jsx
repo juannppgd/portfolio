@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Mail, Phone, MapPin, ChevronDown, ExternalLink, Code, Briefcase, GraduationCap, Settings, User, Send, Github, MessageCircle, ArrowUpRight, Moon, Sun, Zap, Palette, Brain, Award, Trophy, BookOpen, Sparkles, Star, Crown, Medal, Globe, Cpu, Smartphone, Shield, Target, BarChart, HeartPulse, Lock, Video, Quote, CreditCard, Banknote, Key, TrendingUp, Users, Server, Plus, Loader, Calendar, Menu, X } from 'lucide-react';
 import { FaTiktok, FaTelegram, FaPinterest, FaFacebook, FaInstagram, FaLinkedin, FaTwitter, FaYoutube } from 'react-icons/fa';
@@ -756,25 +757,25 @@ return (
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <button
               onClick={() => scrollToSection('stack')}
-              className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-cyan-500/25 text-center"
+              className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-cyan-500/25 flex items-center justify-center gap-2 text-center"
             >
+              <Code className="w-5 h-5" />
               Ver Tecnologías
             </button>
             <button
               onClick={() => scrollToSection('contacto')}
-              className="bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-pink-500/25 text-center"
+              className="bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-pink-500/25 flex items-center justify-center gap-2 text-center"
             >
+              <Send className="w-5 h-5" />
               Contáctame Ahora
             </button>
-            <a
-              href="https://www.instagram.com/juannppgd"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              onClick={() => window.open('https://www.youtube.com/shorts/Mg8jECqVFSQ', '_blank')}
               className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-cyan-500/25 flex items-center justify-center gap-2 text-center"
             >
               <Video className="w-5 h-5" />
-              Instagram
-            </a>
+              Ver Video
+            </button>
           </div>
         </div>
       </section>
@@ -1208,6 +1209,42 @@ return (
       {/* stack Section */}
       <section id="stack" className="py-4 px-4 dark:bg-dark-bg">
         <div className="max-w-6xl mx-auto">
+          {/* Action Buttons */}
+          <div className="text-center mb-8">
+            <div className="grid grid-cols-2 gap-4 sm:flex sm:flex-row sm:gap-4 sm:justify-center sm:items-center">
+              <button
+                onClick={() => window.open('https://www.youtube.com/shorts/Mg8jECqVFSQ', '_blank')}
+                className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white px-4 sm:px-6 py-3 sm:py-4 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-cyan-500/25 flex items-center justify-center gap-2 text-center"
+              >
+                <Video className="w-4 h-4 sm:w-5 sm:h-5" />
+                Video
+              </button>
+              <button
+                onClick={() => scrollToSection('faq')}
+                className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-4 sm:px-6 py-3 sm:py-4 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-purple-500/25 flex items-center justify-center gap-2 text-center"
+              >
+                <Quote className="w-4 h-4 sm:w-5 sm:h-5" />
+                Preguntas
+              </button>
+              <button
+                onClick={() => scrollToSection('servicios')}
+                className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white px-4 sm:px-6 py-3 sm:py-4 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-cyan-500/25 flex items-center justify-center gap-2 text-center"
+              >
+                <Briefcase className="w-4 h-4 sm:w-5 sm:h-5" />
+                Servicios
+              </button>
+              <a
+                href="https://wa.link/ukyqpg"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-4 sm:px-6 py-3 sm:py-4 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-purple-500/25 flex items-center justify-center gap-2 text-center"
+              >
+                <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5" />
+                WhatsApp
+              </a>
+            </div>
+          </div>
+
           <h2 className="text-4xl font-bold text-center mb-7 animate-float">
             <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
               Mi Stack De Desarrollo
@@ -1386,12 +1423,6 @@ return (
           </div>
 
           <div className="text-center mt-8">
-            <button
-              onClick={() => scrollToSection('contacto')}
-              className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-cyan-500/25"
-            >
-              ¿Tienes más preguntas? Contáctame
-            </button>
           </div>
         </div>
       </section>
@@ -1736,7 +1767,7 @@ return (
 
               {/* YouTube */}
               <a
-                href="https://www.youtube.com/@juannppgd"
+                href="https://www.youtube.com/shorts/Mg8jECqVFSQ"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group bg-gradient-to-br from-red-600/20 to-red-800/20 hover:from-red-500/30 hover:to-red-700/30 backdrop-blur-sm rounded-2xl p-6 border border-red-500/20 hover:border-red-400/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-red-500/20 animate-socialfade dark:bg-card dark:border-card"
@@ -1788,6 +1819,42 @@ return (
             </div>
           </div>
 
+          {/* Action Buttons */}
+          <div className="text-center mb-8">
+            <div className="grid grid-cols-2 gap-4 sm:flex sm:flex-row sm:gap-4 sm:justify-center sm:items-center">
+              <button
+                onClick={() => window.open('https://www.youtube.com/shorts/Mg8jECqVFSQ', '_blank')}
+                className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white px-4 sm:px-6 py-3 sm:py-4 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-cyan-500/25 flex items-center justify-center gap-2 text-center"
+              >
+                <Video className="w-4 h-4 sm:w-5 sm:h-5" />
+                Video
+              </button>
+              <button
+                onClick={() => scrollToSection('faq')}
+                className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-4 sm:px-6 py-3 sm:py-4 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-purple-500/25 flex items-center justify-center gap-2 text-center"
+              >
+                <Quote className="w-4 h-4 sm:w-5 sm:h-5" />
+                Preguntas
+              </button>
+              <button
+                onClick={() => scrollToSection('servicios')}
+                className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white px-4 sm:px-6 py-3 sm:py-4 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-cyan-500/25 flex items-center justify-center gap-2 text-center"
+              >
+                <Briefcase className="w-4 h-4 sm:w-5 sm:h-5" />
+                Servicios
+              </button>
+              <a
+                href="https://wa.link/ukyqpg"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-4 sm:px-6 py-3 sm:py-4 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-purple-500/25 flex items-center justify-center gap-2 text-center"
+              >
+                <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5" />
+                WhatsApp
+              </a>
+            </div>
+          </div>
+
           {/* Footer Bottom */}
           <div className="border-t border-white/10 pt-8 dark:border-card">
             <div className="flex flex-col md:flex-row justify-between items-center gap-4">
@@ -1807,13 +1874,6 @@ return (
     contact.juannppgd@gmail.com
   </a>
 </p>
-              </div>
-              <div className="flex items-center justify-center gap-4">
-                <a href="https://wa.link/ukyqpg" target="_blank" rel="noopener noreferrer">
-                  <div className="bg-gradient-to-r from-cyan-500/20 to-purple-500/20 backdrop-blur-sm rounded-full px-4 py-2 border border-cyan-500/30 dark:border-card animate-glow-repeat hover:animate-glow flex items-center justify-center">
-                    <span className="text-cyan-300 text-sm font-semibold dark:text-cyan-300">🚀 ¡Quiero pasar al siguiente nivel Ahora Mismo!</span>
-                  </div>
-                </a>
               </div>
             </div>
           </div>
@@ -1945,6 +2005,8 @@ return (
           </div>
         </div>
       )}
+
+
 
       <style dangerouslySetInnerHTML={{
         __html: `
