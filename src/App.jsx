@@ -51,10 +51,12 @@ const Portfolio = () => {
   const [reviewPassword, setReviewPassword] = useState('');
   const [loginError, setLoginError] = useState('');
   const [restartTyping, setRestartTyping] = useState(0);
+  const [showVideoModal, setShowVideoModal] = useState(false);
   const [prevScrollY, setPrevScrollY] = useState(0);
   const [hasRestartedOnScrollUp, setHasRestartedOnScrollUp] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
 
   useEffect(() => {
@@ -112,6 +114,15 @@ const Portfolio = () => {
     updateTimeLeft();
     const interval = setInterval(updateTimeLeft, 1000);
     return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   useEffect(() => {
@@ -662,7 +673,7 @@ return (
             <div className="w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 mx-auto rounded-full bg-gradient-to-r from-cyan-400 to-purple-400 p-1 transition-all duration-300">
               <div className="w-full h-full rounded-full bg-slate-900 flex items-center justify-center overflow-hidden">
                 <img
-                  src={perfil}
+                  src={darkMode ? perfil : '/profile_img.jpg'}
                   alt="Foto de perfil de Juan Pablo Gutiérrez Díaz, desarrollador web y especialista en marketing digital"
                   className={`w-full h-full rounded-full object-cover transition-all duration-300 cursor-pointer ${isVibrating ? 'animate-vibrate' : ''}`}
                   loading="lazy"
@@ -770,7 +781,7 @@ return (
               Contáctame Ahora
             </button>
             <button
-              onClick={() => window.open('https://www.youtube.com/shorts/Mg8jECqVFSQ', '_blank')}
+              onClick={() => setShowVideoModal(true)}
               className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-cyan-500/25 flex items-center justify-center gap-2 text-center"
             >
               <Video className="w-5 h-5" />
@@ -1213,7 +1224,7 @@ return (
           <div className="text-center mb-8">
             <div className="grid grid-cols-2 gap-4 sm:flex sm:flex-row sm:gap-4 sm:justify-center sm:items-center">
               <button
-                onClick={() => window.open('https://www.youtube.com/shorts/Mg8jECqVFSQ', '_blank')}
+                onClick={() => setShowVideoModal(true)}
                 className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white px-4 sm:px-6 py-3 sm:py-4 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-cyan-500/25 flex items-center justify-center gap-2 text-center"
               >
                 <Video className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -1767,7 +1778,7 @@ return (
 
               {/* YouTube */}
               <a
-                href="https://www.youtube.com/shorts/Mg8jECqVFSQ"
+                href="https://www.youtube.com/@juannppgd"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group bg-gradient-to-br from-red-600/20 to-red-800/20 hover:from-red-500/30 hover:to-red-700/30 backdrop-blur-sm rounded-2xl p-6 border border-red-500/20 hover:border-red-400/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-red-500/20 animate-socialfade dark:bg-card dark:border-card"
@@ -1823,7 +1834,7 @@ return (
           <div className="text-center mb-8">
             <div className="grid grid-cols-2 gap-4 sm:flex sm:flex-row sm:gap-4 sm:justify-center sm:items-center">
               <button
-                onClick={() => window.open('https://www.youtube.com/shorts/Mg8jECqVFSQ', '_blank')}
+                onClick={() => setShowVideoModal(true)}
                 className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white px-4 sm:px-6 py-3 sm:py-4 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-cyan-500/25 flex items-center justify-center gap-2 text-center"
               >
                 <Video className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -1997,6 +2008,58 @@ return (
               </button>
               <button
                 onClick={() => setShowReviewModal(false)}
+                className="w-full sm:w-auto bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white px-4 sm:px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-cyan-500/25"
+              >
+                Cerrar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showVideoModal && (
+        <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/40 backdrop-blur-sm animate-fadein dark:bg-black/60 p-4">
+          <div className="bg-gradient-to-br from-cyan-500/90 to-purple-500/90 rounded-3xl p-4 sm:p-6 md:p-8 shadow-2xl border border-white/20 text-center animate-cardpop dark:bg-card dark:border-card max-w-sm sm:max-w-md md:max-w-lg mx-4">
+            <h4 className="text-2xl font-bold text-white mb-4 dark:text-primary">Crecimiento Digital</h4>
+            <div className="mb-6 flex justify-center">
+              {windowWidth < 400 ? (
+                <div className="text-center">
+                  <p className="text-white mb-4 dark:text-secondary">Para una mejor experiencia, ve el video en YouTube</p>
+                  <a
+                    href="https://www.youtube.com/shorts/Mg8jECqVFSQ"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-red-500/25"
+                  >
+                    <FaYoutube className="w-5 h-5" />
+                    Ver en YouTube
+                  </a>
+                </div>
+              ) : (
+                <div className="relative w-full max-w-xs sm:max-w-sm">
+                  <iframe
+                    width="100%"
+                    height="533"
+                    src="https://www.youtube.com/embed/Mg8jECqVFSQ?autoplay=1&mute=1"
+                    title="Video de Presentación - YouTube Shorts"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="rounded-xl"
+                  ></iframe>
+                </div>
+              )}
+            </div>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <button
+                onClick={() => { scrollToSection('contacto'); setShowVideoModal(false); }}
+                className="w-full sm:w-auto bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-600 hover:to-teal-600 text-white px-4 sm:px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-green-500/25 flex items-center justify-center gap-2"
+              >
+                <Send className="w-4 h-4" />
+                Contáctame
+              </button>
+              <button
+                onClick={() => setShowVideoModal(false)}
                 className="w-full sm:w-auto bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white px-4 sm:px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-cyan-500/25"
               >
                 Cerrar
