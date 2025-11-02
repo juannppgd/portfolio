@@ -6,8 +6,8 @@ const Chatbot = () => {
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
-      content: '¡Hola! 👋 Soy el asistente IA de Juan Pablo. ¿En qué puedo ayudarte hoy?',
-      options: ['🚀 Servicios', '💻 Desarrollo Web', '📈 Marketing Digital', '📞 Contacto']
+      content: '¡Hola! Soy el asistente IA de Juan Pablo. ¿En qué puedo ayudarte hoy?',
+      options: ['Servicios', 'Desarrollo Web', 'Marketing Digital', 'Contacto']
     }
   ]);
   const [isLoading, setIsLoading] = useState(false);
