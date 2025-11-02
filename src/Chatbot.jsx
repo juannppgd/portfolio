@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { MessageCircle, X, Send, Bot } from 'lucide-react';
+import { MessageCircle, X, Send, Bot, Sparkles, Zap } from 'lucide-react';
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
-      content: '¡Hola! Soy el asistente de Juan Pablo. ¿En qué puedo ayudarte?',
-      options: ['Servicios', 'Desarrollo Web', 'Marketing Digital', 'Contacto']
+      content: '¡Hola! 👋 Soy el asistente IA de Juan Pablo. ¿En qué puedo ayudarte hoy?',
+      options: ['🚀 Servicios', '💻 Desarrollo Web', '📈 Marketing Digital', '📞 Contacto']
     }
   ]);
   const [isLoading, setIsLoading] = useState(false);
@@ -126,14 +126,23 @@ const Chatbot = () => {
       {isOpen && (
         <div className="fixed bottom-6 right-6 w-80 h-96 bg-slate-900/95 backdrop-blur-lg rounded-2xl border border-white/10 shadow-2xl z-50 flex flex-col">
           {/* Header */}
-          <div className="flex items-center justify-between p-4 border-b border-white/10">
+          <div className="flex items-center justify-between p-4 border-b border-white/10 bg-gradient-to-r from-slate-800/50 to-slate-900/50">
             <div className="flex items-center gap-2">
-              <Bot className="w-5 h-5 text-cyan-400" />
-              <span className="text-white font-semibold">Chatbot</span>
+              <div className="relative">
+                <Bot className="w-5 h-5 text-cyan-400" />
+                <Sparkles className="w-3 h-3 text-purple-400 absolute -top-1 -right-1 animate-pulse" />
+              </div>
+              <div>
+                <span className="text-white font-semibold text-sm">Asistente IA</span>
+                <div className="text-xs text-cyan-300 flex items-center gap-1">
+                  <Zap className="w-3 h-3" />
+                  <span>Online</span>
+                </div>
+              </div>
             </div>
             <button
               onClick={() => setIsOpen(false)}
-              className="text-white/70 hover:text-white transition-colors"
+              className="text-white/70 hover:text-white transition-colors p-1 rounded-full hover:bg-white/10"
               aria-label="Cerrar chatbot"
             >
               <X className="w-5 h-5" />
@@ -161,7 +170,7 @@ const Chatbot = () => {
                         <button
                           key={optionIndex}
                           onClick={() => handleOptionClick(option)}
-                          className="bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 px-3 py-1 rounded-full text-sm border border-cyan-500/30 hover:border-cyan-400/50 transition-all duration-200"
+                          className="bg-gradient-to-r from-cyan-500/20 to-purple-500/20 hover:from-cyan-500/30 hover:to-purple-500/30 text-cyan-300 hover:text-cyan-200 px-4 py-2 rounded-xl text-sm border border-cyan-500/30 hover:border-cyan-400/50 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-cyan-500/20"
                           disabled={isLoading}
                         >
                           {option}
@@ -174,11 +183,15 @@ const Chatbot = () => {
             ))}
             {isLoading && (
               <div className="flex justify-start">
-                <div className="bg-white/10 text-white p-3 rounded-lg">
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
-                    <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse delay-75"></div>
-                    <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse delay-150"></div>
+                <div className="bg-gradient-to-r from-slate-800/50 to-slate-900/50 text-white p-4 rounded-xl border border-cyan-500/20">
+                  <div className="flex items-center gap-3">
+                    <div className="relative">
+                      <Bot className="w-4 h-4 text-cyan-400 animate-bounce" />
+                      <Sparkles className="w-2 h-2 text-purple-400 absolute -top-1 -right-1 animate-ping" />
+                    </div>
+                    <div className="text-sm text-cyan-300">
+                      <span className="animate-pulse">Pensando...</span>
+                    </div>
                   </div>
                 </div>
               </div>
