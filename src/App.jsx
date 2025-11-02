@@ -4,6 +4,7 @@ import { Mail, Phone, MapPin, ChevronDown, ExternalLink, Code, Briefcase, Gradua
 import { FaTiktok, FaTelegram, FaPinterest, FaFacebook, FaInstagram, FaLinkedin, FaTwitter, FaYoutube, FaSnapchat, FaDiscord } from 'react-icons/fa';
 import emailjs from '@emailjs/browser';
 import perfil from './assets/profile-image.jpg';
+import Chatbot from './Chatbot';
 
 const PageLoader = () => {
   return (
@@ -13,7 +14,7 @@ const PageLoader = () => {
           <Loader className="w-16 h-16 text-cyan-400 animate-spin mx-auto" />
         </div>
         <h2 className="text-2xl md:text-3xl font-bold mb-4">
-          <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-gradient">
+          <span className="bg-gradient-to-r from-cyan-400 via-purple-o400 to-pink-400 bg-clip-text text-transparent animate-gradient">
             Bienvenido al portafolio Web de Juan Pablo Gutiérrez Díaz
           </span>
         </h2>
@@ -2104,7 +2105,8 @@ return (
         </div>
       )}
 
-
+      {/* Chatbot */}
+      <Chatbot />
 
       <style dangerouslySetInnerHTML={{
         __html: `
