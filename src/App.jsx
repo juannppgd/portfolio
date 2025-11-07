@@ -1,6 +1,5 @@
-
 import React, { useState, useEffect } from 'react';
-import { Mail, Phone, MapPin, ChevronDown, ExternalLink, Code, Briefcase, GraduationCap, Settings, User, Send, Github, MessageCircle, ArrowUpRight, Moon, Sun, Zap, Palette, Brain, Award, Trophy, BookOpen, Sparkles, Star, Crown, Medal, Globe, Cpu, Smartphone, Shield, Target, BarChart, HeartPulse, Lock, Video, Quote, CreditCard, Banknote, Key, TrendingUp, Users, Server, Plus, Loader, Calendar, Menu, X } from 'lucide-react';
+import { Mail, Phone, MapPin, ChevronDown, ExternalLink, Code, Briefcase, GraduationCap, Settings, User, Send, Github, MessageCircle, ArrowUpRight, Moon, Sun, Zap, Palette, Brain, Award, Trophy, BookOpen, Sparkles, Star, Crown, Medal, Globe, Cpu, Smartphone, Shield, Target, BarChart, HeartPulse, Lock, Video, Quote, CreditCard, Banknote, Key, TrendingUp, Users, Server, Plus, Loader, Calendar, Menu, X, MapPinCheckIcon, MapPinPlus } from 'lucide-react';
 import { FaTiktok, FaTelegram, FaPinterest, FaFacebook, FaInstagram, FaLinkedin, FaTwitter, FaYoutube, FaSnapchat, FaDiscord } from 'react-icons/fa';
 import emailjs from '@emailjs/browser';
 import perfil from './assets/profile-image.jpg';
@@ -443,7 +442,7 @@ const courses = [
     { name: "Segmentación de Audiencias", level: 90, category: "marketing" },
     { name: "Análisis y Gestion de Datos", level: 85, category: "analytics" },
     { name: "Pruebas A/B y Optimización", level: 95, category: "analytics" },
-    { name: "CRM HubSpot & Masivian", level: 83, category: "tools" },
+    { name: "CRM HubSpot & Masivian", level: 85, category: "tools" },
     { name: "Maquetado web con HTML/CSS", level: 97, category: "development" },
     { name: "Desarrollo con React, Vite y Tailwind CSS", level: 89, category: "development" },
     { name: "Programación en JavaScript & Python (AI)", level: 85, category: "development" },
@@ -735,14 +734,12 @@ return (
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
             <a className="flex items-center gap-2 text-gray-300 hover:text-cyan-400 transition-colors dark:text-secondary cursor-pointer group" onClick={() => scrollToSection('contacto')}>
-              <MapPin className="w-5 h-5 text-cyan-400" /> 
+              <MapPinCheckIcon className="w-5 h-5 text-cyan-400" /> 
               Remoto desde Colombia
               </a>
-            <div className="flex items-center gap-2 text-gray-300 dark:text-secondary">
-              <Phone className="w-5 h-5 text-cyan-400" />
-              <a href="https://wa.link/ukyqpg" className="text-gray-300 hover:text-cyan-400 transition-colors dark:text-secondary">
-                +57 321 954 1241
-              </a>
+            <div className="flex items-center gap-2 text-gray-300 hover:text-cyan-400 transition-colors dark:text-secondary cursor-pointer" onClick={() => scrollToSection('estudios')}>
+              <BookOpen className="w-5 h-5 text-cyan-400" />
+              Mis Estudios
             </div>
             <div className="flex items-center gap-2 text-gray-300 dark:text-secondary">
               <Mail className="w-5 h-5 text-cyan-400" />
