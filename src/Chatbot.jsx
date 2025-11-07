@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { MessageCircle, X, Bot, Sparkles, Zap, RotateCcw } from 'lucide-react';
 
-const Chatbot = () => {
-  const [isOpen, setIsOpen] = useState(false);
+const Chatbot = ({ forceOpen = false, onShare, onScrollToContact }) => {
+  const [isOpen, setIsOpen] = useState(forceOpen);
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
       content: '¡Hola! 👋 Soy el asistente programado de Juan Pablo. ¿En qué puedo ayudarte hoy?',
-      options: ['Servicios', 'Desarrollo Web', 'Marketing Digital', 'Preguntas Frecuentes', 'Contacto']
+      options: ['Servicios', 'Desarrollo Web', 'Marketing Digital','Contacto','Preguntas Frecuentes']
     }
   ]);
   const [isLoading, setIsLoading] = useState(false);
@@ -49,7 +49,7 @@ const Chatbot = () => {
     },
     'Contacto': {
       text: '¡Perfecto! Juan Pablo estará encantado de ayudarte. ¿Cómo prefieres contactarlo?',
-      options: ['WhatsApp', 'Enviar Email', 'Ver Teléfono', 'Más Información']
+      options: ['Compartir esta Web', 'Enviar Email', 'Enviar mensaje', 'Más Información']
     },
     'Ver Tecnologías': {
       text: 'Stack tecnológico:\n\n• Frontend: React + Vite + Tailwind CSS\n• Backend: Node.js\n• Bases de datos: MySQL\n• Automatización: Python (IA)\n• Control de versiones: Git & GitHub\n• Apps móviles: React Native\n\nTodo para crear soluciones modernas y escalables.',
@@ -85,10 +85,7 @@ const Chatbot = () => {
       options: ['Volver al Inicio'],
       action: 'email'
     },
-    'Ver Teléfono': {
-      text: 'Puedes llamar o escribir por WhatsApp:\n\n📱 +57 321 954 1241\n\n¿Prefieres que abramos WhatsApp directamente?',
-      options: ['WhatsApp', 'Volver al Inicio']
-    },
+
     'Más Información': {
       text: '¿Qué más te gustaría saber? Puedo contarte sobre:\n\n• Proyectos realizados\n• Experiencia profesional\n• Certificaciones\n• Métodos de pago\n• Trabajo internacional',
       options: ['Servicios', 'Háblame de Juan Pablo', 'Contacto']
@@ -103,7 +100,7 @@ const Chatbot = () => {
     },
     'Volver al Inicio': {
       text: '¡Perfecto! ¿Hay algo más en lo que pueda ayudarte? 😊',
-      options: ['Servicios', 'Desarrollo Web', 'Marketing Digital', 'Preguntas Frecuentes', 'Contacto']
+      options: ['Servicios', 'Desarrollo Web', 'Marketing Digital', 'Preguntas Frecuentes', 'Enviar mensaje', 'Contacto']
     },
     'Preguntas Frecuentes': {
       text: 'Aquí van algunas preguntas frecuentes:\n\n• ¿Trabajas con clientes internacionales? Sí, en toda LATAM.\n• ¿Ofreces mantenimiento? Sí, planes disponibles.\n• ¿Qué métodos de pago aceptas? Transferencia, PayPal, cripto.\n\n¿Cuál te gustaría profundizar?',
@@ -116,6 +113,11 @@ const Chatbot = () => {
     'Pagos': {
       text: 'Aceptamos:\n\n• Transferencias bancarias\n• PayPal\n• Mercado Pago\n• Criptomonedas (USDT, BTC)\n\n50% anticipo, 50% al finalizar.',
       options: ['Preguntas Frecuentes', 'Contacto']
+    },
+    'Compartir esta Web': {
+      text: '¡Perfecto! Abre el modal de compartir para que puedas compartir este portafolio con un amigo. ¡Gracias por ayudar a difundir mi trabajo! 🙌',
+      options: ['Volver al Inicio'],
+      action: 'share'
     }
   };
 
@@ -127,9 +129,15 @@ const Chatbot = () => {
         {
           role: 'assistant',
           content: '¡Hola! 👋 Soy el asistente programado de Juan Pablo. ¿En qué puedo ayudarte hoy?',
-          options: ['Servicios', 'Desarrollo Web', 'Marketing Digital', 'Preguntas Frecuentes', 'Contacto']
+          options: ['Servicios', 'Desarrollo Web', 'Marketing Digital', 'Preguntas Frecuentes', 'Enviar mensaje', 'Contacto']
         }
       ]);
+      return;
+    }
+
+    if (option === 'Enviar mensaje') {
+      if (onScrollToContact) onScrollToContact();
+      setIsOpen(false);
       return;
     }
 
@@ -155,6 +163,10 @@ const Chatbot = () => {
       } else if (response.action === 'whatsapp') {
         setTimeout(() => {
           window.open('https://wa.me/573219541241?text=Hola%20Juan%20Pablo,%20me%20contacto%20desde%20tu%20portfolio%20web.%20', '_blank');
+        }, 500);
+      } else if (response.action === 'share') {
+        setTimeout(() => {
+          if (onShare) onShare();
         }, 500);
       }
     }

@@ -53,6 +53,7 @@ const Portfolio = () => {
   const [loginError, setLoginError] = useState('');
   const [restartTyping, setRestartTyping] = useState(0);
   const [showVideoModal, setShowVideoModal] = useState(false);
+  const [showShareModal, setShowShareModal] = useState(false);
   const [prevScrollY, setPrevScrollY] = useState(0);
   const [hasRestartedOnScrollUp, setHasRestartedOnScrollUp] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -561,6 +562,25 @@ const courses = [
 
   const handleCardClick = () => {
     setCurrentIndex((prev) => (prev + 1) % 3);
+  };
+
+  const handleShare = async () => {
+    const shareData = {
+      title: 'Portafolio de Juan Pablo Gutiérrez Díaz',
+      text: 'Mira el portafolio de Juan Pablo https://juanpablogutierrez.space/ conoce sus servicios te van a interesar!',
+      url: 'https://juanpablogutierrez.space/'
+    };
+
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+      } catch (err) {
+        console.log('Error sharing:', err);
+        setShowShareModal(true);
+      }
+    } else {
+      setShowShareModal(true);
+    }
   };
 
   const subtitleTexts = [
@@ -1245,15 +1265,13 @@ return (
                 <Briefcase className="w-4 h-4 sm:w-5 sm:h-5" />
                 Servicios
               </button>
-              <a
-                href="https://wa.link/ukyqpg"
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                onClick={() => scrollToSection('contacto')}
                 className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-4 sm:px-6 py-3 sm:py-4 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-purple-500/25 flex items-center justify-center gap-2 text-center"
               >
                 <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5" />
-                WhatsApp
-              </a>
+                Contacto
+              </button>
             </div>
           </div>
 
@@ -1372,7 +1390,7 @@ return (
                   <div className={`bg-gradient-to-r ${card.color} p-4 rounded-full w-16 h-16 mx-auto mb-4`}>
                     {card.icon}
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-4 dark:text-primary">{card.title}</h3>
+                  <h3 className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent mb-4">{card.title}</h3>
                 </div>
                 <p className="text-gray-300 mb-6 dark:text-secondary">
                   {card.description}
@@ -1426,7 +1444,7 @@ return (
                 key={index}
                 className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:border-cyan-400/50 transition-all duration-300 dark:bg-card dark:border-card p-6"
               >
-                <h3 className="text-lg font-semibold text-white dark:text-primary mb-3">
+                <h3 className="text-lg font-semibold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent mb-3">
                   {faq.question}
                 </h3>
                 <p className="text-gray-300 dark:text-secondary leading-relaxed" dangerouslySetInnerHTML={{ __html: faq.answer }}></p>
@@ -1509,30 +1527,39 @@ return (
             {/* Contact Info */}
             <div className="space-y-8">
               <div className="bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-cyan-400/50 transition-all duration-300 dark:bg-card dark:border-card">
-                <Mail className="w-8 h-8 text-cyan-400 mb-4" />
-                <h3 className="text-xl font-bold text-white mb-2 dark:text-primary">Email</h3>
-                <a href="mailto:contact.juannppgd@gmail.com" className="text-gray-300 hover:text-cyan-400 transition-colors dark:text-secondary">
-                contact.juannppgd@gmail.com
-              </a>
-              </div>  
-              
-              <div className="bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-purple-400/50 transition-all duration-300 dark:bg-card dark:border-card">
-                <Phone className="w-8 h-8 text-purple-400 mb-4" />
-                <h3 className="text-xl font-bold text-white mb-2 dark:text-primary">Teléfono</h3>
+                <div className="flex items-center gap-4 mb-4">
+                  <Mail className="w-8 h-8 text-cyan-400" />
+                  <h3 className="text-xl font-bold text-white dark:text-primary">Email</h3>
+                </div>
                 <p className="text-gray-300 dark:text-secondary">
-                  <a href="https://wa.link/ukyqpg" className="text-gray-300 hover:text-purple-400 transition-colors dark:text-secondary">
-                    +57 321 954 1241
-                  </a>
+                  ¿Prefieres contactarme directamente por tu correo? Haz click aquí te responderé en breve:
                 </p>
+                <a href="mailto:contact.juannppgd@gmail.com" className="text-cyan-400 hover:text-cyan-300 transition-colors dark:text-cyan-300 font-semibold">
+                  contact.juannppgd@gmail.com
+                </a>
               </div>
-              
+
               <div className="bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-cyan-400/50 transition-all duration-300 dark:bg-card dark:border-card">
-                <MapPin className="w-8 h-8 text-cyan-400 mb-4" />
-                <h3 className="text-xl font-bold text-white mb-2 dark:text-primary">Ubicación</h3>
+                <div className="flex items-center gap-4 mb-4">
+                  <Users className="w-8 h-8 text-cyan-400" />
+                  <h3 className="text-xl font-bold text-white dark:text-primary">Redes Sociales</h3>
+                </div>
                 <p className="text-gray-300 dark:text-secondary">
-                  <a className="text-gray-300 hover:text-cyan-400 transition-colors dark:text-secondary">
-                    Desde Colombia, colaborando con clientes en todo el mundo.
-                  </a>
+                  Elige tu red social favorita y escríbeme para una consulta gratuita, o simplemente llena el formulario. ¡Estoy aquí para ayudarte a crecer!
+                </p>
+                <button onClick={() => scrollToSection('footer')} className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition-colors dark:text-cyan-300 mt-2 cursor-pointer">
+                  <Users className="w-5 h-5" />
+                  <span className="font-semibold">Conoce mis redes sociales</span>
+                </button>
+              </div>
+
+              <div className="bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-cyan-400/50 transition-all duration-300 dark:bg-card dark:border-card">
+                <div className="flex items-center gap-4 mb-4">
+                  <MapPin className="w-8 h-8 text-cyan-400" />
+                  <h3 className="text-xl font-bold text-white dark:text-primary">Ubicación</h3>
+                </div>
+                <p className="text-gray-300 dark:text-secondary">
+                  Desde Colombia, trabajando con clientes globales.
                 </p>
               </div>
             </div>
@@ -1605,7 +1632,7 @@ return (
                   </label>
                   <textarea
                     name="message"
-                    placeholder="Cuéntame sobre tu proyecto, ideas o necesidades. ¿Cómo prefieres que te contacte? (Email, WhatsApp, etc.)"
+                    placeholder="Cuéntame sobre tu proyecto, ideas o necesidades. ¿Cómo prefieres que te contacte? (Escribe tu WhatsApp)"
                     value={formData.message}
                     onChange={handleInputChange}
                     rows={4}
@@ -1697,7 +1724,7 @@ return (
       </section>
 
       {/* Footer */}
-      <footer className="py-12 px-4 border-t border-white/10 bg-gradient-to-br from-slate-900/50 to-purple-900/30 backdrop-blur-sm dark:bg-dark-bg">
+      <footer id="footer" className="py-12 px-4 border-t border-white/10 bg-gradient-to-br from-slate-900/50 to-purple-900/30 backdrop-blur-sm dark:bg-dark-bg">
         <div className="max-w-6xl mx-auto">
           {/* Social Media Section */}
           <div className="text-center mb-12">
@@ -1790,19 +1817,6 @@ return (
                 <ArrowUpRight className="w-4 h-4 text-red-300 mx-auto mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />
               </a>
 
-              {/* WhatsApp */}
-              <a 
-                href="https://wa.link/ukyqpg" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="group bg-gradient-to-br from-green-600/20 to-green-800/20 hover:from-green-500/30 hover:to-green-700/30 backdrop-blur-sm rounded-2xl p-6 border border-green-500/20 hover:border-green-400/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-green-500/20 animate-socialfade animate-bounce dark:bg-card dark:border-card"
-              >
-                <MessageCircle className="w-8 h-8 text-green-400 mx-auto mb-3 group-hover:animate-bounce" />
-                <div className="text-white font-semibold text-sm mb-1 dark:text-primary">WhatsApp</div>
-                <div className="text-green-300 text-xs opacity-80 dark:text-secondary">Direct Chat</div>
-                <ArrowUpRight className="w-4 h-4 text-green-300 mx-auto mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />
-              </a>
-
               {/* Telegram */}
               <a
                 href="https://t.me/juannppgd"
@@ -1863,6 +1877,17 @@ return (
                 <div className="text-white font-semibold text-sm mb-1 dark:text-primary">Discord</div>
                 <div className="text-indigo-300 text-xs opacity-80 dark:text-secondary">juannppgd</div>
               </a>
+
+              {/* Compartir */}
+              <button
+                onClick={handleShare}
+                className="group bg-gradient-to-br from-cyan-600/20 to-purple-800/20 hover:from-cyan-500/30 hover:to-purple-700/30 backdrop-blur-sm rounded-2xl p-6 border border-cyan-500/20 hover:border-cyan-400/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/20 animate-socialfade dark:bg-card dark:border-card"
+              >
+                <Users className="w-8 h-8 text-cyan-400 mx-auto mb-3 group-hover:animate-bounce" />
+                <div className="text-white font-semibold text-sm mb-1 dark:text-primary">Compartir</div>
+                <div className="text-cyan-300 text-xs opacity-80 dark:text-secondary">Comparte esta web</div>
+                <ArrowUpRight className="w-4 h-4 text-cyan-300 mx-auto mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+              </button>
             </div>
           </div>
 
@@ -1890,15 +1915,12 @@ return (
                 <Briefcase className="w-4 h-4 sm:w-5 sm:h-5" />
                 Servicios
               </button>
-              <a
-                href="https://wa.link/ukyqpg"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-4 sm:px-6 py-3 sm:py-4 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-purple-500/25 flex items-center justify-center gap-2 text-center"
-              >
+                <button
+              onClick={() => scrollToSection('contacto')}
+              className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-4 sm:px-6 py-3 sm:py-4 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-purple-500/25 flex items-center justify-center gap-2 text-center">
                 <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5" />
-                WhatsApp
-              </a>
+                Contacto
+                </button>
             </div>
           </div>
 
@@ -2105,8 +2127,63 @@ return (
         </div>
       )}
 
+      {showShareModal && (
+        <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/40 backdrop-blur-sm animate-fadein dark:bg-black/60 p-4">
+          <div className="bg-gradient-to-br from-cyan-500/90 to-purple-500/90 rounded-3xl p-4 sm:p-6 md:p-8 shadow-2xl border border-white/20 text-center animate-cardpop dark:bg-card dark:border-card max-w-sm sm:max-w-md md:max-w-lg mx-4">
+            <h4 className="text-2xl font-bold text-white mb-4 dark:text-primary">Compartir Portafolio</h4>
+            <p className="text-white mb-6 dark:text-secondary">Mira el portafolio de Juan Pablo https://juanpablogutierrez.space/ conoce sus servicios</p>
+            <div className="grid grid-cols-2 gap-4 mb-6">
+              <a
+                href={`https://wa.me/?text=${encodeURIComponent('Mira el portafolio de Juan Pablo https://juanpablogutierrez.space/ conoce sus servicios')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 bg-green-500/20 hover:bg-green-500/30 text-green-300 hover:text-green-200 py-3 px-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105"
+              >
+                <MessageCircle className="w-5 h-5" />
+                WhatsApp
+              </a>
+              <a
+                href={`https://t.me/share/url?url=${encodeURIComponent('https://juanpablogutierrez.space/')}&text=${encodeURIComponent('Mira el portafolio de Juan Pablo https://juanpablogutierrez.space/ conoce sus servicios')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 bg-sky-500/20 hover:bg-sky-500/30 text-sky-300 hover:text-sky-200 py-3 px-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105"
+              >
+                <FaTelegram className="w-5 h-5" />
+                Telegram
+              </a>
+              <a
+                href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://juanpablogutierrez.space/')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 hover:text-blue-200 py-3 px-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105"
+              >
+                <FaFacebook className="w-5 h-5" />
+                Facebook
+              </a>
+              <a
+                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent('Mira el portafolio de Juan Pablo https://juanpablogutierrez.space/ conoce sus servicios')}&url=${encodeURIComponent('https://juanpablogutierrez.space/')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 bg-gray-500/20 hover:bg-gray-500/30 text-gray-300 hover:text-gray-200 py-3 px-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105"
+              >
+                <FaTwitter className="w-5 h-5" />
+                Twitter
+              </a>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <button
+                onClick={() => setShowShareModal(false)}
+                className="w-full sm:w-auto bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white px-4 sm:px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-cyan-500/25"
+              >
+                Cerrar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Chatbot */}
-      <Chatbot />
+      <Chatbot onShare={handleShare} onScrollToContact={() => scrollToSection('contacto')} />
 
       <style dangerouslySetInnerHTML={{
         __html: `

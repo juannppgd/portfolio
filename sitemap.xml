@@ -1,48 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+  xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+    http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd
+    http://www.google.com/schemas/sitemap-image/1.1
+    http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd">
+
+  <!-- Homepage -->
   <url>
     <loc>https://juanpablogutierrez.space/</loc>
-    <changefreq>weekly</changefreq>
+    <lastmod>2025-11-07</lastmod>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://juanpablogutierrez.space/profile_img.jpg</image:loc>
+      <image:title>Juan Pablo Gutiérrez - Desarrollador Web y Marketing Digital</image:title>
+    </image:image>
   </url>
+
+  <!-- Servicios -->
   <url>
     <loc>https://juanpablogutierrez.space/servicios</loc>
+    <lastmod>2025-11-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
+
+  <!-- Estudios -->
   <url>
     <loc>https://juanpablogutierrez.space/estudios</loc>
-    <changefreq>weekly</changefreq>
+    <lastmod>2025-11-07</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <!-- Experiencia -->
   <url>
     <loc>https://juanpablogutierrez.space/experiencia</loc>
+    <lastmod>2025-11-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Habilidades -->
+  <url>
+    <loc>https://juanpablogutierrez.space/habilidades</loc>
+    <lastmod>2025-11-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Stack -->
+  <url>
+    <loc>https://juanpablogutierrez.space/stack</loc>
+    <lastmod>2025-11-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Impacto -->
+  <url>
+    <loc>https://juanpablogutierrez.space/impacto</loc>
+    <lastmod>2025-11-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  <url>
-    <loc>https://juanpablogutierrez.space/habilidades</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://juanpablogutierrez.space/stack</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://juanpablogutierrez.space/impacto</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
+
+  <!-- Reseñas -->
   <url>
     <loc>https://juanpablogutierrez.space/reseñas</loc>
+    <lastmod>2025-11-07</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
+
+  <!-- Contacto -->
   <url>
     <loc>https://juanpablogutierrez.space/contacto</loc>
-    <changefreq>weekly</changefreq>
+    <lastmod>2025-11-07</lastmod>
+    <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
 </urlset>

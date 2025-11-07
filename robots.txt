@@ -1,4 +1,31 @@
 User-agent: *
-Disallow:
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /private/
 
+# Allow search engines to execute JavaScript (important for SPAs)
+User-agent: Googlebot
+Allow: /
+User-agent: Googlebot-Mobile
+Allow: /
+User-agent: Bingbot
+Allow: /
+User-agent: YandexBot
+Allow: /
+
+# Block AI crawlers from scraping content
+User-agent: GPTBot
+Disallow: /
+User-agent: ChatGPT-User
+Disallow: /
+User-agent: CCBot
+Disallow: /
+User-agent: anthropic-ai
+Disallow: /
+
+# Crawl delay for performance
+Crawl-delay: 1
+
+# Sitemaps
 Sitemap: https://juanpablogutierrez.space/sitemap.xml
