@@ -567,7 +567,7 @@ const courses = [
   const handleShare = async () => {
     const shareData = {
       title: 'Portafolio de Juan Pablo Gutiérrez Díaz',
-      text: 'Mira el portafolio de Juan Pablo https://juanpablogutierrez.space/ conoce sus servicios te van a interesar!',
+      text: 'Mira el portafolio de Juan Pablo conoce sus servicios te van a interesar!',
       url: 'https://juanpablogutierrez.space/'
     };
 
