@@ -3,7 +3,7 @@ import { Mail, MapPin, ChevronDown, Code, Briefcase, User, Send, MessageCircle, 
 import { FaTiktok, FaTelegram, FaPinterest, FaFacebook, FaInstagram, FaLinkedin, FaTwitter, FaYoutube, FaSnapchat, FaDiscord } from 'react-icons/fa';
 import emailjs from '@emailjs/browser';
 import perfil from './assets/profile-image.jpg';
-import XImage from './assets/X.png';
+import XImage from './assets/X2.png';
 import kickImage from './assets/kick.png';
 import Chatbot from './Chatbot';
 
@@ -2138,7 +2138,7 @@ return (
                 href={`https://wa.me/?text=${encodeURIComponent('Mira el portafolio de Juan Pablo https://juanpablogutierrez.space/ conoce sus servicios')}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 bg-green-500/40 hover:bg-green-500/60 text-green-300 hover:text-green-200 py-3 px-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105"
+                className="flex items-center justify-center gap-2 bg-green-500/70 hover:bg-green-500/90 text-white py-3 px-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-green-500/50"
               >
                 <MessageCircle className="w-5 h-5" />
                 WhatsApp
@@ -2147,7 +2147,7 @@ return (
                 href={`https://t.me/share/url?url=${encodeURIComponent('https://juanpablogutierrez.space/')}&text=${encodeURIComponent('Mira el portafolio de Juan Pablo https://juanpablogutierrez.space/ conoce sus servicios')}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 bg-sky-500/40 hover:bg-sky-500/60 text-sky-300 hover:text-sky-200 py-3 px-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105"
+                className="flex items-center justify-center gap-2 bg-sky-500/70 hover:bg-sky-500/90 text-white py-3 px-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-sky-500/50"
               >
                 <FaTelegram className="w-5 h-5" />
                 Telegram
@@ -2156,7 +2156,7 @@ return (
                 href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://juanpablogutierrez.space/')}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 bg-blue-500/40 hover:bg-blue-500/60 text-blue-300 hover:text-blue-200 py-3 px-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105"
+                className="flex items-center justify-center gap-2 bg-blue-500/70 hover:bg-blue-500/90 text-white py-3 px-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-blue-500/50"
               >
                 <FaFacebook className="w-5 h-5" />
                 Facebook
@@ -2165,7 +2165,7 @@ return (
                 href="https://www.instagram.com/juannppgd"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 bg-pink-500/40 hover:bg-pink-500/60 text-pink-300 hover:text-pink-200 py-3 px-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105"
+                className="flex items-center justify-center gap-2 bg-pink-500/70 hover:bg-pink-500/90 text-white py-3 px-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-pink-500/50"
               >
                 <FaInstagram className="w-5 h-5" />
                 Instagram
