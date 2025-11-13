@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { MessageCircle, X, Bot, Sparkles, Zap, RotateCcw } from 'lucide-react';
 
-const Chatbot = ({ forceOpen = false, onShare, onScrollToContact }) => {
+const Chatbot = ({ forceOpen = false, onShare, onScrollToContact, onScrollToFooter }) => {
   const [isOpen, setIsOpen] = useState(forceOpen);
   const [messages, setMessages] = useState([
     {
@@ -44,12 +44,17 @@ const Chatbot = ({ forceOpen = false, onShare, onScrollToContact }) => {
       options: ['Ver Tecnologías', 'Tiempos de Desarrollo', '¿Incluye Hosting?', 'Contacto']
     },
     'Marketing Digital': {
-      text: 'Servicios completos de marketing digital: campañas de email/SMS, gestión de redes sociales, SEO, SEM y análisis de datos. Estrategias personalizadas para impulsar tu negocio online. ¿Qué aspecto te interesa?',
-      options: ['Email Marketing', 'Redes Sociales', 'Análisis de Datos', 'Contacto']
+      text: 'Servicios completos de marketing digital: Edición profesional de fotografía y video, campañas de email/SMS, gestión de redes sociales, SEO, SEM y análisis de datos. Estrategias personalizadas para impulsar tu negocio online. ¿Qué aspecto te interesa?',
+      options: ['Email Marketing', 'Redes Sociales', 'Análisis de Datos','Contacto',  'Ver Canal de YouTube' ]
     },
     'Contacto': {
       text: '¡Perfecto! Juan Pablo estará encantado de ayudarte. ¿Cómo prefieres contactarlo?',
-      options: ['Compartir esta Web', 'Enviar Email', 'Enviar mensaje', 'Más Información']
+      options: ['Compartir esta Web', 'Enviar Email', 'Enviar mensaje', 'Más Información', 'Ver Redes Sociales']
+    },
+    'Ver Redes Sociales': {
+      text: '¡Excelente! Te llevo a la sección de redes sociales para que conozcas más sobre Juan Pablo y sus proyectos. ¡Síguenos para estar al día! 📱',
+      options: ['Volver al Inicio'],
+      action: 'footer'
     },
     'Ver Tecnologías': {
       text: 'Stack tecnológico:\n\n• Frontend: React + Vite + Tailwind CSS\n• Backend: Node.js\n• Bases de datos: MySQL\n• Automatización: Python (IA)\n• Control de versiones: Git & GitHub\n• Apps móviles: React Native\n\nTodo para crear soluciones modernas y escalables.',
@@ -74,6 +79,11 @@ const Chatbot = ({ forceOpen = false, onShare, onScrollToContact }) => {
     'Análisis de Datos': {
       text: 'Toma decisiones basadas en datos:\n\n• Google Analytics integrado\n• Reportes personalizados\n• Segmentación avanzada\n• Optimización continua\n• KPIs y métricas clave\n\nTransforma datos en resultados.',
       options: ['Marketing Digital', 'Email Marketing', 'Contacto']
+    },
+    'Ver Canal de YouTube': {
+      text: '¡Excelente! Te llevo al canal de YouTube de Juan Pablo para que conozcas más sobre sus servicios y proyectos. 📺',
+      options: ['Volver al Inicio'],
+      action: 'youtube'
     },
     'WhatsApp': {
       text: '¡Excelente! Te conecto con Juan Pablo por WhatsApp. Es la forma más rápida de conversar directamente. 💬',
@@ -100,7 +110,7 @@ const Chatbot = ({ forceOpen = false, onShare, onScrollToContact }) => {
     },
     'Volver al Inicio': {
       text: '¡Perfecto! ¿Hay algo más en lo que pueda ayudarte? 😊',
-      options: ['Servicios', 'Desarrollo Web', 'Marketing Digital', 'Preguntas Frecuentes', 'Enviar mensaje', 'Contacto']
+      options: ['Servicios', 'Desarrollo Web', 'Marketing Digital', 'Contacto', 'Preguntas Frecuentes', 'Enviar mensaje']
     },
     'Preguntas Frecuentes': {
       text: 'Aquí van algunas preguntas frecuentes:\n\n• ¿Trabajas con clientes internacionales? Sí, en toda LATAM.\n• ¿Ofreces mantenimiento? Sí, planes disponibles.\n• ¿Qué métodos de pago aceptas? Transferencia, PayPal, cripto.\n\n¿Cuál te gustaría profundizar?',
@@ -156,6 +166,11 @@ const Chatbot = ({ forceOpen = false, onShare, onScrollToContact }) => {
       };
       setMessages(prev => [...prev, assistantMessage]);
 
+      // Cerrar el chatbot 3 segundos después de que aparezca el mensaje
+      setTimeout(() => {
+        setIsOpen(false);
+      }, 3000);
+
       if (response.action === 'email') {
         setTimeout(() => {
           window.open('mailto:contact.juannppgd@gmail.com?subject=Consulta%20desde%20el%20chatbot&body=Hola%20Juan%20Pablo,%0A%0AMe%20contacto%20desde%20tu%20portfolio%20web.%0A%0A', '_blank');
@@ -167,6 +182,14 @@ const Chatbot = ({ forceOpen = false, onShare, onScrollToContact }) => {
       } else if (response.action === 'share') {
         setTimeout(() => {
           if (onShare) onShare();
+        }, 500);
+      } else if (response.action === 'youtube') {
+        setTimeout(() => {
+          window.open('https://www.youtube.com/@juannppgd', '_blank');
+        }, 500);
+      } else if (response.action === 'footer') {
+        setTimeout(() => {
+          if (onScrollToFooter) onScrollToFooter();
         }, 500);
       }
     }

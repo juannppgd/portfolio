@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Mail, Phone, MapPin, ChevronDown, ExternalLink, Code, Briefcase, GraduationCap, Settings, User, Send, Github, MessageCircle, ArrowUpRight, Moon, Sun, Zap, Palette, Brain, Award, Trophy, BookOpen, Sparkles, Star, Crown, Medal, Globe, Cpu, Smartphone, Shield, Target, BarChart, HeartPulse, Lock, Video, Quote, CreditCard, Banknote, Key, TrendingUp, Users, Server, Plus, Loader, Calendar, Menu, X, MapPinCheckIcon, MapPinPlus } from 'lucide-react';
+import { Mail, MapPin, ChevronDown, Code, Briefcase, User, Send, MessageCircle, ArrowUpRight, Moon, Sun, Zap, Palette, Brain, Award, Trophy, BookOpen, Sparkles, Star, Globe, Cpu, Smartphone, Shield, Target, BarChart, HeartPulse, Lock, Video, CreditCard, Banknote, Key, TrendingUp, Users, Server, Plus, Loader, Calendar, Menu, X, MapPinCheckIcon, VideoIcon, Settings, Github, Quote } from 'lucide-react';
 import { FaTiktok, FaTelegram, FaPinterest, FaFacebook, FaInstagram, FaLinkedin, FaTwitter, FaYoutube, FaSnapchat, FaDiscord } from 'react-icons/fa';
 import emailjs from '@emailjs/browser';
 import perfil from './assets/profile-image.jpg';
+import XImage from './assets/X.png';
+import kickImage from './assets/kick.png';
 import Chatbot from './Chatbot';
 
 const PageLoader = () => {
@@ -13,7 +15,7 @@ const PageLoader = () => {
           <Loader className="w-16 h-16 text-cyan-400 animate-spin mx-auto" />
         </div>
         <h2 className="text-2xl md:text-3xl font-bold mb-4">
-          <span className="bg-gradient-to-r from-cyan-400 via-purple-o400 to-pink-400 bg-clip-text text-transparent animate-gradient">
+          <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-gradient">
             Bienvenido al portafolio Web de Juan Pablo Gutiérrez Díaz
           </span>
         </h2>
@@ -38,7 +40,7 @@ const Portfolio = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const typingText = "Frontend Developer | React | Performance | Automation | Python (AI)";
+  const typingText = "Frontend Dev | React | Performance | Automation | Python | Visual Media Editing";
   const [displayedText, setDisplayedText] = useState("");
   const [expandedExperiences, setExpandedExperiences] = useState([false, false]);
   const [timeLeft, setTimeLeft] = useState('');
@@ -128,7 +130,7 @@ const Portfolio = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['@juannppgd', 'servicios', 'estudios', 'experiencia', 'habilidades', 'stack', 'reseñas', 'contacto'];
+      const sections = ['@juannppgd', 'servicios', 'estudios', 'experiencia', 'habilidades', 'stack', 'proyectos', 'reseñas', 'contacto'];
       const scrollPosition = window.scrollY + 100;
       const currentScrollY = window.scrollY;
 
@@ -439,7 +441,7 @@ const courses = [
 
   const skills = [
     { name: "Pensamiento Crítico y Analítico", level: 95, category: "analytics" },
-    { name: "Segmentación de Audiencias", level: 90, category: "marketing" },
+    { name: "Producción audiovisual", level: 90, category: "marketing" },
     { name: "Análisis y Gestion de Datos", level: 85, category: "analytics" },
     { name: "Pruebas A/B y Optimización", level: 95, category: "analytics" },
     { name: "CRM HubSpot & Masivian", level: 85, category: "tools" },
@@ -457,7 +459,7 @@ const courses = [
     { name: "Visual Studio Code", category: "Development", icon: <Code className="w-6 h-6 text-white" /> },
     { name: "MySQL", category: "Database", icon: <BookOpen className="w-6 h-6 text-white" /> },
     { name: "Canva", category: "Design", icon: <Palette className="w-6 h-6 text-white" /> },
-    { name: "Docker", category: "Containerization", icon: <Cpu className="w-6 h-6 text-white" /> },
+    { name: "CapCut", category: "Edit", icon: <VideoIcon className="w-6 h-6 text-white" /> },
     { name: "Figma", category: "Design Tools", icon: <Palette className="w-6 h-6 text-white" /> },
   ];
 
@@ -498,7 +500,7 @@ const courses = [
       name: "Laura Sánchez",
       role: "Directora de Marketing",
       company: "Startup Innovadora",
-      testimonial: "Juan Pablo entiende perfectamente lo que necesitamos. No solo hace un buen trabajo, sino que nos ayuda a crecer con sus estrategias inteligentes.",
+      testimonial: "Juan Pablo logra que cada foto y video se vean impecables. Su edición realza la calidad y aporta un toque creativo que hace destacar nuestro contenido.",
       rating: 5,
       avatar: "👩‍💻"
     },
@@ -861,7 +863,7 @@ return (
               </ul>
 
               <p className="text-gray-300 mb-8 dark:text-secondary">
-                Mis páginas web incluyen diseño responsivo, optimización y son completamente personalizadas según las necesidades de tu negocio y mucho más.
+                <strong>Mis páginas web incluyen diseño responsivo, optimización de SEO, son completamente personalizadas según las necesidades de tu negocio, creadas para destacar y mucho más.</strong>
               </p>
 
               <button
@@ -913,7 +915,7 @@ return (
               </ul>
 
               <p className="text-gray-300 mb-8 dark:text-secondary">
-                Mis servicios incluyen análisis de datos, estrategias personalizadas, campañas de SMS y email marketing, gestión de redes sociales, CRM y mucho más.
+                <strong>Mis servicios incluyen Producción audiovisual, análisis de datos, estrategias personalizadas, campañas de Email/SMS marketing, gestión de redes sociales, CRM y mucho más.</strong>
               </p>
 
               <button
@@ -948,6 +950,7 @@ return (
               <h3 className="text-2xl font-bold text-white mb-2 dark:text-primary">¡Hosting y Dominio Gratis!</h3>
               <p className="text-gray-300 dark:text-secondary mb-4 italic">Aplica TyC</p>
                             <ul className="text-center text-gray-300 dark:text-secondary space-y-1 mb-3">
+                <li>• Desarrollo de Software Personalizado</li>
                 <li>• Optimización de velocidad y experiencia UX</li>
                 <li>• Integración con redes sociales y CRM</li>
                 <li>• Configuración técnica de DNS</li>
@@ -971,6 +974,7 @@ return (
               <h3 className="text-2xl font-bold text-white mb-2 dark:text-primary">¡Consultoría Gratis!</h3>
               <p className="text-gray-300 dark:text-secondary mb-4 italic">Aplica TyC</p>
               <ul className="text-center text-gray-300 dark:text-secondary space-y-1 mb-3">
+                <li>• Edición profesional de foto y video</li>
                 <li>• Análisis de datos y segmentación</li>
                 <li>• Campañas A/B testing orientadas a resultados</li>
                 <li>• Estrategia Digital personalizada</li>
@@ -1005,12 +1009,12 @@ return (
   return (
     <div
       key={index}
-      className="flex-shrink-0 w-80 group bg-white/5 backdrop-blur-sm rounded-2xl p-4 border border-white/10 hover:border-cyan-400/50 transition-all duration-300 hover:shadow-2xl hover:shadow-cyan-500/20 hover:animate-cardpop dark:bg-card dark:border-card snap-center"
+      className="flex-shrink-0 w-80 group bg-white/5 backdrop-blur-sm rounded-2xl p-4 border border-white/10 hover:border-cyan-400/50 transition-all duration-300 transform hover:shadow-2xl hover:shadow-cyan-500/20 hover:animate-cardpop dark:bg-card dark:border-card snap-center"
     >
       <div className="flex items-center mb-2">
-        <div className={`p-3 rounded-full bg-gradient-to-r ${iconColor} mr-3 group-hover:animate-bounce`}>
-          <Award className="w-8 h-8 text-white" />
-        </div>
+    <div className={`p-3 rounded-full bg-gradient-to-r ${iconColor} mr-3`}>
+      <Award className="w-8 h-8 text-white" />
+    </div>
         <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
           edu.type === 'university' ? 'bg-purple-500/20 text-purple-300' : 'bg-cyan-500/20 text-cyan-300'
         }`}>
@@ -1054,7 +1058,7 @@ return (
       className="flex-shrink-0 w-80 bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/10 hover:border-purple-400/50 transition-all duration-300 hover:animate-cardpop group dark:bg-card dark:border-card snap-center"
     >
       <div className="flex items-start gap-3 mb-2">
-        <div className={`p-3 rounded-full bg-gradient-to-r ${iconBg} text-white text-2xl group-hover:animate-bounce`}>
+        <div className={`p-3 rounded-full bg-gradient-to-r ${iconBg} text-white text-2xl`}>
           {course.icon}
         </div>
         <div className="flex-1">
@@ -1434,7 +1438,7 @@ return (
               },
               {
                 question: "¿Qué incluye el marketing digital?",
-                answer: "Análisis de datos y <strong>estrategias personalizadas</strong>, Campañas de email/SMS, Gestión de redes sociales sociales, SEO, SEM y optimización de conversiones."
+                answer: "Edición profesional de foto y video, Análisis de datos y <strong>estrategias personalizadas</strong>, Email/SMS, Gestión de redes sociales, SEO, SEM y optimización de conversiones."
               }
             ].map((faq, index) => (
               <div
@@ -1775,16 +1779,16 @@ return (
                 <ArrowUpRight className="w-4 h-4 text-blue-300 mx-auto mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />
               </a>
 
-              {/* X (Twitter) */}
+              {/* X */}
               <a
                 href="https://x.com/juannppgd"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group bg-gradient-to-br from-gray-800/20 to-black/20 hover:from-gray-700/30 hover:to-gray-900/30 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/20 hover:border-gray-600/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-gray-700/20 animate-socialfade dark:bg-card dark:border-card"
+                className="group bg-gradient-to-br from-gray-700/20 to-black/20 hover:from-gray-600/30 hover:to-gray-900/30 backdrop-blur-sm rounded-2xl p-6 border border-gray-500/20 hover:border-gray-400/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-gray-500/20 animate-socialfade dark:bg-card dark:border-card"
               >
-                <FaTwitter className="w-8 h-8 text-gray-300 mx-auto mb-3 group-hover:animate-bounce" />
+                <img src={XImage} alt="X" className="w-8 h-8 mx-auto mb-3 group-hover:animate-bounce" />
                 <div className="text-white font-semibold text-sm mb-1 dark:text-primary">X</div>
-                <div className="text-gray-300 text-xs opacity-80 dark:text-secondary">Quick Updates</div>
+                <div className="text-gray-300 text-xs opacity-80 dark:text-secondary">Social Network</div>
                 <ArrowUpRight className="w-4 h-4 text-gray-300 mx-auto mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />
               </a>
 
@@ -1853,17 +1857,17 @@ return (
                 <ArrowUpRight className="w-4 h-4 text-yellow-300 mx-auto mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />
               </a>
 
-              {/* Threads */}
+              {/* Kick */}
               <a
-                href="https://www.threads.com/@juannppgd"
+                href="https://kick.com/juannppgd"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group bg-gradient-to-br from-gray-600/20 to-black/20 hover:from-gray-500/30 hover:to-gray-700/30 backdrop-blur-sm rounded-2xl p-6 border border-gray-500/20 hover:border-gray-400/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-gray-500/20 animate-socialfade dark:bg-card dark:border-card"
+                className="group bg-gradient-to-br from-green-600/20 to-green-800/20 hover:from-green-500/30 hover:to-green-700/30 backdrop-blur-sm rounded-2xl p-6 border border-green-500/20 hover:border-green-400/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-green-500/20 animate-socialfade dark:bg-card dark:border-card"
               >
-                <FaInstagram className="w-8 h-8 text-gray-300 mx-auto mb-3 group-hover:animate-bounce" />
-                <div className="text-white font-semibold text-sm mb-1 dark:text-primary">Threads</div>
-                <div className="text-gray-300 text-xs opacity-80 dark:text-secondary">Text Updates</div>
-                <ArrowUpRight className="w-4 h-4 text-gray-300 mx-auto mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <img src={kickImage} alt="Kick" className="w-8 h-8 mx-auto mb-3 group-hover:animate-bounce" />
+                <div className="text-white font-semibold text-sm mb-1 dark:text-primary">Kick</div>
+                <div className="text-green-300 text-xs opacity-80 dark:text-secondary">Streaming</div>
+                <ArrowUpRight className="w-4 h-4 text-green-300 mx-auto mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />
               </a>
 
               {/* Discord */}
@@ -1976,7 +1980,7 @@ return (
             <p className="text-base sm:text-lg text-white/80 mb-2 dark:text-secondary">Descubre todo lo que puedo ofrecerte</p>
             <div className="mt-4 flex flex-col sm:flex-row gap-3 justify-center">
               <button
-                onClick={() => {
+                onClick={() => {  
                   scrollToSection('contacto');
                   setShowExperienceModal(false);
                 }}
@@ -2134,7 +2138,7 @@ return (
                 href={`https://wa.me/?text=${encodeURIComponent('Mira el portafolio de Juan Pablo https://juanpablogutierrez.space/ conoce sus servicios')}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 bg-green-500/20 hover:bg-green-500/30 text-green-300 hover:text-green-200 py-3 px-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105"
+                className="flex items-center justify-center gap-2 bg-green-500/40 hover:bg-green-500/60 text-green-300 hover:text-green-200 py-3 px-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105"
               >
                 <MessageCircle className="w-5 h-5" />
                 WhatsApp
@@ -2143,7 +2147,7 @@ return (
                 href={`https://t.me/share/url?url=${encodeURIComponent('https://juanpablogutierrez.space/')}&text=${encodeURIComponent('Mira el portafolio de Juan Pablo https://juanpablogutierrez.space/ conoce sus servicios')}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 bg-sky-500/20 hover:bg-sky-500/30 text-sky-300 hover:text-sky-200 py-3 px-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105"
+                className="flex items-center justify-center gap-2 bg-sky-500/40 hover:bg-sky-500/60 text-sky-300 hover:text-sky-200 py-3 px-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105"
               >
                 <FaTelegram className="w-5 h-5" />
                 Telegram
@@ -2152,19 +2156,19 @@ return (
                 href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://juanpablogutierrez.space/')}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 hover:text-blue-200 py-3 px-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105"
+                className="flex items-center justify-center gap-2 bg-blue-500/40 hover:bg-blue-500/60 text-blue-300 hover:text-blue-200 py-3 px-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105"
               >
                 <FaFacebook className="w-5 h-5" />
                 Facebook
               </a>
               <a
-                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent('Mira el portafolio de Juan Pablo https://juanpablogutierrez.space/ conoce sus servicios')}&url=${encodeURIComponent('https://juanpablogutierrez.space/')}`}
+                href="https://www.instagram.com/juannppgd"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 bg-gray-500/20 hover:bg-gray-500/30 text-gray-300 hover:text-gray-200 py-3 px-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105"
+                className="flex items-center justify-center gap-2 bg-pink-500/40 hover:bg-pink-500/60 text-pink-300 hover:text-pink-200 py-3 px-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105"
               >
-                <FaTwitter className="w-5 h-5" />
-                Twitter
+                <FaInstagram className="w-5 h-5" />
+                Instagram
               </a>
             </div>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
@@ -2180,7 +2184,7 @@ return (
       )}
 
       {/* Chatbot */}
-      <Chatbot onShare={handleShare} onScrollToContact={() => scrollToSection('contacto')} />
+      <Chatbot onShare={handleShare} onScrollToContact={() => scrollToSection('contacto')} onScrollToFooter={() => scrollToSection('footer')} />
 
       <style dangerouslySetInnerHTML={{
         __html: `
