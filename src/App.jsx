@@ -55,6 +55,7 @@ const Portfolio = () => {
   const [restartTyping, setRestartTyping] = useState(0);
   const [showVideoModal, setShowVideoModal] = useState(false);
   const [showShareModal, setShowShareModal] = useState(false);
+  const [copiedLink, setCopiedLink] = useState(false);
   const [prevScrollY, setPrevScrollY] = useState(0);
   const [hasRestartedOnScrollUp, setHasRestartedOnScrollUp] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -567,6 +568,16 @@ const courses = [
 
   const handleShare = () => {
     setShowShareModal(true);
+  };
+
+  const handleCopyLink = async () => {
+    try {
+      await navigator.clipboard.writeText('https://juanpablogutierrez.space/');
+      setCopiedLink(true);
+      setTimeout(() => setCopiedLink(false), 2000);
+    } catch (err) {
+      console.error('Error al copiar el enlace:', err);
+    }
   };
 
   const subtitleTexts = [
@@ -2155,15 +2166,26 @@ return (
                 <FaFacebook className="w-5 h-5" />
                 Facebook
               </a>
-              <a
-                href="https://www.instagram.com/juannppgd"
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                onClick={handleCopyLink}
                 className="flex items-center justify-center gap-2 bg-pink-500/70 hover:bg-pink-500/90 text-white py-3 px-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-pink-500/50"
               >
-                <FaInstagram className="w-5 h-5" />
-                Instagram
-              </a>
+                {copiedLink ? (
+                  <>
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    Copiado
+                  </>
+                ) : (
+                  <>
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                    </svg>
+                    Copiar Link
+                  </>
+                )}
+              </button>
             </div>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <button
