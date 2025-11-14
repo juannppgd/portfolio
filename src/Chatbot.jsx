@@ -1,5 +1,112 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { MessageCircle, X, Bot, Sparkles, Zap, RotateCcw } from 'lucide-react';
+
+// Mover responses fuera del componente para evitar recreación en cada render
+const responses = {
+  'Servicios': {
+    text: 'Juan Pablo ofrece dos servicios principales. ¿Sobre cuál te gustaría saber más?',
+    options: ['Desarrollo Web', 'Marketing Digital', 'Háblame de Juan Pablo', 'Contacto']
+  },
+  'Desarrollo Web': {
+    text: 'Desarrollo páginas web modernas con React, Vite y Tailwind CSS. Sitios 100% personalizados, responsivos y optimizados para convertir visitantes en clientes. Ideales para emprendedores, pymes y profesionales. ¿Qué te gustaría saber?',
+    options: ['Ver Tecnologías', 'Tiempos de Desarrollo', '¿Incluye Hosting?', 'Contacto']
+  },
+  'Marketing Digital': {
+    text: 'Servicios completos de marketing digital: Edición profesional de fotografía y video, campañas de email/SMS, gestión de redes sociales, SEO, SEM y análisis de datos. Estrategias personalizadas para impulsar tu negocio online. ¿Qué aspecto te interesa?',
+    options: ['Email Marketing', 'Redes Sociales', 'Análisis de Datos','Contacto',  'Ver Canal de YouTube' ]
+  },
+  'Contacto': {
+    text: '¡Perfecto! Juan Pablo estará encantado de ayudarte. ¿Cómo prefieres contactarlo?',
+    options: ['Compartir esta Web', 'Enviar Email', 'Enviar mensaje', 'Más Información', 'Ver Redes Sociales']
+  },
+  'Ver Redes Sociales': {
+    text: '¡Excelente! Te llevo a la sección de redes sociales para que conozcas más sobre Juan Pablo y sus proyectos. ¡Síguenos para estar al día! 📱',
+    options: ['Volver al Inicio'],
+    action: 'footer',
+    autoClose: true
+  },
+  'Ver Tecnologías': {
+    text: 'Stack tecnológico:\n\n• Frontend: React + Vite + Tailwind CSS\n• Backend: Node.js\n• Bases de datos: MySQL\n• Automatización: Python (IA)\n• Control de versiones: Git & GitHub\n• Apps móviles: React Native\n\nTodo para crear soluciones modernas y escalables.',
+    options: ['Desarrollo Web', 'Ver Ejemplos', 'Contacto']
+  },
+  'Tiempos de Desarrollo': {
+    text: 'Los tiempos varían según complejidad:\n\n• Landing page básica: 3-5 días\n• Sitio corporativo: 1-2 semanas\n• E-commerce completo: 3-4 semanas\n\nIncluye consultoría gratuita inicial para definir tu proyecto.',
+    options: ['¿Incluye Hosting?', 'Ver Tecnologías', 'Contacto']
+  },
+  '¿Incluye Hosting?': {
+    text: '¡Sí! El primer año incluye:\n\n✓ Hosting y dominio gratis*\n✓ Correo corporativo\n✓ Configuración DNS\n✓ Certificado SSL\n✓ 3 meses de soporte gratis\n\n*Aplican términos y condiciones',
+    options: ['Desarrollo Web', 'Contacto']
+  },
+  'Email Marketing': {
+    text: 'Campañas de email y SMS marketing con:\n\n• Segmentación de audiencias\n• Pruebas A/B para optimización\n• Automatización con EmailJS\n• Análisis de resultados\n• CRM integrado (HubSpot/Masivian)\n\nAumento de engagement garantizado.',
+    options: ['Marketing Digital', 'Análisis de Datos', 'Contacto']
+  },
+  'Redes Sociales': {
+    text: 'Gestión profesional de redes sociales:\n\n• Creación de contenido atractivo\n• Programación estratégica\n• Análisis de métricas\n• Community management\n• Campañas en Meta Business Suite\n\nConecta mejor con tu audiencia.',
+    options: ['Marketing Digital', 'Email Marketing', 'Contacto']
+  },
+  'Análisis de Datos': {
+    text: 'Toma decisiones basadas en datos:\n\n• Google Analytics integrado\n• Reportes personalizados\n• Segmentación avanzada\n• Optimización continua\n• KPIs y métricas clave\n\nTransforma datos en resultados.',
+    options: ['Marketing Digital', 'Email Marketing', 'Contacto']
+  },
+  'Ver Canal de YouTube': {
+    text: '¡Excelente! Te llevo al canal de YouTube de Juan Pablo para que conozcas más sobre sus servicios y proyectos. 📺',
+    options: ['Volver al Inicio'],
+    action: 'youtube'
+  },
+  'WhatsApp': {
+    text: '¡Excelente! Te conecto con Juan Pablo por WhatsApp. Es la forma más rápida de conversar directamente. 💬',
+    options: ['Volver al Inicio'],
+    action: 'whatsapp'
+  },
+  'Enviar Email': {
+    text: 'Te abro el email para que puedas escribir directamente. Juan Pablo responde en menos de 24 horas. 📧',
+    options: ['Volver al Inicio'],
+    action: 'email',
+    autoClose: true
+  },
+  'Más Información': {
+    text: '¿Qué más te gustaría saber? Puedo contarte sobre:\n\n• Proyectos realizados\n• Experiencia profesional\n• Certificaciones\n• Métodos de pago\n• Trabajo internacional',
+    options: ['Servicios', 'Háblame de Juan Pablo', 'Contacto'],
+    autoClose: true
+  },
+  'Ver Ejemplos': {
+    text: 'Juan Pablo tiene un portfolio con diversos proyectos:\n\n• E-commerce\n• Landing pages\n• Sitios corporativos\n• Aplicaciones web\n\nExplora su sitio web para ver casos de éxito y testimonios reales.',
+    options: ['Desarrollo Web', 'Contacto']
+  },
+  'Háblame de Juan Pablo': {
+    text: 'Juan Pablo es desarrollador web full-stack y experto en performance marketing. Experiencia en React, Python (IA), y marketing digital. Trabaja con clientes en toda LATAM desde Colombia. Certificado en múltiples tecnologías y metodologías.',
+    options: ['Ver Tecnologías', 'Servicios', 'Contacto']
+  },
+  'Volver al Inicio': {
+    text: '¡Perfecto! ¿Hay algo más en lo que pueda ayudarte? 😊',
+    options: ['Servicios', 'Desarrollo Web', 'Marketing Digital', 'Contacto', 'Preguntas Frecuentes', 'Enviar mensaje']
+  },
+  'Preguntas Frecuentes': {
+    text: 'Aquí van algunas preguntas frecuentes:\n\n• ¿Trabajas con clientes internacionales? Sí, en toda LATAM.\n• ¿Ofreces mantenimiento? Sí, planes disponibles.\n• ¿Qué métodos de pago aceptas? Transferencia, PayPal, cripto.\n\n¿Cuál te gustaría profundizar?',
+    options: ['Mantenimiento', 'Pagos', 'Contacto']
+  },
+  'Mantenimiento': {
+    text: 'Planes de mantenimiento:\n\n• Básico: Actualizaciones menores\n• Premium: Soporte completo, backups\n• Anual: Descuento disponible\n\nGarantiza que tu sitio esté siempre actualizado.',
+    options: ['Preguntas Frecuentes', 'Contacto']
+  },
+  'Pagos': {
+    text: 'Aceptamos:\n\n• Transferencias bancarias\n• PayPal\n• Mercado Pago\n• Criptomonedas (USDT, BTC)\n\n50% anticipo, 50% al finalizar.',
+    options: ['Preguntas Frecuentes', 'Contacto']
+  },
+  'Compartir esta Web': {
+    text: '¡Perfecto! Abre el modal de compartir para que puedas compartir este portafolio con un amigo. ¡Gracias por ayudar a difundir mi trabajo! 🙌',
+    options: ['Volver al Inicio'],
+    action: 'share',
+    autoClose: true
+  },
+  'Enviar mensaje': {
+    text: 'Te llevo al formulario de contacto para que puedas enviar tu mensaje directamente. 📝',
+    options: ['Volver al Inicio'],
+    action: 'contact',
+    autoClose: true
+  }
+};
 
 const Chatbot = ({ forceOpen = false, onShare, onScrollToContact, onScrollToFooter }) => {
   const [isOpen, setIsOpen] = useState(forceOpen);
@@ -12,15 +119,16 @@ const Chatbot = ({ forceOpen = false, onShare, onScrollToContact, onScrollToFoot
   ]);
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef(null);
+  const closeTimeoutRef = useRef(null);
 
-  // Auto-scroll al último mensaje
-  const scrollToBottom = () => {
+  // Auto-scroll al último mensaje - memoizado para evitar recreación
+  const scrollToBottom = useCallback(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
+  }, []);
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages]);
+  }, [messages, scrollToBottom]);
 
   // Prevenir scroll del body cuando el chat está abierto en móvil
   useEffect(() => {
@@ -31,108 +139,23 @@ const Chatbot = ({ forceOpen = false, onShare, onScrollToContact, onScrollToFoot
     }
     return () => {
       document.body.style.overflow = 'unset';
+      // Limpiar timeout al desmontar
+      if (closeTimeoutRef.current) {
+        clearTimeout(closeTimeoutRef.current);
+        closeTimeoutRef.current = null;
+      }
     };
   }, [isOpen]);
 
-  const responses = {
-    'Servicios': {
-      text: 'Juan Pablo ofrece dos servicios principales. ¿Sobre cuál te gustaría saber más?',
-      options: ['Desarrollo Web', 'Marketing Digital', 'Háblame de Juan Pablo', 'Contacto']
-    },
-    'Desarrollo Web': {
-      text: 'Desarrollo páginas web modernas con React, Vite y Tailwind CSS. Sitios 100% personalizados, responsivos y optimizados para convertir visitantes en clientes. Ideales para emprendedores, pymes y profesionales. ¿Qué te gustaría saber?',
-      options: ['Ver Tecnologías', 'Tiempos de Desarrollo', '¿Incluye Hosting?', 'Contacto']
-    },
-    'Marketing Digital': {
-      text: 'Servicios completos de marketing digital: Edición profesional de fotografía y video, campañas de email/SMS, gestión de redes sociales, SEO, SEM y análisis de datos. Estrategias personalizadas para impulsar tu negocio online. ¿Qué aspecto te interesa?',
-      options: ['Email Marketing', 'Redes Sociales', 'Análisis de Datos','Contacto',  'Ver Canal de YouTube' ]
-    },
-    'Contacto': {
-      text: '¡Perfecto! Juan Pablo estará encantado de ayudarte. ¿Cómo prefieres contactarlo?',
-      options: ['Compartir esta Web', 'Enviar Email', 'Enviar mensaje', 'Más Información', 'Ver Redes Sociales']
-    },
-    'Ver Redes Sociales': {
-      text: '¡Excelente! Te llevo a la sección de redes sociales para que conozcas más sobre Juan Pablo y sus proyectos. ¡Síguenos para estar al día! 📱',
-      options: ['Volver al Inicio'],
-      action: 'footer'
-    },
-    'Ver Tecnologías': {
-      text: 'Stack tecnológico:\n\n• Frontend: React + Vite + Tailwind CSS\n• Backend: Node.js\n• Bases de datos: MySQL\n• Automatización: Python (IA)\n• Control de versiones: Git & GitHub\n• Apps móviles: React Native\n\nTodo para crear soluciones modernas y escalables.',
-      options: ['Desarrollo Web', 'Ver Ejemplos', 'Contacto']
-    },
-    'Tiempos de Desarrollo': {
-      text: 'Los tiempos varían según complejidad:\n\n• Landing page básica: 3-5 días\n• Sitio corporativo: 1-2 semanas\n• E-commerce completo: 3-4 semanas\n\nIncluye consultoría gratuita inicial para definir tu proyecto.',
-      options: ['¿Incluye Hosting?', 'Ver Tecnologías', 'Contacto']
-    },
-    '¿Incluye Hosting?': {
-      text: '¡Sí! El primer año incluye:\n\n✓ Hosting y dominio gratis*\n✓ Correo corporativo\n✓ Configuración DNS\n✓ Certificado SSL\n✓ 3 meses de soporte gratis\n\n*Aplican términos y condiciones',
-      options: ['Desarrollo Web', 'Contacto']
-    },
-    'Email Marketing': {
-      text: 'Campañas de email y SMS marketing con:\n\n• Segmentación de audiencias\n• Pruebas A/B para optimización\n• Automatización con EmailJS\n• Análisis de resultados\n• CRM integrado (HubSpot/Masivian)\n\nAumento de engagement garantizado.',
-      options: ['Marketing Digital', 'Análisis de Datos', 'Contacto']
-    },
-    'Redes Sociales': {
-      text: 'Gestión profesional de redes sociales:\n\n• Creación de contenido atractivo\n• Programación estratégica\n• Análisis de métricas\n• Community management\n• Campañas en Meta Business Suite\n\nConecta mejor con tu audiencia.',
-      options: ['Marketing Digital', 'Email Marketing', 'Contacto']
-    },
-    'Análisis de Datos': {
-      text: 'Toma decisiones basadas en datos:\n\n• Google Analytics integrado\n• Reportes personalizados\n• Segmentación avanzada\n• Optimización continua\n• KPIs y métricas clave\n\nTransforma datos en resultados.',
-      options: ['Marketing Digital', 'Email Marketing', 'Contacto']
-    },
-    'Ver Canal de YouTube': {
-      text: '¡Excelente! Te llevo al canal de YouTube de Juan Pablo para que conozcas más sobre sus servicios y proyectos. 📺',
-      options: ['Volver al Inicio'],
-      action: 'youtube'
-    },
-    'WhatsApp': {
-      text: '¡Excelente! Te conecto con Juan Pablo por WhatsApp. Es la forma más rápida de conversar directamente. 💬',
-      options: ['Volver al Inicio'],
-      action: 'whatsapp'
-    },
-    'Enviar Email': {
-      text: 'Te abro el email para que puedas escribir directamente. Juan Pablo responde en menos de 24 horas. 📧',
-      options: ['Volver al Inicio'],
-      action: 'email'
-    },
-
-    'Más Información': {
-      text: '¿Qué más te gustaría saber? Puedo contarte sobre:\n\n• Proyectos realizados\n• Experiencia profesional\n• Certificaciones\n• Métodos de pago\n• Trabajo internacional',
-      options: ['Servicios', 'Háblame de Juan Pablo', 'Contacto']
-    },
-    'Ver Ejemplos': {
-      text: 'Juan Pablo tiene un portfolio con diversos proyectos:\n\n• E-commerce\n• Landing pages\n• Sitios corporativos\n• Aplicaciones web\n\nExplora su sitio web para ver casos de éxito y testimonios reales.',
-      options: ['Desarrollo Web', 'Contacto']
-    },
-    'Háblame de Juan Pablo': {
-      text: 'Juan Pablo es desarrollador web full-stack y experto en performance marketing. Experiencia en React, Python (IA), y marketing digital. Trabaja con clientes en toda LATAM desde Colombia. Certificado en múltiples tecnologías y metodologías.',
-      options: ['Ver Tecnologías', 'Servicios', 'Contacto']
-    },
-    'Volver al Inicio': {
-      text: '¡Perfecto! ¿Hay algo más en lo que pueda ayudarte? 😊',
-      options: ['Servicios', 'Desarrollo Web', 'Marketing Digital', 'Contacto', 'Preguntas Frecuentes', 'Enviar mensaje']
-    },
-    'Preguntas Frecuentes': {
-      text: 'Aquí van algunas preguntas frecuentes:\n\n• ¿Trabajas con clientes internacionales? Sí, en toda LATAM.\n• ¿Ofreces mantenimiento? Sí, planes disponibles.\n• ¿Qué métodos de pago aceptas? Transferencia, PayPal, cripto.\n\n¿Cuál te gustaría profundizar?',
-      options: ['Mantenimiento', 'Pagos', 'Contacto']
-    },
-    'Mantenimiento': {
-      text: 'Planes de mantenimiento:\n\n• Básico: Actualizaciones menores\n• Premium: Soporte completo, backups\n• Anual: Descuento disponible\n\nGarantiza que tu sitio esté siempre actualizado.',
-      options: ['Preguntas Frecuentes', 'Contacto']
-    },
-    'Pagos': {
-      text: 'Aceptamos:\n\n• Transferencias bancarias\n• PayPal\n• Mercado Pago\n• Criptomonedas (USDT, BTC)\n\n50% anticipo, 50% al finalizar.',
-      options: ['Preguntas Frecuentes', 'Contacto']
-    },
-    'Compartir esta Web': {
-      text: '¡Perfecto! Abre el modal de compartir para que puedas compartir este portafolio con un amigo. ¡Gracias por ayudar a difundir mi trabajo! 🙌',
-      options: ['Volver al Inicio'],
-      action: 'share'
-    }
-  };
-
-  const handleOptionClick = async (option) => {
+  // Memoizar handleOptionClick para evitar recreación en cada render
+  const handleOptionClick = useCallback(async (option) => {
     if (isLoading) return;
+
+    // Limpiar cualquier timeout previo antes de procesar nueva opción
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = null;
+    }
 
     if (option === 'Reiniciar Chat') {
       setMessages([
@@ -142,12 +165,6 @@ const Chatbot = ({ forceOpen = false, onShare, onScrollToContact, onScrollToFoot
           options: ['Servicios', 'Desarrollo Web', 'Marketing Digital', 'Preguntas Frecuentes', 'Enviar mensaje', 'Contacto']
         }
       ]);
-      return;
-    }
-
-    if (option === 'Enviar mensaje') {
-      if (onScrollToContact) onScrollToContact();
-      setIsOpen(false);
       return;
     }
 
@@ -166,11 +183,7 @@ const Chatbot = ({ forceOpen = false, onShare, onScrollToContact, onScrollToFoot
       };
       setMessages(prev => [...prev, assistantMessage]);
 
-      // Cerrar el chatbot 3 segundos después de que aparezca el mensaje
-      setTimeout(() => {
-        setIsOpen(false);
-      }, 3000);
-
+      // Ejecutar acciones según el tipo de respuesta
       if (response.action === 'email') {
         setTimeout(() => {
           window.open('mailto:contact.juannppgd@gmail.com?subject=Consulta%20desde%20el%20chatbot&body=Hola%20Juan%20Pablo,%0A%0AMe%20contacto%20desde%20tu%20portfolio%20web.%0A%0A', '_blank');
@@ -191,11 +204,22 @@ const Chatbot = ({ forceOpen = false, onShare, onScrollToContact, onScrollToFoot
         setTimeout(() => {
           if (onScrollToFooter) onScrollToFooter();
         }, 500);
+      } else if (response.action === 'contact') {
+        setTimeout(() => {
+          if (onScrollToContact) onScrollToContact();
+        }, 500);
+      }
+
+      // SOLO cerrar automáticamente si la respuesta tiene autoClose: true
+      if (response.autoClose === true) {
+        closeTimeoutRef.current = setTimeout(() => {
+          setIsOpen(false);
+        }, 3000);
       }
     }
 
     setIsLoading(false);
-  };
+  }, [isLoading, onScrollToContact, onShare, onScrollToFooter]);
 
   return (
     <>

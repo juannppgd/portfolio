@@ -565,23 +565,8 @@ const courses = [
     setCurrentIndex((prev) => (prev + 1) % 3);
   };
 
-  const handleShare = async () => {
-    const shareData = {
-      title: 'Portafolio de Juan Pablo Gutiérrez Díaz',
-      text: 'Mira el portafolio de Juan Pablo conoce sus servicios te van a interesar!',
-      url: 'https://juanpablogutierrez.space/'
-    };
-
-    if (navigator.share) {
-      try {
-        await navigator.share(shareData);
-      } catch (err) {
-        console.log('Error sharing:', err);
-        setShowShareModal(true);
-      }
-    } else {
-      setShowShareModal(true);
-    }
+  const handleShare = () => {
+    setShowShareModal(true);
   };
 
   const subtitleTexts = [
@@ -776,38 +761,47 @@ return (
       </section>
 
       {/* Promotional Section */}
-      <section id="promocion" className="py-6 px-6 dark:bg-dark-bg">
+      <section id="promocion" className="py-6 px-4 sm:px-6 dark:bg-dark-bg">
         <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-4xl font-extrabold mb-6 bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-400 bg-clip-text text-transparent animate-gradient">
+          <h2 className="text-2xl sm:text-4xl font-extrabold mb-6 bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-400 bg-clip-text text-transparent animate-gradient">
             ¿Quieres una página web con un diseño único, exclusivo, que conecte con tu audiencia?
           </h2>
-          <p className="text-lg text-white/90 max-w-3xl mx-auto mb-8 font-semibold">
+          <p className="text-base sm:text-lg text-white/90 max-w-3xl mx-auto mb-8 font-semibold">
             Soy especialista en desarrollo frontend y marketing digital. Creo sitios web que no solo se ven increíbles, sino que también convierten visitantes en clientes.
             Destaca con un diseño único, funcional y optimizado para tu negocio.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button
-              onClick={() => scrollToSection('stack')}
-              className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-cyan-500/25 flex items-center justify-center gap-2 text-center"
-            >
-              <Code className="w-5 h-5" />
-              Ver Tecnologías
-            </button>
-            <button
-              onClick={() => scrollToSection('contacto')}
-              className="bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-pink-500/25 flex items-center justify-center gap-2 text-center"
-            >
-              <Send className="w-5 h-5" />
-              Contáctame Ahora
-            </button>
-            <button
-              onClick={() => setShowVideoModal(true)}
-              className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-cyan-500/25 flex items-center justify-center gap-2 text-center"
-            >
-              <Video className="w-5 h-5" />
-              Ver Video
-            </button>
-          </div>
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-center">
+      <button
+        onClick={() => scrollToSection('stack')}
+        className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white px-4 sm:px-6 py-3 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-cyan-500/25 flex items-center justify-center gap-2 text-center"
+      >
+        <Code className="w-4 h-4 sm:w-5 sm:h-5" />
+        Tecnologías
+      </button>
+      <button
+        onClick={() => scrollToSection('contacto')}
+        className="bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white px-4 sm:px-6 py-3 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-pink-500/25 flex items-center justify-center gap-2 text-center"
+      >
+        <Send className="w-4 h-4 sm:w-5 sm:h-5" />
+        Contáctame
+      </button>
+      <button
+        onClick={() => setShowVideoModal(true)}
+        className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white px-4 sm:px-6 py-3 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-cyan-500/25 flex items-center justify-center gap-2 text-center"
+      >
+        <Video className="w-4 h-4 sm:w-5 sm:h-5" />
+        Ver Video
+      </button>
+      <a
+        href="https://www.linkedin.com/in/juannppgd"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-4 sm:px-6 py-3 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-blue-500/25 flex items-center justify-center gap-2 text-center"
+      >
+        <FaLinkedin className="w-4 h-4 sm:w-5 sm:h-5" />
+        LinkedIn
+      </a>
+    </div>
         </div>
       </section>
 
@@ -1881,7 +1875,7 @@ return (
 
               {/* Compartir */}
               <button
-                onClick={handleShare}
+                onClick={() => setShowShareModal(true)}
                 className="group bg-gradient-to-br from-cyan-600/20 to-purple-800/20 hover:from-cyan-500/30 hover:to-purple-700/30 backdrop-blur-sm rounded-2xl p-6 border border-cyan-500/20 hover:border-cyan-400/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/20 animate-socialfade dark:bg-card dark:border-card"
               >
                 <Users className="w-8 h-8 text-cyan-400 mx-auto mb-3 group-hover:animate-bounce" />
