@@ -797,7 +797,9 @@ return (
       {/* Servicios Section */}
 <section 
   id="servicios" 
-  className="pt-10 pr-6 pb-2 pl-6 dark:bg-dark-bg">
+  className="pt-10 pb-2 px-4 dark:bg-dark-bg"
+
+>
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-10 animate-float">
             <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
