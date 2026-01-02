@@ -1,31 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Mail, MapPin, ChevronDown, Code, Briefcase, User, Send, MessageCircle, ArrowUpRight, Moon, Sun, Zap, Palette, Brain, Award, Trophy, BookOpen, Sparkles, Star, Globe, Cpu, Smartphone, Shield, Target, BarChart, HeartPulse, Lock, Video, CreditCard, Banknote, Key, TrendingUp, Users, Server, Plus, Loader, Calendar, Menu, X, MapPinCheckIcon, VideoIcon, Settings, Github, Quote } from 'lucide-react';
+import { Mail, MapPin, ChevronDown, Code, Briefcase, User, Send, MessageCircle, ArrowUpRight, Moon, Sun, Zap, Palette, Brain, Award, Trophy, BookOpen, Sparkles, Star, Globe, Cpu, Smartphone, Shield, Target, BarChart, HeartPulse, Lock, Video, CreditCard, Banknote, Key, TrendingUp, Users, Server, Plus, Loader, Calendar, Menu, X, MapPinCheckIcon, VideoIcon, Settings, Github, Quote, FileText } from 'lucide-react';
 import { FaTiktok, FaTelegram, FaPinterest, FaFacebook, FaInstagram, FaLinkedin, FaTwitter, FaYoutube, FaSnapchat, FaDiscord } from 'react-icons/fa';
 import emailjs from '@emailjs/browser';
 import perfil from './assets/profile-image.jpg';
 import XImage from './assets/X2.png';
 import kickImage from './assets/kick.png';
+import cvPdf from './assets/Juan Pablo Gutierrez Diaz CV DF.pdf';
 import Chatbot from './Chatbot';
 
-const PageLoader = () => {
-  return (
-    <div className="fixed inset-0 z-[1000] flex items-center justify-center bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-      <div className="text-center">
-        <div className="mb-8">
-          <Loader className="w-16 h-16 text-cyan-400 animate-spin mx-auto" />
-        </div>
-        <h2 className="text-2xl md:text-3xl font-bold mb-4">
-          <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-gradient">
-            Bienvenido al portafolio Web de Juan Pablo Gutiérrez Díaz
-          </span>
-        </h2>
-        <p className="text-gray-300 dark:text-secondary text-lg">
-          En un momento estarás a punto de llevar tu proyecto al siguiente nivel. 
-        </p>
-      </div>
-    </div>
-  );
-};
+
 
 const Portfolio = () => {
   const [activeSection, setActiveSection] = useState('@juannppgd');
@@ -40,7 +23,7 @@ const Portfolio = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const typingText = "Frontend Dev | React | Performance | Automation | Python | Visual Media Editing";
+  const typingText = "Frontend Dev | React | Python | Automation | HubSpot | Visual Media Editing";
   const [displayedText, setDisplayedText] = useState("");
   const [expandedExperiences, setExpandedExperiences] = useState([false, false]);
   const [timeLeft, setTimeLeft] = useState('');
@@ -59,9 +42,10 @@ const Portfolio = () => {
   const [prevScrollY, setPrevScrollY] = useState(0);
   const [hasRestartedOnScrollUp, setHasRestartedOnScrollUp] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
+  const currentYear = new Date().getFullYear();
 
   useEffect(() => {
     const savedDarkMode = localStorage.getItem('darkMode');
@@ -70,14 +54,6 @@ const Portfolio = () => {
     } else {
       setDarkMode(true);
     }
-
-    // Simular carga inicial
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-      setRestartTyping(1); // Iniciar la animación de typing después del loader
-    }, 1500); // 1,5 segundos de carga
-
-    return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
@@ -591,7 +567,6 @@ const courses = [
 
 return (
   <>
-    {isLoading && <PageLoader />}
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
     {/* Navigation */}
     <nav className="fixed top-4 left-0 right-0 mx-2 sm:mx-4 w-auto z-50 backdrop-blur-lg border border-white/10 rounded-2xl shadow-xl">
@@ -720,7 +695,7 @@ return (
           </h1>
           
 <p className="text-xl md:text-2xl text-white dark:text-primary mb-2 max-w-3xl mx-auto font-light font-serif">
-  Desarrollador Web & Performance Marketing
+  Desarrollador Web & Growth Marketing
 </p>
 
 
@@ -750,7 +725,10 @@ return (
             {/* Availability Indicator */}
             <div className="flex items-center justify-center mt-6">
               <div className="bg-gradient-to-r from-cyan-500/20 to-purple-500/20 backdrop-blur-sm rounded-full px-4 py-2 border border-cyan-500/30 animate-pulse">
-                <div className="flex items-center gap-2 text-cyan-300 text-sm font-semibold dark:text-cyan-300">
+                <div
+                  className="flex items-center gap-2 text-cyan-300 text-sm font-semibold dark:text-cyan-300 cursor-pointer hover:text-cyan-200 transition-colors"
+                  onClick={() => scrollToSection('contacto')}
+                >
                   <Calendar className="w-4 h-4" />
                   ¿Listo para destacar en internet? Agenda tu asesoría gratis hoy.
                 </div>
@@ -772,7 +750,7 @@ return (
       </section>
 
       {/* Promotional Section */}
-      <section id="promocion" className="py-6 px-4 sm:px-6 dark:bg-dark-bg">
+      <section id="promocion" className="py-4 px-4 sm:px-6 dark:bg-dark-bg">
         <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-2xl sm:text-4xl font-extrabold mb-6 bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-400 bg-clip-text text-transparent animate-gradient">
             ¿Quieres una página web con un diseño único, exclusivo, que conecte con tu audiencia?
@@ -817,9 +795,11 @@ return (
       </section>
 
       {/* Servicios Section */}
-      <section id="servicios" className="py-12 px-4 dark:bg-dark-bg">
+<section 
+  id="servicios" 
+  className="pt-10 pr-6 pb-2 pl-2 dark:bg-dark-bg">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-12 animate-float">
+          <h2 className="text-4xl font-bold text-center mb-10 animate-float">
             <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
               Servicios
             </span>
@@ -931,10 +911,19 @@ return (
             </div>
           </div>
         </div>
+
+            <div className="flex flex-col items-center mt-10">
+              <button
+              onClick={() => scrollToSection('contacto')}
+              className="text-gray-300 mb-4 dark:text-secondary hover:text-cyan-400 transition-colors cursor-pointer text-lg font-semibold"
+              >¿Quieres aprender a programar una página como esta? Contáctame y agenda tu clase personalizada. ¡Click aquí!
+              </button>
+            </div>
+
       </section>
 
       {/* Hosting Offer Section */}
-      <section id="hosting" className="py-6 px-4 dark:bg-dark-bg">
+      <section id="hosting" className="py-1 px-4 dark:bg-dark-bg">
         <div className="max-w-6xl mx-auto text-center mb-10">
           <h2 className="text-3xl font-bold bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-400 bg-clip-text text-transparent animate-gradient">
             Conoce estos beneficios exclusivos para ti
@@ -1094,7 +1083,7 @@ return (
             </div>
 
             {/* Ver Todo Button*/}
-            <div className="text-center mt-5">
+            <div className="text-center mt-5 flex gap-4 justify-center">
               <a
                 href="https://1drv.ms/f/c/49ebc614e8d47685/EjX5_TBjKctHgBxEthZy_kEBBrhoeYLnzBxZclzGu5xMDQ?e=d5g93U"
                 target="_blank"
@@ -1102,11 +1091,17 @@ return (
                 className="inline-flex items-center gap-2 bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-400 hover:text-cyan-300 py-3 px-6 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 border border-cyan-500/30 hover:border-cyan-500/50"
               >
                 <Award className="w-4 h-4" />
-                Ver Todos los Certificados
+                Ver Certificados
               </a>
-              <p className="text-gray-400 text-xs mt-2 dark:text-secondary">
-                Accede a mi carpeta completa de certificaciones en PDF
-              </p>
+              <a
+                href={cvPdf}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-400 hover:text-cyan-300 py-3 px-6 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 border border-cyan-500/30 hover:border-cyan-500/50"
+              >
+                <FileText className="w-4 h-4" />
+                CV ATS
+              </a>
             </div>
           </div>
         </div>
@@ -1174,7 +1169,7 @@ return (
           <div className="text-center mt-12">
             <button
               onClick={() => setShowExperienceModal(true)}
-              className="bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-600 hover:to-teal-600 text-white px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-green-500/25 hover:animate-glow flex items-center gap-2 mx-auto max-w-xs"
+              className="inline-flex items-center gap-2 bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-400 hover:text-cyan-300 py-3 px-6 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 border border-cyan-500/30 hover:border-cyan-500/50"
             >
               <Briefcase className="w-4 h-4" />
               Ver toda la experiencia profesional
@@ -1184,7 +1179,7 @@ return (
       </section>
 
       {/* Skills & Software Section */}
-      <section id="habilidades" className="pt-12 pb-8 px-4 dark:bg-dark-bg">
+      <section id="habilidades" className="pt-7 pb-8 px-4 dark:bg-dark-bg">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-7 animate-float">
             <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
@@ -1281,11 +1276,11 @@ return (
             </div>
           </div>
 
-          <h2 className="text-4xl font-bold text-center mb-7 animate-float">
-            <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-              Mi Stack De Desarrollo
-            </span>
-          </h2>
+<h2 className="text-4xl font-bold text-center mt-12 mr-4 mb-8 ml-2 animate-float">
+  <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+    Mi Stack De Desarrollo
+  </span>
+</h2>
 
           <div className="text-center">
             <div className="flex flex-wrap justify-center gap-8 mb-8">
@@ -1366,7 +1361,7 @@ return (
               <button
               onClick={() => scrollToSection('contacto')}
               className="text-gray-300 mb-4 dark:text-secondary hover:text-cyan-400 transition-colors cursor-pointer text-lg font-semibold"
-              >Agenda una asesoría personalizada y descubre cómo desarrollo proyectos como este.
+              >¿Quieres aprender a programar una página como esta? Contáctame y agenda tu clase personalizada. ¡Click aquí!
               </button>
               <div className="animate-bounce">
               <ChevronDown className="w-8 h-8 text-cyan-400" />
@@ -1638,7 +1633,9 @@ return (
                   </label>
                   <textarea
                     name="message"
-                    placeholder="Cuéntame sobre tu proyecto, ideas o necesidades. ¿Cómo prefieres que te contacte? (Escribe tu WhatsApp)"
+                    placeholder="Cuéntame tu proyecto, idea o servicio.
+Déjame tu WhatsApp.
+También doy clases de programación personalizadas."
                     value={formData.message}
                     onChange={handleInputChange}
                     rows={4}
@@ -1921,12 +1918,13 @@ return (
                 <Briefcase className="w-4 h-4 sm:w-5 sm:h-5" />
                 Servicios
               </button>
-                <button
-              onClick={() => scrollToSection('contacto')}
-              className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-4 sm:px-6 py-3 sm:py-4 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-purple-500/25 flex items-center justify-center gap-2 text-center">
+              <button
+                onClick={() => scrollToSection('contacto')}
+                className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-4 sm:px-6 py-3 sm:py-4 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-purple-500/25 flex items-center justify-center gap-2 text-center"
+              >
                 <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5" />
                 Contacto
-                </button>
+              </button>
             </div>
           </div>
 
@@ -1935,7 +1933,7 @@ return (
             <div className="flex flex-col md:flex-row justify-between items-center gap-4">
               <div className="text-center md:text-left">
                 <p className="text-gray-400 mb-2 dark:text-secondary">
-                  © 2025 Juan Pablo Gutiérrez Díaz. Todos los derechos reservados.
+                  © {currentYear} Juan Pablo Gutiérrez Díaz. Todos los derechos reservados.
                 </p>
 <p className="text-sm text-gray-500 dark:text-secondary">
   Diseñado y desarrollado por <strong>Juan Pablo Gutiérrez Díaz</strong>, especialista en desarrollo web y marketing digital, creando experiencias digitales ágiles y orientadas a resultados.

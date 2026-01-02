@@ -67,8 +67,7 @@ const responses = {
   },
   'Más Información': {
     text: '¿Qué más te gustaría saber? Puedo contarte sobre:\n\n• Proyectos realizados\n• Experiencia profesional\n• Certificaciones\n• Métodos de pago\n• Trabajo internacional',
-    options: ['Servicios', 'Háblame de Juan Pablo', 'Contacto'],
-    autoClose: true
+    options: ['Servicios', 'Háblame de Juan Pablo', 'Contacto']
   },
   'Ver Ejemplos': {
     text: 'Juan Pablo tiene un portfolio con diversos proyectos:\n\n• E-commerce\n• Landing pages\n• Sitios corporativos\n• Aplicaciones web\n\nExplora su sitio web para ver casos de éxito y testimonios reales.',
