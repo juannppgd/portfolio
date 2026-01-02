@@ -5,7 +5,6 @@ import emailjs from '@emailjs/browser';
 import perfil from './assets/profile-image.jpg';
 import XImage from './assets/X2.png';
 import kickImage from './assets/kick.png';
-import cvPdf from './assets/Juan Pablo Gutierrez Diaz CV DF.pdf';
 import Chatbot from './Chatbot';
 
 
@@ -1096,7 +1095,7 @@ return (
                 Ver Certificados
               </a>
               <a
-                href={cvPdf}
+                href="https://1drv.ms/b/c/49ebc614e8d47685/IQBkNXZ2psTzQ5qGPddMMyOfATxk1hL5PTDJwXNhIhTX6Zg?e=hhkNCa"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-400 hover:text-cyan-300 py-3 px-6 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 border border-cyan-500/30 hover:border-cyan-500/50"
