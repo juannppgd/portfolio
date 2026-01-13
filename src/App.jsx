@@ -449,12 +449,28 @@ const courses = [
       avatar: "👩‍💼"
     },
     {
+      name: "Sofia Ramírez",
+      role: "Estudiante Universitaria",
+      company: "Proyecto Académico",
+      testimonial: "Juan Pablo me ayudó con mi tesis de grado. Su apoyo en el desarrollo académico fue excepcional, entregó todo a tiempo y con la calidad que necesitaba. ¡Altamente recomendado!",
+      rating: 5,
+      avatar: "👩‍🎓"
+    },
+    {
       name: "Carlos Rodríguez",
       role: "Gerente de Marketing",
       company: "Tech",
       testimonial: "Trabajar con Juan fue una gran experiencia. Sus ideas para promocionar nuestro negocio nos dieron mucho más alcance y conexión con la gente.",
       rating: 5,
       avatar: "👨‍💼"
+    },
+    {
+      name: "Miguel Ángel",
+      role: "Desarrollador Junior",
+      company: "Clases de Programación",
+      testimonial: "Las clases personalizadas de Juan Pablo fueron increíbles. Aprendí programación de manera práctica y aplicada. Los materiales y el certificado que incluye son un plus excelente.",
+      rating: 5,
+      avatar: "👨‍💻"
     },
     {
       name: "Ana López",
@@ -465,12 +481,28 @@ const courses = [
       avatar: "👩‍🎨"
     },
     {
+      name: "Roberto Silva",
+      role: "Emprendedor",
+      company: "Venta Online",
+      testimonial: "Juan Pablo optimizó mi tienda en MercadoLibre y otros marketplaces. Sus estrategias de publicación y gestión hicieron que mis ventas se multiplicaran. ¡Un experto en ventas digitales!",
+      rating: 5,
+      avatar: "👨‍💼"
+    },
+    {
       name: "Pedro Martínez",
       role: "Propietario",
       company: "Restaurante Local",
       testimonial: "Desde que tengo mi sitio web, más personas vienen a mi restaurante. Todo está cuidado al detalle y es muy fácil de navegar tanto en móvil como en computadora.",
       rating: 5,
       avatar: "👨‍🍳"
+    },
+    {
+      name: "Isabella Morales",
+      role: "Profesional en Búsqueda de Empleo",
+      company: "Asesoría de CV",
+      testimonial: "Juan Pablo creó mi CV profesional y optimizado para ATS. Su asesoría fue clave para conseguir el trabajo de mis sueños. ¡Totalmente transformó mi presentación laboral!",
+      rating: 5,
+      avatar: "👩‍💼"
     },
     {
       name: "Laura Sánchez",
@@ -911,20 +943,60 @@ return (
               </button>
             </div>
           </div>
-        </div>
+          </div>
 
-            <div className="flex flex-col items-center mt-10">
-              <button
-              onClick={() => scrollToSection('contacto')}
-              className="text-gray-300 mb-4 dark:text-secondary hover:text-cyan-400 transition-colors cursor-pointer text-lg font-semibold"
-              >¿Quieres aprender a programar una página como esta? Contáctame y agenda tu clase personalizada. ¡Click aquí!
-              </button>
+          {/* Servicios adicionales */}
+          <h2 className="text-3xl font-bold text-center mt-12 mb-8 animate-fadein">
+            <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+              Servicios adicionales +
+            </span>
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+            {/* Servicio 1: Desarrollo de trabajos y evaluaciones */}
+            <div className="bg-gradient-to-br from-cyan-500/10 via-blue-500/10 to-purple-500/10 backdrop-blur-sm rounded-3xl p-6 border border-cyan-400/30 hover:border-cyan-400/70 transition-all duration-500 transform hover:scale-102 hover:shadow-2xl hover:shadow-cyan-500/30 dark:bg-card dark:border-card animate-glow-repeat cursor-pointer" onClick={() => window.open('https://t.me/juannppgd', '_blank')}>
+              <img src="/assets/Desarrollo.png" alt="Desarrollo de trabajos y evaluaciones" className="w-full aspect-[5/4] object-contain rounded-lg mb-4" />
+              <h3 className="text-center text-xl font-bold text-white mb-3 dark:text-primary">Desarrollo de trabajos y evaluaciones</h3>
+              <p className="text-gray-300 text-sm mb-3 dark:text-secondary">
+                Apoyo profesional en el desarrollo de trabajos académicos, evaluaciones, proyectos y entregables con enfoque en calidad, cumplimiento y resultados.
+              </p>
+              <p className="text-gray-300 dark:text-secondary text-center"><strong>Telegram haciendo clic aquí</strong></p>
             </div>
 
+            {/* Servicio 2: Clases de programación personalizadas 1 a 1 */}
+            <div className="bg-gradient-to-br from-purple-500/10 via-pink-500/10 to-cyan-500/10 backdrop-blur-sm rounded-3xl p-6 border border-purple-400/30 hover:border-purple-400/70 transition-all duration-500 transform hover:scale-102 hover:shadow-2xl hover:shadow-purple-500/30 dark:bg-card dark:border-card animate-glow-repeat cursor-pointer" onClick={() => scrollToSection('contacto')}>
+              <img src="/assets/Clases.png" alt="Clases de programación personalizadas 1 a 1" className="w-full aspect-[5/4] object-contain rounded-lg mb-4" />
+              <h3 className="text-center text-xl font-bold text-white mb-3 dark:text-primary">Clases de programación personalizadas 1 a 1</h3>
+              <p className="text-gray-300 text-sm mb-3 dark:text-secondary">
+                Clases personalizadas enfocadas en tu nivel, ritmo y objetivos. Aprende programación de forma práctica y aplicada. Recibes Materiales y Certificado
+              </p>
+              <p className="text-gray-300 dark:text-secondary text-center"><strong>Contáctame haciendo clic aquí</strong></p>
+            </div>
+
+            {/* Servicio 3: Venta de garaje en línea por Marketplace y MercadoLibre */}
+            <div className="bg-gradient-to-br from-green-500/10 via-teal-500/10 to-cyan-500/10 backdrop-blur-sm rounded-3xl p-6 border border-green-400/30 hover:border-green-400/70 transition-all duration-500 transform hover:scale-102 hover:shadow-2xl hover:shadow-green-500/30 dark:bg-card dark:border-card animate-glow-repeat cursor-pointer" onClick={() => window.open('https://listado.mercadolibre.com.co/_CustId_458406036?item_id=MCO1405179747&category_id=MCO180874&seller_id=458406036&client=recoview-selleritems&recos_listing=true#origin=upp&component=sellerData&typeSeller=classic', '_blank')}>
+              <img src="/assets/Venta.png" alt="Venta de garaje en línea por Marketplace y MercadoLibre" className="w-full aspect-[5/4] object-contain rounded-lg mb-4" />
+              <h3 className="text-center text-xl font-bold text-white mb-3 dark:text-primary">Venta de garaje en línea por Marketplace y MercadoLibre</h3>
+              <p className="text-gray-300 text-sm mb-3 dark:text-secondary">
+                Conoce mi modalidad de Publicación, gestión y optimización de productos en plataformas de venta online para que adquieras los tuyos completamente garantizados.
+              </p>
+              <p className="text-gray-300 dark:text-secondary text-center"><strong>Explorar tienda en mercadolibre</strong></p>
+            </div>
+
+            {/* Servicio 4: Asesoría en creación de tu CV para que entres al trabajo de tus sueños */}
+            <div className="bg-gradient-to-br from-orange-500/10 via-red-500/10 to-pink-500/10 backdrop-blur-sm rounded-3xl p-6 border border-orange-400/30 hover:border-orange-400/70 transition-all duration-500 transform hover:scale-102 hover:shadow-2xl hover:shadow-orange-500/30 dark:bg-card dark:border-card animate-glow-repeat cursor-pointer" onClick={() => scrollToSection('contacto')}>
+              <img src="/assets/Asesoría.png" alt="Asesoría en creación de tu CV para que entres al trabajo de tus sueños" className="w-full aspect-[5/4] object-contain rounded-lg mb-4" />
+              <h3 className="text-center text-xl font-bold text-white mb-3 dark:text-primary">Creo tu CV para que entres al trabajo de tus sueños</h3>
+              <p className="text-gray-300 text-sm mb-3 dark:text-secondary">
+                Diseño un currículum profesional para un CV estratégico, atractivo y optimizado para procesos de selección laboral, filtros avanzados ATS.
+              </p>
+              <p className="text-gray-300 dark:text-secondary text-center"><strong>Contáctame haciendo clic aquí</strong></p>
+            </div>
+          </div>
       </section>
 
       {/* Hosting Offer Section */}
-      <section id="hosting" className="py-1 px-4 dark:bg-dark-bg">
+      <section id="hosting" className="py-7 px-4 dark:bg-dark-bg">
         <div className="max-w-6xl mx-auto text-center mb-10">
           <h2 className="text-3xl font-bold bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-400 bg-clip-text text-transparent animate-gradient">
             Conoce estos beneficios exclusivos para ti

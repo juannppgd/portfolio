@@ -4,8 +4,8 @@ import { MessageCircle, X, Bot, Sparkles, Zap, RotateCcw } from 'lucide-react';
 // Mover responses fuera del componente para evitar recreación en cada render
 const responses = {
   'Servicios': {
-    text: 'Juan Pablo ofrece dos servicios principales. ¿Sobre cuál te gustaría saber más?',
-    options: ['Desarrollo Web', 'Marketing Digital', 'Háblame de Juan Pablo', 'Contacto']
+    text: 'Juan Pablo ofrece servicios principales y adicionales. ¿Sobre cuál te gustaría saber más?',
+    options: ['Servicios Adicionales','Desarrollo Web', 'Marketing Digital', 'Contacto',  'Háblame de Juan Pablo']
   },
   'Desarrollo Web': {
     text: 'Desarrollo páginas web modernas con React, Vite y Tailwind CSS. Sitios 100% personalizados, responsivos y optimizados para convertir visitantes en clientes. Ideales para emprendedores, pymes y profesionales. ¿Qué te gustaría saber?',
@@ -48,6 +48,30 @@ const responses = {
   'Análisis de Datos': {
     text: 'Toma decisiones basadas en datos:\n\n• Google Analytics integrado\n• Reportes personalizados\n• Segmentación avanzada\n• Optimización continua\n• KPIs y métricas clave\n\nTransforma datos en resultados.',
     options: ['Marketing Digital', 'Email Marketing', 'Contacto']
+  },
+  'Servicios Adicionales': {
+    text: 'Además de desarrollo web y marketing, Juan Pablo ofrece servicios adicionales especializados:\n\n• Desarrollo de trabajos y evaluaciones académicas\n• Clases de programación personalizadas\n• Venta de garaje en línea (Marketplace y MercadoLibre)\n• Asesoría para crear CV profesionales\n\n¿Cuál te interesa?',
+    options: ['Desarrollo Académico','Asesoría CV', 'Clases Programación', 'Venta Online',  'Volver a Servicios']
+  },
+  'Desarrollo Académico': {
+    text: 'Apoyo profesional en el desarrollo de trabajos académicos, evaluaciones, proyectos y entregables:\n\n• Investigación y redacción especializada\n• Enfoque en calidad y cumplimiento\n• Resultados garantizados\n• Confidencialidad total\n\nIdeal para estudiantes y profesionales.',
+    options: ['Servicios Adicionales', 'Contacto']
+  },
+  'Clases Programación': {
+    text: 'Clases de programación personalizadas para todos los niveles:\n\n• Desde principiantes hasta avanzados\n• Tecnologías modernas (React, Python, etc.)\n• Metodología práctica y aplicada\n• Horarios flexibles\n• Proyectos reales incluidos\n\nAprende a programar de manera efectiva.',
+    options: ['Servicios Adicionales', 'Contacto']
+  },
+  'Venta Online': {
+    text: 'Servicio completo de venta de garaje en línea:\n\n• Publicación y gestión en Marketplace\n• Optimización en MercadoLibre\n• Gestión de productos garantizados\n• Estrategias de venta efectivas\n• Soporte continuo\n\nConvierte tus productos en ventas reales.',
+    options: ['Servicios Adicionales', 'Contacto']
+  },
+  'Asesoría CV': {
+    text: 'Asesoría profesional para crear CV impactantes:\n\n• Diseño y estructura óptima\n• Contenido persuasivo y relevante\n• Optimización para ATS\n• Consejos de presentación\n• Revisión y feedback detallado\n\nDestaca en el mercado laboral.',
+    options: ['Servicios Adicionales', 'Contacto']
+  },
+  'Volver a Servicios': {
+    text: '¡Perfecto! ¿Te gustaría conocer más sobre nuestros servicios principales o adicionales?',
+    options: ['Desarrollo Web', 'Marketing Digital', 'Servicios Adicionales', 'Contacto']
   },
   'Ver Canal de YouTube': {
     text: '¡Excelente! Te llevo al canal de YouTube de Juan Pablo para que conozcas más sobre sus servicios y proyectos. 📺',
