@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import { Mail, MapPin, ChevronDown, Code, Briefcase, User, Send, MessageCircle, ArrowUpRight, Moon, Sun, Zap, Palette, Brain, Award, Trophy, BookOpen, Sparkles, Star, Globe, Cpu, Smartphone, Shield, Target, BarChart, HeartPulse, Lock, Video, CreditCard, Banknote, Key, TrendingUp, Users, Server, Plus, Loader, Calendar, Menu, X, MapPinCheckIcon, VideoIcon, Settings, Github, Quote, FileText } from 'lucide-react';
 import { FaTiktok, FaTelegram, FaPinterest, FaFacebook, FaInstagram, FaLinkedin, FaTwitter, FaYoutube, FaSnapchat, FaDiscord } from 'react-icons/fa';
 import emailjs from '@emailjs/browser';
@@ -6,6 +7,10 @@ import perfil from './assets/profile-image.jpg';
 import XImage from './assets/X2.png';
 import kickImage from './assets/kick.png';
 import Chatbot from './Chatbot';
+import CVService from './CVService';
+import Clases from './Clases';
+import Venta from './Venta';
+import Academico from './Academico';
 
 
 
@@ -41,6 +46,7 @@ const Portfolio = () => {
   const [prevScrollY, setPrevScrollY] = useState(0);
   const [hasRestartedOnScrollUp, setHasRestartedOnScrollUp] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
@@ -954,17 +960,17 @@ return (
 
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
             {/* Servicio 1: Desarrollo de trabajos y evaluaciones */}
-            <div className="bg-gradient-to-br from-cyan-500/10 via-blue-500/10 to-purple-500/10 backdrop-blur-sm rounded-3xl p-6 border border-cyan-400/30 hover:border-cyan-400/70 transition-all duration-500 transform hover:scale-102 hover:shadow-2xl hover:shadow-cyan-500/30 dark:bg-card dark:border-card animate-glow-repeat cursor-pointer" onClick={() => window.open('https://t.me/juannppgd', '_blank')}>
+            <div className="bg-gradient-to-br from-cyan-500/10 via-blue-500/10 to-purple-500/10 backdrop-blur-sm rounded-3xl p-6 border border-cyan-400/30 hover:border-cyan-400/70 transition-all duration-500 transform hover:scale-102 hover:shadow-2xl hover:shadow-cyan-500/30 dark:bg-card dark:border-card animate-glow-repeat cursor-pointer" onClick={() => window.open('/academico', '_blank')}>
               <img src="/assets/Desarrollo.png" alt="Desarrollo de trabajos y evaluaciones" className="w-full aspect-[5/4] object-contain rounded-lg mb-4" />
               <h3 className="text-center text-xl font-bold text-white mb-3 dark:text-primary">Desarrollo de trabajos y evaluaciones</h3>
               <p className="text-gray-300 text-sm mb-3 dark:text-secondary">
                 Apoyo profesional en el desarrollo de trabajos académicos, evaluaciones, proyectos y entregables con enfoque en calidad, cumplimiento y resultados.
               </p>
-              <p className="text-gray-300 dark:text-secondary text-center"><strong>Telegram haciendo clic aquí</strong></p>
+              <p className="text-gray-300 dark:text-secondary text-center"><strong>Solicitar apoyo académico</strong></p>
             </div>
 
             {/* Servicio 2: Clases de programación personalizadas 1 a 1 */}
-            <div className="bg-gradient-to-br from-purple-500/10 via-pink-500/10 to-cyan-500/10 backdrop-blur-sm rounded-3xl p-6 border border-purple-400/30 hover:border-purple-400/70 transition-all duration-500 transform hover:scale-102 hover:shadow-2xl hover:shadow-purple-500/30 dark:bg-card dark:border-card animate-glow-repeat cursor-pointer" onClick={() => scrollToSection('contacto')}>
+            <div className="bg-gradient-to-br from-purple-500/10 via-pink-500/10 to-cyan-500/10 backdrop-blur-sm rounded-3xl p-6 border border-purple-400/30 hover:border-purple-400/70 transition-all duration-500 transform hover:scale-102 hover:shadow-2xl hover:shadow-purple-500/30 dark:bg-card dark:border-card animate-glow-repeat cursor-pointer" onClick={() => window.open('/clases', '_blank')}>
               <img src="/assets/Clases.png" alt="Clases de programación personalizadas 1 a 1" className="w-full aspect-[5/4] object-contain rounded-lg mb-4" />
               <h3 className="text-center text-xl font-bold text-white mb-3 dark:text-primary">Clases de programación personalizadas 1 a 1</h3>
               <p className="text-gray-300 text-sm mb-3 dark:text-secondary">
@@ -974,17 +980,17 @@ return (
             </div>
 
             {/* Servicio 3: Venta de garaje en línea por Marketplace y MercadoLibre */}
-            <div className="bg-gradient-to-br from-green-500/10 via-teal-500/10 to-cyan-500/10 backdrop-blur-sm rounded-3xl p-6 border border-green-400/30 hover:border-green-400/70 transition-all duration-500 transform hover:scale-102 hover:shadow-2xl hover:shadow-green-500/30 dark:bg-card dark:border-card animate-glow-repeat cursor-pointer" onClick={() => window.open('https://listado.mercadolibre.com.co/_CustId_458406036?item_id=MCO1405179747&category_id=MCO180874&seller_id=458406036&client=recoview-selleritems&recos_listing=true#origin=upp&component=sellerData&typeSeller=classic', '_blank')}>
+            <div className="bg-gradient-to-br from-green-500/10 via-teal-500/10 to-cyan-500/10 backdrop-blur-sm rounded-3xl p-6 border border-green-400/30 hover:border-green-400/70 transition-all duration-500 transform hover:scale-102 hover:shadow-2xl hover:shadow-green-500/30 dark:bg-card dark:border-card animate-glow-repeat cursor-pointer" onClick={() => window.open('/venta', '_blank')}>
               <img src="/assets/Venta.png" alt="Venta de garaje en línea por Marketplace y MercadoLibre" className="w-full aspect-[5/4] object-contain rounded-lg mb-4" />
               <h3 className="text-center text-xl font-bold text-white mb-3 dark:text-primary">Venta de garaje en línea por Marketplace y MercadoLibre</h3>
               <p className="text-gray-300 text-sm mb-3 dark:text-secondary">
                 Conoce mi modalidad de Publicación, gestión y optimización de productos en plataformas de venta online para que adquieras los tuyos completamente garantizados.
               </p>
-              <p className="text-gray-300 dark:text-secondary text-center"><strong>Explorar tienda en mercadolibre</strong></p>
+              <p className="text-gray-300 dark:text-secondary text-center"><strong>Explorar tiendas y aprender a vender</strong></p>
             </div>
 
             {/* Servicio 4: Asesoría en creación de tu CV para que entres al trabajo de tus sueños */}
-            <div className="bg-gradient-to-br from-orange-500/10 via-red-500/10 to-pink-500/10 backdrop-blur-sm rounded-3xl p-6 border border-orange-400/30 hover:border-orange-400/70 transition-all duration-500 transform hover:scale-102 hover:shadow-2xl hover:shadow-orange-500/30 dark:bg-card dark:border-card animate-glow-repeat cursor-pointer" onClick={() => scrollToSection('contacto')}>
+            <div className="bg-gradient-to-br from-orange-500/10 via-red-500/10 to-pink-500/10 backdrop-blur-sm rounded-3xl p-6 border border-orange-400/30 hover:border-orange-400/70 transition-all duration-500 transform hover:scale-102 hover:shadow-2xl hover:shadow-orange-500/30 dark:bg-card dark:border-card animate-glow-repeat cursor-pointer" onClick={() => window.open('/cv-service', '_blank')}>
               <img src="/assets/Asesoría.png" alt="Asesoría en creación de tu CV para que entres al trabajo de tus sueños" className="w-full aspect-[5/4] object-contain rounded-lg mb-4" />
               <h3 className="text-center text-xl font-bold text-white mb-3 dark:text-primary">Creo tu CV para que entres al trabajo de tus sueños</h3>
               <p className="text-gray-300 text-sm mb-3 dark:text-secondary">
@@ -1954,15 +1960,15 @@ También doy clases de programación personalizadas."
                 <div className="text-indigo-300 text-xs opacity-80 dark:text-secondary">juannppgd</div>
               </a>
 
-              {/* Compartir */}
+              {/* Ir a pagina principal */}
               <button
-                onClick={() => setShowShareModal(true)}
-                className="group bg-gradient-to-br from-cyan-600/20 to-purple-800/20 hover:from-cyan-500/30 hover:to-purple-700/30 backdrop-blur-sm rounded-2xl p-6 border border-cyan-500/20 hover:border-cyan-400/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/20 animate-socialfade dark:bg-card dark:border-card"
+                onClick={() => navigate('/')}
+                className="group bg-gradient-to-br from-cyan-600/20 to-purple-800/20 backdrop-blur-sm rounded-2xl p-6 border border-cyan-500/20 transition-all duration-300"
               >
-                <Users className="w-8 h-8 text-cyan-400 mx-auto mb-3 group-hover:animate-bounce" />
-                <div className="text-white font-semibold text-sm mb-1 dark:text-primary">Compartir</div>
-                <div className="text-cyan-300 text-xs opacity-80 dark:text-secondary">Comparte esta web</div>
-                <ArrowUpRight className="w-4 h-4 text-cyan-300 mx-auto mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <Users className="w-8 h-8 text-cyan-400 mx-auto mb-3" />
+                <div className="text-white font-semibold text-sm mb-1 dark:text-primary">Ir a pagina principal</div>
+                <div className="text-cyan-300 text-xs opacity-80 dark:text-secondary">Ir a pagina principal</div>
+                <ArrowUpRight className="w-4 h-4 text-cyan-300 mx-auto mt-2" />
               </button>
             </div>
           </div>
@@ -2405,22 +2411,27 @@ También doy clases de programación personalizadas."
   }
 
   .styled-scroll::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
   }
   .styled-scroll::-webkit-scrollbar-track {
-    background: transparent;
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0.12), rgba(17, 24, 39, 0.12));
+    border-radius: 10px;
   }
   .styled-scroll::-webkit-scrollbar-thumb {
-    background: rgba(34, 211, 238, 0.5);
-    border-radius: 4px;
+    background: linear-gradient(180deg, rgba(34, 211, 238, 0.95), rgba(139, 92, 246, 0.95));
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.45);
+    border: 2px solid transparent;
+    background-clip: padding-box;
   }
   .styled-scroll::-webkit-scrollbar-thumb:hover {
-    background: rgba(34, 211, 238, 0.7);
+    opacity: 0.95;
+    transform: scale(1.02);
   }
   .styled-scroll {
     scrollbar-width: thin;
-    scrollbar-color: rgba(34, 211, 238, 0.5) transparent;
+    scrollbar-color: rgba(34, 211, 238, 0.95) transparent;
   }
 
   .animate-vibrate {
@@ -2443,4 +2454,16 @@ También doy clases de programación personalizadas."
   );
 };
 
-export default Portfolio;
+const App = () => {
+  return (
+    <Routes>
+      <Route path="/" element={<Portfolio />} />
+      <Route path="/cv-service" element={<CVService />} />
+      <Route path="/clases" element={<Clases />} />
+      <Route path="/venta" element={<Venta />} />
+      <Route path="/academico" element={<Academico />} />
+    </Routes>
+  );
+};
+
+export default App;
