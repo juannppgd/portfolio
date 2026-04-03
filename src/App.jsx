@@ -805,7 +805,7 @@ src="/profile-image.jpg"
         Contáctame
       </button>
       <button
-        onClick={() => window.open('/inspiration', '_blank')}
+        onClick={() => window.open('/#/inspiration', '_blank')}
         className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white px-4 sm:px-6 py-3 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-cyan-500/25 flex items-center justify-center gap-2 text-center"
       >
         <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -953,7 +953,7 @@ src="/profile-image.jpg"
 
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
             {/* Servicio 1: Desarrollo de trabajos y evaluaciones */}
-            <div className="bg-gradient-to-br from-cyan-500/10 via-blue-500/10 to-purple-500/10 backdrop-blur-sm rounded-3xl p-6 border border-cyan-400/30 hover:border-cyan-400/70 transition-all duration-500 transform hover:scale-102 hover:shadow-2xl hover:shadow-cyan-500/30 dark:bg-card dark:border-card animate-glow-repeat cursor-pointer" onClick={() => window.open('/academico', '_blank')}>
+            <div className="bg-gradient-to-br from-cyan-500/10 via-blue-500/10 to-purple-500/10 backdrop-blur-sm rounded-3xl p-6 border border-cyan-400/30 hover:border-cyan-400/70 transition-all duration-500 transform hover:scale-102 hover:shadow-2xl hover:shadow-cyan-500/30 dark:bg-card dark:border-card animate-glow-repeat cursor-pointer" onClick={() => window.open('/#/academico', '_blank')}>
               <img src="/assets/Desarrollo.png" alt="Desarrollo de trabajos y evaluaciones" className="w-full aspect-[5/4] object-contain rounded-lg mb-4" />
               <h3 className="text-center text-xl font-bold text-white mb-3 dark:text-primary">Desarrollo de trabajos y evaluaciones</h3>
               <p className="text-gray-300 text-sm mb-3 dark:text-secondary">
@@ -963,7 +963,7 @@ src="/profile-image.jpg"
             </div>
 
             {/* Servicio 2: Clases de programación personalizadas 1 a 1 */}
-            <div className="bg-gradient-to-br from-purple-500/10 via-pink-500/10 to-cyan-500/10 backdrop-blur-sm rounded-3xl p-6 border border-purple-400/30 hover:border-purple-400/70 transition-all duration-500 transform hover:scale-102 hover:shadow-2xl hover:shadow-purple-500/30 dark:bg-card dark:border-card animate-glow-repeat cursor-pointer" onClick={() => window.open('/clases', '_blank')}>
+            <div className="bg-gradient-to-br from-purple-500/10 via-pink-500/10 to-cyan-500/10 backdrop-blur-sm rounded-3xl p-6 border border-purple-400/30 hover:border-purple-400/70 transition-all duration-500 transform hover:scale-102 hover:shadow-2xl hover:shadow-purple-500/30 dark:bg-card dark:border-card animate-glow-repeat cursor-pointer" onClick={() => window.open('/#/clases', '_blank')}>
               <img src="/assets/Clases.png" alt="Clases de programación personalizadas 1 a 1" className="w-full aspect-[5/4] object-contain rounded-lg mb-4" />
               <h3 className="text-center text-xl font-bold text-white mb-3 dark:text-primary">Clases de programación personalizadas 1 a 1</h3>
               <p className="text-gray-300 text-sm mb-3 dark:text-secondary">
@@ -973,7 +973,7 @@ src="/profile-image.jpg"
             </div>
 
             {/* Servicio 3: Venta de garaje en línea por Marketplace y MercadoLibre */}
-            <div className="bg-gradient-to-br from-green-500/10 via-teal-500/10 to-cyan-500/10 backdrop-blur-sm rounded-3xl p-6 border border-green-400/30 hover:border-green-400/70 transition-all duration-500 transform hover:scale-102 hover:shadow-2xl hover:shadow-green-500/30 dark:bg-card dark:border-card animate-glow-repeat cursor-pointer" onClick={() => window.open('/venta', '_blank')}>
+            <div className="bg-gradient-to-br from-green-500/10 via-teal-500/10 to-cyan-500/10 backdrop-blur-sm rounded-3xl p-6 border border-green-400/30 hover:border-green-400/70 transition-all duration-500 transform hover:scale-102 hover:shadow-2xl hover:shadow-green-500/30 dark:bg-card dark:border-card animate-glow-repeat cursor-pointer" onClick={() => window.open('/#/venta', '_blank')}>
               <img src="/assets/Venta.png" alt="Venta de garaje en línea por Marketplace y MercadoLibre" className="w-full aspect-[5/4] object-contain rounded-lg mb-4" />
               <h3 className="text-center text-xl font-bold text-white mb-3 dark:text-primary">Venta de garaje en línea por Marketplace y MercadoLibre</h3>
               <p className="text-gray-300 text-sm mb-3 dark:text-secondary">
@@ -983,7 +983,7 @@ src="/profile-image.jpg"
             </div>
 
             {/* Servicio 4: Asesoría en creación de tu CV para que entres al trabajo de tus sueños */}
-            <div className="bg-gradient-to-br from-orange-500/10 via-red-500/10 to-pink-500/10 backdrop-blur-sm rounded-3xl p-6 border border-orange-400/30 hover:border-orange-400/70 transition-all duration-500 transform hover:scale-102 hover:shadow-2xl hover:shadow-orange-500/30 dark:bg-card dark:border-card animate-glow-repeat cursor-pointer" onClick={() => window.open('/cv-service', '_blank')}>
+            <div className="bg-gradient-to-br from-orange-500/10 via-red-500/10 to-pink-500/10 backdrop-blur-sm rounded-3xl p-6 border border-orange-400/30 hover:border-orange-400/70 transition-all duration-500 transform hover:scale-102 hover:shadow-2xl hover:shadow-orange-500/30 dark:bg-card dark:border-card animate-glow-repeat cursor-pointer" onClick={() => window.open('/#/cv-service', '_blank')}>
               <img src="/assets/Asesoría.png" alt="Asesoría en creación de tu CV para que entres al trabajo de tus sueños" className="w-full aspect-[5/4] object-contain rounded-lg mb-4" />
               <h3 className="text-center text-xl font-bold text-white mb-3 dark:text-primary">Creo tu CV para que entres al trabajo de tus sueños</h3>
               <p className="text-gray-300 text-sm mb-3 dark:text-secondary">
@@ -1318,7 +1318,7 @@ src="/profile-image.jpg"
           <div className="text-center mb-8">
             <div className="grid grid-cols-2 gap-4 sm:flex sm:flex-row sm:gap-4 sm:justify-center sm:items-center">
               <button
-                onClick={() => window.open('/inspiration', '_blank')}
+                onClick={() => window.open('/#/inspiration', '_blank')}
                 className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white px-4 sm:px-6 py-3 sm:py-4 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-cyan-500/25 flex items-center justify-center gap-2 text-center"
               >
                 <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -1970,7 +1970,7 @@ También doy clases de programación personalizadas."
           <div className="text-center mb-8">
             <div className="grid grid-cols-2 gap-4 sm:flex sm:flex-row sm:gap-4 sm:justify-center sm:items-center">
               <button
-                onClick={() => window.open('/inspiration', '_blank')}
+                onClick={() => window.open('/#/inspiration', '_blank')}
                 className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white px-4 sm:px-6 py-3 sm:py-4 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-cyan-500/25 flex items-center justify-center gap-2 text-center"
               >
                 <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" />
