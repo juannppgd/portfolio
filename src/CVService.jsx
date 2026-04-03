@@ -92,65 +92,75 @@ const CVService = () => {
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
       
       {/* ================= NAVBAR ================= */}
-      <nav className="fixed top-4 inset-x-4 z-50 backdrop-blur-xl rounded-2xl shadow-2xl bg-white/10 border border-white/20">
-        <div className="flex items-center justify-between px-6 py-4">
-          <button
-            onClick={() => { navigate('/'); setIsMobileMenuOpen(false); }}
-            className="font-black text-2xl bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent"
-          >
-            @juannppgd
-          </button>
-
-          <div className="hidden lg:flex gap-8">
-            {[
-              ['cv-hero', 'Inicio'],
-              ['cv-problem', 'Problema'],
-              ['cv-included', 'Incluye'],
-              ['cv-price', 'Precio'],
-              ['cv-credibility', 'Confianza'],
-              ['cv-cta', 'Contacto']
-            ].map(([id, label]) => (
-              <button
-                key={id}
-                onClick={() => scrollTo(id)}
-                aria-current={activeSection === id ? 'page' : undefined}
-                className={`px-4 py-2 rounded-lg transition-all duration-300 font-medium ${
-                  activeSection === id
-                    ? 'text-cyan-400 scale-110 bg-cyan-400/10 shadow-lg shadow-cyan-500/20'
-                    : 'text-white/70 hover:text-white hover:bg-white/5 hover:scale-105'
-                }`}
-              >
-                {label}
-              </button>
-            ))}
-          </div>
-
-          <div className="flex gap-2">
+      <nav className="fixed top-4 left-0 right-0 mx-2 sm:mx-4 w-auto z-50 backdrop-blur-lg border border-white/10 rounded-2xl shadow-xl">
+        <div className="container mx-auto px-4 py-3 sm:px-6">
+          <div className="flex items-center justify-between">
             <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-3 rounded-xl border border-white/20 bg-white/5 hover:bg-white/10 transition-all duration-300 hover:scale-105"
+              onClick={() => { navigate('/'); setIsMobileMenuOpen(false); }}
+              className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300"
             >
-              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              @juannppgd
             </button>
+
+            <div className="flex items-center space-x-4">
+              {/* Desktop Navigation */}
+              <div className="hidden lg:flex space-x-8">
+                {[
+                  ['cv-hero', 'Inicio'],
+                  ['cv-problem', '¿Por qué son descartados?'],
+                  ['cv-included', '¿Qué incluye?'],
+                  ['cv-price', 'Precio'],
+                  ['reseñas', 'Reseñas'],
+                  ['cv-credibility', 'Confianza'],
+                  ['cv-cta', 'Contacto']
+                ].map(([id, label]) => (
+                  <button
+                    key={id}
+                    onClick={() => scrollTo(id)}
+                    className={`capitalize transition-all duration-300 ${
+                      activeSection === id
+                        ? 'text-cyan-400 scale-110'
+                        : 'text-white/70 hover:text-white'
+                    }`}
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
+
+              {/* Mobile Menu Toggle */}
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="lg:hidden p-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 transition-all duration-300 transform hover:scale-110"
+                aria-label="Toggle mobile menu"
+              >
+                {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              </button>
+            </div>
           </div>
         </div>
       </nav>
 
       {/* ================= MOBILE MENU ================= */}
       {isMobileMenuOpen && (
-        <div className="fixed top-24 inset-x-4 z-40 rounded-2xl p-6 space-y-4 bg-slate-900/95 backdrop-blur-xl border border-white/20 shadow-2xl">
-          {['cv-hero','cv-problem','cv-included','cv-price','cv-benefits','cv-credibility','cv-cta']
-            .map(id => (
-              <button
-                key={id}
-                onClick={() => scrollTo(id)}
-                className={`block w-full text-left px-4 py-3 rounded-lg transition-all duration-300 font-medium ${
-                  activeSection === id ? 'text-cyan-400 bg-cyan-400/10 shadow-lg shadow-cyan-500/20' : 'text-slate-300 hover:text-white hover:bg-white/10'
-                }`}
-              >
-                {id.replace('cv-', '').charAt(0).toUpperCase() + id.replace('cv-', '').slice(1)}
-              </button>
-          ))}
+        <div className="fixed top-20 left-0 right-0 mx-2 sm:mx-4 z-40 bg-slate-900/95 backdrop-blur-lg border border-white/10 rounded-2xl shadow-xl lg:hidden">
+          <div className="flex flex-col space-y-4 p-4">
+            {[
+              ['cv-hero', 'Inicio'],
+              ['cv-problem', '¿Por qué son descartados?'],
+              ['cv-included', '¿Qué incluye?'],
+              ['cv-price', 'Precio'],
+              ['reseñas', 'Reseñas'],
+              ['cv-credibility', 'Confianza'],
+              ['cv-cta', 'Contacto']
+            ].map(([id, label]) => (
+              <button key={id} onClick={() => { scrollTo(id); setIsMobileMenuOpen(false); }} className={`capitalize transition-all duration-300 text-left ${
+                activeSection === id
+                  ? 'text-cyan-400'
+                  : 'text-white/70 hover:text-white'
+              }`}>{label}</button>
+            ))}
+          </div>
         </div>
       )}
 
@@ -183,7 +193,7 @@ const CVService = () => {
       <section id="cv-problem" className="py-4 px-6">
         <div className="container mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-6xl font-black mb-6 text-white leading-tight">
+            <h2 className="text-4xl md:text-6xl font-black mb-6 bg-gradient-to-r from-white to-cyan-200 bg-clip-text text-transparent leading-tight">
               ¿Por qué la mayoría de hojas de vida son descartadas?
             </h2>
             <p className="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
@@ -244,7 +254,7 @@ const CVService = () => {
       {/* ================= ¿QUÉ INCLUYE EL SERVICIO? ================= */}
       <section id="cv-included" className="py-4 px-6">
         <div className="container mx-auto">
-          <h2 className="text-4xl md:text-6xl font-black text-center mb-12 text-white leading-tight">
+          <h2 className="text-4xl md:text-6xl font-black text-center mb-12 bg-gradient-to-r from-white to-cyan-200 bg-clip-text text-transparent leading-tight">
             ¿Qué incluye el servicio?
           </h2>
 
@@ -295,7 +305,7 @@ const CVService = () => {
       {/* ================= PRECIO Y OFERTA ================= */}
       <section id="cv-price" className="py-4 px-6">
         <div className="container mx-auto text-center">
-          <h2 className="text-4xl md:text-6xl font-black mb-12 text-white leading-tight">
+          <h2 className="text-4xl md:text-6xl font-black mb-12 bg-gradient-to-r from-white to-cyan-200 bg-clip-text text-transparent leading-tight">
             Precio y Oferta Especial
           </h2>
 
@@ -336,7 +346,7 @@ const CVService = () => {
       {/* ================= CONFIANZA Y CREDIBILIDAD ================= */}
       <section id="cv-credibility" className="py-4 px-6">
         <div className="container mx-auto">
-          <h2 className="text-4xl md:text-6xl font-black text-center mb-12 text-white leading-tight">
+          <h2 className="text-4xl md:text-6xl font-black text-center mb-12 bg-gradient-to-r from-white to-cyan-200 bg-clip-text text-transparent leading-tight">
             Confianza y Credibilidad
           </h2>
 
@@ -480,7 +490,7 @@ const CVService = () => {
       {/* ================= CTA FINAL ================= */}
       <section id="cv-cta" className="py-24 px-6">
         <div className="container mx-auto text-center">
-          <h2 className="text-4xl md:text-6xl font-black mb-6 text-white">
+          <h2 className="text-4xl md:text-6xl font-black mb-6 bg-gradient-to-r from-white to-cyan-200 bg-clip-text text-transparent">
             ¡No esperes más para destacar!
           </h2>
           <p className="text-xl mb-10 text-slate-300">

@@ -92,63 +92,75 @@ const Clases = () => {
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white">
 
       {/* NAVBAR */}
-      <nav className="fixed top-4 inset-x-4 z-50 backdrop-blur-xl rounded-2xl shadow-2xl bg-white/10 border border-white/20">
-        <div className="flex items-center justify-between px-6 py-4">
-          <button
-            onClick={() => { navigate('/'); setIsMobileMenuOpen(false); }}
-            className="font-black text-2xl bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent"
-          >
-            @juannppgd
-          </button>
-
-          <div className="hidden lg:flex gap-8">
-            {[
-              ['clases-hero', 'Inicio'],
-              ['clases-valor', 'Valor'],
-              ['clases-aquien', '¿Para quién?'],
-              ['clases-beneficios', 'Beneficios'],
-              ['clases-proceso', 'Proceso'],
-              ['clases-cta', 'Agenda']
-            ].map(([id, label]) => (
-              <button
-                key={id}
-                onClick={() => scrollTo(id)}
-                aria-current={activeSection === id ? 'page' : undefined}
-                className={`px-4 py-2 rounded-lg font-medium ${
-                  activeSection === id
-                    ? 'text-cyan-400 scale-110 bg-cyan-400/10 shadow-lg shadow-cyan-500/20'
-                    : 'text-white/70'
-                }`}
-              >
-                {label}
-              </button>
-            ))}
-          </div>
-
-          <div className="flex gap-3">
+      <nav className="fixed top-4 left-0 right-0 mx-2 sm:mx-4 w-auto z-50 backdrop-blur-lg border border-white/10 rounded-2xl shadow-xl">
+        <div className="container mx-auto px-4 py-3 sm:px-6">
+          <div className="flex items-center justify-between">
             <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-3 rounded-xl border border-white/20 bg-white/5"
+              onClick={() => { navigate('/'); setIsMobileMenuOpen(false); }}
+              className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300"
             >
-              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              @juannppgd
             </button>
+
+            <div className="flex items-center space-x-4">
+              {/* Desktop Navigation */}
+              <div className="hidden lg:flex space-x-8">
+                {[
+                  ['clases-hero', 'Inicio'],
+                  ['clases-valor', 'Valor'],
+                  ['clases-aquien', '¿Para quién?'],
+                  ['clases-beneficios', 'Beneficios'],
+                  ['clases-m365', 'M365 Excel'],
+                  ['clases-proceso', 'Proceso'],
+                  ['clases-cta', 'Agenda']
+                ].map(([id, label]) => (
+                  <button
+                    key={id}
+                    onClick={() => scrollTo(id)}
+                    className={`capitalize transition-all duration-300 ${
+                      activeSection === id
+                        ? 'text-cyan-400 scale-110'
+                        : 'text-white/70 hover:text-white'
+                    }`}
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
+
+              {/* Mobile Menu Toggle */}
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="lg:hidden p-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 transition-all duration-300 transform hover:scale-110"
+                aria-label="Toggle mobile menu"
+              >
+                {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              </button>
+            </div>
           </div>
         </div>
       </nav>
 
       {/* MOBILE MENU */}
       {isMobileMenuOpen && (
-        <div className="fixed top-24 inset-x-4 z-40 rounded-2xl p-4 space-y-3 bg-[#0f172a]">
-          {['clases-hero','clases-valor','clases-aquien','clases-beneficios','clases-proceso','clases-cta']
-            .map(id => (
-              <button
-                key={id}
-                onClick={() => scrollTo(id)}
-                className="group bg-gradient-to-br from-cyan-600/20 to-purple-800/20 backdrop-blur-sm rounded-2xl p-6 border border-cyan-500/20 transition-all duration-300 w-full text-left text-slate-300 text-sm"
-              >
-                {id.replace('clases-','').charAt(0).toUpperCase() + id.replace('clases-','').slice(1)}
-              </button>
-          ))}
+        <div className="fixed top-20 left-0 right-0 mx-2 sm:mx-4 z-40 bg-slate-900/95 backdrop-blur-lg border border-white/10 rounded-2xl shadow-xl lg:hidden">
+          <div className="flex flex-col space-y-4 p-4">
+            {[
+              ['clases-hero', 'Inicio'],
+              ['clases-valor', 'Valor'],
+              ['clases-aquien', '¿Para quién?'],
+              ['clases-beneficios', 'Beneficios'],
+              ['clases-m365', 'M365 Excel'],
+              ['clases-proceso', 'Proceso'],
+              ['clases-cta', 'Agenda']
+            ].map(([id, label]) => (
+              <button key={id} onClick={() => { scrollTo(id); setIsMobileMenuOpen(false); }} className={`capitalize transition-all duration-300 text-left ${
+                activeSection === id
+                  ? 'text-cyan-400'
+                  : 'text-white/70 hover:text-white'
+              }`}>{label}</button>
+            ))}
+          </div>
         </div>
       )}
 
@@ -212,7 +224,7 @@ const Clases = () => {
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8">
             <div>
-              <h2 className="text-4xl md:text-5xl font-black mb-6 bg-gradient-to-r from-white to-cyan-200 bg-clip-text text-transparent">
+              <h2 className="text-4xl md:text-6xl font-black mb-6 bg-gradient-to-r from-white to-cyan-200 bg-clip-text text-transparent">
                 Propuesta de valor
               </h2>
               <p className="text-xl text-slate-300 leading-relaxed">
@@ -300,7 +312,7 @@ const Clases = () => {
       <section id="clases-aquien" className="px-6 py-20 bg-gradient-to-r from-slate-900/20 to-purple-900/10">
         <div className="max-w-6xl mx-auto text-center">
           <div className="mb-12">
-            <h2 className="text-4xl md:text-5xl font-black mb-6 bg-gradient-to-r from-white to-cyan-200 bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-6xl font-black mb-6 bg-gradient-to-r from-white to-cyan-200 bg-clip-text text-transparent">
               ¿Para quién es este servicio?
             </h2>
             <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
@@ -355,7 +367,7 @@ const Clases = () => {
       <section id="clases-beneficios" className="px-6 py-20">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-black mb-6 bg-gradient-to-r from-white to-cyan-200 bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-6xl font-black mb-6 bg-gradient-to-r from-white to-cyan-200 bg-clip-text text-transparent">
               Beneficios clave
             </h2>
             <p className="text-xl text-slate-300 max-w-2xl mx-auto">
@@ -406,11 +418,73 @@ const Clases = () => {
         </div>
       </section>
 
+      {/* MICROSOFT 365 - EXCEL AVANZADO */}
+      <section id="clases-m365" className="px-6 py-20 bg-gradient-to-r from-slate-900/10 via-purple-900/20 to-slate-900/10">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-14">
+            <h2 className="text-4xl md:text-6xl font-black mb-6 bg-gradient-to-r from-white to-cyan-200 bg-clip-text text-transparent">
+              Microsoft 365 - Excel Avanzado
+            </h2>
+            <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
+              Lleva tus hojas de cálculo al siguiente nivel con automatización real, dashboards interactivos y plantillas listos para aplicar en tu empresa.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+            <div className="p-8 rounded-3xl bg-gradient-to-br from-cyan-500/10 to-purple-500/10 border border-cyan-400/20 backdrop-blur-sm hover:border-cyan-400/40 transition-all duration-300">
+              <h3 className="text-2xl font-bold mb-4 text-white">Por qué invertir en Excel Avanzado</h3>
+              <ul className="space-y-3 text-slate-300">
+                <li className="flex items-start gap-2"><CheckCircle className="w-5 h-5 text-green-400 mt-1" /> Automatiza tareas repetitivas con macros y Power Query.</li>
+                <li className="flex items-start gap-2"><CheckCircle className="w-5 h-5 text-green-400 mt-1" /> Construye dashboards dinámicos para decisiones de negocio rápidas.</li>
+                <li className="flex items-start gap-2"><CheckCircle className="w-5 h-5 text-green-400 mt-1" /> Domina fórmulas avanzadas y modelado con datos reales.</li>
+                <li className="flex items-start gap-2"><CheckCircle className="w-5 h-5 text-green-400 mt-1" /> Trabajo colaborativo en tiempo real en Microsoft 365.</li>
+              </ul>
+            </div>
+
+            <div className="p-8 rounded-3xl bg-gradient-to-br from-purple-500/10 to-pink-500/10 border border-purple-400/20 backdrop-blur-sm hover:border-purple-400/40 transition-all duration-300">
+              <h3 className="text-2xl font-bold mb-4 text-white">Material práctico incluido</h3>
+              <p className="text-slate-300 leading-relaxed mb-4">
+                Clases enfocadas en aprendizaje aplicado a partir de casos de uso reales (ventas, finanzas y gestión de proyectos) con plantillas 100% descargables.
+              </p>
+              <ul className="space-y-3 text-slate-300">
+                <li className="flex items-start gap-2"><CheckCircle className="w-5 h-5 text-green-400 mt-1" /> Plantillas para presupuestos, flujo de caja y KPI.</li>
+                <li className="flex items-start gap-2"><CheckCircle className="w-5 h-5 text-green-400 mt-1" /> Ejercicios resueltos y guía paso a paso.</li>
+                <li className="flex items-start gap-2"><CheckCircle className="w-5 h-5 text-green-400 mt-1" /> Estrategias de reporte y storytelling con datos.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              { title: 'Plantillas listas para usar', description: 'Descarga archivos que puedes ajustar a tu negocio y usar desde el primer día.', icon: Briefcase },
+              { title: 'Ciclos con casos reales', description: 'Ejercicios basados en escenarios de ventas, compras, datos de proyecto y más.', icon: TrendingUp },
+              { title: 'Soporte post-clase', description: 'Accede a seguimiento durante 30 días tras finalizar el taller.', icon: Users },
+            ].map((item) => (
+              <div key={item.title} className="group p-6 rounded-2xl bg-gradient-to-br from-slate-800/60 to-purple-900/40 border border-white/10 hover:border-white/20 transition-all duration-300 hover:shadow-2xl backdrop-blur-sm">
+                <div className="w-16 h-16 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-2xl flex items-center justify-center mb-4">
+                  <item.icon className="w-8 h-8 text-white" />
+                </div>
+                <h4 className="text-xl font-bold mb-2 text-white">{item.title}</h4>
+                <p className="text-slate-300 leading-relaxed">{item.description}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-10 text-center">
+            <a href={whatsappLink} target="_blank" rel="noreferrer" className="inline-flex items-center gap-3 px-10 py-5 rounded-2xl bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white font-bold text-lg shadow-2xl transition-all duration-300 hover:scale-105 hover:-translate-y-1">
+              <Calendar className="w-6 h-6" />
+              Reserva tu sesión de Excel Avanzado
+              <ArrowUpRight className="w-5 h-5" />
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* PROCESS */}
       <section id="clases-proceso" className="px-6 py-20 bg-gradient-to-r from-slate-900/10 to-purple-900/5">
         <div className="max-w-6xl mx-auto text-center">
           <div className="mb-16">
-            <h2 className="text-4xl md:text-5xl font-black mb-6 bg-gradient-to-r from-white to-cyan-200 bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-6xl font-black mb-6 bg-gradient-to-r from-white to-cyan-200 bg-clip-text text-transparent">
               Proceso de trabajo
             </h2>
             <p className="text-xl text-slate-300 max-w-2xl mx-auto">

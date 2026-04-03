@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
-import { Mail, MapPin, ChevronDown, Code, Briefcase, User, Send, MessageCircle, ArrowUpRight, Moon, Sun, Zap, Palette, Brain, Award, Trophy, BookOpen, Sparkles, Star, Globe, Cpu, Smartphone, Shield, Target, BarChart, HeartPulse, Lock, Video, CreditCard, Banknote, Key, TrendingUp, Users, Server, Plus, Loader, Calendar, Menu, X, MapPinCheckIcon, VideoIcon, Settings, Github, Quote, FileText } from 'lucide-react';
+import { Routes, Route } from 'react-router-dom';
+import { Mail, MapPin, ChevronDown, Code, Briefcase, User, Send, MessageCircle, ArrowUpRight, Moon, Sun, Zap, Palette, Brain, Award, Trophy, BookOpen, Sparkles, Star, Globe, Cpu, Smartphone, Shield, Target, BarChart, HeartPulse, Lock, CreditCard, Banknote, Key, TrendingUp, Users, Server, Plus, Loader, Calendar, Menu, X, MapPinCheckIcon, VideoIcon, Settings, Github, Quote, FileText, Share2 } from 'lucide-react';
 import { FaTiktok, FaTelegram, FaPinterest, FaFacebook, FaInstagram, FaLinkedin, FaTwitter, FaYoutube, FaSnapchat, FaDiscord } from 'react-icons/fa';
 import emailjs from '@emailjs/browser';
-import perfil from './assets/profile-image.jpg';
 import XImage from './assets/X2.png';
 import kickImage from './assets/kick.png';
 import Chatbot from './Chatbot';
@@ -11,6 +10,7 @@ import CVService from './CVService';
 import Clases from './Clases';
 import Venta from './Venta';
 import Academico from './Academico';
+import Inspiration from './Inspiration';
 
 
 
@@ -32,8 +32,7 @@ const Portfolio = () => {
   const [expandedExperiences, setExpandedExperiences] = useState([false, false]);
   const [timeLeft, setTimeLeft] = useState('');
   const [isVibrating, setIsVibrating] = useState(false);
-  // eslint-disable-next-line no-unused-vars
-  const [clickCount, setClickCount] = useState(0);
+  // clickCount state removed (unused ESLint fix)
   const [showDiscountModal, setShowDiscountModal] = useState(false);
   const [showReviewModal, setShowReviewModal] = useState(false);
   const [reviewUsuario, setReviewUsuario] = useState('');
@@ -46,7 +45,7 @@ const Portfolio = () => {
   const [prevScrollY, setPrevScrollY] = useState(0);
   const [hasRestartedOnScrollUp, setHasRestartedOnScrollUp] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const navigate = useNavigate();
+  // const navigate = useNavigate(); // Unused - removed for ESLint
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
@@ -173,7 +172,7 @@ const handleSubmit = (e) => {
   const honeypotValue = e.target.honeypot.value;
   if (honeypotValue) {
     // Bot detected, do not send
-    console.log('Bot detected via honeypot');
+    // Bot detected silently via honeypot (prod-ready)
     return;
   }
 
@@ -193,11 +192,11 @@ const handleSubmit = (e) => {
       name: formData.name,
       message: formData.message
     }, 'gUsdYXpB3K94QxqYM')
-      .then((result) => {
-        console.log(`Correo de confirmación enviado a ${formData.email}:`, result.text);
+    .then(() => {
+        // Email confirmation sent successfully
       })
-      .catch((error) => {
-        console.error('Error al enviar correo de confirmación:', error.text);
+      .catch(() => {
+        // Silent fail: Email confirmation error
         setIsSubmitting(false);
       });
 
@@ -207,15 +206,15 @@ const handleSubmit = (e) => {
       email: formData.email,
       message: formData.message
     }, 'gUsdYXpB3K94QxqYM')
-      .then((result) => {
-        console.log('Notificación enviada al administrador:', result.text);
+      .then(() => {
+        // Admin notification sent successfully
         setShowModal(true);
         setFormData({ name: '', email: '', message: '' });
         setIsSubmitting(false);
         setTimeout(() => setShowModal(false), 6000);
       })
-      .catch((error) => {
-        console.error('Error al enviar notificación al administrador:', error.text);
+      .catch(() => {
+        // Silent fail: Admin notification error
         setIsSubmitting(false);
         // Perhaps show error modal
       });
@@ -588,8 +587,8 @@ const courses = [
       await navigator.clipboard.writeText('https://juanpablogutierrez.space/');
       setCopiedLink(true);
       setTimeout(() => setCopiedLink(false), 2000);
-    } catch (err) {
-      console.error('Error al copiar el enlace:', err);
+    } catch {
+      // Silent fail: Copy link error
     }
   };
 
@@ -703,20 +702,14 @@ return (
             <div className="w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 mx-auto rounded-full bg-gradient-to-r from-cyan-400 to-purple-400 p-1 transition-all duration-300">
               <div className="w-full h-full rounded-full bg-slate-900 flex items-center justify-center overflow-hidden">
                 <img
-                  src={darkMode ? perfil : '/profile_img.jpg'}
+src="/profile-image.jpg"
                   alt="Foto de perfil de Juan Pablo Gutiérrez Díaz, desarrollador web y especialista en marketing digital"
                   className={`w-full h-full rounded-full object-cover transition-all duration-300 cursor-pointer ${isVibrating ? 'animate-vibrate' : ''}`}
                   loading="lazy"
                   onClick={() => {
                     setIsVibrating(true);
                     setTimeout(() => setIsVibrating(false), 500);
-                    setClickCount(prev => {
-                      const newCount = prev + 1;
-                      if (newCount === 5) {
-                        setShowDiscountModal(true);
-                      }
-                      return newCount;
-                    });
+                  setShowDiscountModal(true); // Direct trigger (clickCount removed)
                   }}
                 />
               </div>
@@ -812,11 +805,11 @@ return (
         Contáctame
       </button>
       <button
-        onClick={() => setShowVideoModal(true)}
+        onClick={() => window.open('/inspiration', '_blank')}
         className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white px-4 sm:px-6 py-3 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-cyan-500/25 flex items-center justify-center gap-2 text-center"
       >
-        <Video className="w-4 h-4 sm:w-5 sm:h-5" />
-        Ver Video
+        <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" />
+        Inspiración
       </button>
       <a
         href="https://www.linkedin.com/in/juannppgd"
@@ -1325,11 +1318,11 @@ return (
           <div className="text-center mb-8">
             <div className="grid grid-cols-2 gap-4 sm:flex sm:flex-row sm:gap-4 sm:justify-center sm:items-center">
               <button
-                onClick={() => setShowVideoModal(true)}
+                onClick={() => window.open('/inspiration', '_blank')}
                 className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white px-4 sm:px-6 py-3 sm:py-4 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-cyan-500/25 flex items-center justify-center gap-2 text-center"
               >
-                <Video className="w-4 h-4 sm:w-5 sm:h-5" />
-                Video
+                <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" />
+                Inspiración
               </button>
               <button
                 onClick={() => scrollToSection('faq')}
@@ -1960,14 +1953,14 @@ También doy clases de programación personalizadas."
                 <div className="text-indigo-300 text-xs opacity-80 dark:text-secondary">juannppgd</div>
               </a>
 
-              {/* Ir a pagina principal */}
+              {/* Compartir sitio */}
               <button
-                onClick={() => navigate('/')}
+                onClick={handleShare}
                 className="group bg-gradient-to-br from-cyan-600/20 to-purple-800/20 backdrop-blur-sm rounded-2xl p-6 border border-cyan-500/20 transition-all duration-300"
               >
-                <Users className="w-8 h-8 text-cyan-400 mx-auto mb-3" />
-                <div className="text-white font-semibold text-sm mb-1 dark:text-primary">Ir a pagina principal</div>
-                <div className="text-cyan-300 text-xs opacity-80 dark:text-secondary">Ir a pagina principal</div>
+                <Share2 className="w-8 h-8 text-cyan-400 mx-auto mb-3" />
+                <div className="text-white font-semibold text-sm mb-1 dark:text-primary">Compartir sitio</div>
+                <div className="text-cyan-300 text-xs opacity-80 dark:text-secondary">Comparte este sitio web</div>
                 <ArrowUpRight className="w-4 h-4 text-cyan-300 mx-auto mt-2" />
               </button>
             </div>
@@ -1977,11 +1970,11 @@ También doy clases de programación personalizadas."
           <div className="text-center mb-8">
             <div className="grid grid-cols-2 gap-4 sm:flex sm:flex-row sm:gap-4 sm:justify-center sm:items-center">
               <button
-                onClick={() => setShowVideoModal(true)}
+                onClick={() => window.open('/inspiration', '_blank')}
                 className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white px-4 sm:px-6 py-3 sm:py-4 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-cyan-500/25 flex items-center justify-center gap-2 text-center"
               >
-                <Video className="w-4 h-4 sm:w-5 sm:h-5" />
-                Video
+                <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" />
+                Inspiración
               </button>
               <button
                 onClick={() => scrollToSection('faq')}
@@ -2462,6 +2455,7 @@ const App = () => {
       <Route path="/clases" element={<Clases />} />
       <Route path="/venta" element={<Venta />} />
       <Route path="/academico" element={<Academico />} />
+      <Route path="/inspiration" element={<Inspiration />} />
     </Routes>
   );
 };

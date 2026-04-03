@@ -100,55 +100,74 @@ const Academico = () => {
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white">
 
       {/* NAVBAR */}
-      <nav className="fixed top-4 inset-x-4 z-50 backdrop-blur-xl rounded-2xl shadow-2xl bg-white/10 border border-white/20">
-        <div className="flex items-center justify-between px-6 py-4">
-          <button
-            onClick={() => { navigate('/'); setIsMobileMenuOpen(false); }}
-            className="font-black text-2xl bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent"
-          >
-            @juannppgd
-          </button>
-
-          <div className="hidden lg:flex gap-8">
-            {[
-              ['apoyo-hero','Inicio'],
-              ['apoyo-que','¿En qué?'],
-              ['apoyo-valor','Propuesta'],
-              ['apoyo-quien','Para quién'],
-              ['apoyo-proceso','Proceso'],
-              ['apoyo-cta','Contacto']
-            ].map(([id,label]) => (
-              <button
-                key={id}
-                onClick={() => scrollTo(id)}
-                aria-current={activeSection === id ? 'page' : undefined}
-                className={`px-4 py-2 rounded-lg font-medium ${
-                  activeSection === id
-                    ? 'text-cyan-400 scale-110 bg-cyan-400/10 shadow-lg shadow-cyan-500/20'
-                    : 'text-white/70'
-                }`}
-              >
-                {label}
-              </button>
-            ))}
-          </div>
-
-          <div className="flex gap-3">
+      <nav className="fixed top-4 left-0 right-0 mx-2 sm:mx-4 w-auto z-50 backdrop-blur-lg border border-white/10 rounded-2xl shadow-xl">
+        <div className="container mx-auto px-4 py-3 sm:px-6">
+          <div className="flex items-center justify-between">
             <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-3 rounded-xl border border-white/20 bg-white/5"
+              onClick={() => { navigate('/'); setIsMobileMenuOpen(false); }}
+              className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300"
             >
-              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              @juannppgd
             </button>
+
+            <div className="flex items-center space-x-4">
+              {/* Desktop Navigation */}
+              <div className="hidden lg:flex space-x-8">
+                {[
+                  ['apoyo-hero','Inicio'],
+                  ['apoyo-que','¿En qué?'],
+                  ['apoyo-valor','Propuesta'],
+                  ['apoyo-quien','Para quién'],
+                  ['apoyo-proceso','Proceso'],
+                  ['apoyo-confianza','Garantías'],
+                  ['apoyo-cta','Contacto']
+                ].map(([id,label]) => (
+                  <button
+                    key={id}
+                    onClick={() => scrollTo(id)}
+                    className={`capitalize transition-all duration-300 ${
+                      activeSection === id
+                        ? 'text-cyan-400 scale-110'
+                        : 'text-white/70 hover:text-white'
+                    }`}
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
+
+              {/* Mobile Menu Toggle */}
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="lg:hidden p-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 transition-all duration-300 transform hover:scale-110"
+                aria-label="Toggle mobile menu"
+              >
+                {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              </button>
+            </div>
           </div>
         </div>
       </nav>
 
       {isMobileMenuOpen && (
-        <div className="fixed top-24 inset-x-4 z-40 rounded-2xl p-4 space-y-3 bg-[#0f172a] backdrop-blur-sm border border-white/10">
-          {['apoyo-hero','apoyo-que','apoyo-valor','apoyo-quien','apoyo-proceso','apoyo-cta'].map(id => (
-            <button key={id} onClick={() => scrollTo(id)} className={`block w-full text-left px-4 py-3 rounded-lg ${activeSection === id ? 'text-cyan-400 bg-cyan-400/10' : 'text-slate-300'}`}>{id.replace('apoyo-','')}</button>
-          ))}
+        <div className="fixed top-20 left-0 right-0 mx-2 sm:mx-4 z-40 bg-slate-900/95 backdrop-blur-lg border border-white/10 rounded-2xl shadow-xl lg:hidden">
+          <div className="flex flex-col space-y-4 p-4">
+            {[
+              ['apoyo-hero', 'Inicio'],
+              ['apoyo-que', '¿En qué?'],
+              ['apoyo-valor', 'Propuesta'],
+              ['apoyo-quien', 'Para quién'],
+              ['apoyo-proceso', 'Proceso'],
+              ['apoyo-confianza', 'Garantías'],
+              ['apoyo-cta', 'Contacto']
+            ].map(([id, label]) => (
+              <button key={id} onClick={() => { scrollTo(id); setIsMobileMenuOpen(false); }} className={`capitalize transition-all duration-300 text-left ${
+                activeSection === id
+                  ? 'text-cyan-400'
+                  : 'text-white/70 hover:text-white'
+              }`}>{label}</button>
+            ))}
+          </div>
         </div>
       )}
 
@@ -208,7 +227,7 @@ const Academico = () => {
       <section id="apoyo-que" className="px-6 py-20">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-2xl md:text-4xl lg:text-5xl font-black mb-6 bg-gradient-to-r from-white to-cyan-200 bg-clip-text text-transparent leading-tight animate-fade-in-up">
+            <h2 className="text-4xl md:text-6xl font-black mb-6 bg-gradient-to-r from-white to-cyan-200 bg-clip-text text-transparent leading-tight animate-fade-in-up">
               En qué te puedo ayudar?
             </h2>
             <p className="text-xl text-slate-300 max-w-2xl mx-auto">
