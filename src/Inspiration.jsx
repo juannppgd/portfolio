@@ -13,7 +13,7 @@ const Inspiration = () => {
         <div className="container mx-auto px-4 py-3 sm:px-6">
           <div className="flex items-center justify-between">
             <button
-              onClick={() => scrollToSection('hero')}
+              onClick={() => window.location.href = '/'}
               className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300"
             >
               @juannppgd
@@ -95,8 +95,8 @@ onClick={() => window.location.href = '/'}
                 <div>
                   <h3 className="text-2xl font-bold text-white mb-4">Antes estaba completamente perdido</h3>
                   <p className="text-gray-300 text-lg leading-relaxed">
-                    No tenía idea de qué hacer con mi vida. No me sentía comodo llamando "Jefe" a alguien, saltaba de un trabajo a otro,
-                    y cada día me sentía más frustrado. El futuro se veía como una niebla impenetrable.
+                    No tenía idea de qué hacer con mi vida. No me sentía comodo llamando "Jefe" a alguien, buscaba trabajos que no me llenaban,
+                    y cada día me sentía más frustrado. El futuro se veía como una niebla.
                   </p>
                 </div>
               </div>
@@ -125,7 +125,7 @@ onClick={() => window.location.href = '/'}
                 <div>
                   <h3 className="text-2xl font-bold text-white mb-4">La vida dio un giro inesperado</h3>
                   <p className="text-gray-300 text-lg leading-relaxed">
-                    Una lesión me obligó a parar. Sin el deporte como escape, me enfrenté a mí mismo por primera vez.
+                    Una lesión me obligó a parar. Sin el deporte como escape, me enfrenté a mí mismo por primera vez. Estando completamente solo, sin distracciones,
                     Empecé a cuestionar todo: mis elecciones, mis miedos, mis limitaciones autoimpuestas.
                   </p>
                 </div>
@@ -140,7 +140,7 @@ onClick={() => window.location.href = '/'}
                 <div>
                   <h3 className="text-2xl font-bold text-white mb-4">Descubrí el mundo digital</h3>
                   <p className="text-gray-300 text-lg leading-relaxed">
-                    Curioso por naturaleza, empecé a explorar internet. Vi cómo personas normales creaban negocios online,
+                    Curioso, empecé a explorar internet. Vi cómo personas normales creaban negocios online,
                     generaban ingresos pasivos, viajaban mientras trabajaban. "Si ellos pueden, ¿por qué yo no?", pensé.
                   </p>
                 </div>
@@ -391,7 +391,7 @@ onClick={() => window.location.href = '/'}
                   <CheckCircle className="w-6 h-6 text-green-400 flex-shrink-0 mt-1" />
                   <div>
                     <h4 className="text-white font-semibold mb-2">Conocimiento Gratuito</h4>
-                    <p className="text-gray-300 text-sm">YouTube, documentación gratuita, comunidades online. Solo necesitas dedicación.</p>
+                    <p className="text-gray-300 text-sm">YouTube, documentación gratuita, comunidades online o inclusio puedo dictarte clases. Solo necesitas dedicación.</p>
                   </div>
                 </div>
               </div>
@@ -437,7 +437,9 @@ onClick={() => window.location.href = '/'}
 
           <h2 className="text-3xl font-bold mb-6">
             <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-              Esta Soy Yo: Una Persona Real con Resultados Reales
+              Juan Pablo Gutiérrez Díaz 
+              <br />
+              Desarrollador web y especialista en Marketing digital
             </span>
           </h2>
 
@@ -448,10 +450,10 @@ onClick={() => window.location.href = '/'}
 
           <div className="flex flex-wrap justify-center gap-4 mb-8">
             <div className="bg-gradient-to-r from-cyan-500/20 to-purple-500/20 backdrop-blur-sm rounded-full px-4 py-2 border border-cyan-500/30">
-              <span className="text-cyan-300 text-sm font-semibold">+50 Proyectos Completados</span>
+              <span className="text-cyan-300 text-sm font-semibold">+56 Proyectos Completados</span>
             </div>
             <div className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 backdrop-blur-sm rounded-full px-4 py-2 border border-purple-500/30">
-              <span className="text-purple-300 text-sm font-semibold">+100 Clientes Satisfechos</span>
+              <span className="text-purple-300 text-sm font-semibold">+125 Clientes Satisfechos</span>
             </div>
             <div className="bg-gradient-to-r from-green-500/20 to-teal-500/20 backdrop-blur-sm rounded-full px-4 py-2 border border-green-500/30">
               <span className="text-green-300 text-sm font-semibold">Trabajo Remoto Global</span>
