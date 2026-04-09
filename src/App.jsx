@@ -11,6 +11,8 @@ import Clases from './Clases';
 import Venta from './Venta';
 import Academico from './Academico';
 import Inspiration from './Inspiration';
+import ExcelGastos from './ExcelGastos';
+import ExcelHabitos from './exelhabitos';
 
 
 
@@ -992,6 +994,55 @@ src="/profile-image.jpg"
               <p className="text-gray-300 dark:text-secondary text-center"><strong>Contáctame haciendo clic aquí</strong></p>
             </div>
           </div>
+      </section>
+
+      {/* Plantillas para ti */}
+      <section className="py-16 px-4 dark:bg-dark-bg">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-12 animate-fadein">
+            <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+              Plantillas para ti
+            </span>
+          </h2>
+          <p className="text-center text-gray-300 dark:text-secondary mb-8 text-lg">
+            Herramientas Excel profesionales para mejorar tu productividad y finanzas personales. Acceso inmediato por solo $5 USD cada una.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {/* Plantilla de Gastos */}
+            <div className="bg-gradient-to-br from-green-500/10 via-teal-500/10 to-cyan-500/10 backdrop-blur-sm rounded-3xl p-8 border border-green-400/30 hover:border-green-400/70 transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-green-500/30 dark:bg-card dark:border-card animate-glow-repeat cursor-pointer" onClick={() => window.open('/#/excel-gastos', '_blank')}>
+              <div className="text-center mb-6">
+                <div className="bg-gradient-to-r from-green-500 to-teal-500 p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                  <TrendingUp className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-2 dark:text-primary">Control de Gastos</h3>
+                <p className="text-gray-300 dark:text-secondary text-sm mb-4">
+                  Domina tus finanzas en 5 min/día con colores inteligentes, gráficos automáticos y la regla 50/30/20.
+                </p>
+                <div className="text-3xl font-bold text-green-400 mb-4">$5 USD</div>
+                <button className="w-full bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-600 hover:to-teal-600 text-white py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-green-500/25">
+                  Ver Plantilla de Gastos
+                </button>
+              </div>
+            </div>
+
+            {/* Plantilla de Hábitos */}
+            <div className="bg-gradient-to-br from-purple-500/10 via-pink-500/10 to-cyan-500/10 backdrop-blur-sm rounded-3xl p-8 border border-purple-400/30 hover:border-purple-400/70 transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/30 dark:bg-card dark:border-card animate-glow-repeat cursor-pointer" onClick={() => window.open('/#/excel-habitos', '_blank')}>
+              <div className="text-center mb-6">
+                <div className="bg-gradient-to-r from-purple-500 to-pink-500 p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                  <Target className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-2 dark:text-primary">Rastreo de Hábitos</h3>
+                <p className="text-gray-300 dark:text-secondary text-sm mb-4">
+                  Rastrea tus hábitos diarios con gráficos dinámicos, rachas y análisis inteligente para 2026.
+                </p>
+                <div className="text-3xl font-bold text-purple-400 mb-4">$5 USD</div>
+                <button className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-purple-500/25">
+                  Ver Plantilla de Hábitos
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* Hosting Offer Section */}
@@ -2456,6 +2507,8 @@ const App = () => {
       <Route path="/venta" element={<Venta />} />
       <Route path="/academico" element={<Academico />} />
       <Route path="/inspiration" element={<Inspiration />} />
+      <Route path="/excel-gastos" element={<ExcelGastos />} />
+      <Route path="/excel-habitos" element={<ExcelHabitos />} />
     </Routes>
   );
 };
