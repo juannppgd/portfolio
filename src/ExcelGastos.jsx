@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { TrendingUp, BarChart3, PieChart, DollarSign, CheckCircle, Star, Users, Shield, MessageCircle, CreditCard, Banknote, Key, Smartphone, Globe, Target, Award, Menu, X, Zap, Globe2, Brain, Calendar, ChevronDown, ChevronUp } from 'lucide-react';
+import { TrendingUp, BarChart3, PieChart, DollarSign, CheckCircle, Star, Users, Shield, MessageCircle, CreditCard, Banknote, Key, Smartphone, Globe, Target, Award, Menu, X, Zap, Globe2, Brain, Calendar, ChevronDown, ChevronUp, Phone, Download, ArrowLeft } from 'lucide-react';
 
 const ExcelGastos = () => {
   const navigate = useNavigate();
@@ -26,23 +26,23 @@ const ExcelGastos = () => {
   useEffect(() => {
     const updateActiveSection = () => {
       const sections = ['hero', 'demo', 'features', 'benefits', 'transformations', 'preview', 'testimonials', 'science', 'pricing', 'contact'];
+      
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
           const rect = element.getBoundingClientRect();
           if (rect.top <= 100 && rect.bottom >= 100) {
             setActiveSection(section);
-            break;
+            return;
           }
         }
       }
     };
 
-    const timer = setTimeout(updateActiveSection, 100);
     window.addEventListener('scroll', updateActiveSection);
+    updateActiveSection();
     
     return () => {
-      clearTimeout(timer);
       window.removeEventListener('scroll', updateActiveSection);
     };
   }, []);
@@ -71,21 +71,32 @@ const ExcelGastos = () => {
       <nav className={`fixed top-4 left-0 right-0 mx-2 sm:mx-4 w-auto z-50 backdrop-blur-lg border border-white/10 rounded-2xl shadow-xl transition-all duration-300 ${isScrolled ? 'scale-95' : ''}`}>
         <div className="container mx-auto px-4 py-3 sm:px-6">
           <div className="flex items-center justify-between">
-            <button onClick={() => { navigate('/'); setIsMobileMenuOpen(false); }} className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300">
-              @juannppgd
-            </button>
+            {/* Logo y botón volver */}
+            <div className="flex items-center space-x-2">
+              <button 
+                onClick={() => navigate('/')} 
+                className="p-1.5 rounded-lg hover:bg-white/10 transition-all duration-300 text-white/70 hover:text-white" 
+                aria-label="Volver a inicio"
+              >
+                <ArrowLeft className="w-5 h-5" />
+              </button>
+              <button 
+                onClick={() => { navigate('/'); setIsMobileMenuOpen(false); }} 
+                className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300"
+              >
+                @juannppgd
+              </button>
+            </div>
 
             <div className="flex items-center space-x-4">
               {/* Desktop Navigation */}
               <div className="hidden lg:flex space-x-8">
                 {[
                   ['hero', 'Inicio'],
-                  ['demo', 'Demo'],
                   ['features', 'Características'],
-                  ['transformations', 'Transformaciones'],
-                  ['science', 'Ciencia'],
-                  ['pricing', 'Precios'],
-                  ['contact', 'Contacto']
+                  ['preview', 'Vista Previa'],
+                  ['testimonials', 'Opiniones'],
+                  ['pricing', 'Precio']
                 ].map(([id, label]) => (
                   <button key={id} onClick={() => scrollTo(id)} className={`capitalize transition-all duration-300 ${activeSection === id ? 'text-cyan-400 scale-110' : 'text-white/70 hover:text-white'}`}>
                     {label}
@@ -108,17 +119,24 @@ const ExcelGastos = () => {
           <div className="flex flex-col space-y-4 p-4">
             {[
               ['hero', 'Inicio'],
-              ['demo', 'Demo'],
               ['features', 'Características'],
-              ['transformations', 'Transformaciones'],
-              ['science', 'Ciencia'],
-              ['pricing', 'Precios'],
-              ['contact', 'Contacto']
+              ['preview', 'Vista Previa'],
+              ['testimonials', 'Opiniones'],
+              ['pricing', 'Precio']
             ].map(([id, label]) => (
               <button key={id} onClick={() => scrollTo(id)} className={`capitalize transition-all duration-300 text-left ${activeSection === id ? 'text-cyan-400' : 'text-white/70 hover:text-white'}`}>
                 {label}
               </button>
             ))}
+            <div className="border-t border-white/10 pt-4 mt-2">
+              <button 
+                onClick={() => { navigate('/'); setIsMobileMenuOpen(false); }} 
+                className="flex items-center space-x-2 transition-all duration-300 text-white/70 hover:text-white"
+              >
+                <ArrowLeft className="w-4 h-4" />
+                <span>Volver al inicio</span>
+              </button>
+            </div>
           </div>
         </div>
       )}
@@ -206,6 +224,20 @@ const ExcelGastos = () => {
                 <p className="text-white/70">Distribución automática: 50% necesidades, 30% deseos, 20% ahorro.</p>
               </div>
             </div>
+            <div className="flex items-start space-x-4">
+              <Smartphone className="w-8 h-8 text-orange-400 flex-shrink-0 mt-1" />
+              <div>
+                <h3 className="text-xl font-semibold mb-2">Compatible desde cualquier dispositivo</h3>
+                <p className="text-white/70">Funciona perfectamente en PC, Mac, tablet y móvil. Excel en todos lados.</p>
+              </div>
+            </div>
+            <div className="flex items-start space-x-4">
+              <Globe className="w-8 h-8 text-blue-400 flex-shrink-0 mt-1" />
+              <div>
+                <h3 className="text-xl font-semibold mb-2">Acceso desde cualquier lugar</h3>
+                <p className="text-white/70">Guarda en OneDrive/Google Drive y accede en cualquier momento.</p>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -261,16 +293,19 @@ const ExcelGastos = () => {
           <div className="space-y-4">
             <div className="border border-white/10 rounded-lg">
               <button onClick={() => toggleTab('mensual')} className="w-full flex items-center justify-between p-4 text-left hover:bg-white/5 transition-colors">
-                <span className="font-semibold">Vista Mensual</span>
+                <span className="font-semibold">Vista General</span>
                 {activeTab === 'mensual' ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
               </button>
               {activeTab === 'mensual' && (
                 <div className="p-4 border-t border-white/10">
-                  <div className="text-sm text-white/70 space-y-2">
-                    <div>🍕 Comida: $45.000 ✅ $38.000 ✅ $52.000 ❌ $41.000 ✅ $49.000 ✅ $43.000 ✅ $47.000 ❌ $39.000 ✅ $51.000 ✅ $44.000 ✅ $46.000 ✅ $42.000 ✅ $48.000 ✅ $40.000 ✅ $50.000 ✅ $45.000 ✅ $43.000 ✅ $47.000 ✅ $41.000 ✅ $49.000 ✅ $44.000 ✅ $46.000 ✅ $42.000 ✅ $48.000 ✅ $40.000 ✅ $50.000 ✅</div>
-                    <div>🚗 Transporte: $25.000 ✅ $22.000 ✅ $28.000 ✅ $24.000 ❌ $26.000 ✅ $23.000 ✅ $27.000 ✅ $25.000 ❌ $29.000 ✅ $24.000 ✅ $26.000 ✅ $22.000 ✅ $28.000 ✅ $23.000 ✅ $27.000 ✅ $25.000 ✅ $24.000 ✅ $26.000 ✅ $22.000 ✅ $28.000 ✅ $23.000 ✅ $27.000 ✅ $25.000 ✅ $24.000 ✅ $26.000 ✅</div>
-                    <div>🛒 Supermercado: $120.000 ❌ $95.000 ✅ $110.000 ✅ $105.000 ✅ $115.000 ❌ $100.000 ✅ $108.000 ✅ $112.000 ✅ $98.000 ✅ $107.000 ✅ $103.000 ✅ $109.000 ✅ $96.000 ✅ $111.000 ✅ $102.000 ✅ $106.000 ✅ $99.000 ✅ $104.000 ✅ $101.000 ✅ $113.000 ✅ $97.000 ✅ $108.000 ✅ $105.000 ✅ $100.000 ✅ $109.000 ✅</div>
-                    <div className="mt-4 font-semibold">Presupuesto cumplido: 78%</div>
+                  <div className="w-full h-auto flex items-center justify-center">
+                    <img 
+                      src="/src/assets/gastos.jpg" 
+                      alt="Vista Mensual de Gastos" 
+                      className="w-full h-auto max-w-2xl rounded-lg shadow-lg object-cover" 
+                      loading="lazy"
+                      onError={(e) => e.target.src = 'https://via.placeholder.com/800x600?text=Vista+Mensual+Gastos'}
+                    />
                   </div>
                 </div>
               )}
@@ -316,84 +351,124 @@ const ExcelGastos = () => {
         {/* Prueba Social */}
         <div id="testimonials" className="mb-16">
           <h2 className="text-3xl font-bold text-center mb-12">Lo que dicen nuestros usuarios</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-all duration-300 transform hover:scale-105">
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full flex items-center justify-center text-xl font-bold mr-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
+            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 md:p-6 hover:bg-white/10 transition-all duration-300 lg:hover:scale-105">
+              <div className="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-4 mb-4">
+                <div className="w-12 h-12 min-w-[3rem] bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full flex items-center justify-center text-xl font-bold">
                   A
                 </div>
-                <div className="flex-1">
-                  <h4 className="font-semibold">Ana G.</h4>
-                  <p className="text-sm text-white/60">Bogotá, Colombia</p>
+                <div className="flex-1 min-w-0">
+                  <h4 className="font-semibold truncate">Ana G.</h4>
+                  <p className="text-sm text-white/60 truncate">Bogotá, Colombia</p>
                   <div className="flex text-yellow-400 mt-1">
                     {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
                   </div>
                 </div>
-                <div className="bg-green-500/20 text-green-400 text-xs px-2 py-1 rounded-full font-semibold">
+                <div className="bg-green-500/20 text-green-400 text-xs px-2 py-1 rounded-full font-semibold whitespace-nowrap">
                   +$200 ahorrado
                 </div>
               </div>
-              <p className="text-white/80 italic">"Ahorré $200 en mi primer mes usando esta plantilla. ¡Increíble! Ahora tengo control total de mis finanzas."</p>
+              <p className="text-white/80 italic line-clamp-3">"Ahorré $200 en mi primer mes usando esta plantilla. ¡Increíble! Ahora tengo control total de mis finanzas."</p>
               <div className="mt-4 text-xs text-white/50">Hace 2 semanas</div>
             </div>
 
-            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-all duration-300 transform hover:scale-105">
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-teal-500 rounded-full flex items-center justify-center text-xl font-bold mr-4">
+            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 md:p-6 hover:bg-white/10 transition-all duration-300 lg:hover:scale-105">
+              <div className="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-4 mb-4">
+                <div className="w-12 h-12 min-w-[3rem] bg-gradient-to-r from-green-500 to-teal-500 rounded-full flex items-center justify-center text-xl font-bold">
                   C
                 </div>
-                <div className="flex-1">
-                  <h4 className="font-semibold">Carlos M.</h4>
-                  <p className="text-sm text-white/60">Medellín, Colombia</p>
+                <div className="flex-1 min-w-0">
+                  <h4 className="font-semibold truncate">Carlos M.</h4>
+                  <p className="text-sm text-white/60 truncate">Ciudad de México, México</p>
                   <div className="flex text-yellow-400 mt-1">
                     {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
                   </div>
                 </div>
-                <div className="bg-blue-500/20 text-blue-400 text-xs px-2 py-1 rounded-full font-semibold">
+                <div className="bg-blue-500/20 text-blue-400 text-xs px-2 py-1 rounded-full font-semibold whitespace-nowrap">
                   Regla 50/30/20
                 </div>
               </div>
-              <p className="text-white/80 italic">"La regla 50/30/20 cambió mi forma de gastar. Ahora ahorro automáticamente y veo mi dinero crecer."</p>
+              <p className="text-white/80 italic line-clamp-3">"La regla 50/30/20 cambió mi forma de gastar. Ahora ahorro automáticamente y veo mi dinero crecer."</p>
               <div className="mt-4 text-xs text-white/50">Hace 1 mes</div>
             </div>
 
-            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-all duration-300 transform hover:scale-105">
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-xl font-bold mr-4">
+            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 md:p-6 hover:bg-white/10 transition-all duration-300 lg:hover:scale-105">
+              <div className="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-4 mb-4">
+                <div className="w-12 h-12 min-w-[3rem] bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-xl font-bold">
                   L
                 </div>
-                <div className="flex-1">
-                  <h4 className="font-semibold">Laura S.</h4>
-                  <p className="text-sm text-white/60">Cali, Colombia</p>
+                <div className="flex-1 min-w-0">
+                  <h4 className="font-semibold truncate">Laura S.</h4>
+                  <p className="text-sm text-white/60 truncate">Medellín, Colombia</p>
                   <div className="flex text-yellow-400 mt-1">
                     {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
                   </div>
                 </div>
-                <div className="bg-yellow-500/20 text-yellow-400 text-xs px-2 py-1 rounded-full font-semibold">
-                  0% gastos sorpresa
+                <div className="bg-yellow-500/20 text-yellow-400 text-xs px-2 py-1 rounded-full font-semibold whitespace-nowrap">
+                  0% sorpresas
                 </div>
               </div>
-              <p className="text-white/80 italic">"Ya no tengo gastos sorpresa. Todo está bajo control y mi presupuesto familiar funciona perfecto."</p>
+              <p className="text-white/80 italic line-clamp-3">"Ya no tengo gastos sorpresa. Todo está bajo control y mi presupuesto familiar funciona perfecto."</p>
               <div className="mt-4 text-xs text-white/50">Hace 3 semanas</div>
             </div>
 
-            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-all duration-300 transform hover:scale-105 md:col-span-2 lg:col-span-1">
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-gradient-to-r from-red-500 to-orange-500 rounded-full flex items-center justify-center text-xl font-bold mr-4">
+            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 md:p-6 hover:bg-white/10 transition-all duration-300 lg:hover:scale-105">
+              <div className="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-4 mb-4">
+                <div className="w-12 h-12 min-w-[3rem] bg-gradient-to-r from-red-500 to-orange-500 rounded-full flex items-center justify-center text-xl font-bold">
                   J
                 </div>
-                <div className="flex-1">
-                  <h4 className="font-semibold">Juan P.</h4>
-                  <p className="text-sm text-white/60">Barranquilla, Colombia</p>
+                <div className="flex-1 min-w-0">
+                  <h4 className="font-semibold truncate">Juan P.</h4>
+                  <p className="text-sm text-white/60 truncate">Quito, Ecuador</p>
                   <div className="flex text-yellow-400 mt-1">
                     {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
                   </div>
                 </div>
-                <div className="bg-cyan-500/20 text-cyan-400 text-xs px-2 py-1 rounded-full font-semibold">
+                <div className="bg-cyan-500/20 text-cyan-400 text-xs px-2 py-1 rounded-full font-semibold whitespace-nowrap">
                   Meta cumplida
                 </div>
               </div>
-              <p className="text-white/80 italic">"Conseguí el dinero para mi viaje a Europa en 3 meses. Esta plantilla me ayudó a visualizar mi progreso diario."</p>
+              <p className="text-white/80 italic line-clamp-3">"Conseguí el dinero para mi viaje a Europa en 3 meses. Esta plantilla me ayudó a visualizar mi progreso diario."</p>
+              <div className="mt-4 text-xs text-white/50">Hace 1 semana</div>
+            </div>
+
+            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 md:p-6 hover:bg-white/10 transition-all duration-300 lg:hover:scale-105">
+              <div className="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-4 mb-4">
+                <div className="w-12 h-12 min-w-[3rem] bg-gradient-to-r from-blue-400 to-indigo-400 rounded-full flex items-center justify-center text-xl font-bold">
+                  D
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h4 className="font-semibold truncate">Diego R.</h4>
+                  <p className="text-sm text-white/60 truncate">Montevideo, Uruguay</p>
+                  <div className="flex text-yellow-400 mt-1">
+                    {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
+                  </div>
+                </div>
+                <div className="bg-indigo-500/20 text-indigo-400 text-xs px-2 py-1 rounded-full font-semibold whitespace-nowrap">
+                  Semanal +40%
+                </div>
+              </div>
+              <p className="text-white/80 italic line-clamp-3">"El seguimiento semanal me mantiene disciplinado. Ya reduje mis gastos en comida rápida un 40% y veo resultados reales."</p>
+              <div className="mt-4 text-xs text-white/50">Hace 4 días</div>
+            </div>
+
+            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 md:p-6 hover:bg-white/10 transition-all duration-300 lg:hover:scale-105">
+              <div className="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-4 mb-4">
+                <div className="w-12 h-12 min-w-[3rem] bg-gradient-to-r from-pink-400 to-rose-400 rounded-full flex items-center justify-center text-xl font-bold">
+                  S
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h4 className="font-semibold truncate">Sofía L.</h4>
+                  <p className="text-sm text-white/60 truncate">La Paz, Bolivia</p>
+                  <div className="flex text-yellow-400 mt-1">
+                    {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
+                  </div>
+                </div>
+                <div className="bg-rose-500/20 text-rose-400 text-xs px-2 py-1 rounded-full font-semibold whitespace-nowrap">
+                  Familiar OK
+                </div>
+              </div>
+              <p className="text-white/80 italic line-clamp-3">"Ahora controlo los gastos de toda la familia. Los colores inteligentes nos ayudan a todos a entender dónde recortar sin discusiones."</p>
               <div className="mt-4 text-xs text-white/50">Hace 1 semana</div>
             </div>
           </div>

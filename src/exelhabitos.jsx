@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { TrendingUp, BarChart3, PieChart, CheckCircle, Star, Users, Shield, MessageCircle, CreditCard, Banknote, Key, Smartphone, Target, Award, Calendar, Zap, Brain, ChevronDown, ChevronUp, Menu, X, Globe2 } from 'lucide-react';
+import { TrendingUp, BarChart3, PieChart, CheckCircle, Star, Users, Shield, MessageCircle, CreditCard, Banknote, Key, Smartphone, Target, Award, Calendar, Zap, Brain, ChevronDown, ChevronUp, Menu, X, Globe2, ArrowLeft } from 'lucide-react';
 
 const ExcelHabitos = () => {
   const navigate = useNavigate();
@@ -17,21 +17,34 @@ const ExcelHabitos = () => {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
-      
-      const sections = ['hero', 'features', 'benefits', 'transformations', 'preview', 'testimonials', 'science', 'pricing', 'contact'];
-      const current = sections.find(section => {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          return rect.top <= 100 && rect.bottom >= 100;
-        }
-        return false;
-      });
-      if (current) setActiveSection(current);
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const updateActiveSection = () => {
+      const sections = ['hero', 'features', 'benefits', 'transformations', 'preview', 'testimonials', 'science', 'pricing', 'contact'];
+      
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= 100 && rect.bottom >= 100) {
+            setActiveSection(section);
+            return;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', updateActiveSection);
+    updateActiveSection();
+    
+    return () => {
+      window.removeEventListener('scroll', updateActiveSection);
+    };
   }, []);
 
   const handleWhatsAppClick = () => {
@@ -58,9 +71,22 @@ const ExcelHabitos = () => {
       <nav className={`fixed top-4 left-0 right-0 mx-2 sm:mx-4 w-auto z-50 backdrop-blur-lg border border-white/10 rounded-2xl shadow-xl transition-all duration-300 ${isScrolled ? 'scale-95' : ''}`}>
         <div className="container mx-auto px-4 py-3 sm:px-6">
           <div className="flex items-center justify-between">
-            <button onClick={() => { navigate('/'); setIsMobileMenuOpen(false); }} className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300">
-              @juannppgd
-            </button>
+            {/* Logo y botón volver */}
+            <div className="flex items-center space-x-2">
+              <button 
+                onClick={() => navigate('/')} 
+                className="p-1.5 rounded-lg hover:bg-white/10 transition-all duration-300 text-white/70 hover:text-white" 
+                aria-label="Volver a inicio"
+              >
+                <ArrowLeft className="w-5 h-5" />
+              </button>
+              <button 
+                onClick={() => { navigate('/'); setIsMobileMenuOpen(false); }} 
+                className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300"
+              >
+                @juannppgd
+              </button>
+            </div>
 
             <div className="flex items-center space-x-4">
               {/* Desktop Navigation */}
@@ -68,10 +94,9 @@ const ExcelHabitos = () => {
                 {[
                   ['hero', 'Inicio'],
                   ['features', 'Características'],
-                  ['transformations', 'Transformaciones'],
-                  ['science', 'Ciencia'],
-                  ['pricing', 'Precios'],
-                  ['contact', 'Contacto']
+                  ['preview', 'Vista Previa'],
+                  ['testimonials', 'Opiniones'],
+                  ['pricing', 'Precio']
                 ].map(([id, label]) => (
                   <button key={id} onClick={() => scrollTo(id)} className={`capitalize transition-all duration-300 ${activeSection === id ? 'text-cyan-400 scale-110' : 'text-white/70 hover:text-white'}`}>
                     {label}
@@ -95,15 +120,23 @@ const ExcelHabitos = () => {
             {[
               ['hero', 'Inicio'],
               ['features', 'Características'],
-              ['transformations', 'Transformaciones'],
-              ['science', 'Ciencia'],
-              ['pricing', 'Precios'],
-              ['contact', 'Contacto']
+              ['preview', 'Vista Previa'],
+              ['testimonials', 'Opiniones'],
+              ['pricing', 'Precio']
             ].map(([id, label]) => (
               <button key={id} onClick={() => scrollTo(id)} className={`capitalize transition-all duration-300 text-left ${activeSection === id ? 'text-cyan-400' : 'text-white/70 hover:text-white'}`}>
                 {label}
               </button>
             ))}
+            <div className="border-t border-white/10 pt-4 mt-2">
+              <button 
+                onClick={() => { navigate('/'); setIsMobileMenuOpen(false); }} 
+                className="flex items-center space-x-2 transition-all duration-300 text-white/70 hover:text-white"
+              >
+                <ArrowLeft className="w-4 h-4" />
+                <span>Volver al inicio</span>
+              </button>
+            </div>
           </div>
         </div>
       )}
@@ -219,6 +252,13 @@ const ExcelHabitos = () => {
                 <p className="text-white/70 text-sm">"Tu mejor día fue X con Y%"</p>
               </div>
             </div>
+                        <div className="flex items-start space-x-4">
+              <TrendingUp className="w-8 h-8 text-purple-400 flex-shrink-0 mt-1" />
+              <div>
+                <h3 className="text-lg font-semibold mb-2">Mide y analiza tu exito</h3>
+                <p className="text-white/70 text-sm">Revisa, Analiza y Mejora</p>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -274,16 +314,19 @@ const ExcelHabitos = () => {
           <div className="space-y-4">
             <div className="border border-white/10 rounded-lg">
               <button onClick={() => toggleTab('mensual')} className="w-full flex items-center justify-between p-4 text-left hover:bg-white/5 transition-colors">
-                <span className="font-semibold">Vista Mensual</span>
+                <span className="font-semibold">Vista General</span>
                 {activeTab === 'mensual' ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
               </button>
               {activeTab === 'mensual' && (
                 <div className="p-4 border-t border-white/10">
-                  <div className="text-sm text-white/70 space-y-2">
-                    <div>🏋️ Gym: ✅✅❌✅✅✅✅❌✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅</div>
-                    <div>📖 Leer: ✅✅✅❌✅✅✅✅❌✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅</div>
-                    <div>🧘 Meditar: ❌✅✅✅❌✅✅✅✅❌✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅</div>
-                    <div className="mt-4 font-semibold">Cumplimiento: 78%</div>
+                  <div className="w-full h-auto flex items-center justify-center">
+                    <img 
+                      src="/src/assets/habitos.jpg" 
+                      alt="Vista Mensual de Hábitos" 
+                      className="w-full h-auto max-w-2xl rounded-lg shadow-lg object-cover" 
+                      loading="lazy"
+                      onError={(e) => e.target.src = 'https://via.placeholder.com/800x600?text=Vista+Mensual+Habitos'}
+                    />
                   </div>
                 </div>
               )}
@@ -329,85 +372,125 @@ const ExcelHabitos = () => {
         {/* Prueba Social */}
         <div id="testimonials" className="mb-16">
           <h2 className="text-3xl font-bold text-center mb-12">Lo que dicen nuestros usuarios</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-all duration-300 transform hover:scale-105">
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full flex items-center justify-center text-xl font-bold mr-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
+            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 md:p-6 hover:bg-white/10 transition-all duration-300 lg:hover:scale-105">
+              <div className="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-4 mb-4">
+                <div className="w-12 h-12 min-w-[3rem] bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full flex items-center justify-center text-xl font-bold">
                   M
                 </div>
-                <div className="flex-1">
-                  <h4 className="font-semibold">María G.</h4>
-                  <p className="text-sm text-white/60">Madrid, España</p>
+                <div className="flex-1 min-w-0">
+                  <h4 className="font-semibold truncate">María G.</h4>
+                  <p className="text-sm text-white/60 truncate">Madrid, España</p>
                   <div className="flex text-yellow-400 mt-1">
                     {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
                   </div>
                 </div>
-                <div className="bg-green-500/20 text-green-400 text-xs px-2 py-1 rounded-full font-semibold">
-                  +55% cumplimiento
+                <div className="bg-green-500/20 text-green-400 text-xs px-2 py-1 rounded-full font-semibold whitespace-nowrap">
+                  +55% éxito
                 </div>
               </div>
-              <p className="text-white/80 italic">"Pasé de 30% a 85% de cumplimiento en 2 meses. ¡Increíble transformación! Ahora mis hábitos son parte de mi rutina."</p>
+              <p className="text-white/80 italic line-clamp-3">"Pasé de 30% a 85% de cumplimiento en 2 meses. ¡Increíble transformación! Ahora mis hábitos son parte de mi rutina."</p>
               <div className="mt-4 text-xs text-white/50">Hace 3 semanas</div>
             </div>
 
-            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-all duration-300 transform hover:scale-105">
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-teal-500 rounded-full flex items-center justify-center text-xl font-bold mr-4">
+            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 md:p-6 hover:bg-white/10 transition-all duration-300 lg:hover:scale-105">
+              <div className="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-4 mb-4">
+                <div className="w-12 h-12 min-w-[3rem] bg-gradient-to-r from-green-500 to-teal-500 rounded-full flex items-center justify-center text-xl font-bold">
                   C
                 </div>
-                <div className="flex-1">
-                  <h4 className="font-semibold">Carlos R.</h4>
-                  <p className="text-sm text-white/60">Buenos Aires, Argentina</p>
+                <div className="flex-1 min-w-0">
+                  <h4 className="font-semibold truncate">Carlos R.</h4>
+                  <p className="text-sm text-white/60 truncate">Buenos Aires, Argentina</p>
                   <div className="flex text-yellow-400 mt-1">
                     {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
                   </div>
                 </div>
-                <div className="bg-blue-500/20 text-blue-400 text-xs px-2 py-1 rounded-full font-semibold">
-                  Mejor inversión
+                <div className="bg-blue-500/20 text-blue-400 text-xs px-2 py-1 rounded-full font-semibold whitespace-nowrap">
+                  +$7 éxito
                 </div>
               </div>
-              <p className="text-white/80 italic">"La mejor inversión de $7 que hice en 2026. Mi productividad se disparó y ahora tengo hábitos saludables."</p>
+              <p className="text-white/80 italic line-clamp-3">"La mejor inversión de $7 que hice en 2026. Mi productividad se disparó y ahora tengo hábitos saludables."</p>
               <div className="mt-4 text-xs text-white/50">Hace 1 mes</div>
             </div>
 
-            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-all duration-300 transform hover:scale-105">
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-xl font-bold mr-4">
+            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 md:p-6 hover:bg-white/10 transition-all duration-300 lg:hover:scale-105">
+              <div className="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-4 mb-4">
+                <div className="w-12 h-12 min-w-[3rem] bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-xl font-bold">
                   S
                 </div>
-                <div className="flex-1">
-                  <h4 className="font-semibold">Sofia L.</h4>
-                  <p className="text-sm text-white/60">Santiago, Chile</p>
+                <div className="flex-1 min-w-0">
+                  <h4 className="font-semibold truncate">Sofia L.</h4>
+                  <p className="text-sm text-white/60 truncate">Santiago, Chile</p>
                   <div className="flex text-yellow-400 mt-1">
                     {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
                   </div>
                 </div>
-                <div className="bg-yellow-500/20 text-yellow-400 text-xs px-2 py-1 rounded-full font-semibold">
-                  127 días racha
+                <div className="bg-yellow-500/20 text-yellow-400 text-xs px-2 py-1 rounded-full font-semibold whitespace-nowrap">
+                  127 días
                 </div>
               </div>
-              <p className="text-white/80 italic">"Rompí mi récord personal con 127 días consecutivos. Esta herramienta me mantiene motivada diariamente."</p>
+              <p className="text-white/80 italic line-clamp-3">"Rompí mi récord personal con 127 días consecutivos. Esta herramienta me mantiene motivada diariamente."</p>
               <div className="mt-4 text-xs text-white/50">Hace 2 semanas</div>
             </div>
 
-            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-all duration-300 transform hover:scale-105 md:col-span-2 lg:col-span-1">
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-gradient-to-r from-red-500 to-orange-500 rounded-full flex items-center justify-center text-xl font-bold mr-4">
+            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 md:p-6 hover:bg-white/10 transition-all duration-300 lg:hover:scale-105">
+              <div className="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-4 mb-4">
+                <div className="w-12 h-12 min-w-[3rem] bg-gradient-to-r from-red-500 to-orange-500 rounded-full flex items-center justify-center text-xl font-bold">
                   A
                 </div>
-                <div className="flex-1">
-                  <h4 className="font-semibold">Andrés M.</h4>
-                  <p className="text-sm text-white/60">Lima, Perú</p>
+                <div className="flex-1 min-w-0">
+                  <h4 className="font-semibold truncate">Andrés M.</h4>
+                  <p className="text-sm text-white/60 truncate">Lima, Perú</p>
                   <div className="flex text-yellow-400 mt-1">
                     {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
                   </div>
                 </div>
-                <div className="bg-cyan-500/20 text-cyan-400 text-xs px-2 py-1 rounded-full font-semibold">
-                  Disciplina total
+                <div className="bg-cyan-500/20 text-cyan-400 text-xs px-2 py-1 rounded-full font-semibold whitespace-nowrap">
+                  Disciplina OK
                 </div>
               </div>
-              <p className="text-white/80 italic">"De procrastinador a persona disciplinada. Los gráficos me ayudan a ver mi progreso y mantenerme motivado."</p>
+              <p className="text-white/80 italic line-clamp-3">"De procrastinador a persona disciplinada. Los gráficos me ayudan a ver mi progreso y mantenerme motivado."</p>
               <div className="mt-4 text-xs text-white/50">Hace 1 semana</div>
+            </div>
+
+            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 md:p-6 hover:bg-white/10 transition-all duration-300 lg:hover:scale-105">
+              <div className="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-4 mb-4">
+                <div className="w-12 h-12 min-w-[3rem] bg-gradient-to-r from-orange-400 to-red-400 rounded-full flex items-center justify-center text-xl font-bold">
+                  P
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h4 className="font-semibold truncate">Pablo D.</h4>
+                  <p className="text-sm text-white/60 truncate">Bogotá, Colombia</p>
+                  <div className="flex text-yellow-400 mt-1">
+                    {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
+                  </div>
+                </div>
+                <div className="bg-red-500/20 text-red-400 text-xs px-2 py-1 rounded-full font-semibold whitespace-nowrap">
+                  89 días
+                </div>
+              </div>
+              <p className="text-white/80 italic line-clamp-3">"Mantengo una racha de 89 días seguidos. Esta plantilla hace el seguimiento súper fácil y motivador."</p>
+              <div className="mt-4 text-xs text-white/50">Hace 5 días</div>
+            </div>
+
+            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 md:p-6 hover:bg-white/10 transition-all duration-300 lg:hover:scale-105">
+              <div className="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-4 mb-4">
+                <div className="w-12 h-12 min-w-[3rem] bg-gradient-to-r from-teal-400 to-emerald-400 rounded-full flex items-center justify-center text-xl font-bold">
+                  L
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h4 className="font-semibold truncate">Laura P.</h4>
+                  <p className="text-sm text-white/60 truncate">Medellín, Colombia</p>
+                  <div className="flex text-yellow-400 mt-1">
+                    {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
+                  </div>
+                </div>
+                <div className="bg-emerald-500/20 text-emerald-400 text-xs px-2 py-1 rounded-full font-semibold whitespace-nowrap">
+                  +3x Prod
+                </div>
+              </div>
+              <p className="text-white/80 italic line-clamp-3">"Mi productividad se triplicó. Ver mi progreso gráfico me mantiene enfocada todos los días."</p>
+              <div className="mt-4 text-xs text-white/50">Hace 3 días</div>
             </div>
           </div>
 
