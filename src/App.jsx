@@ -1005,7 +1005,7 @@ src="/profile-image.jpg"
             </span>
           </h2>
           <p className="text-center text-gray-300 dark:text-secondary mb-8 text-lg">
-            Herramientas Excel profesionales para mejorar tu productividad y finanzas personales. Acceso inmediato por solo $5 USD cada una.
+            Herramientas Excel profesionales para mejorar tu productividad y finanzas personales. Acceso inmediato por solo $7 USD cada una.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {/* Plantilla de Gastos */}
@@ -1018,7 +1018,7 @@ src="/profile-image.jpg"
                 <p className="text-gray-300 dark:text-secondary text-sm mb-4">
                   Domina tus finanzas en 5 min/día con colores inteligentes, gráficos automáticos y la regla 50/30/20.
                 </p>
-                <div className="text-3xl font-bold text-green-400 mb-4">$5 USD</div>
+                <div className="text-3xl font-bold text-green-400 mb-4">$7 USD</div>
                 <button className="w-full bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-600 hover:to-teal-600 text-white py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-green-500/25">
                   Ver Plantilla de Gastos
                 </button>
@@ -1035,7 +1035,7 @@ src="/profile-image.jpg"
                 <p className="text-gray-300 dark:text-secondary text-sm mb-4">
                   Rastrea tus hábitos diarios con gráficos dinámicos, rachas y análisis inteligente para 2026.
                 </p>
-                <div className="text-3xl font-bold text-purple-400 mb-4">$5 USD</div>
+                <div className="text-3xl font-bold text-purple-400 mb-4">$7 USD</div>
                 <button className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-purple-500/25">
                   Ver Plantilla de Hábitos
                 </button>

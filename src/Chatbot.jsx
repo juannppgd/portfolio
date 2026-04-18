@@ -50,24 +50,76 @@ const responses = {
     options: ['Marketing Digital', 'Email Marketing', 'Contacto']
   },
   'Servicios Adicionales': {
-    text: 'Además de desarrollo web y marketing, Juan Pablo ofrece servicios adicionales especializados:\n\n• Desarrollo de trabajos y evaluaciones académicas\n• Clases de programación personalizadas\n• Venta de garaje en línea (Marketplace y MercadoLibre)\n• Asesoría para crear CV profesionales\n\n¿Cuál te interesa?',
-    options: ['Desarrollo Académico','Asesoría CV', 'Clases Programación', 'Venta Online',  'Volver a Servicios']
+    text: 'Además de desarrollo web y marketing, Juan Pablo ofrece servicios adicionales especializados:\n\n• Desarrollo de trabajos y evaluaciones académicas\n• Clases de programación personalizadas\n• Venta de garaje en línea (Marketplace y MercadoLibre)\n• Asesoría para crear CV profesionales\n• Plantillas Excel profesionales\n\n¿Cuál te interesa?',
+    options: ['Desarrollo Académico','Asesoría CV', 'Clases Programación', 'Venta Online', 'Plantillas Excel', 'Volver a Servicios']
   },
   'Desarrollo Académico': {
-    text: 'Apoyo profesional en el desarrollo de trabajos académicos, evaluaciones, proyectos y entregables:\n\n• Investigación y redacción especializada\n• Enfoque en calidad y cumplimiento\n• Resultados garantizados\n• Confidencialidad total\n\nIdeal para estudiantes y profesionales.',
-    options: ['Servicios Adicionales', 'Contacto']
+    text: 'Desarrollo de trabajos y evaluaciones\nApoyo profesional en el desarrollo de trabajos académicos, evaluaciones, proyectos y entregables con enfoque en calidad, cumplimiento y resultados.\n\nSolicitar apoyo académico',
+    options: ['Ver Página Académica', 'Contacto', 'Servicios Adicionales']
   },
   'Clases Programación': {
-    text: 'Clases de programación personalizadas para todos los niveles:\n\n• Desde principiantes hasta avanzados\n• Tecnologías modernas (React, Python, etc.)\n• Metodología práctica y aplicada\n• Horarios flexibles\n• Proyectos reales incluidos\n\nAprende a programar de manera efectiva.',
-    options: ['Servicios Adicionales', 'Contacto']
+    text: 'Clases de programación personalizadas 1 a 1\nClases personalizadas enfocadas en tu nivel, ritmo y objetivos. Aprende programación de forma práctica y aplicada. Recibes Materiales y Certificado\n\nContáctame haciendo clic aquí',
+    options: ['Ver Página Clases', 'Contacto', 'Servicios Adicionales']
   },
   'Venta Online': {
-    text: 'Servicio completo de venta de garaje en línea:\n\n• Publicación y gestión en Marketplace\n• Optimización en MercadoLibre\n• Gestión de productos garantizados\n• Estrategias de venta efectivas\n• Soporte continuo\n\nConvierte tus productos en ventas reales.',
-    options: ['Servicios Adicionales', 'Contacto']
+    text: 'Venta de garaje en línea por Marketplace y MercadoLibre\nConoce mi modalidad de Publicación, gestión y optimización de productos en plataformas de venta online para que adquieras los tuyos completamente garantizados.\n\nExplorar tiendas y aprender a vender',
+    options: ['Ver Página Venta', 'Contacto', 'Servicios Adicionales']
   },
   'Asesoría CV': {
-    text: 'Asesoría profesional para crear CV impactantes:\n\n• Diseño y estructura óptima\n• Contenido persuasivo y relevante\n• Optimización para ATS\n• Consejos de presentación\n• Revisión y feedback detallado\n\nDestaca en el mercado laboral.',
-    options: ['Servicios Adicionales', 'Contacto']
+    text: 'Asesoría en creación de tu CV para que entres al trabajo de tus sueños\nCreo tu CV para que entres al trabajo de tus sueños\nDiseño un currículum profesional para un CV estratégico, atractivo y optimizado para procesos de selección laboral, filtros avanzados ATS.\n\nContáctame haciendo clic aquí',
+    options: ['Ver Página CV', 'Contacto', 'Servicios Adicionales']
+  },
+  'Plantillas Excel': {
+    text: 'Plantillas para ti\nHerramientas Excel profesionales para mejorar tu productividad y finanzas personales. Acceso inmediato por solo $5 USD cada una.',
+    options: ['Control de Gastos', 'Rastreo de Hábitos', 'Servicios Adicionales']
+  },
+  'Control de Gastos': {
+    text: 'Control de Gastos\nDomina tus finanzas en 5 min/día con colores inteligentes, gráficos automáticos y la regla 50/30/20.\n\n$7 USD\nVer Plantilla de Gastos',
+    options: ['Ver Plantilla de Gastos', 'Comprar Plantilla', 'Plantillas Excel', 'Contacto']
+  },
+  'Rastreo de Hábitos': {
+    text: 'Rastreo de Hábitos\nRastrea tus hábitos diarios con gráficos dinámicos, rachas y análisis inteligente para 2026.\n\n$7 USD\nVer Plantilla de Hábitos',
+    options: ['Ver Plantilla de Hábitos', 'Comprar Plantilla', 'Plantillas Excel', 'Contacto']
+  },
+  'Comprar Plantilla': {
+    text: '¡Excelente! Para adquirir la plantilla, contáctame directamente. Te enviaré el enlace de pago seguro y acceso inmediato.\n\nMétodos de pago: PayPal, Transferencia, etc.',
+    options: ['Contacto', 'Plantillas Excel']
+  },
+  'Ver Plantilla de Gastos': {
+    text: '¡Excelente! Te llevo directamente a la página de la plantilla de Control de Gastos. ¡Descubre cómo dominar tus finanzas! 💰',
+    options: ['Volver al Inicio'],
+    action: 'excel-gastos',
+    autoClose: true
+  },
+  'Ver Plantilla de Hábitos': {
+    text: '¡Excelente! Te llevo directamente a la página de la plantilla de Rastreo de Hábitos. ¡Mejora tus hábitos diarios! 📊',
+    options: ['Volver al Inicio'],
+    action: 'excel-habitos',
+    autoClose: true
+  },
+  'Ver Página Académica': {
+    text: '¡Perfecto! Te llevo a la página dedicada al servicio académico. ¡Descubre cómo puedo ayudarte con tus trabajos! 📚',
+    options: ['Volver al Inicio'],
+    action: 'academico',
+    autoClose: true
+  },
+  'Ver Página Clases': {
+    text: '¡Genial! Te llevo a la página de clases de programación personalizadas. ¡Aprende a programar de manera efectiva! 💻',
+    options: ['Volver al Inicio'],
+    action: 'clases',
+    autoClose: true
+  },
+  'Ver Página Venta': {
+    text: '¡Excelente! Te llevo a la página de venta de garaje en línea. ¡Descubre cómo vender tus productos online! 🛒',
+    options: ['Volver al Inicio'],
+    action: 'venta',
+    autoClose: true
+  },
+  'Ver Página CV': {
+    text: '¡Perfecto! Te llevo a la página de asesoría para crear tu CV. ¡Destaca en el mercado laboral! 📄',
+    options: ['Volver al Inicio'],
+    action: 'cv-service',
+    autoClose: true
   },
   'Volver a Servicios': {
     text: '¡Perfecto! ¿Te gustaría conocer más sobre nuestros servicios principales o adicionales?',
@@ -137,7 +189,7 @@ const Chatbot = ({ forceOpen = false, onShare, onScrollToContact, onScrollToFoot
     {
       role: 'assistant',
       content: '¡Hola! 👋 Soy el asistente programado de Juan Pablo. ¿En qué puedo ayudarte hoy?',
-      options: ['Servicios', 'Desarrollo Web', 'Marketing Digital','Contacto','Preguntas Frecuentes']
+      options: ['Servicios', 'Desarrollo Web', 'Marketing Digital','Contacto', 'Servicios Adicionales','Preguntas Frecuentes']
     }
   ]);
   const [isLoading, setIsLoading] = useState(false);
@@ -185,7 +237,7 @@ const Chatbot = ({ forceOpen = false, onShare, onScrollToContact, onScrollToFoot
         {
           role: 'assistant',
           content: '¡Hola! 👋 Soy el asistente programado de Juan Pablo. ¿En qué puedo ayudarte hoy?',
-          options: ['Servicios', 'Desarrollo Web', 'Marketing Digital', 'Preguntas Frecuentes', 'Enviar mensaje', 'Contacto']
+          options: ['Servicios', 'Desarrollo Web', 'Marketing Digital', 'Servicios Adicionales', 'Enviar mensaje', 'Contacto']
         }
       ]);
       return;
@@ -230,6 +282,30 @@ const Chatbot = ({ forceOpen = false, onShare, onScrollToContact, onScrollToFoot
       } else if (response.action === 'contact') {
         setTimeout(() => {
           if (onScrollToContact) onScrollToContact();
+        }, 500);
+      } else if (response.action === 'excel-gastos') {
+        setTimeout(() => {
+          window.location.hash = '#/excel-gastos';
+        }, 500);
+      } else if (response.action === 'excel-habitos') {
+        setTimeout(() => {
+          window.location.hash = '#/excel-habitos';
+        }, 500);
+      } else if (response.action === 'academico') {
+        setTimeout(() => {
+          window.location.hash = '#/academico';
+        }, 500);
+      } else if (response.action === 'clases') {
+        setTimeout(() => {
+          window.location.hash = '#/clases';
+        }, 500);
+      } else if (response.action === 'venta') {
+        setTimeout(() => {
+          window.location.hash = '#/venta';
+        }, 500);
+      } else if (response.action === 'cv-service') {
+        setTimeout(() => {
+          window.location.hash = '#/cv-service';
         }, 500);
       }
 
