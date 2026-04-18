@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { TrendingUp, BarChart3, PieChart, DollarSign, CheckCircle, Star, Users, Shield, MessageCircle, CreditCard, Banknote, Key, Smartphone, Globe, Target, Award, Menu, X, Zap, Globe2, Brain, Calendar, ChevronDown, ChevronUp, Phone, Download, ArrowLeft } from 'lucide-react';
+import gastosImage from './assets/gastos.png';
 
 const ExcelGastos = () => {
   const navigate = useNavigate();
@@ -300,7 +301,7 @@ const ExcelGastos = () => {
                 <div className="p-4 border-t border-white/10">
                   <div className="w-full h-auto flex items-center justify-center">
                     <img 
-                      src="/src/assets/gastos.jpg" 
+                      src={gastosImage} 
                       alt="Vista Mensual de Gastos" 
                       className="w-full h-auto max-w-2xl rounded-lg shadow-lg object-cover" 
                       loading="lazy"

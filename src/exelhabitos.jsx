@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { TrendingUp, BarChart3, PieChart, CheckCircle, Star, Users, Shield, MessageCircle, CreditCard, Banknote, Key, Smartphone, Target, Award, Calendar, Zap, Brain, ChevronDown, ChevronUp, Menu, X, Globe2, ArrowLeft } from 'lucide-react';
+import habitosImage from './assets/habitos.png';
 
 const ExcelHabitos = () => {
   const navigate = useNavigate();
@@ -321,7 +322,7 @@ const ExcelHabitos = () => {
                 <div className="p-4 border-t border-white/10">
                   <div className="w-full h-auto flex items-center justify-center">
                     <img 
-                      src="/src/assets/habitos.jpg" 
+                      src={habitosImage} 
                       alt="Vista Mensual de Hábitos" 
                       className="w-full h-auto max-w-2xl rounded-lg shadow-lg object-cover" 
                       loading="lazy"
