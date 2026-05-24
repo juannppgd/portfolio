@@ -1,18 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { Mail, MapPin, ChevronDown, Code, Briefcase, User, Send, MessageCircle, ArrowUpRight, Moon, Sun, Zap, Palette, Brain, Award, Trophy, BookOpen, Sparkles, Star, Globe, Cpu, Smartphone, Shield, Target, BarChart, HeartPulse, Lock, CreditCard, Banknote, Key, TrendingUp, Users, Server, Plus, Loader, Calendar, Menu, X, MapPinCheckIcon, VideoIcon, Settings, Github, Quote, FileText, Share2 } from 'lucide-react';
 import { FaTiktok, FaTelegram, FaPinterest, FaFacebook, FaInstagram, FaLinkedin, FaTwitter, FaYoutube, FaSnapchat, FaDiscord } from 'react-icons/fa';
-import emailjs from '@emailjs/browser';
 import XImage from './assets/X2.png';
 import kickImage from './assets/kick.png';
-import Chatbot from './Chatbot';
-import CVService from './CVService';
-import Clases from './Clases';
-import Venta from './Venta';
-import Academico from './Academico';
-import Inspiration from './Inspiration';
-import ExcelGastos from './ExcelGastos';
-import ExcelHabitos from './exelhabitos';
+const Chatbot = lazy(() => import('./Chatbot'));
+const CVService = lazy(() => import('./CVService'));
+const Clases = lazy(() => import('./Clases'));
+const Venta = lazy(() => import('./Venta'));
+const Academico = lazy(() => import('./Academico'));
+const Inspiration = lazy(() => import('./Inspiration'));
+const ExcelGastos = lazy(() => import('./ExcelGastos'));
+const ExcelHabitos = lazy(() => import('./exelhabitos'));
 
 
 
@@ -169,7 +168,7 @@ const Portfolio = () => {
     return emailRegex.test(email);
   };
 
-const handleSubmit = (e) => {
+const handleSubmit = async (e) => {
   e.preventDefault();
   const honeypotValue = e.target.honeypot.value;
   if (honeypotValue) {
@@ -187,6 +186,8 @@ const handleSubmit = (e) => {
 
   if (Object.keys(newErrors).length === 0) {
     setIsSubmitting(true);
+    const { default: emailjs } = await import('@emailjs/browser');
+
     //Enviar correo de confirmación
     emailjs.send('service_s5qyr4s', 'template_oyoptw3', {
       to_email: formData.email,
@@ -703,17 +704,24 @@ return (
           <div className="mb-8 relative">
             <div className="w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 mx-auto rounded-full bg-gradient-to-r from-cyan-400 to-purple-400 p-1 transition-all duration-300">
               <div className="w-full h-full rounded-full bg-slate-900 flex items-center justify-center overflow-hidden">
-                <img
-src="/profile-image.jpg"
-                  alt="Foto de perfil de Juan Pablo Gutiérrez Díaz, desarrollador web y especialista en marketing digital"
-                  className={`w-full h-full rounded-full object-cover transition-all duration-300 cursor-pointer ${isVibrating ? 'animate-vibrate' : ''}`}
-                  loading="lazy"
-                  onClick={() => {
-                    setIsVibrating(true);
-                    setTimeout(() => setIsVibrating(false), 500);
-                  setShowDiscountModal(true); // Direct trigger (clickCount removed)
-                  }}
-                />
+                <picture>
+                  <source srcSet="/assets/optimized/profile-image-640.webp" type="image/webp" />
+                  <img
+                    src="/profile-image.jpg"
+                    alt="Foto de perfil de Juan Pablo Gutiérrez Díaz, desarrollador web y especialista en marketing digital"
+                    width="256"
+                    height="256"
+                    className={`w-full h-full rounded-full object-cover transition-all duration-300 cursor-pointer ${isVibrating ? 'animate-vibrate' : ''}`}
+                    loading="eager"
+                    decoding="async"
+                    importance="high"
+                    onClick={() => {
+                      setIsVibrating(true);
+                      setTimeout(() => setIsVibrating(false), 500);
+                      setShowDiscountModal(true); // Direct trigger (clickCount removed)
+                    }}
+                  />
+                </picture>
               </div>
             </div>
           </div>
@@ -956,7 +964,10 @@ src="/profile-image.jpg"
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
             {/* Servicio 1: Desarrollo de trabajos y evaluaciones */}
             <div className="bg-gradient-to-br from-cyan-500/10 via-blue-500/10 to-purple-500/10 backdrop-blur-sm rounded-3xl p-6 border border-cyan-400/30 hover:border-cyan-400/70 transition-all duration-500 transform hover:scale-102 hover:shadow-2xl hover:shadow-cyan-500/30 dark:bg-card dark:border-card animate-glow-repeat cursor-pointer" onClick={() => window.open('/#/academico', '_blank')}>
-              <img src="/assets/Desarrollo.png" alt="Desarrollo de trabajos y evaluaciones" className="w-full aspect-[5/4] object-contain rounded-lg mb-4" />
+              <picture>
+                <source srcSet="/assets/optimized/Desarrollo-640.webp 640w, /assets/optimized/Desarrollo-1024.webp 1024w, /assets/optimized/Desarrollo-1366.webp 1366w" type="image/webp" />
+                <img src="/assets/Desarrollo.png" alt="Desarrollo de trabajos y evaluaciones" width="640" height="512" sizes="(max-width: 640px) 100vw, 25vw" className="w-full aspect-[5/4] object-contain rounded-lg mb-4" loading="lazy" decoding="async" />
+              </picture>
               <h3 className="text-center text-xl font-bold text-white mb-3 dark:text-primary">Desarrollo de trabajos y evaluaciones</h3>
               <p className="text-gray-300 text-sm mb-3 dark:text-secondary">
                 Apoyo profesional en el desarrollo de trabajos académicos, evaluaciones, proyectos y entregables con enfoque en calidad, cumplimiento y resultados.
@@ -966,7 +977,10 @@ src="/profile-image.jpg"
 
             {/* Servicio 2: Clases de programación personalizadas 1 a 1 */}
             <div className="bg-gradient-to-br from-purple-500/10 via-pink-500/10 to-cyan-500/10 backdrop-blur-sm rounded-3xl p-6 border border-purple-400/30 hover:border-purple-400/70 transition-all duration-500 transform hover:scale-102 hover:shadow-2xl hover:shadow-purple-500/30 dark:bg-card dark:border-card animate-glow-repeat cursor-pointer" onClick={() => window.open('/#/clases', '_blank')}>
-              <img src="/assets/Clases.png" alt="Clases de programación personalizadas 1 a 1" className="w-full aspect-[5/4] object-contain rounded-lg mb-4" />
+              <picture>
+                <source srcSet="/assets/optimized/Clases-640.webp 640w, /assets/optimized/Clases-1024.webp 1024w, /assets/optimized/Clases-1366.webp 1366w" type="image/webp" />
+                <img src="/assets/Clases.png" alt="Clases de programación personalizadas 1 a 1" width="640" height="512" sizes="(max-width: 640px) 100vw, 25vw" className="w-full aspect-[5/4] object-contain rounded-lg mb-4" loading="lazy" decoding="async" />
+              </picture>
               <h3 className="text-center text-xl font-bold text-white mb-3 dark:text-primary">Clases de programación personalizadas 1 a 1</h3>
               <p className="text-gray-300 text-sm mb-3 dark:text-secondary">
                 Clases personalizadas enfocadas en tu nivel, ritmo y objetivos. Aprende programación de forma práctica y aplicada. Recibes Materiales y Certificado
@@ -976,7 +990,10 @@ src="/profile-image.jpg"
 
             {/* Servicio 3: Venta de garaje en línea por Marketplace y MercadoLibre */}
             <div className="bg-gradient-to-br from-green-500/10 via-teal-500/10 to-cyan-500/10 backdrop-blur-sm rounded-3xl p-6 border border-green-400/30 hover:border-green-400/70 transition-all duration-500 transform hover:scale-102 hover:shadow-2xl hover:shadow-green-500/30 dark:bg-card dark:border-card animate-glow-repeat cursor-pointer" onClick={() => window.open('/#/venta', '_blank')}>
-              <img src="/assets/Venta.png" alt="Venta de garaje en línea por Marketplace y MercadoLibre" className="w-full aspect-[5/4] object-contain rounded-lg mb-4" />
+              <picture>
+                <source srcSet="/assets/optimized/Venta-640.webp 640w, /assets/optimized/Venta-1024.webp 1024w, /assets/optimized/Venta-1366.webp 1366w" type="image/webp" />
+                <img src="/assets/Venta.png" alt="Venta de garaje en línea por Marketplace y MercadoLibre" width="640" height="512" sizes="(max-width: 640px) 100vw, 25vw" className="w-full aspect-[5/4] object-contain rounded-lg mb-4" loading="lazy" decoding="async" />
+              </picture>
               <h3 className="text-center text-xl font-bold text-white mb-3 dark:text-primary">Venta de garaje en línea por Marketplace y MercadoLibre</h3>
               <p className="text-gray-300 text-sm mb-3 dark:text-secondary">
                 Conoce mi modalidad de Publicación, gestión y optimización de productos en plataformas de venta online para que adquieras los tuyos completamente garantizados.
@@ -986,7 +1003,10 @@ src="/profile-image.jpg"
 
             {/* Servicio 4: Asesoría en creación de tu CV para que entres al trabajo de tus sueños */}
             <div className="bg-gradient-to-br from-orange-500/10 via-red-500/10 to-pink-500/10 backdrop-blur-sm rounded-3xl p-6 border border-orange-400/30 hover:border-orange-400/70 transition-all duration-500 transform hover:scale-102 hover:shadow-2xl hover:shadow-orange-500/30 dark:bg-card dark:border-card animate-glow-repeat cursor-pointer" onClick={() => window.open('/#/cv-service', '_blank')}>
-              <img src="/assets/Asesoría.png" alt="Asesoría en creación de tu CV para que entres al trabajo de tus sueños" className="w-full aspect-[5/4] object-contain rounded-lg mb-4" />
+              <picture>
+                <source srcSet="/assets/optimized/Asesoría-640.webp 640w, /assets/optimized/Asesoría-1024.webp 1024w, /assets/optimized/Asesoría-1366.webp 1366w" type="image/webp" />
+                <img src="/assets/Asesoría.png" alt="Asesoría en creación de tu CV para que entres al trabajo de tus sueños" width="640" height="512" sizes="(max-width: 640px) 100vw, 25vw" className="w-full aspect-[5/4] object-contain rounded-lg mb-4" loading="lazy" decoding="async" />
+              </picture>
               <h3 className="text-center text-xl font-bold text-white mb-3 dark:text-primary">Creo tu CV para que entres al trabajo de tus sueños</h3>
               <p className="text-gray-300 text-sm mb-3 dark:text-secondary">
                 Diseño un currículum profesional para un CV estratégico, atractivo y optimizado para procesos de selección laboral, filtros avanzados ATS.
@@ -2321,7 +2341,9 @@ También doy clases de programación personalizadas."
       )}
 
       {/* Chatbot */}
-      <Chatbot onShare={handleShare} onScrollToContact={() => scrollToSection('contacto')} onScrollToFooter={() => scrollToSection('footer')} />
+      <Suspense fallback={null}>
+        <Chatbot onShare={handleShare} onScrollToContact={() => scrollToSection('contacto')} onScrollToFooter={() => scrollToSection('footer')} />
+      </Suspense>
 
       <style dangerouslySetInnerHTML={{
         __html: `
@@ -2500,16 +2522,18 @@ También doy clases de programación personalizadas."
 
 const App = () => {
   return (
-    <Routes>
-      <Route path="/" element={<Portfolio />} />
-      <Route path="/cv-service" element={<CVService />} />
-      <Route path="/clases" element={<Clases />} />
-      <Route path="/venta" element={<Venta />} />
-      <Route path="/academico" element={<Academico />} />
-      <Route path="/inspiration" element={<Inspiration />} />
-      <Route path="/excel-gastos" element={<ExcelGastos />} />
-      <Route path="/excel-habitos" element={<ExcelHabitos />} />
-    </Routes>
+    <Suspense fallback={<div className="min-h-screen bg-slate-950"></div>}>
+      <Routes>
+        <Route path="/" element={<Portfolio />} />
+        <Route path="/cv-service" element={<CVService />} />
+        <Route path="/clases" element={<Clases />} />
+        <Route path="/venta" element={<Venta />} />
+        <Route path="/academico" element={<Academico />} />
+        <Route path="/inspiration" element={<Inspiration />} />
+        <Route path="/excel-gastos" element={<ExcelGastos />} />
+        <Route path="/excel-habitos" element={<ExcelHabitos />} />
+      </Routes>
+    </Suspense>
   );
 };
 

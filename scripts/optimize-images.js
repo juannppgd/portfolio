@@ -2,7 +2,7 @@ import sharp from 'sharp';
 import { promises as fs } from 'fs';
 import path from 'path';
 
-const INPUT_DIR = './src/assets';
+const INPUT_DIR = './public/assets';
 const OUTPUT_DIR = './public/assets/optimized';
 
 async function optimizeImages() {
@@ -14,7 +14,11 @@ async function optimizeImages() {
     const files = await fs.readdir(INPUT_DIR);
     
     for (const file of files) {
-      if (!['.jpg', '.jpeg', '.png', '.webp'].includes(path.extname(file).toLowerCase())) {
+      if (file === 'optimized') {
+        continue;
+      }
+      const extension = path.extname(file).toLowerCase();
+      if (!['.jpg', '.jpeg', '.png', '.webp'].includes(extension)) {
         continue;
       }
 
