@@ -73,13 +73,14 @@ const Portfolio = () => {
   useEffect(() => {
     setDisplayedText("");
     let i = 0;
+    // Optimize typing effect: update every 100ms instead of 50ms to reduce repaints
     const interval = setInterval(() => {
       setDisplayedText(typingText.slice(0, i));
       i++;
       if (i > typingText.length) {
         clearInterval(interval);
       }
-    }, 50);
+    }, 100);
 
     return () => clearInterval(interval);
   }, [restartTyping]);
@@ -696,8 +697,8 @@ return (
 >
         {/* Animated */}
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-purple-500/30 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/30 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-purple-500/30 rounded-full blur-3xl animate-pulse-optimized" style={{animationDelay: '0s'}}></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/30 rounded-full blur-3xl animate-pulse-optimized" style={{animationDelay: '1s'}}></div>
         </div>
         
         <div className="text-center z-10 px-4">
@@ -727,7 +728,7 @@ return (
           </div>
           
           <h1 className="text-5xl md:text-7xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-gradient">
+            <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-gradient-optimized">
               Juan Pablo
             </span>
             <br />
@@ -739,7 +740,7 @@ return (
 </p>
 
 
-<p className="text-base md:text-lg bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-gradient mb-8 max-w-3xl mx-auto font-semibold tracking-wide">
+<p className="text-base md:text-lg bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-gradient-optimized mb-8 max-w-3xl mx-auto font-semibold tracking-wide">
   {displayedText}
 
   <span className="animate-blink">|</span>
@@ -764,7 +765,7 @@ return (
 
             {/* Availability Indicator */}
             <div className="flex items-center justify-center mt-6">
-              <div className="bg-gradient-to-r from-cyan-500/20 to-purple-500/20 backdrop-blur-sm rounded-full px-4 py-2 border border-cyan-500/30 animate-pulse">
+              <div className="bg-gradient-to-r from-cyan-500/20 to-purple-500/20 backdrop-blur-sm rounded-full px-4 py-2 border border-cyan-500/30 animate-pulse-optimized">
                 <div
                   className="flex items-center gap-2 text-cyan-300 text-sm font-semibold dark:text-cyan-300 cursor-pointer hover:text-cyan-200 transition-colors"
                   onClick={() => scrollToSection('contacto')}
@@ -781,7 +782,7 @@ return (
               >
                 Descubre mis servicios y cómo puedo ayudarte
               </h2>
-              <div className="animate-bounce">
+              <div className="animate-bounce-optimized">
                 <ChevronDown className="w-8 h-8 text-cyan-400" />
               </div>
             </div>
@@ -792,7 +793,7 @@ return (
       {/* Promotional Section */}
       <section id="promocion" className="py-4 px-4 sm:px-6 dark:bg-dark-bg">
         <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-2xl sm:text-4xl font-extrabold mb-6 bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-400 bg-clip-text text-transparent animate-gradient">
+          <h2 className="text-2xl sm:text-4xl font-extrabold mb-6 bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-400 bg-clip-text text-transparent animate-gradient-optimized">
             ¿Quieres una página web con un diseño único, exclusivo, que conecte con tu audiencia?
           </h2>
           <p className="text-base sm:text-lg text-white/90 max-w-3xl mx-auto mb-8 font-semibold">
@@ -841,7 +842,7 @@ return (
 
 >
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-10 animate-float">
+          <h2 className="text-3xl font-bold text-center mb-10 animate-float">
             <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
               Servicios
             </span>
@@ -859,7 +860,7 @@ return (
 
               {/* Opción 1: Gradiente rosa-púrpura (actual) */}
               <div className="bg-gradient-to-r from-purpleS-500/20 to-purple-500/20 rounded-2xl p-4 mb-6 border border-blue-500/30 cursor-pointer group" onClick={() => scrollToSection('contacto')}>
-                <p className="text-white font-bold text-lg text-center dark:text-primary animate-pulse">
+                <p className="text-white font-bold text-lg text-center dark:text-primary animate-pulse-optimized">
                   ¡25% OFF Solo por hoy! ⏰ {timeLeft}
                 </p>
               </div>
@@ -911,7 +912,7 @@ return (
               </div>
 
               <div className="bg-gradient-to-r from-orange-500/20 to-red-500/20 rounded-2xl p-4 mb-6 border border-orange-500/30 cursor-pointer group" onClick={() => scrollToSection('contacto')}>
-                <p className="text-white font-bold text-lg text-center dark:text-primary animate-pulse">
+                <p className="text-white font-bold text-lg text-center dark:text-primary animate-pulse-optimized">
                   ¡35% OFF Solo por hoy! ⏰ {timeLeft}
                 </p>
               </div>
@@ -955,11 +956,11 @@ return (
           </div>
 
           {/* Servicios adicionales */}
-          <h2 className="text-3xl font-bold text-center mt-12 mb-8 animate-fadein">
+          <h3 className="text-3xl font-bold text-center mt-12 mb-8 animate-fadein">
             <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
               Servicios adicionales +
             </span>
-          </h2>
+          </h3>
 
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
             {/* Servicio 1: Desarrollo de trabajos y evaluaciones */}
@@ -1368,7 +1369,7 @@ return (
                       key={index}
                       className="bg-white/5 rounded-xl p-4 border border-white/10 hover:border-purple-400/50 transition-all duration-300 transform hover:scale-105 group dark:bg-card dark:border-card"
                     >
-                      <div className="text-2xl mb-2 group-hover:animate-bounce">{tool.icon}</div>
+                      <div className="text-2xl mb-2 group-hover:animate-bounce-optimized" style={{willChange: 'transform'}}>{tool.icon}</div>
                       <h4 className="font-semibold text-sm mb-1 bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent dark:text-primary">{tool.name}</h4>
                       <p className="text-gray-400 text-xs dark:text-secondary" id={`detail-${education.length + courses.length + experiences.length + index}`}>
                         {tool.category}

@@ -25,6 +25,25 @@ export default {
       },
       screens: {
         'mobile-nav': '1025px',
+      },
+      animation: {
+        'bounce-optimized': 'bounce-optimized 1s infinite',
+        'pulse-optimized': 'pulse-optimized 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'gradient-optimized': 'gradient-optimized 8s ease infinite',
+      },
+      keyframes: {
+        'bounce-optimized': {
+          '0%, 100%': { transform: 'translateY(0)', willChange: 'transform' },
+          '50%': { transform: 'translateY(-0.5rem)' },
+        },
+        'pulse-optimized': {
+          '0%, 100%': { opacity: '1', willChange: 'opacity' },
+          '50%': { opacity: '.7' },
+        },
+        'gradient-optimized': {
+          '0%, 100%': { backgroundPosition: '0% 50%', willChange: 'background-position' },
+          '50%': { backgroundPosition: '100% 50%' },
+        }
       }
     },
   },
