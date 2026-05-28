@@ -15,6 +15,29 @@ const ExcelHabitos = lazy(() => import('./exelhabitos'));
 
 
 
+const localAIModels = [
+  {
+    name: 'Llama 3.1 8B',
+    memory: '6-8 GB',
+    focus: 'Razonamiento general y documentación'
+  },
+  {
+    name: 'Qwen 2.5 Coder 7B',
+    memory: '5-6 GB',
+    focus: 'Experto en programación y código'
+  },
+  {
+    name: 'Phi-3.5-mini',
+    memory: '3-4 GB',
+    focus: 'PCs con poca RAM, lógica y matemáticas'
+  },
+  {
+    name: 'Ministral 3 14B',
+    memory: '10-12 GB',
+    focus: 'Velocidad y función calling avanzada'
+  }
+];
+
 const Portfolio = () => {
   const [activeSection, setActiveSection] = useState('@juannppgd');
   const [formData, setFormData] = useState({
@@ -955,8 +978,89 @@ return (
           </div>
           </div>
 
+          {/* IA Local Section */}
+          <section id="ia-local" className="pt-14 pb-2 px-4 dark:bg-dark-bg">
+            <div className="max-w-5xl mx-auto">
+              <div className="text-center mb-10">
+                <p className="text-sm uppercase tracking-[0.35em] text-cyan-300/80 mb-3">IA Local</p>
+                <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4">
+                  IA Local: En tu Computador, Sin Internet
+                </h2>
+                <p className="mx-auto max-w-3xl text-base sm:text-lg text-gray-300 leading-8">
+                  Modelos de lenguaje que corren nativamente en tu GPU o RAM. Sin límites de preguntas. Sin suscripciones. Tus datos nunca salen de tu máquina.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 mb-10">
+                {[
+                  '🛡️ 100% Privado: Tus datos NO salen de tu computador',
+                  '♾️ Ilimitado: Pregunta todo lo que quieras, sin costo por API',
+                  '💸 Sin suscripciones: El modelo y es tuyo para siempre',
+                  '🌐 Offline nativo: Funciona sin conexión a internet',
+                  '⚡ Velocidad local: Aprovecha tu GPU (NVIDIA, AMD, Apple)',
+                  '🎯 Modular: Elige el modelo según tu hardware y necesidad'
+                ].map((item, index) => (
+                  <div
+                    key={index}
+                    className="bg-white/5 backdrop-blur-sm rounded-3xl p-5 border border-white/10 text-gray-100 transition-all duration-300 hover:border-cyan-400/30 hover:shadow-lg hover:shadow-cyan-500/10"
+                  >
+                    <p className="text-sm leading-7">{item}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {localAIModels.map((model, index) => (
+                    <div
+                      key={index}
+                      className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-6 shadow-xl shadow-black/10 transition-all duration-300 hover:scale-[1.02] hover:border-cyan-400/30"
+                    >
+                      <p className="text-cyan-300 text-sm font-semibold mb-2">{model.name}</p>
+                      <p className="text-white font-bold text-xl mb-3">{model.memory}</p>
+                      <p className="text-gray-300 text-sm leading-6">{model.focus}</p>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-6 shadow-xl shadow-black/10">
+                  <p className="text-cyan-200 uppercase tracking-[0.2em] mb-4 text-sm">¿Para tu Empresa o Negocio?</p>
+                  <h3 className="text-2xl font-bold text-white mb-4">¿Necesitas un asistente entrenado con TUS datos?</h3>
+                  <p className="text-gray-300 mb-6 leading-7">
+                    Soluciones locales que respetan tu soberanía de datos y se adaptan a procesos de negocio reales.
+                  </p>
+                  <ul className="space-y-3 text-gray-200 mb-6">
+                    {[
+                      'Automatizar respuestas con el tono de tu marca',
+                      'Clasificar documentos internos (facturas, correos, informes)',
+                      'Asistente de código especializado en TU stack tecnológico',
+                      'Extraer datos de reportes recurrentes'
+                    ].map((item, index) => (
+                      <li key={index} className="flex gap-3 items-start">
+                        <span className="mt-1 text-cyan-300">•</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="text-gray-300 mb-0">
+                    Mediante fine-tuning o RAG, adaptamos cualquier modelo a tus necesidades específicas.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex justify-center">
+                <button
+                  onClick={() => scrollToSection('contacto')}
+                  className="w-full sm:w-auto bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-2xl hover:shadow-cyan-500/25"
+                >
+                  Probar IA Local en mi PC
+                </button>
+              </div>
+            </div>
+          </section>
+
           {/* Servicios adicionales */}
-          <h3 className="text-3xl font-bold text-center mt-12 mb-8 animate-fadein">
+          <h3 className="text-3xl font-bold text-center mt-2 mb-8 animate-fadein">
             <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
               Servicios adicionales +
             </span>
@@ -1777,9 +1881,7 @@ return (
                   </label>
                   <textarea
                     name="message"
-                    placeholder="Cuéntame tu proyecto, idea o servicio.
-Déjame tu WhatsApp.
-También doy clases de programación personalizadas."
+                    placeholder="Cuéntame tu idea o servicio que necesitas. Déjame tu WhatsApp... Páginas web, marketing, IA local, clases de programación, apoyo académico, asesoría en CV, ventas online y plantillas en Excel."
                     value={formData.message}
                     onChange={handleInputChange}
                     rows={4}

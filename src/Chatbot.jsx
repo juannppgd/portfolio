@@ -5,7 +5,7 @@ import { MessageCircle, X, Bot, Sparkles, Zap, RotateCcw } from 'lucide-react';
 const responses = {
   'Servicios': {
     text: 'Juan Pablo ofrece servicios principales y adicionales. ¿Sobre cuál te gustaría saber más?',
-    options: ['Servicios Adicionales','Desarrollo Web', 'Marketing Digital', 'Contacto',  'Háblame de Juan Pablo']
+    options: ['IA Local','Servicios Adicionales','Desarrollo Web', 'Marketing Digital', 'Contacto', 'Háblame de Juan Pablo']
   },
   'Desarrollo Web': {
     text: 'Desarrollo páginas web modernas con React, Vite y Tailwind CSS. Sitios 100% personalizados, responsivos y optimizados para convertir visitantes en clientes. Ideales para emprendedores, pymes y profesionales. ¿Qué te gustaría saber?',
@@ -13,7 +13,17 @@ const responses = {
   },
   'Marketing Digital': {
     text: 'Servicios completos de marketing digital: Edición profesional de fotografía y video, campañas de email/SMS, gestión de redes sociales, SEO, SEM y análisis de datos. Estrategias personalizadas para impulsar tu negocio online. ¿Qué aspecto te interesa?',
-    options: ['Email Marketing', 'Redes Sociales', 'Análisis de Datos','Contacto',  'Ver Canal de YouTube' ]
+    options: ['Email Marketing', 'Redes Sociales', 'Análisis de Datos','Contacto', 'Ver Canal de YouTube']
+  },
+  'IA Local': {
+    text: 'IA Local: modelos de lenguaje que corren directamente en tu PC usando GPU o RAM, sin suscripción, sin límites de preguntas y sin que tus datos salgan de tu máquina. Ideal para empresas que valoran privacidad, independencia tecnológica y velocidad local.',
+    options: ['Probar IA Local en mi PC','Contacto', 'Servicios']
+  },
+  'Probar IA Local en mi PC': {
+    text: 'Perfecto, te llevo al formulario de contacto para que puedas solicitar tu IA local. Así puedes empezar rápido y sin salir de tu flujo de trabajo.',
+    options: ['Volver al Inicio'],
+    action: 'contact',
+    autoClose: true
   },
   'Contacto': {
     text: '¡Perfecto! Juan Pablo estará encantado de ayudarte. ¿Cómo prefieres contactarlo?',
@@ -189,7 +199,7 @@ const Chatbot = ({ forceOpen = false, onShare, onScrollToContact, onScrollToFoot
     {
       role: 'assistant',
       content: '¡Hola! 👋 Soy el asistente programado de Juan Pablo. ¿En qué puedo ayudarte hoy?',
-      options: ['Servicios', 'Desarrollo Web', 'Marketing Digital','Contacto', 'Servicios Adicionales','Preguntas Frecuentes']
+      options: ['Servicios', 'Desarrollo Web', 'Marketing Digital', 'IA Local', 'Contacto', 'Servicios Adicionales', 'Preguntas Frecuentes']
     }
   ]);
   const [isLoading, setIsLoading] = useState(false);
