@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { TrendingUp, BarChart3, PieChart, CheckCircle, Star, Users, Shield, MessageCircle, CreditCard, Banknote, Key, Smartphone, Target, Award, Calendar, Zap, Brain, ChevronDown, ChevronUp, Menu, X, Globe2, ArrowLeft } from 'lucide-react';
-import habitosImage from './assets/habitos.png';
+import { FaCheckCircle } from 'react-icons/fa';
 
 const ExcelHabitos = () => {
   const navigate = useNavigate();
@@ -321,13 +321,7 @@ const ExcelHabitos = () => {
               {activeTab === 'mensual' && (
                 <div className="p-4 border-t border-white/10">
                   <div className="w-full h-auto flex items-center justify-center">
-                    <img 
-                      src={habitosImage} 
-                      alt="Vista Mensual de Hábitos" 
-                      className="w-full h-auto max-w-2xl rounded-lg shadow-lg object-cover" 
-                      loading="lazy"
-                      onError={(e) => e.target.src = 'https://via.placeholder.com/800x600?text=Vista+Mensual+Habitos'}
-                    />
+                    <FaCheckCircle className="w-32 h-32 text-green-400 mx-auto opacity-80" />
                   </div>
                 </div>
               )}

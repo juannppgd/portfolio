@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, BookOpen, CheckCircle, Clock, Shield, Users, Calendar, ArrowUpRight, Star, Video, Quote, Briefcase, TrendingUp, Plus, Globe, Banknote, Key, Smartphone, CreditCard } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { FaFacebook, FaInstagram, FaLinkedin, FaTiktok, FaYoutube, FaTelegram, FaPinterest, FaSnapchat, FaDiscord } from 'react-icons/fa';
-import XImage from './assets/X2.png';
-import kickImage from './assets/kick.png';
+import { FaFacebook, FaInstagram, FaLinkedin, FaTiktok, FaYoutube, FaTelegram, FaPinterest, FaSnapchat, FaDiscord, FaGamepad } from 'react-icons/fa';
+import { FaXTwitter } from 'react-icons/fa6';
 
 const Academico = () => {
   const [activeSection, setActiveSection] = useState('apoyo-hero');
@@ -599,7 +598,7 @@ const Academico = () => {
                 rel="noopener noreferrer"
                 className="group bg-gradient-to-br from-gray-700/20 to-black/20 hover:from-gray-600/30 hover:to-gray-900/30 backdrop-blur-sm rounded-2xl p-6 border border-gray-500/20 hover:border-gray-400/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-gray-500/20 animate-socialfade dark:bg-card dark:border-card"
               >
-                <img src={XImage} alt="X" className="w-8 h-8 mx-auto mb-3 group-hover:animate-bounce" />
+                <FaXTwitter className="w-8 h-8 text-gray-400 mx-auto mb-3 group-hover:animate-bounce" />
                 <div className="text-white font-semibold text-sm mb-1 dark:text-primary">X</div>
                 <div className="text-gray-300 text-xs opacity-80 dark:text-secondary">Social Network</div>
                 <ArrowUpRight className="w-4 h-4 text-gray-300 mx-auto mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -677,7 +676,7 @@ const Academico = () => {
                 rel="noopener noreferrer"
                 className="group bg-gradient-to-br from-green-600/20 to-green-800/20 hover:from-green-500/30 hover:to-green-700/30 backdrop-blur-sm rounded-2xl p-6 border border-green-500/20 hover:border-green-400/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-green-500/20 animate-socialfade dark:bg-card dark:border-card"
               >
-                <img src={kickImage} alt="Kick" className="w-8 h-8 mx-auto mb-3 group-hover:animate-bounce" />
+                <FaGamepad className="w-8 h-8 text-green-400 mx-auto mb-3 group-hover:animate-bounce" />
                 <div className="text-white font-semibold text-sm mb-1 dark:text-primary">Kick</div>
                 <div className="text-green-300 text-xs opacity-80 dark:text-secondary">Streaming</div>
                 <ArrowUpRight className="w-4 h-4 text-green-300 mx-auto mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />

@@ -1,9 +1,8 @@
 import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { Mail, MapPin, ChevronDown, Code, Briefcase, User, Send, MessageCircle, ArrowUpRight, Moon, Sun, Zap, Palette, Brain, Award, Trophy, BookOpen, Sparkles, Star, Globe, Cpu, Smartphone, Shield, Target, BarChart, HeartPulse, Lock, CreditCard, Banknote, Key, TrendingUp, Users, Server, Plus, Loader, Calendar, Menu, X, MapPinCheckIcon, VideoIcon, Settings, Github, Quote, FileText, Share2 } from 'lucide-react';
-import { FaTiktok, FaTelegram, FaPinterest, FaFacebook, FaInstagram, FaLinkedin, FaTwitter, FaYoutube, FaSnapchat, FaDiscord } from 'react-icons/fa';
-import XImage from './assets/X2.png';
-import kickImage from './assets/kick.png';
+import { Mail, MapPin, ChevronDown, Code, Briefcase, User, Send, MessageCircle, ArrowUpRight, Moon, Sun, Zap, Palette, Brain, Award, Trophy, BookOpen, Sparkles, Star, Globe, Cpu, Smartphone, Shield, Target, BarChart, HeartPulse, Lock, CreditCard, Banknote, Key, TrendingUp, Users, Server, Plus, Loader, Menu, X, VideoIcon, Settings, Github, Quote, FileText } from 'lucide-react';
+import { FaTiktok, FaTelegram, FaPinterest, FaFacebook, FaInstagram, FaLinkedin, FaYoutube, FaSnapchat, FaDiscord, FaExternalLinkAlt, FaShareAlt, FaStar, FaQuoteLeft, FaBriefcase, FaChartLine, FaGamepad, FaGraduationCap, FaCode, FaShoppingCart, FaFileAlt } from 'react-icons/fa';
+import { FaXTwitter } from 'react-icons/fa6';
 const Chatbot = lazy(() => import('./Chatbot'));
 const CVService = lazy(() => import('./CVService'));
 const Clases = lazy(() => import('./Clases'));
@@ -769,46 +768,16 @@ return (
   <span className="animate-blink">|</span>
 </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-            <a className="flex items-center gap-2 text-gray-300 hover:text-cyan-400 transition-colors dark:text-secondary cursor-pointer group" onClick={() => scrollToSection('contacto')}>
-              <MapPinCheckIcon className="w-5 h-5 text-cyan-400" /> 
-              Remoto desde Colombia
-              </a>
-            <div className="flex items-center gap-2 text-gray-300 hover:text-cyan-400 transition-colors dark:text-secondary cursor-pointer" onClick={() => scrollToSection('estudios')}>
-              <BookOpen className="w-5 h-5 text-cyan-400" />
-              Mis Estudios
-            </div>
-            <div className="flex items-center gap-2 text-gray-300 dark:text-secondary">
-              <Mail className="w-5 h-5 text-cyan-400" />
-              <a href="mailto:contact.juannppgd@gmail.com" className="text-gray-300 hover:text-cyan-400 transition-colors dark:text-secondary">
-                contact.juannppgd@gmail.com
-              </a>
-            </div>
-            </div>
-
-            {/* Availability Indicator */}
-            <div className="flex items-center justify-center mt-6">
-              <div className="bg-gradient-to-r from-cyan-500/20 to-purple-500/20 backdrop-blur-sm rounded-full px-4 py-2 border border-cyan-500/30 animate-pulse-optimized">
-                <div
-                  className="flex items-center gap-2 text-cyan-300 text-sm font-semibold dark:text-cyan-300 cursor-pointer hover:text-cyan-200 transition-colors"
-                  onClick={() => scrollToSection('contacto')}
-                >
-                  <Calendar className="w-4 h-4" />
-                  ¿Listo para destacar en internet? Agenda tu asesoría gratis hoy.
-                </div>
-              </div>
-            </div>
-
-            <div className="flex flex-col items-center mt-8">
-              <h2
-                className="text-gray-300 mb-4 dark:text-secondary text-lg font-semibold"
-              >
-                Descubre mis servicios y cómo puedo ayudarte
-              </h2>
-              <div className="animate-bounce-optimized">
-                <ChevronDown className="w-8 h-8 text-cyan-400" />
-              </div>
-            </div>
+          <div className="flex justify-center mt-6">
+            <a
+              href="https://juanpablogd.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-400 hover:to-purple-500 text-white font-bold py-3 px-6 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+            >
+              He actualizado mi página web, visítala dando click aquí
+            </a>
+          </div>
 
         </div>
       </section>
@@ -1060,63 +1029,59 @@ return (
           </section>
 
           {/* Servicios adicionales */}
-          <h3 className="text-3xl font-bold text-center mt-2 mb-8 animate-fadein">
+          <h3 className="text-2xl sm:text-3xl font-bold text-center mt-6 mb-6 sm:mb-8 animate-fadein">
             <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
               Servicios adicionales +
             </span>
           </h3>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 max-w-4xl mx-auto">
             {/* Servicio 1: Desarrollo de trabajos y evaluaciones */}
-            <div className="bg-gradient-to-br from-cyan-500/10 via-blue-500/10 to-purple-500/10 backdrop-blur-sm rounded-3xl p-6 border border-cyan-400/30 hover:border-cyan-400/70 transition-all duration-500 transform hover:scale-102 hover:shadow-2xl hover:shadow-cyan-500/30 dark:bg-card dark:border-card animate-glow-repeat cursor-pointer" onClick={() => window.open('/#/academico', '_blank')}>
-              <picture>
-                <source srcSet="/assets/optimized/Desarrollo-640.webp 640w, /assets/optimized/Desarrollo-1024.webp 1024w, /assets/optimized/Desarrollo-1366.webp 1366w" type="image/webp" />
-                <img src="/assets/Desarrollo.png" alt="Desarrollo de trabajos y evaluaciones" width="640" height="512" sizes="(max-width: 640px) 100vw, 25vw" className="w-full aspect-[5/4] object-contain rounded-lg mb-4" loading="lazy" decoding="async" />
-              </picture>
-              <h3 className="text-center text-xl font-bold text-white mb-3 dark:text-primary">Desarrollo de trabajos y evaluaciones</h3>
-              <p className="text-gray-300 text-sm mb-3 dark:text-secondary">
+            <div className="bg-gradient-to-br from-cyan-500/10 via-blue-500/10 to-purple-500/10 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-cyan-400/30 hover:border-cyan-400/70 transition-all duration-500 transform hover:scale-102 hover:shadow-2xl hover:shadow-cyan-500/30 dark:bg-card dark:border-card animate-glow-repeat cursor-pointer" onClick={() => window.open('/#/academico', '_blank')}>
+              <div className="bg-gradient-to-br from-cyan-500 to-purple-500 p-4 sm:p-5 rounded-full w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-3 sm:mb-4 flex items-center justify-center shadow-lg shadow-cyan-500/30">
+                <FaGraduationCap className="w-10 h-10 sm:w-12 sm:h-12 text-white" />
+              </div>
+              <h3 className="text-center text-base sm:text-lg lg:text-xl font-bold text-white mb-2 sm:mb-3 dark:text-primary">Desarrollo de trabajos y evaluaciones</h3>
+              <p className="text-gray-300 text-xs sm:text-sm mb-2 sm:mb-3 dark:text-secondary">
                 Apoyo profesional en el desarrollo de trabajos académicos, evaluaciones, proyectos y entregables con enfoque en calidad, cumplimiento y resultados.
               </p>
-              <p className="text-gray-300 dark:text-secondary text-center"><strong>Solicitar apoyo académico</strong></p>
+              <p className="text-gray-300 dark:text-secondary text-center text-xs sm:text-sm"><strong>Solicitar apoyo académico</strong></p>
             </div>
 
             {/* Servicio 2: Clases de programación personalizadas 1 a 1 */}
-            <div className="bg-gradient-to-br from-purple-500/10 via-pink-500/10 to-cyan-500/10 backdrop-blur-sm rounded-3xl p-6 border border-purple-400/30 hover:border-purple-400/70 transition-all duration-500 transform hover:scale-102 hover:shadow-2xl hover:shadow-purple-500/30 dark:bg-card dark:border-card animate-glow-repeat cursor-pointer" onClick={() => window.open('/#/clases', '_blank')}>
-              <picture>
-                <source srcSet="/assets/optimized/Clases-640.webp 640w, /assets/optimized/Clases-1024.webp 1024w, /assets/optimized/Clases-1366.webp 1366w" type="image/webp" />
-                <img src="/assets/Clases.png" alt="Clases de programación personalizadas 1 a 1" width="640" height="512" sizes="(max-width: 640px) 100vw, 25vw" className="w-full aspect-[5/4] object-contain rounded-lg mb-4" loading="lazy" decoding="async" />
-              </picture>
-              <h3 className="text-center text-xl font-bold text-white mb-3 dark:text-primary">Clases de programación personalizadas 1 a 1</h3>
-              <p className="text-gray-300 text-sm mb-3 dark:text-secondary">
+            <div className="bg-gradient-to-br from-purple-500/10 via-pink-500/10 to-cyan-500/10 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-purple-400/30 hover:border-purple-400/70 transition-all duration-500 transform hover:scale-102 hover:shadow-2xl hover:shadow-purple-500/30 dark:bg-card dark:border-card animate-glow-repeat cursor-pointer" onClick={() => window.open('/#/clases', '_blank')}>
+              <div className="bg-gradient-to-br from-purple-500 to-pink-500 p-4 sm:p-5 rounded-full w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-3 sm:mb-4 flex items-center justify-center shadow-lg shadow-purple-500/30">
+                <FaCode className="w-10 h-10 sm:w-12 sm:h-12 text-white" />
+              </div>
+              <h3 className="text-center text-base sm:text-lg lg:text-xl font-bold text-white mb-2 sm:mb-3 dark:text-primary">Clases de programación personalizadas 1 a 1</h3>
+              <p className="text-gray-300 text-xs sm:text-sm mb-2 sm:mb-3 dark:text-secondary">
                 Clases personalizadas enfocadas en tu nivel, ritmo y objetivos. Aprende programación de forma práctica y aplicada. Recibes Materiales y Certificado
               </p>
-              <p className="text-gray-300 dark:text-secondary text-center"><strong>Contáctame haciendo clic aquí</strong></p>
+              <p className="text-gray-300 dark:text-secondary text-center text-xs sm:text-sm"><strong>Contáctame haciendo clic aquí</strong></p>
             </div>
 
             {/* Servicio 3: Venta de garaje en línea por Marketplace y MercadoLibre */}
-            <div className="bg-gradient-to-br from-green-500/10 via-teal-500/10 to-cyan-500/10 backdrop-blur-sm rounded-3xl p-6 border border-green-400/30 hover:border-green-400/70 transition-all duration-500 transform hover:scale-102 hover:shadow-2xl hover:shadow-green-500/30 dark:bg-card dark:border-card animate-glow-repeat cursor-pointer" onClick={() => window.open('/#/venta', '_blank')}>
-              <picture>
-                <source srcSet="/assets/optimized/Venta-640.webp 640w, /assets/optimized/Venta-1024.webp 1024w, /assets/optimized/Venta-1366.webp 1366w" type="image/webp" />
-                <img src="/assets/Venta.png" alt="Venta de garaje en línea por Marketplace y MercadoLibre" width="640" height="512" sizes="(max-width: 640px) 100vw, 25vw" className="w-full aspect-[5/4] object-contain rounded-lg mb-4" loading="lazy" decoding="async" />
-              </picture>
-              <h3 className="text-center text-xl font-bold text-white mb-3 dark:text-primary">Venta de garaje en línea por Marketplace y MercadoLibre</h3>
-              <p className="text-gray-300 text-sm mb-3 dark:text-secondary">
+            <div className="bg-gradient-to-br from-green-500/10 via-teal-500/10 to-cyan-500/10 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-green-400/30 hover:border-green-400/70 transition-all duration-500 transform hover:scale-102 hover:shadow-2xl hover:shadow-green-500/30 dark:bg-card dark:border-card animate-glow-repeat cursor-pointer" onClick={() => window.open('/#/venta', '_blank')}>
+              <div className="bg-gradient-to-br from-green-500 to-teal-500 p-4 sm:p-5 rounded-full w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-3 sm:mb-4 flex items-center justify-center shadow-lg shadow-green-500/30">
+                <FaShoppingCart className="w-10 h-10 sm:w-12 sm:h-12 text-white" />
+              </div>
+              <h3 className="text-center text-base sm:text-lg lg:text-xl font-bold text-white mb-2 sm:mb-3 dark:text-primary">Venta de garaje en línea por Marketplace y MercadoLibre</h3>
+              <p className="text-gray-300 text-xs sm:text-sm mb-2 sm:mb-3 dark:text-secondary">
                 Conoce mi modalidad de Publicación, gestión y optimización de productos en plataformas de venta online para que adquieras los tuyos completamente garantizados.
               </p>
-              <p className="text-gray-300 dark:text-secondary text-center"><strong>Explorar tiendas y aprender a vender</strong></p>
+              <p className="text-gray-300 dark:text-secondary text-center text-xs sm:text-sm"><strong>Explorar tiendas y aprender a vender</strong></p>
             </div>
 
             {/* Servicio 4: Asesoría en creación de tu CV para que entres al trabajo de tus sueños */}
-            <div className="bg-gradient-to-br from-orange-500/10 via-red-500/10 to-pink-500/10 backdrop-blur-sm rounded-3xl p-6 border border-orange-400/30 hover:border-orange-400/70 transition-all duration-500 transform hover:scale-102 hover:shadow-2xl hover:shadow-orange-500/30 dark:bg-card dark:border-card animate-glow-repeat cursor-pointer" onClick={() => window.open('/#/cv-service', '_blank')}>
-              <picture>
-                <source srcSet="/assets/optimized/Asesoría-640.webp 640w, /assets/optimized/Asesoría-1024.webp 1024w, /assets/optimized/Asesoría-1366.webp 1366w" type="image/webp" />
-                <img src="/assets/Asesoría.png" alt="Asesoría en creación de tu CV para que entres al trabajo de tus sueños" width="640" height="512" sizes="(max-width: 640px) 100vw, 25vw" className="w-full aspect-[5/4] object-contain rounded-lg mb-4" loading="lazy" decoding="async" />
-              </picture>
-              <h3 className="text-center text-xl font-bold text-white mb-3 dark:text-primary">Creo tu CV para que entres al trabajo de tus sueños</h3>
-              <p className="text-gray-300 text-sm mb-3 dark:text-secondary">
+            <div className="bg-gradient-to-br from-orange-500/10 via-red-500/10 to-pink-500/10 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-orange-400/30 hover:border-orange-400/70 transition-all duration-500 transform hover:scale-102 hover:shadow-2xl hover:shadow-orange-500/30 dark:bg-card dark:border-card animate-glow-repeat cursor-pointer" onClick={() => window.open('/#/cv-service', '_blank')}>
+              <div className="bg-gradient-to-br from-orange-500 to-pink-500 p-4 sm:p-5 rounded-full w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-3 sm:mb-4 flex items-center justify-center shadow-lg shadow-orange-500/30">
+                <FaFileAlt className="w-10 h-10 sm:w-12 sm:h-12 text-white" />
+              </div>
+              <h3 className="text-center text-base sm:text-lg lg:text-xl font-bold text-white mb-2 sm:mb-3 dark:text-primary">Creo tu CV para que entres al trabajo de tus sueños</h3>
+              <p className="text-gray-300 text-xs sm:text-sm mb-2 sm:mb-3 dark:text-secondary">
                 Diseño un currículum profesional para un CV estratégico, atractivo y optimizado para procesos de selección laboral, filtros avanzados ATS.
               </p>
-              <p className="text-gray-300 dark:text-secondary text-center"><strong>Contáctame haciendo clic aquí</strong></p>
+              <p className="text-gray-300 dark:text-secondary text-center text-xs sm:text-sm"><strong>Contáctame haciendo clic aquí</strong></p>
             </div>
           </div>
       </section>
@@ -1998,7 +1963,7 @@ return (
                 <FaFacebook className="w-8 h-8 text-blue-400 mx-auto mb-3 group-hover:animate-bounce" />
                 <div className="text-white font-semibold text-sm mb-1 dark:text-primary">Facebook</div>
                 <div className="text-blue-300 text-xs opacity-80 dark:text-secondary">Social & Updates</div>
-                <ArrowUpRight className="w-4 h-4 text-blue-300 mx-auto mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <FaExternalLinkAlt className="w-4 h-4 text-blue-300 mx-auto mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />
               </a>
 
               {/* Instagram */}
@@ -2011,7 +1976,7 @@ return (
                 <FaInstagram className="w-8 h-8 text-pink-400 mx-auto mb-3 group-hover:animate-bounce" />
                 <div className="text-white font-semibold text-sm mb-1 dark:text-primary">Instagram</div>
                 <div className="text-pink-300 text-xs opacity-80 dark:text-secondary">Visual Content</div>
-                <ArrowUpRight className="w-4 h-4 text-pink-300 mx-auto mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <FaExternalLinkAlt className="w-4 h-4 text-pink-300 mx-auto mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />
               </a>
 
               {/* LinkedIn */}
@@ -2024,7 +1989,7 @@ return (
                 <FaLinkedin className="w-8 h-8 text-blue-400 mx-auto mb-3 group-hover:animate-bounce" />
                 <div className="text-white font-semibold text-sm mb-1 dark:text-primary">LinkedIn</div>
                 <div className="text-blue-300 text-xs opacity-80 dark:text-secondary">Professional</div>
-                <ArrowUpRight className="w-4 h-4 text-blue-300 mx-auto mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <FaExternalLinkAlt className="w-4 h-4 text-blue-300 mx-auto mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />
               </a>
 
               {/* X */}
@@ -2034,10 +1999,10 @@ return (
                 rel="noopener noreferrer"
                 className="group bg-gradient-to-br from-gray-700/20 to-black/20 hover:from-gray-600/30 hover:to-gray-900/30 backdrop-blur-sm rounded-2xl p-6 border border-gray-500/20 hover:border-gray-400/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-gray-500/20 animate-socialfade dark:bg-card dark:border-card"
               >
-                <img src={XImage} alt="X" className="w-8 h-8 mx-auto mb-3 group-hover:animate-bounce" />
+                <FaXTwitter className="w-8 h-8 mx-auto mb-3 text-gray-300 group-hover:animate-bounce" />
                 <div className="text-white font-semibold text-sm mb-1 dark:text-primary">X</div>
                 <div className="text-gray-300 text-xs opacity-80 dark:text-secondary">Social Network</div>
-                <ArrowUpRight className="w-4 h-4 text-gray-300 mx-auto mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <FaExternalLinkAlt className="w-4 h-4 text-gray-300 mx-auto mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />
               </a>
 
               {/* TikTok */}
@@ -2050,7 +2015,7 @@ return (
                 <FaTiktok className="w-8 h-8 mx-auto mb-3 text-red-400 group-hover:animate-bounce" />
                 <div className="text-white font-semibold text-sm mb-1 dark:text-primary">TikTok</div>
                 <div className="text-red-300 text-xs opacity-80 dark:text-secondary">Short Videos</div>
-                <ArrowUpRight className="w-4 h-4 text-red-300 mx-auto mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <FaExternalLinkAlt className="w-4 h-4 text-red-300 mx-auto mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />
               </a>
 
               {/* YouTube */}
@@ -2063,7 +2028,7 @@ return (
                 <FaYoutube className="w-8 h-8 mx-auto mb-3 text-red-400 group-hover:animate-bounce" />
                 <div className="text-white font-semibold text-sm mb-1 dark:text-primary">YouTube</div>
                 <div className="text-red-300 text-xs opacity-80 dark:text-secondary">Videos & Tutorials</div>
-                <ArrowUpRight className="w-4 h-4 text-red-300 mx-auto mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <FaExternalLinkAlt className="w-4 h-4 text-red-300 mx-auto mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />
               </a>
 
               {/* Telegram */}
@@ -2076,7 +2041,7 @@ return (
                 <FaTelegram className="w-8 h-8 mx-auto mb-3 text-sky-400 group-hover:animate-bounce" />
                 <div className="text-white font-semibold text-sm mb-1 dark:text-primary">Telegram</div>
                 <div className="text-sky-300 text-xs opacity-80 dark:text-secondary">Secure Chat</div>
-                <ArrowUpRight className="w-4 h-4 text-sky-300 mx-auto mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <FaExternalLinkAlt className="w-4 h-4 text-sky-300 mx-auto mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />
               </a>
 
               {/* Pinterest */}
@@ -2089,7 +2054,7 @@ return (
                 <FaPinterest className="w-8 h-8 mx-auto mb-3 text-red-400 group-hover:animate-bounce" />
                 <div className="text-white font-semibold text-sm mb-1 dark:text-primary">Pinterest</div>
                 <div className="text-red-300 text-xs opacity-80 dark:text-secondary">Inspiration</div>
-                <ArrowUpRight className="w-4 h-4 text-red-300 mx-auto mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <FaExternalLinkAlt className="w-4 h-4 text-red-300 mx-auto mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />
               </a>
 
               {/* Snapchat */}
@@ -2102,7 +2067,7 @@ return (
                 <FaSnapchat className="w-8 h-8 text-yellow-400 mx-auto mb-3 group-hover:animate-bounce" />
                 <div className="text-white font-semibold text-sm mb-1 dark:text-primary">Snapchat</div>
                 <div className="text-yellow-300 text-xs opacity-80 dark:text-secondary">Add Me</div>
-                <ArrowUpRight className="w-4 h-4 text-yellow-300 mx-auto mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <FaExternalLinkAlt className="w-4 h-4 text-yellow-300 mx-auto mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />
               </a>
 
               {/* Kick */}
@@ -2112,10 +2077,10 @@ return (
                 rel="noopener noreferrer"
                 className="group bg-gradient-to-br from-green-600/20 to-green-800/20 hover:from-green-500/30 hover:to-green-700/30 backdrop-blur-sm rounded-2xl p-6 border border-green-500/20 hover:border-green-400/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-green-500/20 animate-socialfade dark:bg-card dark:border-card"
               >
-                <img src={kickImage} alt="Kick" className="w-8 h-8 mx-auto mb-3 group-hover:animate-bounce" />
+                <FaGamepad className="w-8 h-8 mx-auto mb-3 text-green-400 group-hover:animate-bounce" />
                 <div className="text-white font-semibold text-sm mb-1 dark:text-primary">Kick</div>
                 <div className="text-green-300 text-xs opacity-80 dark:text-secondary">Streaming</div>
-                <ArrowUpRight className="w-4 h-4 text-green-300 mx-auto mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <FaExternalLinkAlt className="w-4 h-4 text-green-300 mx-auto mt-2 opacity-0 group-hover:opacity-100 transition-opacity" />
               </a>
 
               {/* Discord */}
@@ -2132,10 +2097,10 @@ return (
                 onClick={handleShare}
                 className="group bg-gradient-to-br from-cyan-600/20 to-purple-800/20 backdrop-blur-sm rounded-2xl p-6 border border-cyan-500/20 transition-all duration-300"
               >
-                <Share2 className="w-8 h-8 text-cyan-400 mx-auto mb-3" />
+                <FaShareAlt className="w-8 h-8 text-cyan-400 mx-auto mb-3" />
                 <div className="text-white font-semibold text-sm mb-1 dark:text-primary">Compartir sitio</div>
                 <div className="text-cyan-300 text-xs opacity-80 dark:text-secondary">Comparte este sitio web</div>
-                <ArrowUpRight className="w-4 h-4 text-cyan-300 mx-auto mt-2" />
+                <FaExternalLinkAlt className="w-4 h-4 text-cyan-300 mx-auto mt-2" />
               </button>
             </div>
           </div>
@@ -2147,28 +2112,28 @@ return (
                 onClick={() => window.open('/#/inspiration', '_blank')}
                 className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white px-4 sm:px-6 py-3 sm:py-4 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-cyan-500/25 flex items-center justify-center gap-2 text-center"
               >
-                <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" />
+                <FaStar className="w-4 h-4 sm:w-5 sm:h-5" />
                 Inspiración
               </button>
               <button
                 onClick={() => scrollToSection('faq')}
                 className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-4 sm:px-6 py-3 sm:py-4 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-purple-500/25 flex items-center justify-center gap-2 text-center"
               >
-                <Quote className="w-4 h-4 sm:w-5 sm:h-5" />
+                <FaQuoteLeft className="w-4 h-4 sm:w-5 sm:h-5" />
                 Preguntas
               </button>
               <button
                 onClick={() => scrollToSection('servicios')}
                 className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white px-4 sm:px-6 py-3 sm:py-4 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-cyan-500/25 flex items-center justify-center gap-2 text-center"
               >
-                <Briefcase className="w-4 h-4 sm:w-5 sm:h-5" />
+                <FaBriefcase className="w-4 h-4 sm:w-5 sm:h-5" />
                 Servicios
               </button>
               <button
                 onClick={() => scrollToSection('contacto')}
                 className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-4 sm:px-6 py-3 sm:py-4 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-purple-500/25 flex items-center justify-center gap-2 text-center"
               >
-                <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5" />
+                <FaChartLine className="w-4 h-4 sm:w-5 sm:h-5" />
                 Contacto
               </button>
             </div>
